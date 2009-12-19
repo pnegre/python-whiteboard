@@ -4,9 +4,6 @@
 #from wiimote import Wiimote
 import pygame, os
 
-SCR_WIDTH = 640
-SCR_HEIGHT = 480
-
 
 class SmallScreen():
 	def __init__(self,screen):
@@ -47,7 +44,7 @@ class Calibration:
 	def doIt(self,wii):
 		os.environ["SDL_VIDEO_CENTERED"] = "1"
 		pygame.init()
-		self.window = pygame.display.set_mode( (SCR_WIDTH, SCR_HEIGHT) )
+		self.window = pygame.display.set_mode( (0,0), pygame.FULLSCREEN | pygame.DOUBLEBUF )
 		self.screen = pygame.display.get_surface()
 		self.clock = pygame.time.Clock()
 
@@ -78,11 +75,10 @@ class Calibration:
 			smallScreen.draw()
 			
 			wii.getMsgs()
-			if wii.pos:
-				#print wii.pos
-				smallScreen.drawPoint(wii.pos)
-				p_wii[state] = list(wii.pos)
-				wii.pos = None
+			wii_pos = wii.getPos()
+			if wii_pos:
+				smallScreen.drawPoint(wii_pos)
+				p_wii[state] = list(wii_pos)
 			
 			for n,p in enumerate(p_screen):
 				self.drawCross(p)
@@ -95,5 +91,6 @@ class Calibration:
 		
 		# Do calibration
 		wii.calibrate(p_screen,p_wii)
+		pygame.quit()
 
 
