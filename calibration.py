@@ -35,7 +35,14 @@ class Calibration:
 	def drawCross(self,pos):
 		pygame.draw.line(self.screen, (255,255,255), (pos[0]-5,pos[1]), (pos[0]+5,pos[1]))
 		pygame.draw.line(self.screen, (255,255,255), (pos[0],pos[1]-5), (pos[0],pos[1]+5)) 
-		
+	
+	def drawBox(self, pos, filled=False):
+		w = 1
+		if filled: w = 0
+			
+		pygame.draw.rect(self.screen, (255,255,255), 
+			pygame.Rect(pos[0]-5, pos[1]-5, 11, 11), w)
+			
 	
 	def doIt(self,wii):
 		os.environ["SDL_VIDEO_CENTERED"] = "1"
@@ -46,7 +53,7 @@ class Calibration:
 
 		smallScreen = SmallScreen(self.screen)
 		
-		p_wii = ((0,0), (0,0), (0,0), (0,0))
+		p_wii = [(0,0), (0,0), (0,0), (0,0)]
 		p_screen = (
 			(20,20),
 			(self.screen.get_width()-20, 20),
@@ -54,9 +61,17 @@ class Calibration:
 			(20, self.screen.get_height()-20),
 		)
 		
-		while 1:
-			k = pygame.key.get_pressed()
-			if (k[pygame.K_RETURN]):
+		state = 0
+		finish = False
+		while not finish:
+			for e in pygame.event.get():
+				if e.type == pygame.KEYDOWN:
+					if e.key == pygame.K_ESCAPE:
+						finish = True
+					if e.key == pygame.K_SPACE:
+						state += 1
+			
+			if (state >= 4):
 				break
 			
 			self.screen.fill((0,0,0))
@@ -64,12 +79,17 @@ class Calibration:
 			
 			wii.getMsgs()
 			if wii.pos:
-				print wii.pos
+				#print wii.pos
 				smallScreen.drawPoint(wii.pos)
+				p_wii[state] = list(wii.pos)
 				wii.pos = None
 			
-			for p in p_screen:
+			for n,p in enumerate(p_screen):
 				self.drawCross(p)
+				if n<state:
+					self.drawBox(p_screen[n], filled=True)
+			
+			self.drawBox(p_screen[state])
 			
 			pygame.display.flip()
 		

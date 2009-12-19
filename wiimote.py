@@ -39,10 +39,14 @@ class Wiimote:
 		if self.state == Wiimote.NONCALIBRATED:
 			return p
 		if self.state == Wiimote.CALIBRATED:
-			#DO STUFF
-			return p
+			pp = [0,0]
+			pp[0] = (self.h11*p[0] + self.h12*p[1] + self.h13) / \
+				(self.h31*p[0] + self.h32*p[1] + 1)
+			pp[1] = (self.h21*p[0] + self.h22*p[1] + self.h23) / \
+				(self.h31*p[0] + self.h32*p[1] + 1)
+			return pp
 	
-	def calibrate(p_screen, p_wii):
+	def calibrate(self, p_screen, p_wii):
 		l = []
 		for i in range(0,4):
 			l.append( [p_wii[i][0], p_wii[i][1], 1, 0, 0, 0, 
@@ -66,7 +70,16 @@ class Wiimote:
 		])
 
 		self.hCoefs = linalg.solve(A, x)
-		self.state = CALIBRATED
+		print self.hCoefs
+		self.h11 = self.hCoefs[0]
+		self.h12 = self.hCoefs[1]
+		self.h13 = self.hCoefs[2]
+		self.h21 = self.hCoefs[3]
+		self.h22 = self.hCoefs[4]
+		self.h23 = self.hCoefs[5]
+		self.h31 = self.hCoefs[6]
+		self.h32 = self.hCoefs[7]
+		self.state = Wiimote.CALIBRATED
 
 
 

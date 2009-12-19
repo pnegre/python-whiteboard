@@ -7,8 +7,8 @@ from cursor import FakeCursor
 
 wii = Wiimote()
 wii.bind()
-#calibration = Calibration()
-#calibration.doIt(wii)
+calibration = Calibration()
+calibration.doIt(wii)
 curs = FakeCursor()
 while(1):
 	wii.getMsgs()
