@@ -1,7 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-#from wiimote import Wiimote
 import pygame, os
 
 
