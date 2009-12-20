@@ -108,8 +108,8 @@ class MainWindow(QtGui.QMainWindow):
 			self.ui.pushButtonDeactivate.setEnabled(0)
 			return
 		else:
-			self.ui.pushButtonConnect.setEnabled(1)
-			self.ui.pushButtonCalibrate.setEnabled(1)
+			self.ui.pushButtonConnect.setEnabled(0)
+			self.ui.pushButtonCalibrate.setEnabled(0)
 			self.ui.pushButtonActivate.setEnabled(0)
 			self.ui.pushButtonDeactivate.setEnabled(1)
 
