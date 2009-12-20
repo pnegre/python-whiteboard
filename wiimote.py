@@ -13,12 +13,16 @@ class Wiimote:
 		self.state = Wiimote.NONCALIBRATED
 	
 	def bind(self):
-		self.wii = cwiid.Wiimote()
-		self.wii.rpt_mode = cwiid.RPT_BTN | cwiid.RPT_IR
-		self.wii.led = cwiid.LED1_ON
-		self.wii.enable(cwiid.FLAG_MESG_IFC)
-		self.wii.disable(cwiid.FLAG_NONBLOCK)
-		self.wii.disable(cwiid.FLAG_CONTINUOUS)
+		try:
+			self.wii = cwiid.Wiimote()
+			self.wii.rpt_mode = cwiid.RPT_BTN | cwiid.RPT_IR
+			self.wii.led = cwiid.LED1_ON
+			self.wii.enable(cwiid.FLAG_MESG_IFC)
+			self.wii.disable(cwiid.FLAG_NONBLOCK)
+			self.wii.disable(cwiid.FLAG_CONTINUOUS)
+			return True
+		except:
+			return False
 	
 	def close(self):
 		self.wii.close()
