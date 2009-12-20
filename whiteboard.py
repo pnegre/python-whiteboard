@@ -26,9 +26,13 @@ class ConnectThread(qt.QThread):
 
 class CalibrateThread(qt.QThread):
 	def run(self):
-		calibration = Calibration()
-		Globals.wii.state = Wiimote.NONCALIBRATED
-		calibration.doIt(Globals.wii)
+		#try:
+			calibration = Calibration()
+			Globals.wii.state = Wiimote.NONCALIBRATED
+			calibration.doIt(Globals.wii)
+		#except:
+			# Calibration error
+			#pass
 
 
 class RunWiiThread(qt.QThread):
@@ -143,6 +147,11 @@ class MainWindow(QtGui.QMainWindow):
 			self.calibrated = True
 			self.active = False
 			self.updateButtons()
+		else:
+			msgbox = QtGui.QMessageBox( self )
+			msgbox.setText( "Error during Calibration" )
+			msgbox.setModal( True )
+			ret = msgbox.exec_()
 
 	
 	def activateWii(self):

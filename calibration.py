@@ -2,6 +2,59 @@
 # -*- coding: utf-8 -*-
 
 import pygame, os
+import time
+
+PI = 3.1416
+
+
+def clock():
+	return int(time.time()*1000)
+
+
+class SandClock:
+	READY, FIN1, FIN2 = range(3)
+	
+	def __init__(self,px,py):
+		self.point = [0,0]
+		self.px = px-20
+		self.py = py-20
+		self.initialize()
+	
+	def initialize(self):
+		self.totalTicks = 0
+		self.lastTick = 0
+		self.state = SandClock.READY
+	
+	def update(self,p):
+		t = clock()
+		delta = 0
+		if self.lastTick != 0: delta = t - self.lastTick
+		if p == None:
+			if delta > 100:
+				if self.state == SandClock.FIN1:
+					self.state = SandClock.FIN2
+				if delta > 150:
+					self.initialize()
+			return
+		self.point = list(p)
+		self.lastTick = t
+		if self.totalTicks < 1000:
+			self.totalTicks += delta
+		else:
+			self.state = SandClock.FIN1
+	
+	def draw(self,screen):
+		dgrs = 360*self.totalTicks/1000
+		pygame.draw.arc(screen, (255,0,0),
+			pygame.Rect(self.px,self.py,40,40), 0, dgrs*3.14/180, 2)
+
+	
+	def finished(self):
+		return self.state == SandClock.FIN2
+	
+	def getPoint(self):
+		return self.point
+
 
 
 class SmallScreen():
@@ -56,7 +109,7 @@ class Calibration:
 			(self.screen.get_width()-20, self.screen.get_height()-20),
 			(20, self.screen.get_height()-20),
 		)
-		
+		sandClock = SandClock(self.screen.get_width()/2, self.screen.get_height()/2)
 		state = 0
 		finish = False
 		while not finish:
@@ -72,12 +125,22 @@ class Calibration:
 			
 			self.screen.fill((0,0,0))
 			smallScreen.draw()
+			sandClock.draw(self.screen)
 			
 			wii.getMsgs()
 			wii_pos = wii.getPos()
 			if wii_pos:
 				smallScreen.drawPoint(wii_pos)
-				p_wii[state] = list(wii_pos)
+				sandClock.update(wii_pos)
+			else:
+				sandClock.update(None)
+			
+			if sandClock.finished():
+				p_wii[state] = sandClock.getPoint()
+				state += 1
+				sandClock.initialize()
+				if (state >= 4):
+					break
 			
 			for n,p in enumerate(p_screen):
 				self.drawCross(p)
@@ -89,7 +152,9 @@ class Calibration:
 			pygame.display.flip()
 		
 		# Do calibration
-		wii.calibrate(p_screen,p_wii)
+		if state >= 4:
+			wii.calibrate(p_screen,p_wii)
+		
 		pygame.quit()
 
 

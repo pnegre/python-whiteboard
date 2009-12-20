@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>289</width>
-    <height>449</height>
+    <width>368</width>
+    <height>156</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,8 +19,8 @@
      <rect>
       <x>30</x>
       <y>30</y>
-      <width>231</width>
-      <height>81</height>
+      <width>151</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
@@ -31,9 +31,9 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>210</y>
-      <width>231</width>
-      <height>81</height>
+      <y>80</y>
+      <width>151</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
@@ -43,10 +43,10 @@
    <widget class="QPushButton" name="pushButtonDeactivate">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>300</y>
-      <width>231</width>
-      <height>81</height>
+      <x>190</x>
+      <y>80</y>
+      <width>151</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
@@ -56,33 +56,16 @@
    <widget class="QPushButton" name="pushButtonCalibrate">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>120</y>
-      <width>231</width>
-      <height>81</height>
+      <x>190</x>
+      <y>30</y>
+      <width>151</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
      <string>Calibrate</string>
     </property>
    </widget>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>289</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menuMenu">
-    <property name="title">
-     <string>Menu</string>
-    </property>
-    <addaction name="actionExit"/>
-   </widget>
-   <addaction name="menuMenu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionExit">
