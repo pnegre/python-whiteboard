@@ -27,6 +27,7 @@ class ConnectThread(qt.QThread):
 class CalibrateThread(qt.QThread):
 	def run(self):
 		calibration = Calibration()
+		Globals.wii.state = Wiimote.NONCALIBRATED
 		calibration.doIt(Globals.wii)
 
 
@@ -43,7 +44,12 @@ class RunWiiThread(qt.QThread):
 			Globals.mutex.unlock()
 			Globals.wii.getMsgs()
 			Globals.cursor.update()
-		
+
+
+class PBarDlg(QtGui.QDialog):
+	def __init__(self, parent=None):
+		QtGui.QWidget.__init__(self,parent)
+		self.ui = uic.loadUi("pbar.ui",self)
 
 
 class MainWindow(QtGui.QMainWindow):
@@ -57,6 +63,8 @@ class MainWindow(QtGui.QMainWindow):
 		self.calibrated = False
 		self.active = False
 		self.daemonStarted = False
+
+		self.center()
 
 		self.connect(self.ui.pushButtonConnect,
 			QtCore.SIGNAL("clicked()"), self.connectWii)
@@ -72,6 +80,13 @@ class MainWindow(QtGui.QMainWindow):
 		
 		self.updateButtons()
 
+
+	def center(self):
+		screen = QtGui.QDesktopWidget().screenGeometry()
+		size = self.geometry()
+		self.move((screen.width()-size.width())/2, (screen.height()-size.height())/2)
+		
+		
 
 	def updateButtons(self):
 		if self.connected == False:
@@ -101,12 +116,24 @@ class MainWindow(QtGui.QMainWindow):
 	def connectWii(self):
 		thread = ConnectThread()
 		thread.start()
-		thread.wait()
+		
+		pBar = PBarDlg(self)
+		pBar.setModal( True )
+		pBar.show()
+		while not thread.wait(30):
+			QtGui.QApplication.processEvents()
+		pBar.close()
+
 		if Globals.wii:
 			self.connected = True
 			self.calibrated = False
 			self.active = False
 			self.updateButtons()
+		else:
+			msgbox = QtGui.QMessageBox( self )
+			msgbox.setText( "Error during connection" )
+			msgbox.setModal( True )
+			ret = msgbox.exec_()
 
 	def calibrateWii(self):
 		thread = CalibrateThread()
