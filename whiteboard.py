@@ -5,14 +5,6 @@ from wiimote import Wiimote
 from calibration import Calibration
 from cursor import FakeCursor
 
-#wii = Wiimote()
-#wii.bind()
-#calibration = Calibration()
-#calibration.doIt(wii)
-#curs = FakeCursor(wii)
-#while(1):
-	#wii.getMsgs()
-	#curs.update()
 
 class GlobalObjects:
 	pass
@@ -40,11 +32,18 @@ class CalibrateThread(qt.QThread):
 
 class RunWiiThread(qt.QThread):
 	def run(self):
+		Globals.mutex = qt.QMutex()
 		Globals.wiiActive = True
-		cursor = FakeCursor(Globals.wii)
-		while Globals.wiiActive:
+		Globals.cursor = FakeCursor(Globals.wii)
+		while 1:
+			Globals.mutex.lock()
+			if Globals.wiiActive == False: 
+				Globals.mutex.unlock()
+				break
+			Globals.mutex.unlock()
 			Globals.wii.getMsgs()
-			cursor.update()
+			Globals.cursor.update()
+		
 
 
 class MainWindow(QtGui.QMainWindow):
@@ -120,13 +119,15 @@ class MainWindow(QtGui.QMainWindow):
 
 	
 	def activateWii(self):
-		thread = RunWiiThread()
-		thread.start()
+		Globals.threadWii = RunWiiThread()
+		Globals.threadWii.start()
 		self.active = True
 		self.updateButtons()
 	
 	def deactivateWii(self):
+		Globals.mutex.lock()
 		Globals.wiiActive = False
+		Globals.mutex.unlock()
 		self.active = False
 		self.updateButtons()
 
