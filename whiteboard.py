@@ -9,10 +9,7 @@ wii = Wiimote()
 wii.bind()
 calibration = Calibration()
 calibration.doIt(wii)
-curs = FakeCursor()
+curs = FakeCursor(wii)
 while(1):
 	wii.getMsgs()
-	p = wii.getPos()
-	if p:
-		print p
-		curs.move(p)
+	curs.update()
