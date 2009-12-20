@@ -7,6 +7,25 @@ import time
 def clock():
 	return int(time.time()*1000)
 
+
+class Filter:
+	def __init__(self):
+		self.data = []
+	
+	def update(self,p):
+		self.data.append(p)
+		if len(self.data)>5:
+			self.data.pop(0)
+			
+		n = len(self.data)
+		res = [0,0]
+		for p in self.data:
+			res[0] += p[0]
+			res[1] += p[1]
+		res[0] /= n
+		res[1] /= n
+		return res
+
 class Click:
 	def __init__(self,cursor):
 		self.initialTime = clock()
@@ -31,6 +50,7 @@ class FakeCursor:
 		self.root = self.screen.root
 		self.wii = wii
 		self.click = None
+		self.filt = None
 	
 	
 	def move(self,pos):
@@ -50,7 +70,9 @@ class FakeCursor:
 	
 	def update(self):
 		if self.wii.pos:
-			p = self.wii.getPos()
+			if not self.filt:
+				self.filt = Filter()
+			p = self.filt.update( self.wii.getPos() )
 			self.move(p)
 			if not self.click:
 				self.click = Click(self)
@@ -59,5 +81,6 @@ class FakeCursor:
 		
 		elif self.click and not self.click.update(False):
 			self.click = None
+			self.filt = None
 
 
