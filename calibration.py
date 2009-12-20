@@ -38,15 +38,15 @@ class SandClock:
 			return
 		self.point = list(p)
 		self.lastTick = t
-		if self.totalTicks < 1000:
+		if self.totalTicks < 700:
 			self.totalTicks += delta
 		else:
 			self.state = SandClock.FIN1
 	
 	def draw(self,screen):
-		dgrs = 360*self.totalTicks/1000
+		dgrs = 360*self.totalTicks/700
 		pygame.draw.arc(screen, (255,0,0),
-			pygame.Rect(self.px,self.py,40,40), 0, dgrs*3.14/180, 2)
+			pygame.Rect(self.px,self.py,40,40), 0, dgrs*3.14/180, 8)
 
 	
 	def finished(self):
