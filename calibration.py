@@ -3,6 +3,7 @@
 
 import pygame, os
 import time
+import wiimote
 
 PI = 3.1416
 
@@ -57,7 +58,7 @@ class SandClock:
 
 
 
-class SmallScreen():
+class SmallScreen:
 	def __init__(self,screen):
 		self.surface = screen
 		self.parentx = screen.get_width();
@@ -71,8 +72,8 @@ class SmallScreen():
 			200, 200), 1)
 	
 	def drawPoint(self,pos):
-		px = self.parentx/2 - 100 + pos[0]*self.dx/1024;
-		py = self.parenty/2 + 100 - pos[1]*self.dy/768;
+		px = self.parentx/2 - 100 + pos[0]*self.dx/wiimote.Wiimote.MAX_X;
+		py = self.parenty/2 + 100 - pos[1]*self.dy/wiimote.Wiimote.MAX_Y;
 		pygame.draw.circle(self.surface, (255,255,255), (px,py), 2)
 		
 
@@ -151,10 +152,12 @@ class Calibration:
 			
 			pygame.display.flip()
 		
+		pygame.quit()
+		
 		# Do calibration
 		if state >= 4:
 			wii.calibrate(p_screen,p_wii)
 		
-		pygame.quit()
+		
 
 

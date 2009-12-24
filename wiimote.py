@@ -6,11 +6,14 @@ import cwiid
 
 class Wiimote:
 	CALIBRATED, NONCALIBRATED = range(2)
+	MAX_X = 1024
+	MAX_Y = 768
 	
 	def __init__(self):
 		self.wii = None
 		self.pos = None
 		self.state = Wiimote.NONCALIBRATED
+		self.calibrationPoints = []
 	
 	def bind(self):
 		try:
@@ -86,6 +89,8 @@ class Wiimote:
 		self.h23 = self.hCoefs[5]
 		self.h31 = self.hCoefs[6]
 		self.h32 = self.hCoefs[7]
+		
+		self.calibrationPoints = list(p_wii)
 		self.state = Wiimote.CALIBRATED
 
 
