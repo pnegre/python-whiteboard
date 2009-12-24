@@ -24,6 +24,7 @@ class ConnectThread(qt.QThread):
 			Globals.wii = None
 
 
+
 class CalibrateThread(qt.QThread):
 	def run(self):
 		#try:
@@ -68,6 +69,9 @@ class MainWindow(QtGui.QMainWindow):
 		self.active = False
 
 		self.center()
+		self.batteryLevel.reset()
+		self.batteryLevel.setRange(0,99)
+		self.batteryLevel.setValue(0)
 
 		self.connect(self.ui.pushButtonConnect,
 			QtCore.SIGNAL("clicked()"), self.connectWii)
@@ -132,6 +136,7 @@ class MainWindow(QtGui.QMainWindow):
 			self.calibrated = False
 			self.active = False
 			self.updateButtons()
+			self.batteryLevel.setValue(Globals.wii.battery()*100)
 		else:
 			msgbox = QtGui.QMessageBox( self )
 			msgbox.setText( "Error during connection" )

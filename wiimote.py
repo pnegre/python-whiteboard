@@ -27,6 +27,9 @@ class Wiimote:
 	def close(self):
 		self.wii.close()
 	
+	def battery(self):
+		return float(self.wii.state['battery']) / float(cwiid.BATTERY_MAX)
+	
 	def getMsgs(self):
 		msgs = self.wii.get_mesg()
 		for m in msgs:

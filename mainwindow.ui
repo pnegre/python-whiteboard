@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>368</width>
-    <height>156</height>
+    <width>411</width>
+    <height>253</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,8 @@
    <widget class="QPushButton" name="pushButtonConnect">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>30</y>
+      <x>50</x>
+      <y>20</y>
       <width>151</width>
       <height>41</height>
      </rect>
@@ -30,8 +30,8 @@
    <widget class="QPushButton" name="pushButtonActivate">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>80</y>
+      <x>50</x>
+      <y>70</y>
       <width>151</width>
       <height>41</height>
      </rect>
@@ -43,8 +43,8 @@
    <widget class="QPushButton" name="pushButtonDeactivate">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>80</y>
+      <x>210</x>
+      <y>70</y>
       <width>151</width>
       <height>41</height>
      </rect>
@@ -56,14 +56,40 @@
    <widget class="QPushButton" name="pushButtonCalibrate">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>30</y>
+      <x>210</x>
+      <y>20</y>
       <width>151</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
      <string>Calibrate</string>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="batteryLevel">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>180</y>
+      <width>311</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="value">
+     <number>24</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>150</y>
+      <width>171</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Wiimote Battery level:</string>
     </property>
    </widget>
   </widget>
