@@ -30,7 +30,7 @@ class Click:
 	def __init__(self,cursor):
 		self.initialTime = clock()
 		self.cursor = cursor
-		self.cursor.mouse_down(1)
+		self.cursor.mouse_down()
 	
 	def update(self,evt):
 		t = clock()
@@ -38,12 +38,16 @@ class Click:
 			self.initialTime = clock()
 			return True
 		elif (t-self.initialTime)>100:
-			self.cursor.mouse_up(1)
+			self.cursor.mouse_up()
 			return False
 		return True
 
 
 class FakeCursor:
+	LEFT_BUTTON = 1
+	MIDDLE_BUTTON = 2
+	RIGHT_BUTTON = 3
+	
 	def __init__(self,wii):
 		self.display = Xlib.display.Display()
 		self.screen = self.display.screen()
@@ -51,6 +55,7 @@ class FakeCursor:
 		self.wii = wii
 		self.click = None
 		self.filt = None
+		self.clickType = FakeCursor.LEFT_BUTTON
 	
 	
 	def move(self,pos):
@@ -59,12 +64,14 @@ class FakeCursor:
 	
 	
 	#button= 1 left, 2 middle, 3 right
-	def mouse_down(self,button):
+	def mouse_down(self):
+		button = self.clickType
 		Xlib.ext.xtest.fake_input(self.display, Xlib.X.ButtonPress, button)
 		self.display.sync()
 	
 	
-	def mouse_up(self,button):
+	def mouse_up(self):
+		button = self.clickType
 		Xlib.ext.xtest.fake_input(self.display, Xlib.X.ButtonRelease, button)
 		self.display.sync()
 	
@@ -82,5 +89,6 @@ class FakeCursor:
 		elif self.click and not self.click.update(False):
 			self.click = None
 			self.filt = None
+			self.clickType = FakeCursor.LEFT_BUTTON
 
 

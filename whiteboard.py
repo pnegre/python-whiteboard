@@ -66,7 +66,6 @@ class MainWindow(QtGui.QMainWindow):
 		self.connected = False
 		self.calibrated = False
 		self.active = False
-		self.daemonStarted = False
 
 		self.center()
 
