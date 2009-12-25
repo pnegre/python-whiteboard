@@ -86,6 +86,20 @@ class MainWindow(QtGui.QMainWindow):
 			QtCore.SIGNAL("clicked()"), self.deactivateWii)
 		
 		self.updateButtons()
+		
+		
+	def drawScreenGraphic(self):
+		print Globals.wii.calibrationPoints
+		self.scene = qt.QGraphicsScene()
+		self.scene.setSceneRect(0,0,305,225)
+		quad = QtGui.QPolygonF()
+		for p in Globals.wii.calibrationPoints:
+			x = 311 * p[0]/Wiimote.MAX_X
+			y = 231 * (1-float(p[1])/Wiimote.MAX_Y)
+			quad.append(qt.QPointF(x,y))
+		self.scene.addPolygon(quad)
+		self.wiiScreen.setScene(self.scene)
+		self.wiiScreen.show()
 
 
 	def center(self):
@@ -150,6 +164,7 @@ class MainWindow(QtGui.QMainWindow):
 		if Globals.wii.state == Wiimote.CALIBRATED:
 			self.calibrated = True
 			self.active = False
+			self.drawScreenGraphic()
 			self.updateButtons()
 		else:
 			msgbox = QtGui.QMessageBox( self )
