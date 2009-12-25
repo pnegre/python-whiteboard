@@ -89,13 +89,14 @@ class MainWindow(QtGui.QMainWindow):
 		
 		
 	def drawScreenGraphic(self):
-		print Globals.wii.calibrationPoints
+		max_x = self.wiiScreen.geometry().width()
+		max_y = self.wiiScreen.geometry().height()
 		self.scene = qt.QGraphicsScene()
-		self.scene.setSceneRect(0,0,305,225)
+		self.scene.setSceneRect(0,0,max_x,max_y)
 		quad = QtGui.QPolygonF()
 		for p in Globals.wii.calibrationPoints:
-			x = 311 * p[0]/Wiimote.MAX_X
-			y = 231 * (1-float(p[1])/Wiimote.MAX_Y)
+			x = max_x * p[0]/Wiimote.MAX_X
+			y = max_y * (1-float(p[1])/Wiimote.MAX_Y)
 			quad.append(qt.QPointF(x,y))
 		self.scene.addPolygon(quad)
 		self.wiiScreen.setScene(self.scene)

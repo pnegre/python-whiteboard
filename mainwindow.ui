@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>416</width>
-    <height>500</height>
+    <width>418</width>
+    <height>528</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -96,7 +96,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>210</y>
+      <y>240</y>
       <width>311</width>
       <height>231</height>
      </rect>
@@ -123,6 +123,19 @@
     </property>
     <property name="alignment">
      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_utilization">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>210</y>
+      <width>311</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Utilization: 0%</string>
     </property>
    </widget>
   </widget>
