@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>418</width>
-    <height>528</height>
+    <width>609</width>
+    <height>480</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,9 +17,9 @@
    <widget class="QPushButton" name="pushButtonConnect">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>10</x>
       <y>20</y>
-      <width>151</width>
+      <width>101</width>
       <height>41</height>
      </rect>
     </property>
@@ -30,9 +30,9 @@
    <widget class="QPushButton" name="pushButtonActivate">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>10</x>
       <y>70</y>
-      <width>151</width>
+      <width>211</width>
       <height>41</height>
      </rect>
     </property>
@@ -40,25 +40,12 @@
      <string>Activate</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButtonDeactivate">
-    <property name="geometry">
-     <rect>
-      <x>210</x>
-      <y>70</y>
-      <width>151</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Deactivate</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushButtonCalibrate">
     <property name="geometry">
      <rect>
-      <x>210</x>
+      <x>120</x>
       <y>20</y>
-      <width>151</width>
+      <width>101</width>
       <height>41</height>
      </rect>
     </property>
@@ -69,9 +56,9 @@
    <widget class="QProgressBar" name="batteryLevel">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>10</x>
       <y>160</y>
-      <width>311</width>
+      <width>211</width>
       <height>23</height>
      </rect>
     </property>
@@ -82,7 +69,7 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>10</x>
       <y>130</y>
       <width>171</width>
       <height>19</height>
@@ -95,10 +82,10 @@
    <widget class="QGraphicsView" name="wiiScreen">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>10</x>
       <y>240</y>
-      <width>311</width>
-      <height>231</height>
+      <width>211</width>
+      <height>171</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -128,9 +115,9 @@
    <widget class="QLabel" name="label_utilization">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>10</x>
       <y>210</y>
-      <width>311</width>
+      <width>221</width>
       <height>19</height>
      </rect>
     </property>
@@ -138,11 +125,225 @@
      <string>Utilization: 0%</string>
     </property>
    </widget>
+   <widget class="Line" name="line">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>20</y>
+      <width>16</width>
+      <height>391</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>20</y>
+      <width>341</width>
+      <height>401</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QGraphicsView" name="screenAreas">
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Area 1</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QComboBox" name="comboBox">
+         <item>
+          <property name="text">
+           <string>Left Click</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Double Click</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Only Move</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Right Click</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Middle Click</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Area 2</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QComboBox" name="comboBox_2">
+         <item>
+          <property name="text">
+           <string>Left Click</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Double Click</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Only Move</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Right Click</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Middle Click</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>Area 3</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QComboBox" name="comboBox_3">
+         <item>
+          <property name="text">
+           <string>Left Click</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Double Click</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Only Move</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Right Click</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Middle Click</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>Area 4</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QComboBox" name="comboBox_4">
+         <item>
+          <property name="text">
+           <string>Left Click</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Double Click</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Only Move</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Right Click</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Middle Click</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>609</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionQuit"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionHelp"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuHelp"/>
+  </widget>
   <action name="actionExit">
    <property name="text">
     <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Quit</string>
+   </property>
+  </action>
+  <action name="actionHelp">
+   <property name="text">
+    <string>Help</string>
    </property>
   </action>
  </widget>

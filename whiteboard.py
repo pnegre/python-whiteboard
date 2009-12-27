@@ -82,8 +82,14 @@ class MainWindow(QtGui.QMainWindow):
 		self.connect(self.ui.pushButtonActivate,
 			QtCore.SIGNAL("clicked()"), self.activateWii)
 		
-		self.connect(self.ui.pushButtonDeactivate,
-			QtCore.SIGNAL("clicked()"), self.deactivateWii)
+		#self.connect(self.ui.pushButtonDeactivate,
+			#QtCore.SIGNAL("clicked()"), self.deactivateWii)
+		
+		pixmap = QtGui.QPixmap("screen.png")
+		self.areasScene = QtGui.QGraphicsScene()
+		self.areasScene.addPixmap(pixmap)
+		self.screenAreas.setScene(self.areasScene)
+		self.screenAreas.show()
 		
 		self.updateButtons()
 		
@@ -115,25 +121,25 @@ class MainWindow(QtGui.QMainWindow):
 			self.ui.pushButtonConnect.setEnabled(1)
 			self.ui.pushButtonCalibrate.setEnabled(0)
 			self.ui.pushButtonActivate.setEnabled(0)
-			self.ui.pushButtonDeactivate.setEnabled(0)
+			#self.ui.pushButtonDeactivate.setEnabled(0)
 			return
 		if self.calibrated == False:
 			self.ui.pushButtonConnect.setEnabled(1)
 			self.ui.pushButtonCalibrate.setEnabled(1)
 			self.ui.pushButtonActivate.setEnabled(0)
-			self.ui.pushButtonDeactivate.setEnabled(0)
+			#self.ui.pushButtonDeactivate.setEnabled(0)
 			return
 		if self.active == False:
 			self.ui.pushButtonConnect.setEnabled(1)
 			self.ui.pushButtonCalibrate.setEnabled(1)
 			self.ui.pushButtonActivate.setEnabled(1)
-			self.ui.pushButtonDeactivate.setEnabled(0)
+			#self.ui.pushButtonDeactivate.setEnabled(0)
 			return
 		else:
 			self.ui.pushButtonConnect.setEnabled(0)
 			self.ui.pushButtonCalibrate.setEnabled(0)
 			self.ui.pushButtonActivate.setEnabled(0)
-			self.ui.pushButtonDeactivate.setEnabled(1)
+			#self.ui.pushButtonDeactivate.setEnabled(1)
 
 	def connectWii(self):
 		thread = ConnectThread()
