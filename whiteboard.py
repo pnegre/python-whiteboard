@@ -94,6 +94,7 @@ class MainWindow(QtGui.QMainWindow):
 		self.updateButtons()
 		
 		
+		
 	def drawScreenGraphic(self):
 		max_x = self.wiiScreen.geometry().width()
 		max_y = self.wiiScreen.geometry().height()
@@ -121,27 +122,35 @@ class MainWindow(QtGui.QMainWindow):
 			self.ui.pushButtonConnect.setEnabled(1)
 			self.ui.pushButtonCalibrate.setEnabled(0)
 			self.ui.pushButtonActivate.setEnabled(0)
-			#self.ui.pushButtonDeactivate.setEnabled(0)
 			return
 		if self.calibrated == False:
 			self.ui.pushButtonConnect.setEnabled(1)
 			self.ui.pushButtonCalibrate.setEnabled(1)
 			self.ui.pushButtonActivate.setEnabled(0)
-			#self.ui.pushButtonDeactivate.setEnabled(0)
 			return
 		if self.active == False:
 			self.ui.pushButtonConnect.setEnabled(1)
 			self.ui.pushButtonCalibrate.setEnabled(1)
 			self.ui.pushButtonActivate.setEnabled(1)
-			#self.ui.pushButtonDeactivate.setEnabled(0)
 			return
 		else:
 			self.ui.pushButtonConnect.setEnabled(0)
 			self.ui.pushButtonCalibrate.setEnabled(0)
-			self.ui.pushButtonActivate.setEnabled(0)
-			#self.ui.pushButtonDeactivate.setEnabled(1)
+			self.ui.pushButtonActivate.setEnabled(1)
+			
 
 	def connectWii(self):
+		if self.connected:
+			if Globals.wii:
+				Globals.wii.close()
+			Globals.wii = None
+			self.connected = False
+			self.calibrated = False
+			self.active = False
+			self.pushButtonConnect.setText("Connect")
+			self.updateButtons()
+			return
+			
 		thread = ConnectThread()
 		thread.start()
 		
@@ -158,6 +167,7 @@ class MainWindow(QtGui.QMainWindow):
 			self.active = False
 			self.updateButtons()
 			self.batteryLevel.setValue(Globals.wii.battery()*100)
+			self.pushButtonConnect.setText("Disconnect")
 		else:
 			msgbox = QtGui.QMessageBox( self )
 			msgbox.setText( "Error during connection" )
@@ -181,18 +191,20 @@ class MainWindow(QtGui.QMainWindow):
 
 	
 	def activateWii(self):
-		Globals.threadWii = RunWiiThread()
-		Globals.threadWii.start()
-		self.active = True
-		self.updateButtons()
-	
-	def deactivateWii(self):
-		Globals.mutex.lock()
-		Globals.wiiActive = False
-		Globals.mutex.unlock()
-		self.active = False
-		self.updateButtons()
-
+		if self.active:
+			# Deactivate
+			Globals.mutex.lock()
+			Globals.wiiActive = False
+			Globals.mutex.unlock()
+			self.active = False
+			self.pushButtonActivate.setText("Activate")
+			self.updateButtons()
+		else:
+			Globals.threadWii = RunWiiThread()
+			Globals.threadWii.start()
+			self.active = True
+			self.pushButtonActivate.setText("Deactivate")
+			self.updateButtons()
 
 
 
