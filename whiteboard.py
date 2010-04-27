@@ -4,93 +4,13 @@
 from wiimote import Wiimote
 from calibration import Calibration
 from cursor import FakeCursor
-
-
-class GlobalObjects:
-	pass
-
-Globals = GlobalObjects()
+import Globals
+from threads import *
 
 
 import sys, time
 from PyQt4 import QtCore, QtGui, uic
 import PyQt4.Qt as qt
-
-
-class ConnectThread(qt.QThread):
-	def run(self):
-		Globals.wii = Wiimote()
-		if not Globals.wii.bind():
-			Globals.wii = None
-
-
-
-class CalibrateThread(qt.QThread):
-	def run(self):
-		#try:
-			calibration = Calibration()
-			Globals.wii.state = Wiimote.NONCALIBRATED
-			calibration.doIt(Globals.wii)
-		#except:
-			# Calibration error
-			#pass
-
-
-class IdleWiiThread(qt.QThread):
-	def run(self):
-		while 1:
-			Globals.mutex.lock()
-			if Globals.mutexWiiRun == False:
-				Globals.mutex.unlock()
-				break
-			Globals.mutex.unlock()
-			Globals.wii.getMsgs()
-
-
-
-
-
-
-
-class RunWiiThread(qt.QThread):
-	def run(self):
-		while 1:
-			Globals.mutex.lock()
-			if Globals.mutexWiiRun == False: 
-				Globals.mutex.unlock()
-				break
-			Globals.mutex.unlock()
-			Globals.wii.getMsgs()
-			Globals.cursor.update()
-
-
-
-def InitiateIdleWiiThread():
-	Globals.mutexWiiRun = True
-	Globals.threadWii = IdleWiiThread()
-	Globals.threadWii.start()
-
-
-def TerminateIdleWiiThread():
-	if Globals.threadWii:
-		Globals.mutex.lock()
-		Globals.mutexWiiRun = False
-		Globals.mutex.unlock()
-		Globals.threadWii.wait()
-
-
-def InitiateRunWiiThread():
-	Globals.mutexWiiRun = True
-	Globals.threadWii = RunWiiThread()
-	Globals.threadWii.start()
-
-
-def TerminateRunWiiThread():
-	if Globals.threadWii:
-		Globals.mutex.lock()
-		Globals.mutexWiiRun = False
-		Globals.mutex.unlock()
-		Globals.threadWii.wait()
 
 
 
@@ -252,9 +172,7 @@ class MainWindow(QtGui.QMainWindow):
 			ret = msgbox.exec_()
 
 	def calibrateWii(self):
-		print "a"
-		TerminateIdleWiiThread()
-		print "b"
+		TerminateWiiThread()
 		thread = CalibrateThread()
 		thread.start()
 		thread.wait()
@@ -275,14 +193,14 @@ class MainWindow(QtGui.QMainWindow):
 	def activateWii(self):
 		if self.active:
 			# Deactivate
-			TerminateRunWiiThread()
+			TerminateWiiThread()
 			self.active = False
 			self.pushButtonActivate.setText("Activate")
 			self.updateButtons()
 			InitiateIdleWiiThread()
 		else:
 			# Activate
-			TerminateIdleWiiThread()
+			TerminateWiiThread()
 			Globals.cursor = FakeCursor(Globals.wii)
 			for zone,click in self.zones.items():
 				Globals.cursor.setZone(zone,click)
@@ -292,6 +210,8 @@ class MainWindow(QtGui.QMainWindow):
 			self.pushButtonActivate.setText("Deactivate")
 			self.updateButtons()
 
+	def close(self):
+		print "close"
 
 
 

@@ -21,8 +21,8 @@ class Wiimote:
 			self.wii.rpt_mode = cwiid.RPT_BTN | cwiid.RPT_IR
 			self.wii.led = cwiid.LED1_ON
 			self.wii.enable(cwiid.FLAG_MESG_IFC)
-			self.wii.disable(cwiid.FLAG_NONBLOCK)
-			self.wii.disable(cwiid.FLAG_CONTINUOUS)
+			self.wii.enable(cwiid.FLAG_NONBLOCK)
+			self.wii.enable(cwiid.FLAG_CONTINUOUS)
 			return True
 		except:
 			return False
@@ -35,12 +35,13 @@ class Wiimote:
 	
 	def getMsgs(self):
 		msgs = self.wii.get_mesg()
-		for m in msgs:
-			if m:
-				if m[0] == cwiid.MESG_IR:
-					data = m[1][0]
-					if data:
-						self.pos = list(data['pos'])
+		if msgs:
+			for m in msgs:
+				if m:
+					if m[0] == cwiid.MESG_IR:
+						data = m[1][0]
+						if data:
+							self.pos = list(data['pos'])
 	
 	def getPos(self):
 		if self.pos == None: return None
