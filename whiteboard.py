@@ -36,18 +36,63 @@ class CalibrateThread(qt.QThread):
 			#pass
 
 
-class RunWiiThread(qt.QThread):
+class IdleWiiThread(qt.QThread):
 	def run(self):
-		Globals.mutex = qt.QMutex()
-		Globals.wiiActive = True
 		while 1:
 			Globals.mutex.lock()
-			if Globals.wiiActive == False: 
+			if Globals.mutexWiiRun == False:
+				Globals.mutex.unlock()
+				break
+			Globals.mutex.unlock()
+			Globals.wii.getMsgs()
+
+
+
+
+
+
+
+class RunWiiThread(qt.QThread):
+	def run(self):
+		while 1:
+			Globals.mutex.lock()
+			if Globals.mutexWiiRun == False: 
 				Globals.mutex.unlock()
 				break
 			Globals.mutex.unlock()
 			Globals.wii.getMsgs()
 			Globals.cursor.update()
+
+
+
+def InitiateIdleWiiThread():
+	Globals.mutexWiiRun = True
+	Globals.threadWii = IdleWiiThread()
+	Globals.threadWii.start()
+
+
+def TerminateIdleWiiThread():
+	if Globals.threadWii:
+		Globals.mutex.lock()
+		Globals.mutexWiiRun = False
+		Globals.mutex.unlock()
+		Globals.threadWii.wait()
+
+
+def InitiateRunWiiThread():
+	Globals.mutexWiiRun = True
+	Globals.threadWii = RunWiiThread()
+	Globals.threadWii.start()
+
+
+def TerminateRunWiiThread():
+	if Globals.threadWii:
+		Globals.mutex.lock()
+		Globals.mutexWiiRun = False
+		Globals.mutex.unlock()
+		Globals.threadWii.wait()
+
+
 
 
 class PBarDlg(QtGui.QDialog):
@@ -66,6 +111,8 @@ class MainWindow(QtGui.QMainWindow):
 		self.connected = False
 		self.calibrated = False
 		self.active = False
+		
+		Globals.mutex = qt.QMutex()
 
 		self.center()
 		self.batteryLevel.reset()
@@ -196,6 +243,8 @@ class MainWindow(QtGui.QMainWindow):
 			self.updateButtons()
 			self.batteryLevel.setValue(Globals.wii.battery()*100)
 			self.pushButtonConnect.setText("Disconnect")
+			InitiateIdleWiiThread()
+			
 		else:
 			msgbox = QtGui.QMessageBox( self )
 			msgbox.setText( "Error during connection" )
@@ -203,6 +252,9 @@ class MainWindow(QtGui.QMainWindow):
 			ret = msgbox.exec_()
 
 	def calibrateWii(self):
+		print "a"
+		TerminateIdleWiiThread()
+		print "b"
 		thread = CalibrateThread()
 		thread.start()
 		thread.wait()
@@ -216,24 +268,26 @@ class MainWindow(QtGui.QMainWindow):
 			msgbox.setText( "Error during Calibration" )
 			msgbox.setModal( True )
 			ret = msgbox.exec_()
+		
+		InitiateIdleWiiThread()
 
 	
 	def activateWii(self):
 		if self.active:
 			# Deactivate
-			Globals.mutex.lock()
-			Globals.wiiActive = False
-			Globals.mutex.unlock()
+			TerminateRunWiiThread()
 			self.active = False
 			self.pushButtonActivate.setText("Activate")
 			self.updateButtons()
+			InitiateIdleWiiThread()
 		else:
+			# Activate
+			TerminateIdleWiiThread()
 			Globals.cursor = FakeCursor(Globals.wii)
 			for zone,click in self.zones.items():
 				Globals.cursor.setZone(zone,click)
 			
-			Globals.threadWii = RunWiiThread()
-			Globals.threadWii.start()
+			InitiateRunWiiThread()
 			self.active = True
 			self.pushButtonActivate.setText("Deactivate")
 			self.updateButtons()
