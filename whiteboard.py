@@ -40,7 +40,6 @@ class RunWiiThread(qt.QThread):
 	def run(self):
 		Globals.mutex = qt.QMutex()
 		Globals.wiiActive = True
-		Globals.cursor = FakeCursor(Globals.wii)
 		while 1:
 			Globals.mutex.lock()
 			if Globals.wiiActive == False: 
@@ -82,9 +81,6 @@ class MainWindow(QtGui.QMainWindow):
 		self.connect(self.ui.pushButtonActivate,
 			QtCore.SIGNAL("clicked()"), self.activateWii)
 		
-		#self.connect(self.ui.pushButtonDeactivate,
-			#QtCore.SIGNAL("clicked()"), self.deactivateWii)
-		
 		pixmap = QtGui.QPixmap("screen.png")
 		self.areasScene = QtGui.QGraphicsScene()
 		self.areasScene.addPixmap(pixmap)
@@ -93,7 +89,39 @@ class MainWindow(QtGui.QMainWindow):
 		
 		self.updateButtons()
 		
+		#print self.combo1.currentText()
+		self.connect(self.ui.combo1,
+			QtCore.SIGNAL("currentIndexChanged(const QString)"), self.changeCombo1)
+		self.connect(self.ui.combo2,
+			QtCore.SIGNAL("currentIndexChanged(const QString)"), self.changeCombo2)
+		self.connect(self.ui.combo3,
+			QtCore.SIGNAL("currentIndexChanged(const QString)"), self.changeCombo3)
+		self.connect(self.ui.combo4,
+			QtCore.SIGNAL("currentIndexChanged(const QString)"), self.changeCombo4)
 		
+		self.zones = {}
+	
+	def changeCombos(self,zone,text):
+		if text == 'Right Click':
+			self.zones[zone] = FakeCursor.RIGHT_BUTTON
+		elif text == 'Left Click':
+			self.zones[zone] = FakeCursor.LEFT_BUTTON
+		elif text == 'Middle Click':
+			self.zones[zone] = FakeCursor.MIDDLE_BUTTON
+
+	def changeCombo1(self,text):
+		self.changeCombos(FakeCursor.ZONE1,text)
+	
+	def changeCombo2(self,text):
+		self.changeCombos(FakeCursor.ZONE2,text)
+	
+	def changeCombo3(self,text):
+		self.changeCombos(FakeCursor.ZONE3,text)
+	
+	def changeCombo4(self,text):
+		self.changeCombos(FakeCursor.ZONE4,text)
+		
+
 		
 	def drawScreenGraphic(self):
 		max_x = self.wiiScreen.geometry().width()
@@ -200,6 +228,10 @@ class MainWindow(QtGui.QMainWindow):
 			self.pushButtonActivate.setText("Activate")
 			self.updateButtons()
 		else:
+			Globals.cursor = FakeCursor(Globals.wii)
+			for zone,click in self.zones.items():
+				Globals.cursor.setZone(zone,click)
+			
 			Globals.threadWii = RunWiiThread()
 			Globals.threadWii.start()
 			self.active = True

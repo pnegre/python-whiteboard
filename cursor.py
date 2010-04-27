@@ -47,6 +47,7 @@ class FakeCursor:
 	LEFT_BUTTON = 1
 	MIDDLE_BUTTON = 2
 	RIGHT_BUTTON = 3
+	ZONE1, ZONE2, ZONE3, ZONE4 = range(4)
 	
 	def __init__(self,wii):
 		self.display = Xlib.display.Display()
@@ -56,7 +57,10 @@ class FakeCursor:
 		self.click = None
 		self.filt = None
 		self.clickType = FakeCursor.LEFT_BUTTON
+		self.zones = {}
 	
+	def setZone(self,zone,clickType):
+		self.zones[zone] = clickType
 	
 	def move(self,pos):
 		self.root.warp_pointer(pos[0],pos[1])
