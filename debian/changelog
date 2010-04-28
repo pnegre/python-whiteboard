@@ -1,3 +1,9 @@
+python-whiteboard (0.1-2.2) unstable; urgency=low
+
+  * Added Desktop entry 
+
+ -- pnegre <pere.negre@gmail.com>  Wed, 28 Apr 2010 14:02:25 +0200
+
 python-whiteboard (0.1-2.1) unstable; urgency=low
 
   * Added Icon
