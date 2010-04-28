@@ -1,0 +1,4 @@
+?package(python-whiteboard): needs="X11"\
+		     section="Applications/Education" \
+		     title="python-whiteboard" \
+		     command="/usr/bin/python-whiteboard" \
