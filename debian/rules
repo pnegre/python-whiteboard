@@ -23,7 +23,6 @@ install: build
 	dh_clean -k
 	dh_installdirs
 	dh_install
-	#(cd debian/solarwolf/usr/games && mv solarwolf.py solarwolf)
 
 # Build architecture-independent files here.
 binary-arch: build install

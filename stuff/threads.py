@@ -6,7 +6,6 @@ import Globals
 from wiimote import Wiimote
 from calibration import Calibration
 from cursor import FakeCursor
-import Globals
 
 
 import PyQt4.Qt as qt
