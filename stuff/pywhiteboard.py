@@ -32,7 +32,7 @@ class MainWindow(QtGui.QMainWindow):
 		self.calibrated = False
 		self.active = False
 		
-		Globals.mutex = qt.QMutex()
+		Globals.initGlobals()
 
 		self.center()
 		self.batteryLevel.reset()
@@ -136,6 +136,7 @@ class MainWindow(QtGui.QMainWindow):
 
 	def connectWii(self):
 		if self.connected:
+			TerminateWiiThread()
 			if Globals.wii:
 				Globals.wii.close()
 			Globals.wii = None

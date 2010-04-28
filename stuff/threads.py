@@ -61,17 +61,23 @@ def InitiateIdleWiiThread():
 	Globals.threadWii.start()
 
 
+
+def InitiateRunWiiThread():
+	Globals.mutexWiiRun = True
+	Globals.threadWii = RunWiiThread()
+	Globals.threadWii.start()
+
+
+
 def TerminateWiiThread():
 	if Globals.threadWii:
 		Globals.mutex.lock()
 		Globals.mutexWiiRun = False
 		Globals.mutex.unlock()
 		Globals.threadWii.wait()
+		Globals.threadWii = None
 
 
-def InitiateRunWiiThread():
-	Globals.mutexWiiRun = True
-	Globals.threadWii = RunWiiThread()
-	Globals.threadWii.start()
+
 
 
