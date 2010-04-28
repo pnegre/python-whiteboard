@@ -1,0 +1,13 @@
+Linux Electronic Whiteboard with Wiimote
+----------------------------------------
+
+This program allow you to build and operate a electronic whiteboard using gnu/linux, a wiimote and an IR pen.
+
+If you have git installed on your system you can get the latest (development) version, typing:
+
+$ git clone git://github.com/pnegre/python-whiteboard.git
+
+To download packaged versions of the program, point your browser to http://github.com/pnegre/python-whiteboard/downloads
+
+Have Fun!
+
