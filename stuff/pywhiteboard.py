@@ -216,7 +216,7 @@ class MainWindow(QtGui.QMainWindow):
 
 
 
-if __name__ == '__main__':
+def main():
 	app = QtGui.QApplication(sys.argv)
 	mainWin = MainWindow()
 	mainWin.show()

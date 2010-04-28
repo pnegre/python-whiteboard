@@ -1,0 +1,18 @@
+python-whiteboard (0.1-2) unstable; urgency=low
+
+  * Checked more dependencies 
+
+ -- pnegre <pere.negre@gmail.com>  Wed, 28 Apr 2010 12:12:25 +0200
+
+python-whiteboard (0.1-1.1) unstable; urgency=low
+
+  * Checked dependencies.
+
+ -- pnegre <pere.negre@gmail.com>  Wed, 28 Apr 2010 12:00:34 +0200
+
+python-whiteboard (0.1-1) unstable; urgency=low
+
+  * First release.
+
+ -- pnegre <pere.negre@gmail.com>  Wed, 28 Apr 2010 10:13:19 +0200
+

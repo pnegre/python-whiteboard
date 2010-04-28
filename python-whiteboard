@@ -1,0 +1,28 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+import sys, os
+
+STUFFDIR = '/usr/lib/python-whiteboard'
+
+def main():
+	global STUFFDIR
+	localpath = os.path.split(os.path.abspath(sys.argv[0]))[0]
+	teststuff = os.path.join(localpath, 'stuff')
+	if os.path.isdir(teststuff):
+		STUFFDIR = teststuff
+	
+	#apply our directories and test environment
+	os.chdir(STUFFDIR)
+	sys.path.insert(0, STUFFDIR)
+	
+	print "Using directory: " + STUFFDIR
+	
+	import pywhiteboard
+	pywhiteboard.main()
+
+
+if __name__ == '__main__': main()
+
+
+
