@@ -31,6 +31,8 @@ class Click:
 		self.initialTime = clock()
 		self.cursor = cursor
 		self.cursor.mouse_down()
+		
+		# We have cursor.display
 	
 	def update(self,evt):
 		t = clock()

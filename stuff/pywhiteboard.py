@@ -131,11 +131,19 @@ class MainWindow(QtGui.QMainWindow):
 			self.ui.pushButtonConnect.setEnabled(1)
 			self.ui.pushButtonCalibrate.setEnabled(1)
 			self.ui.pushButtonActivate.setEnabled(1)
+			self.ui.combo1.setEnabled(1)
+			self.ui.combo2.setEnabled(1)
+			self.ui.combo3.setEnabled(1)
+			self.ui.combo4.setEnabled(1)
 			return
 		else:
 			self.ui.pushButtonConnect.setEnabled(0)
 			self.ui.pushButtonCalibrate.setEnabled(0)
 			self.ui.pushButtonActivate.setEnabled(1)
+			self.ui.combo1.setEnabled(0)
+			self.ui.combo2.setEnabled(0)
+			self.ui.combo3.setEnabled(0)
+			self.ui.combo4.setEnabled(0)
 			
 
 	def connectWii(self):
