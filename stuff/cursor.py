@@ -65,7 +65,8 @@ class FakeCursor:
 		self.zones[zone] = clickType
 	
 	def move(self,pos):
-		self.root.warp_pointer(pos[0],pos[1])
+		#self.root.warp_pointer(pos[0],pos[1])
+		Xlib.ext.xtest.fake_input(self.display, Xlib.X.MotionNotify, x=pos[0], y=pos[1])
 		self.display.sync()
 	
 	

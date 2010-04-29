@@ -226,17 +226,17 @@ class MainWindow(QtGui.QMainWindow):
 	
 	def loadSettings(self):
 		z1 = self.settings.value("zone1").toString()
+		if z1 == '': return
 		z2 = self.settings.value("zone2").toString()
+		if z2 == '': return
 		z3 = self.settings.value("zone3").toString()
+		if z3 == '': return
 		z4 = self.settings.value("zone4").toString()
+		if z4 == '': return
 		self.ui.combo1.setCurrentIndex(int(z1))
 		self.ui.combo2.setCurrentIndex(int(z2))
 		self.ui.combo3.setCurrentIndex(int(z3))
 		self.ui.combo4.setCurrentIndex(int(z4))
-		#self.changeCombo1(z1)
-		#self.changeCombo2(z2)
-		#self.changeCombo3(z3)
-		#self.changeCombo4(z4)
 	
 	
 	# Exit callback

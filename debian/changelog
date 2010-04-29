@@ -1,8 +1,14 @@
+python-whiteboard (0.1-2.4) unstable; urgency=low
+
+  * Minor fixes
+
+ -- pnegre <pere.negre@gmail.com>  Thu, 29 Apr 2010 12:06:38 +0200
+
 python-whiteboard (0.1-2.3) unstable; urgency=low
 
   * Minor fixes
 
- -- pnegre <pere.negre@gmail>  Thu, 29 Apr 2010 08:34:10 +0200
+ -- pnegre <pere.negre@gmail.com>  Thu, 29 Apr 2010 08:34:10 +0200
 
 python-whiteboard (0.1-2.2) unstable; urgency=low
 
