@@ -33,7 +33,7 @@ class MainWindow(QtGui.QMainWindow):
 		self.active = False
 		
 		Globals.initGlobals()
-
+		
 		self.center()
 		self.batteryLevel.reset()
 		self.batteryLevel.setRange(0,99)
@@ -67,8 +67,12 @@ class MainWindow(QtGui.QMainWindow):
 			QtCore.SIGNAL("currentIndexChanged(const QString)"), self.changeCombo4)
 		
 		self.zones = {}
+		self.settings = QtCore.QSettings("pywhiteboard","pywhiteboard")
+		self.loadSettings()
+	
 	
 	def changeCombos(self,zone,text):
+		print zone,text
 		if text == 'Right Click':
 			self.zones[zone] = FakeCursor.RIGHT_BUTTON
 		elif text == 'Left Click':
@@ -210,9 +214,34 @@ class MainWindow(QtGui.QMainWindow):
 			self.active = True
 			self.pushButtonActivate.setText("Deactivate")
 			self.updateButtons()
-
-	def close(self):
-		print "close"
+	
+	
+	def loadSettings(self):
+		z1 = self.settings.value("zone1").toString()
+		z2 = self.settings.value("zone2").toString()
+		z3 = self.settings.value("zone3").toString()
+		z4 = self.settings.value("zone4").toString()
+		self.ui.combo1.setCurrentIndex(int(z1))
+		self.ui.combo2.setCurrentIndex(int(z2))
+		self.ui.combo3.setCurrentIndex(int(z3))
+		self.ui.combo4.setCurrentIndex(int(z4))
+		#self.changeCombo1(z1)
+		#self.changeCombo2(z2)
+		#self.changeCombo3(z3)
+		#self.changeCombo4(z4)
+	
+	
+	# Exit callback
+	def closeEvent(self,e):
+		self.settings.setValue("zone1", QtCore.QVariant(self.ui.combo1.currentIndex()))
+		self.settings.setValue("zone2", QtCore.QVariant(self.ui.combo2.currentIndex()))
+		self.settings.setValue("zone3", QtCore.QVariant(self.ui.combo3.currentIndex()))
+		self.settings.setValue("zone4", QtCore.QVariant(self.ui.combo4.currentIndex()))
+		
+		TerminateWiiThread()
+		if Globals.wii:
+			Globals.wii.close()
+		e.accept()
 
 
 
