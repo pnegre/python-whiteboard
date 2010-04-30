@@ -157,6 +157,7 @@ class MainWindow(QtGui.QMainWindow):
 			self.active = False
 			self.pushButtonConnect.setText("Connect")
 			self.updateButtons()
+			self.ui.label_utilization.setText("Utilization: 0%")
 			return
 			
 		thread = ConnectThread()
@@ -185,6 +186,7 @@ class MainWindow(QtGui.QMainWindow):
 			ret = msgbox.exec_()
 
 	def calibrateWii(self):
+		self.ui.label_utilization.setText("Utilization: 0%")
 		TerminateWiiThread()
 		thread = CalibrateThread()
 		thread.start()
@@ -194,6 +196,7 @@ class MainWindow(QtGui.QMainWindow):
 			self.active = False
 			self.drawScreenGraphic()
 			self.updateButtons()
+			self.ui.label_utilization.setText("Utilization: %d %%" % (100.0*Globals.wii.utilization))
 		else:
 			msgbox = QtGui.QMessageBox( self )
 			msgbox.setText( "Error during Calibration" )
