@@ -4,6 +4,30 @@
 from numpy import matrix, linalg
 import cwiid
 
+
+
+def calculateArea(points):
+	p1 = points[0]
+	p2 = points[1]
+	p3 = points[2]
+	p4 = points[3]
+
+	vb = [p2[0]-p1[0], p2[1]-p1[1]]
+	va = [p4[0]-p1[0], p4[1]-p1[1]]
+
+	paral_A_area = va[0]*vb[1] - va[1]*vb[0]
+
+	va = [p2[0]-p3[0], p2[1]-p3[1]]
+	vb = [p4[0]-p3[0], p4[1]-p3[1]]
+
+	paral_B_area = va[0]*vb[1] - va[1]*vb[0]
+
+	result = float(paral_A_area)/2 + float(paral_B_area)/2
+	return result
+
+
+
+
 class Wiimote:
 	CALIBRATED, NONCALIBRATED = range(2)
 	MAX_X = 1024
@@ -14,6 +38,7 @@ class Wiimote:
 		self.pos = None
 		self.state = Wiimote.NONCALIBRATED
 		self.calibrationPoints = []
+		self.utilization = 0.0
 	
 	def bind(self):
 		try:
@@ -93,6 +118,11 @@ class Wiimote:
 		
 		self.calibrationPoints = list(p_wii)
 		self.state = Wiimote.CALIBRATED
+		
+		area_inside = calculateArea(self.calibrationPoints)
+		total_area = Wiimote.MAX_X * Wiimote.MAX_Y
+		self.utilization = float(area_inside)/float(total_area)
+		print self.utilization
 
 
 
