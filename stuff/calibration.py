@@ -44,10 +44,12 @@ class SandClock:
 		else:
 			self.state = SandClock.FIN1
 	
-	def draw(self,screen):
-		dgrs = 360*self.totalTicks/700
-		pygame.draw.arc(screen, (255,0,0),
-			pygame.Rect(self.px,self.py,40,40), 0, dgrs*3.14/180, 8)
+	def draw(self,screen,sms):
+		if self.totalTicks:
+			dgrs = 360*self.totalTicks/700
+			pygame.draw.arc(screen, (255,0,0),
+				pygame.Rect(self.px,self.py,40,40), 0, dgrs*3.14/180, 8)
+			sms.drawPoint(self.point)
 
 	
 	def finished(self):
@@ -126,12 +128,12 @@ class Calibration:
 			
 			self.screen.fill((0,0,0))
 			smallScreen.draw()
-			sandClock.draw(self.screen)
+			sandClock.draw(self.screen,smallScreen)
 			
 			wii.getMsgs()
 			wii_pos = wii.getPos()
 			if wii_pos:
-				smallScreen.drawPoint(wii_pos)
+				#smallScreen.drawPoint(wii_pos)
 				sandClock.update(wii_pos)
 			else:
 				sandClock.update(None)

@@ -7,6 +7,7 @@ import cwiid
 
 
 def calculateArea(points):
+	print points
 	p1 = points[0]
 	p2 = points[1]
 	p3 = points[2]
@@ -23,6 +24,8 @@ def calculateArea(points):
 	paral_B_area = va[0]*vb[1] - va[1]*vb[0]
 
 	result = float(paral_A_area)/2 + float(paral_B_area)/2
+	print paral_A_area
+	print paral_B_area
 	return result
 
 
