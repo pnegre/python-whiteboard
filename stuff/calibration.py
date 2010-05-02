@@ -1,11 +1,13 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import pygame, os
-import time
+import sys,time
+
 import wiimote
 
-PI = 3.1416
+from PyQt4 import QtCore, QtGui, uic
+import PyQt4.Qt as qt
+
+
 
 
 def clock():
@@ -15,10 +17,10 @@ def clock():
 class SandClock:
 	READY, FIN1, FIN2 = range(3)
 	
-	def __init__(self,px,py):
-		self.point = [0,0]
-		self.px = px-20
-		self.py = py-20
+	def __init__(self,scene,px,py):
+		self.scene = scene
+		self.elipse = scene.addEllipse(px-30,py-30,60,60)
+		self.elipse.setVisible(False)
 		self.initialize()
 	
 	def initialize(self):
@@ -44,12 +46,13 @@ class SandClock:
 		else:
 			self.state = SandClock.FIN1
 	
-	def draw(self,screen,sms):
+	def draw(self):
 		if self.totalTicks:
-			dgrs = 360*self.totalTicks/700
-			pygame.draw.arc(screen, (255,0,0),
-				pygame.Rect(self.px,self.py,40,40), 0, dgrs*3.14/180, 8)
-			sms.drawPoint(self.point)
+			self.elipse.setVisible(True)
+			dgrs = 5760*self.totalTicks/700
+			self.elipse.setSpanAngle(dgrs)
+		else:
+			self.elipse.setVisible(False)
 
 	
 	def finished(self):
@@ -61,105 +64,118 @@ class SandClock:
 
 
 class SmallScreen:
-	def __init__(self,screen):
-		self.surface = screen
-		self.parentx = screen.get_width();
-		self.parenty = screen.get_height();
+	def __init__(self,scx,scy,scene):
+		self.scene = scene
+		self.parentx = scx
+		self.parenty = scy
 		self.dx = 200
 		self.dy = 200
-	
-	def draw(self):
-		pygame.draw.rect(self.surface, (255,255,255), 
-			pygame.Rect(int(self.parentx/2-100), int(self.parenty/2-100),
-			200, 200), 1)
+		self.square = scene.addRect(qt.QRectF(scx/2-100,scy/2-100,200,200))
+		self.point = scene.addRect(qt.QRectF(self.parentx/2-2,self.parenty/2-2,4,4))
 	
 	def drawPoint(self,pos):
-		px = self.parentx/2 - 100 + pos[0]*self.dx/wiimote.Wiimote.MAX_X;
-		py = self.parenty/2 + 100 - pos[1]*self.dy/wiimote.Wiimote.MAX_Y;
-		pygame.draw.circle(self.surface, (255,255,255), (px,py), 2)
-		
+		px = -100 + pos[0]*self.dx/wiimote.Wiimote.MAX_X-2
+		py = 100 - pos[1]*self.dy/wiimote.Wiimote.MAX_Y-2
+		self.point.setPos(px,py)
 
 
-class Calibration:
-	def __init__(self):
-		pass
+
+def crossPoly(x,y):
+	pol = QtGui.QPolygonF()
+	pol.append(qt.QPointF(x,y))
+	pol.append(qt.QPointF(x-5,y-5))
+	pol.append(qt.QPointF(x,y))
+	pol.append(qt.QPointF(x+5,y+5))
+	pol.append(qt.QPointF(x,y))
+	pol.append(qt.QPointF(x-5,y+5))
+	pol.append(qt.QPointF(x,y))
+	pol.append(qt.QPointF(x+5,y-5))
+	return pol
 	
-	def drawCross(self,pos):
-		pygame.draw.line(self.screen, (255,255,255), (pos[0]-5,pos[1]), (pos[0]+5,pos[1]))
-		pygame.draw.line(self.screen, (255,255,255), (pos[0],pos[1]-5), (pos[0],pos[1]+5)) 
 	
-	def drawBox(self, pos, filled=False):
-		w = 1
-		if filled: w = 0
-			
-		pygame.draw.rect(self.screen, (255,255,255), 
-			pygame.Rect(pos[0]-5, pos[1]-5, 11, 11), w)
-			
+
+
+class CalibrateDialog(QtGui.QDialog):
+	def __init__(self,parent,wii):
+		QtGui.QWidget.__init__(self,parent,QtCore.Qt.FramelessWindowHint)
+		self.wii = wii
+		self.setContentsMargins(0,0,0,0)
 	
-	def doIt(self,wii):
-		os.environ["SDL_VIDEO_CENTERED"] = "1"
-		pygame.init()
-		self.window = pygame.display.set_mode( (0,0), pygame.FULLSCREEN | pygame.DOUBLEBUF )
-		self.screen = pygame.display.get_surface()
-		self.clock = pygame.time.Clock()
+	def init2(self):
+		self.shcut1 = QtGui.QShortcut(self)
+		self.shcut1.setKey("Esc")
+		self.connect(self.shcut1, QtCore.SIGNAL("activated()"), self.close)
+		
+		screenGeom = QtGui.QDesktopWidget().screenGeometry()
+		wdt = screenGeom.width()-2
+		hgt = screenGeom.height()-2
+		
+		self.gv = QtGui.QGraphicsView()
+		self.scene = qt.QGraphicsScene()
+		self.scene.setSceneRect(0,0,wdt,hgt)
+		self.gv.setScene(self.scene)
+		self.layout = QtGui.QVBoxLayout()
+		self.layout.setMargin(0)
+		self.layout.setSpacing(0)
+		self.layout.addWidget(self.gv)
+		self.setLayout(self.layout)
+		
+		self.CalibrationPoints = [
+			[20,20], [wdt-20,20], [wdt-20,hgt-20], [20,hgt-20]
+		]
+		
+		self.marks = []
+		for p in self.CalibrationPoints:
+			self.scene.addPolygon(crossPoly(*p))
+			m = self.scene.addRect(p[0]-5,p[1]-5,10,10)
+			m.setVisible(False)
+			self.marks.append(m)
+		
+		
+		self.wiiPoints = []
+		self.realCalibrationPoints = []
+		for p in self.CalibrationPoints:
+			#q = self.gv.mapToParent(self.gv.mapFromScene(qt.QPointF(*p)))
+			#self.realCalibrationPoints.append([q.x(),q.y()])
+			self.realCalibrationPoints.append([p[0]+1,p[1]+1])
+		
+		self.smallScreen = SmallScreen(wdt,hgt,self.scene)
+		self.sandclock = SandClock(self.scene,wdt/2,hgt/2)
+		
+		self.timer = qt.QTimer(self)
+		self.connect(self.timer, QtCore.SIGNAL("timeout()"), self.doWork)
+		self.timer.start()
 
-		smallScreen = SmallScreen(self.screen)
-		
-		p_wii = [(0,0), (0,0), (0,0), (0,0)]
-		p_screen = (
-			(20,20),
-			(self.screen.get_width()-20, 20),
-			(self.screen.get_width()-20, self.screen.get_height()-20),
-			(20, self.screen.get_height()-20),
-		)
-		sandClock = SandClock(self.screen.get_width()/2, self.screen.get_height()/2)
-		state = 0
-		finish = False
-		while not finish:
-			for e in pygame.event.get():
-				if e.type == pygame.KEYDOWN:
-					if e.key == pygame.K_ESCAPE:
-						finish = True
-					if e.key == pygame.K_SPACE:
-						state += 1
-			
-			if (state >= 4):
-				break
-			
-			self.screen.fill((0,0,0))
-			smallScreen.draw()
-			sandClock.draw(self.screen,smallScreen)
-			
-			wii.getMsgs()
-			wii_pos = wii.getPos()
-			if wii_pos:
-				#smallScreen.drawPoint(wii_pos)
-				sandClock.update(wii_pos)
-			else:
-				sandClock.update(None)
-			
-			if sandClock.finished():
-				p_wii[state] = sandClock.getPoint()
-				state += 1
-				sandClock.initialize()
-				if (state >= 4):
-					break
-			
-			for n,p in enumerate(p_screen):
-				self.drawCross(p)
-				if n<state:
-					self.drawBox(p_screen[n], filled=True)
-			
-			self.drawBox(p_screen[state])
-			
-			pygame.display.flip()
-		
-		pygame.quit()
-		
-		# Do calibration
-		if state >= 4:
-			wii.calibrate(p_screen,p_wii)
-		
-		
 
+	def doWork(self):
+		self.wii.getMsgs()
+		wii_pos = self.wii.getPos()
+		if wii_pos:
+			self.smallScreen.drawPoint(wii_pos)
+			self.sandclock.update(wii_pos)
+			self.sandclock.draw()
+		else:
+			self.sandclock.update(None)
+			self.sandclock.draw()
+		
+		if self.sandclock.finished():
+			self.wiiPoints.append(self.sandclock.getPoint())
+			self.marks.pop(0).setVisible(True)
+			self.sandclock.initialize()
+			if len(self.wiiPoints) == 4:
+				self.close()
+	
+
+def main(parent,wii):
+	dialog = CalibrateDialog(parent,wii)
+	dialog.setModal(True)
+	dialog.showFullScreen()
+	dialog.init2()
+	dialog.exec_()
+	
+	if len(dialog.wiiPoints) == 4:
+		print dialog.CalibrationPoints
+		print dialog.realCalibrationPoints
+		print dialog.wiiPoints
+		wii.calibrate(dialog.realCalibrationPoints,dialog.wiiPoints)
 

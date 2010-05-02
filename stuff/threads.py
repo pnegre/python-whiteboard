@@ -4,7 +4,6 @@ import Globals
 
 
 from wiimote import Wiimote
-from calibration import Calibration
 from cursor import FakeCursor
 
 
@@ -17,17 +16,6 @@ class ConnectThread(qt.QThread):
 		if not Globals.wii.bind():
 			Globals.wii = None
 
-
-
-class CalibrateThread(qt.QThread):
-	def run(self):
-		#try:
-			calibration = Calibration()
-			Globals.wii.state = Wiimote.NONCALIBRATED
-			calibration.doIt(Globals.wii)
-		#except:
-			# Calibration error
-			#pass
 
 
 class IdleWiiThread(qt.QThread):
