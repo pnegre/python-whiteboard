@@ -32,6 +32,7 @@ class MainWindow(QtGui.QMainWindow):
 		self.connected = False
 		self.calibrated = False
 		self.active = False
+		self.mustquit = False
 		
 		Globals.initGlobals()
 		
@@ -66,6 +67,9 @@ class MainWindow(QtGui.QMainWindow):
 			QtCore.SIGNAL("currentIndexChanged(const QString)"), self.changeCombo3)
 		self.connect(self.ui.combo4,
 			QtCore.SIGNAL("currentIndexChanged(const QString)"), self.changeCombo4)
+		
+		self.connect(self.ui.actionQuit,
+			QtCore.SIGNAL("activated()"), self.mustQuit)
 		
 		self.zones = {}
 		self.settings = QtCore.QSettings("pywhiteboard","pywhiteboard")
@@ -246,15 +250,24 @@ class MainWindow(QtGui.QMainWindow):
 	
 	# Exit callback
 	def closeEvent(self,e):
-		self.settings.setValue("zone1", QtCore.QVariant(self.ui.combo1.currentIndex()))
-		self.settings.setValue("zone2", QtCore.QVariant(self.ui.combo2.currentIndex()))
-		self.settings.setValue("zone3", QtCore.QVariant(self.ui.combo3.currentIndex()))
-		self.settings.setValue("zone4", QtCore.QVariant(self.ui.combo4.currentIndex()))
-		
-		TerminateWiiThread()
-		if Globals.wii:
-			Globals.wii.close()
-		e.accept()
+		if self.mustquit:
+			self.settings.setValue("zone1", QtCore.QVariant(self.ui.combo1.currentIndex()))
+			self.settings.setValue("zone2", QtCore.QVariant(self.ui.combo2.currentIndex()))
+			self.settings.setValue("zone3", QtCore.QVariant(self.ui.combo3.currentIndex()))
+			self.settings.setValue("zone4", QtCore.QVariant(self.ui.combo4.currentIndex()))
+			
+			TerminateWiiThread()
+			if Globals.wii:
+				Globals.wii.close()
+			e.accept()
+		else:
+			msgbox = QtGui.QMessageBox(self)
+			msgbox.setText("The application will remain active (systray). To quit, use file->quit menu" )
+			msgbox.setModal( True )
+			ret = msgbox.exec_()
+			self.showHide()
+			e.ignore()
+	
 	
 	def showHide(self):
 		if self.isVisible():
@@ -262,6 +275,10 @@ class MainWindow(QtGui.QMainWindow):
 		else:
 			self.show()
 
+
+	def mustQuit(self):
+		self.mustquit = True
+		self.close()
 
 
 
