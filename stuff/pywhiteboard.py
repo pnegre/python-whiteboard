@@ -198,7 +198,7 @@ class MainWindow(QtGui.QMainWindow):
 			self.active = False
 			self.drawScreenGraphic()
 			self.updateButtons()
-			self.ui.label_utilization.setText("Utilization: %d %%" % (100.0*Globals.wii.utilization))
+			self.ui.label_utilization.setText("Utilization: %d%%" % (100.0*Globals.wii.utilization))
 		else:
 			msgbox = QtGui.QMessageBox( self )
 			msgbox.setText( "Error during Calibration" )

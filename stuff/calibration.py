@@ -19,7 +19,9 @@ class SandClock:
 	
 	def __init__(self,scene,px,py):
 		self.scene = scene
-		self.elipse = scene.addEllipse(px-30,py-30,60,60)
+		self.elipse = scene.addEllipse(px-30,py-30,60,60,
+			qt.QPen(QtCore.Qt.black, 3, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin),
+			qt.QBrush(QtCore.Qt.red))
 		self.elipse.setVisible(False)
 		self.initialize()
 	
@@ -129,7 +131,8 @@ class CalibrateDialog(QtGui.QDialog):
 		self.realCalibrationPoints = []
 		for p in self.CalibrationPoints:
 			self.scene.addPolygon(crossPoly(*p))
-			m = self.scene.addRect(p[0]-5,p[1]-5,10,10)
+			m = self.scene.addRect(p[0]-5,p[1]-5,10,10,
+				qt.QPen(QtCore.Qt.red, 2, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin))
 			m.setVisible(False)
 			self.marks.append(m)
 			self.realCalibrationPoints.append([p[0]+1,p[1]+1])
