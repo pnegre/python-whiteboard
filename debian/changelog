@@ -1,3 +1,9 @@
+python-whiteboard (0.1-2.6) unstable; urgency=low
+
+  * Calibration screen does not use pygame, dropped dependency
+
+ -- pnegre <pere.negre@gmail.com>  Mon, 03 May 2010 13:42:00 +0200
+
 python-whiteboard (0.1-2.5) unstable; urgency=low
 
   * Checked dependencies
