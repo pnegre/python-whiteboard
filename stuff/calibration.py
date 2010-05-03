@@ -100,7 +100,7 @@ class CalibrateDialog(QtGui.QDialog):
 		QtGui.QWidget.__init__(self,parent,QtCore.Qt.FramelessWindowHint)
 		self.wii = wii
 		self.setContentsMargins(0,0,0,0)
-		self.setWindowState(self.windowState() | QtCore.Qt.WindowFullScreen)
+		self.setWindowState(QtCore.Qt.WindowActive | QtCore.Qt.WindowFullScreen)
 
 		self.shcut1 = QtGui.QShortcut(self)
 		self.shcut1.setKey("Esc")
@@ -125,18 +125,13 @@ class CalibrateDialog(QtGui.QDialog):
 		]
 		
 		self.marks = []
+		self.wiiPoints = []
+		self.realCalibrationPoints = []
 		for p in self.CalibrationPoints:
 			self.scene.addPolygon(crossPoly(*p))
 			m = self.scene.addRect(p[0]-5,p[1]-5,10,10)
 			m.setVisible(False)
 			self.marks.append(m)
-		
-		
-		self.wiiPoints = []
-		self.realCalibrationPoints = []
-		for p in self.CalibrationPoints:
-			#q = self.gv.mapToParent(self.gv.mapFromScene(qt.QPointF(*p)))
-			#self.realCalibrationPoints.append([q.x(),q.y()])
 			self.realCalibrationPoints.append([p[0]+1,p[1]+1])
 		
 		self.smallScreen = SmallScreen(wdt,hgt,self.scene)
@@ -166,7 +161,7 @@ class CalibrateDialog(QtGui.QDialog):
 				self.close()
 	
 
-def main(parent,wii):
+def doCalibration(parent,wii):
 	dialog = CalibrateDialog(parent,wii)
 	dialog.show()
 	dialog.exec_()

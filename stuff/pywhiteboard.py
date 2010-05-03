@@ -6,7 +6,7 @@ from cursor import FakeCursor
 import Globals
 from threads import *
 
-import calibration
+from calibration import doCalibration
 
 
 import sys, time
@@ -190,8 +190,8 @@ class MainWindow(QtGui.QMainWindow):
 		self.ui.label_utilization.setText("Utilization: 0%")
 		TerminateWiiThread()
 		
-		Globals.wii.state == Wiimote.NONCALIBRATED
-		calibration.main(self,Globals.wii)
+		Globals.wii.state = Wiimote.NONCALIBRATED
+		doCalibration(self,Globals.wii)
 		
 		if Globals.wii.state == Wiimote.CALIBRATED:
 			self.calibrated = True
