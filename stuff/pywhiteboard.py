@@ -255,6 +255,34 @@ class MainWindow(QtGui.QMainWindow):
 		if Globals.wii:
 			Globals.wii.close()
 		e.accept()
+	
+	def showHide(self):
+		if self.isVisible():
+			self.hide()
+		else:
+			self.show()
+
+
+
+
+
+
+class SysTrayIcon(object):
+	def __init__(self, fname, mainWindow):
+		self.mainWindow = mainWindow
+		self.stray = QtGui.QSystemTrayIcon()
+		self.stray.setIcon(QtGui.QIcon(fname))
+
+		QtCore.QObject.connect(self.stray,
+			QtCore.SIGNAL("activated(QSystemTrayIcon::ActivationReason)"), self.activate)
+	
+	def activate(self, reason):
+		if reason == QtGui.QSystemTrayIcon.Trigger:
+			self.mainWindow.showHide()
+		
+	def show(self):
+		self.stray.show()
+
 
 
 
@@ -262,5 +290,7 @@ class MainWindow(QtGui.QMainWindow):
 def main():
 	app = QtGui.QApplication(sys.argv)
 	mainWin = MainWindow()
+	stray = SysTrayIcon("icon.xpm", mainWin)
+	stray.show()
 	mainWin.show()
 	app.exec_()
