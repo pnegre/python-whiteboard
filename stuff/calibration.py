@@ -100,8 +100,8 @@ class CalibrateDialog(QtGui.QDialog):
 		QtGui.QWidget.__init__(self,parent,QtCore.Qt.FramelessWindowHint)
 		self.wii = wii
 		self.setContentsMargins(0,0,0,0)
-	
-	def init2(self):
+		self.setWindowState(self.windowState() | QtCore.Qt.WindowFullScreen)
+
 		self.shcut1 = QtGui.QShortcut(self)
 		self.shcut1.setKey("Esc")
 		self.connect(self.shcut1, QtCore.SIGNAL("activated()"), self.close)
@@ -168,9 +168,7 @@ class CalibrateDialog(QtGui.QDialog):
 
 def main(parent,wii):
 	dialog = CalibrateDialog(parent,wii)
-	dialog.setModal(True)
-	dialog.showFullScreen()
-	dialog.init2()
+	dialog.show()
 	dialog.exec_()
 	
 	if len(dialog.wiiPoints) == 4:
