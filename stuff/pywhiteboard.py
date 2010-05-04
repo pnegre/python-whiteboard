@@ -84,7 +84,7 @@ class MainWindow(QtGui.QMainWindow):
 		elif text == 'Middle Click':
 			self.zones[zone] = FakeCursor.MIDDLE_BUTTON
 		elif text == 'Only Move':
-			self.zones[zone] = FakeCursor.MIDDLE_BUTTON
+			self.zones[zone] = FakeCursor.ONLY_MOVE
 
 	def changeCombo1(self,text):
 		self.changeCombos(FakeCursor.ZONE1,text)
