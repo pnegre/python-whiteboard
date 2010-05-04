@@ -1,3 +1,9 @@
+python-whiteboard (0.1-2.7) unstable; urgency=low
+
+  * Added systray Icon. Minor fixes.
+
+ -- pnegre <pere.negre@gmail.com>  Tue, 04 May 2010 08:58:24 +0200
+
 python-whiteboard (0.1-2.6) unstable; urgency=low
 
   * Calibration screen does not use pygame, dropped dependency

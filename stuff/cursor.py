@@ -32,7 +32,6 @@ class Click:
 		self.cursor = cursor
 		self.cursor.mouse_down()
 		
-		# We have cursor.display
 	
 	def update(self,evt):
 		t = clock()
@@ -49,6 +48,7 @@ class FakeCursor:
 	LEFT_BUTTON = 1
 	MIDDLE_BUTTON = 2
 	RIGHT_BUTTON = 3
+	ONLY_MOVE = 4
 	ZONE1, ZONE2, ZONE3, ZONE4 = range(4)
 	
 	def __init__(self,wii):
@@ -61,8 +61,10 @@ class FakeCursor:
 		self.clickType = FakeCursor.LEFT_BUTTON
 		self.zones = {}
 	
+	
 	def setZone(self,zone,clickType):
 		self.zones[zone] = clickType
+	
 	
 	def move(self,pos):
 		#self.root.warp_pointer(pos[0],pos[1])
@@ -70,32 +72,60 @@ class FakeCursor:
 		self.display.sync()
 	
 	
-	#button= 1 left, 2 middle, 3 right
 	def mouse_down(self):
 		button = self.clickType
-		Xlib.ext.xtest.fake_input(self.display, Xlib.X.ButtonPress, button)
-		self.display.sync()
+		if button != FakeCursor.ONLY_MOVE:
+			Xlib.ext.xtest.fake_input(self.display, Xlib.X.ButtonPress, button)
+			self.display.sync()
 	
 	
 	def mouse_up(self):
 		button = self.clickType
-		Xlib.ext.xtest.fake_input(self.display, Xlib.X.ButtonRelease, button)
-		self.display.sync()
+		if button != FakeCursor.ONLY_MOVE:
+			Xlib.ext.xtest.fake_input(self.display, Xlib.X.ButtonRelease, button)
+			self.display.sync()
+	
 	
 	def update(self):
 		if self.wii.pos:
-			if not self.filt:
-				self.filt = Filter()
-			p = self.filt.update( self.wii.getPos() )
-			self.move(p)
-			if not self.click:
-				self.click = Click(self)
-			else:
-				self.click.update(True)
+			q = self.wii.getPos()
+			if self.checkLimits(q):
+				if not self.filt:
+					self.filt = Filter()
+				p = self.filt.update(q)
+				
+				self.move(p)
+				
+				if not self.click:
+						self.click = Click(self)
+				else:
+					self.click.update(True)
 		
 		elif self.click and not self.click.update(False):
 			self.click = None
 			self.filt = None
 			self.clickType = FakeCursor.LEFT_BUTTON
+	
+	
+	# Returns True if point is within screen limits
+	def checkLimits(self,pos):
+		if pos[1] < 0:
+			# Zone 1
+			self.clickType = self.zones[FakeCursor.ZONE1]
+			return False
+		if pos[0] > self.screen['width_in_pixels']:
+			# Zone 2
+			self.clickType = self.zones[FakeCursor.ZONE2]
+			return False
+		if pos[1] > self.screen['height_in_pixels']:
+			# Zone 3
+			self.clickType = self.zones[FakeCursor.ZONE3]
+			return False
+		if pos[0] < 0:
+			# Zone 4
+			self.clickType = self.zones[FakeCursor.ZONE4]
+			return False
+		
+		return True
 
 

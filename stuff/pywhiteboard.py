@@ -28,6 +28,7 @@ class MainWindow(QtGui.QMainWindow):
 		QtGui.QWidget.__init__(self,parent)
 		self.ui = uic.loadUi("mainwindow.ui",self)	
 		self.setWindowTitle("Linux-whiteboard")
+		self.center()
 		
 		self.connected = False
 		self.calibrated = False
@@ -36,7 +37,6 @@ class MainWindow(QtGui.QMainWindow):
 		
 		Globals.initGlobals()
 		
-		self.center()
 		self.batteryLevel.reset()
 		self.batteryLevel.setRange(0,99)
 		self.batteryLevel.setValue(0)
@@ -58,7 +58,6 @@ class MainWindow(QtGui.QMainWindow):
 		
 		self.updateButtons()
 		
-		#print self.combo1.currentText()
 		self.connect(self.ui.combo1,
 			QtCore.SIGNAL("currentIndexChanged(const QString)"), self.changeCombo1)
 		self.connect(self.ui.combo2,
@@ -83,6 +82,8 @@ class MainWindow(QtGui.QMainWindow):
 		elif text == 'Left Click':
 			self.zones[zone] = FakeCursor.LEFT_BUTTON
 		elif text == 'Middle Click':
+			self.zones[zone] = FakeCursor.MIDDLE_BUTTON
+		elif text == 'Only Move':
 			self.zones[zone] = FakeCursor.MIDDLE_BUTTON
 
 	def changeCombo1(self,text):
@@ -163,6 +164,7 @@ class MainWindow(QtGui.QMainWindow):
 			self.pushButtonConnect.setText("Connect")
 			self.updateButtons()
 			self.ui.label_utilization.setText("Utilization: 0%")
+			self.batteryLevel.setValue(0)
 			return
 			
 		thread = ConnectThread()
@@ -262,7 +264,8 @@ class MainWindow(QtGui.QMainWindow):
 			e.accept()
 		else:
 			msgbox = QtGui.QMessageBox(self)
-			msgbox.setText("The application will remain active (systray). To quit, use file->quit menu" )
+			msgbox.setText("The application will remain active (systray)." + "\n" + \
+				"To quit, use file->quit menu" )
 			msgbox.setModal( True )
 			ret = msgbox.exec_()
 			self.showHide()
