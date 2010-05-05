@@ -140,6 +140,8 @@ class CalibrateDialog(QtGui.QDialog):
 		self.smallScreen = SmallScreen(wdt,hgt,self.scene)
 		self.sandclock = SandClock(self.scene,wdt/2,hgt/2)
 		
+		self.clock = clock()
+		
 		self.timer = qt.QTimer(self)
 		self.connect(self.timer, QtCore.SIGNAL("timeout()"), self.doWork)
 		self.timer.start()
@@ -162,6 +164,15 @@ class CalibrateDialog(QtGui.QDialog):
 			self.sandclock.initialize()
 			if len(self.wiiPoints) == 4:
 				self.close()
+				return
+				
+		if len(self.marks):
+			m = self.marks[0]
+			c = clock() - self.clock
+			if c >= 300:
+				if m.isVisible(): m.setVisible(False)
+				else: m.setVisible(True)
+				self.clock = clock()
 	
 
 def doCalibration(parent,wii):
