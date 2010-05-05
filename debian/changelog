@@ -1,3 +1,16 @@
+python-whiteboard (0.1-2.10) unstable; urgency=low
+
+  * Added loading calibration capability.
+
+ -- pnegre <pere.negre@gmail.com>  Wed, 05 May 2010 19:56:44 +0200
+
+python-whiteboard (0.1-2.9) unstable; urgency=low
+
+  * Improved calibration screen
+  * Added message on pbar screen
+
+ -- pnegre <pere.negre@gmail.com>  Wed, 05 May 2010 09:45:12 +0200
+
 python-whiteboard (0.1-2.8) unstable; urgency=low
 
   * Off-limit clicks working.

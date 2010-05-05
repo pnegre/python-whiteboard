@@ -41,6 +41,7 @@ class Wiimote:
 		self.pos = None
 		self.state = Wiimote.NONCALIBRATED
 		self.calibrationPoints = []
+		self.screenPoints = []
 		self.utilization = 0.0
 	
 	def bind(self):
@@ -109,7 +110,6 @@ class Wiimote:
 		])
 
 		self.hCoefs = linalg.solve(A, x)
-		print self.hCoefs
 		self.h11 = self.hCoefs[0]
 		self.h12 = self.hCoefs[1]
 		self.h13 = self.hCoefs[2]
@@ -120,12 +120,12 @@ class Wiimote:
 		self.h32 = self.hCoefs[7]
 		
 		self.calibrationPoints = list(p_wii)
+		self.screenPoints = list(p_screen)
 		self.state = Wiimote.CALIBRATED
 		
 		area_inside = calculateArea(self.calibrationPoints)
 		total_area = Wiimote.MAX_X * Wiimote.MAX_Y
 		self.utilization = float(area_inside)/float(total_area)
-		print self.utilization
 
 
 

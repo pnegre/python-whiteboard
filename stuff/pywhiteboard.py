@@ -15,7 +15,6 @@ import PyQt4.Qt as qt
 
 
 
-
 class PBarDlg(QtGui.QDialog):
 	def __init__(self, parent=None):
 		QtGui.QWidget.__init__(self,parent)
@@ -45,10 +44,13 @@ class MainWindow(QtGui.QMainWindow):
 			QtCore.SIGNAL("clicked()"), self.connectWii)
 		
 		self.connect(self.ui.pushButtonCalibrate,
-			QtCore.SIGNAL("clicked()"), self.calibrateWii)
+			QtCore.SIGNAL("clicked()"), self.calibrateWiiScreen)
 		
 		self.connect(self.ui.pushButtonActivate,
 			QtCore.SIGNAL("clicked()"), self.activateWii)
+		
+		self.connect(self.ui.pushButtonLoadCal,
+			QtCore.SIGNAL("clicked()"), self.calibrateWiiFromSettings)
 		
 		pixmap = QtGui.QPixmap("screen.png")
 		self.areasScene = QtGui.QGraphicsScene()
@@ -113,6 +115,11 @@ class MainWindow(QtGui.QMainWindow):
 		self.scene.addPolygon(quad)
 		self.wiiScreen.setScene(self.scene)
 		self.wiiScreen.show()
+	
+	
+	def clearScreenGraphic(self):
+		if self.wiiScreen.scene():
+			self.scene.clear()
 
 
 	def center(self):
@@ -127,16 +134,19 @@ class MainWindow(QtGui.QMainWindow):
 			self.ui.pushButtonConnect.setEnabled(1)
 			self.ui.pushButtonCalibrate.setEnabled(0)
 			self.ui.pushButtonActivate.setEnabled(0)
+			self.ui.pushButtonLoadCal.setEnabled(0)
 			return
 		if self.calibrated == False:
 			self.ui.pushButtonConnect.setEnabled(1)
 			self.ui.pushButtonCalibrate.setEnabled(1)
 			self.ui.pushButtonActivate.setEnabled(0)
+			self.ui.pushButtonLoadCal.setEnabled(1)
 			return
 		if self.active == False:
 			self.ui.pushButtonConnect.setEnabled(1)
 			self.ui.pushButtonCalibrate.setEnabled(1)
 			self.ui.pushButtonActivate.setEnabled(1)
+			self.ui.pushButtonLoadCal.setEnabled(1)
 			self.ui.combo1.setEnabled(1)
 			self.ui.combo2.setEnabled(1)
 			self.ui.combo3.setEnabled(1)
@@ -145,6 +155,7 @@ class MainWindow(QtGui.QMainWindow):
 		else:
 			self.ui.pushButtonConnect.setEnabled(0)
 			self.ui.pushButtonCalibrate.setEnabled(0)
+			self.ui.pushButtonLoadCal.setEnabled(0)
 			self.ui.pushButtonActivate.setEnabled(1)
 			self.ui.combo1.setEnabled(0)
 			self.ui.combo2.setEnabled(0)
@@ -164,6 +175,7 @@ class MainWindow(QtGui.QMainWindow):
 			self.pushButtonConnect.setText("Connect")
 			self.updateButtons()
 			self.ui.label_utilization.setText("Utilization: 0%")
+			self.clearScreenGraphic()
 			self.batteryLevel.setValue(0)
 			return
 			
@@ -192,12 +204,20 @@ class MainWindow(QtGui.QMainWindow):
 			msgbox.setModal( True )
 			ret = msgbox.exec_()
 
-	def calibrateWii(self):
+	# doscreen: if doscreen is true, calibrate by manual pointing
+	def calibrateWii(self,doScreen):
 		self.ui.label_utilization.setText("Utilization: 0%")
+		self.clearScreenGraphic()
 		TerminateWiiThread()
 		
+		self.calibrated = False
+		self.active = False
+		
 		Globals.wii.state = Wiimote.NONCALIBRATED
-		doCalibration(self,Globals.wii)
+		if doScreen:
+			doCalibration(self,Globals.wii)
+		else:
+			self.loadCalibration(Globals.wii)
 		
 		if Globals.wii.state == Wiimote.CALIBRATED:
 			self.calibrated = True
@@ -205,7 +225,9 @@ class MainWindow(QtGui.QMainWindow):
 			self.drawScreenGraphic()
 			self.updateButtons()
 			self.ui.label_utilization.setText("Utilization: %d%%" % (100.0*Globals.wii.utilization))
+			self.saveCalibrationPars(Globals.wii)
 		else:
+			self.updateButtons()
 			msgbox = QtGui.QMessageBox( self )
 			msgbox.setText( "Error during Calibration" )
 			msgbox.setModal( True )
@@ -213,6 +235,42 @@ class MainWindow(QtGui.QMainWindow):
 		
 		InitiateIdleWiiThread()
 
+	
+	def calibrateWiiScreen(self):
+		self.calibrateWii(True)
+	
+	
+	def calibrateWiiFromSettings(self):
+		self.calibrateWii(False)
+
+
+	def saveCalibrationPars(self,wii):
+		for i,p in enumerate(wii.screenPoints):
+			self.settings.setValue("screenPoint"+str(i)+"x",QtCore.QVariant(str(p[0])))
+			self.settings.setValue("screenPoint"+str(i)+"y",QtCore.QVariant(str(p[1])))
+		
+		for i,p in enumerate(wii.calibrationPoints):
+			self.settings.setValue("wiiPoint"+str(i)+"x",QtCore.QVariant(str(p[0])))
+			self.settings.setValue("wiiPoint"+str(i)+"y",QtCore.QVariant(str(p[1])))
+	
+	
+	def loadCalibration(self,wii):
+		try:
+			pwii = []
+			pscr = []
+			for i in range(0,4):
+				p = []
+				p.append(float(str(self.settings.value("screenPoint"+str(i)+"x").toString())))
+				p.append(float(str(self.settings.value("screenPoint"+str(i)+"y").toString())))
+				q = []
+				q.append(float(str(self.settings.value("wiiPoint"+str(i)+"x").toString())))
+				q.append(float(str(self.settings.value("wiiPoint"+str(i)+"y").toString())))
+				pwii.append(list(q))
+				pscr.append(list(p))
+			wii.calibrate(pscr,pwii)
+		except:
+			pass
+		
 	
 	def activateWii(self):
 		if self.active:
