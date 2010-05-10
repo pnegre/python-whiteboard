@@ -1,7 +1,7 @@
 Linux Electronic Whiteboard with Wiimote
 ----------------------------------------
 
-This program allow you to build and operate a electronic whiteboard using gnu/linux, a wiimote and an IR pen.
+This program allows you to build and operate an electronic whiteboard using gnu/linux, a wiimote and an IR pen.
 
 If you have git installed on your system you can get the latest (development) version, typing:
 
@@ -11,6 +11,6 @@ To download packaged versions of the program, point your browser to http://githu
 
 It's recommended to disable the desktop effects, to avoid program crashes and malfunctions.
 
- 
+
 Have Fun!
 
