@@ -1,3 +1,9 @@
+python-whiteboard (0.2-1) unstable; urgency=low
+
+  * Minor fix in calibration window
+
+ -- pnegre <pere.negre@gmail.com>  Thu, 13 May 2010 08:54:07 +0200
+
 python-whiteboard (0.1-2.10) unstable; urgency=low
 
   * Added loading calibration capability.
