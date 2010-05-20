@@ -156,6 +156,11 @@ class CalibrateDialog2(QtGui.QDialog):
 				self.close()
 				return
 			self.ui.label.setText(self.textMessages.pop(0))
+	
+	
+	def closeEvent(self,e):
+		self.disconnect(self.timer, QtCore.SIGNAL("timeout()"), self.doWork)
+		e.accept()
 
 
 
@@ -238,6 +243,11 @@ class CalibrateDialog(QtGui.QDialog):
 				else: m.setVisible(True)
 				self.clock = clock()
 	
+	
+	def closeEvent(self,e):
+		self.disconnect(self.timer, QtCore.SIGNAL("timeout()"), self.doWork)
+		e.accept()
+	
 
 def doCalibration(parent,wii,fullscreen):
 	dialog = None
@@ -248,8 +258,6 @@ def doCalibration(parent,wii,fullscreen):
 	
 	dialog.show()
 	dialog.exec_()
-	dialog.close()
-	
 	if len(dialog.wiiPoints) == 4:
 		print dialog.realCalibrationPoints
 		print dialog.wiiPoints
