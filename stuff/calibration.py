@@ -237,8 +237,13 @@ class CalibrateDialog(QtGui.QDialog):
 				self.clock = clock()
 	
 
-def doCalibration(parent,wii):
-	dialog = CalibrateDialog2(parent,wii)
+def doCalibration(parent,wii,fullscreen):
+	dialog = None
+	if fullscreen:
+		dialog = CalibrateDialog(parent,wii)
+	else:
+		dialog = CalibrateDialog2(parent,wii)
+	
 	dialog.show()
 	dialog.exec_()
 	

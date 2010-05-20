@@ -215,7 +215,7 @@ class MainWindow(QtGui.QMainWindow):
 		
 		Globals.wii.state = Wiimote.NONCALIBRATED
 		if doScreen:
-			doCalibration(self,Globals.wii)
+			doCalibration(self,Globals.wii,fullscreen=self.ui.check_fullscreen.isChecked())
 		else:
 			self.loadCalibration(Globals.wii)
 		
