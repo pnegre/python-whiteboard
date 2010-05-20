@@ -122,6 +122,9 @@ class CalibrateDialog2(QtGui.QDialog):
 		]
 		
 		self.wiiPoints = []
+		self.textMessages = [ "TOP-LEFT", "TOP-RIGHT", "BOTTOM-RIGHT", "BOTTOM-LEFT" ]
+		
+		self.ui.label.setText(self.textMessages.pop(0))
 		
 		self.connect(self.ui.but_cancel,
 			QtCore.SIGNAL("clicked()"), self.close)
@@ -149,11 +152,10 @@ class CalibrateDialog2(QtGui.QDialog):
 		if self.sandclock.finished():
 			self.wiiPoints.append(self.sandclock.getPoint())
 			self.sandclock.initialize()
-			print self.realCalibrationPoints
-			print self.wiiPoints
 			if len(self.wiiPoints) == 4:
 				self.close()
 				return
+			self.ui.label.setText(self.textMessages.pop(0))
 
 
 
@@ -246,6 +248,7 @@ def doCalibration(parent,wii,fullscreen):
 	
 	dialog.show()
 	dialog.exec_()
+	dialog.close()
 	
 	if len(dialog.wiiPoints) == 4:
 		print dialog.realCalibrationPoints
