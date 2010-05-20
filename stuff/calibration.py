@@ -94,7 +94,68 @@ def crossPoly(x,y):
 	pol.append(qt.QPointF(x+5,y-5))
 	return pol
 	
+
+
+class CalibrateDialog2(QtGui.QDialog):
+	def __init__(self,parent,wii):
+		QtGui.QWidget.__init__(self,parent)
+		self.wii = wii
+		self.ui = uic.loadUi("calibration2.ui",self)
+		
+		screenGeom = QtGui.QDesktopWidget().screenGeometry()
+		wdt = screenGeom.width()-2
+		hgt = screenGeom.height()-2
+		
+		viewport = [ self.ui.graphicsView.maximumViewportSize().width(), 
+			self.ui.graphicsView.maximumViewportSize().height() 
+		]
+		
+		self.scene = qt.QGraphicsScene()
+		self.scene.setSceneRect(0,0, viewport[0], viewport[1])
+		self.ui.graphicsView.setScene(self.scene)
+		
+		self.smallScreen = SmallScreen(viewport[0], viewport[1], self.scene)
+		self.sandclock = SandClock(self.scene,viewport[0]/2,viewport[1]/2)
+		
+		self.realCalibrationPoints = [
+			[0,0], [wdt,0], [wdt,hgt], [0,hgt]
+		]
+		
+		self.wiiPoints = []
+		
+		self.connect(self.ui.but_cancel,
+			QtCore.SIGNAL("clicked()"), self.close)
+		
+		self.shcut1 = QtGui.QShortcut(self)
+		self.shcut1.setKey("Esc")
+		self.connect(self.shcut1, QtCore.SIGNAL("activated()"), self.close)
+		
+		self.timer = qt.QTimer(self)
+		self.connect(self.timer, QtCore.SIGNAL("timeout()"), self.doWork)
+		self.timer.start()
 	
+	
+	def doWork(self):
+		self.wii.getMsgs()
+		wii_pos = self.wii.getPos()
+		if wii_pos:
+			self.smallScreen.drawPoint(wii_pos)
+			self.sandclock.update(wii_pos)
+			self.sandclock.draw()
+		else:
+			self.sandclock.update(None)
+			self.sandclock.draw()
+		
+		if self.sandclock.finished():
+			self.wiiPoints.append(self.sandclock.getPoint())
+			self.sandclock.initialize()
+			print self.realCalibrationPoints
+			print self.wiiPoints
+			if len(self.wiiPoints) == 4:
+				self.close()
+				return
+
+
 
 
 class CalibrateDialog(QtGui.QDialog):
@@ -177,12 +238,11 @@ class CalibrateDialog(QtGui.QDialog):
 	
 
 def doCalibration(parent,wii):
-	dialog = CalibrateDialog(parent,wii)
+	dialog = CalibrateDialog2(parent,wii)
 	dialog.show()
 	dialog.exec_()
 	
 	if len(dialog.wiiPoints) == 4:
-		print dialog.CalibrationPoints
 		print dialog.realCalibrationPoints
 		print dialog.wiiPoints
 		wii.calibrate(dialog.realCalibrationPoints,dialog.wiiPoints)
