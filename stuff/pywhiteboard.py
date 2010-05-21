@@ -135,18 +135,21 @@ class MainWindow(QtGui.QMainWindow):
 			self.ui.pushButtonCalibrate.setEnabled(0)
 			self.ui.pushButtonActivate.setEnabled(0)
 			self.ui.pushButtonLoadCal.setEnabled(0)
+			self.ui.check_fullscreen.setEnabled(0)
 			return
 		if self.calibrated == False:
 			self.ui.pushButtonConnect.setEnabled(1)
 			self.ui.pushButtonCalibrate.setEnabled(1)
 			self.ui.pushButtonActivate.setEnabled(0)
 			self.ui.pushButtonLoadCal.setEnabled(1)
+			self.ui.check_fullscreen.setEnabled(1)
 			return
 		if self.active == False:
 			self.ui.pushButtonConnect.setEnabled(1)
 			self.ui.pushButtonCalibrate.setEnabled(1)
 			self.ui.pushButtonActivate.setEnabled(1)
 			self.ui.pushButtonLoadCal.setEnabled(1)
+			self.ui.check_fullscreen.setEnabled(1)
 			self.ui.combo1.setEnabled(1)
 			self.ui.combo2.setEnabled(1)
 			self.ui.combo3.setEnabled(1)
@@ -157,6 +160,7 @@ class MainWindow(QtGui.QMainWindow):
 			self.ui.pushButtonCalibrate.setEnabled(0)
 			self.ui.pushButtonLoadCal.setEnabled(0)
 			self.ui.pushButtonActivate.setEnabled(1)
+			self.ui.check_fullscreen.setEnabled(0)
 			self.ui.combo1.setEnabled(0)
 			self.ui.combo2.setEnabled(0)
 			self.ui.combo3.setEnabled(0)
