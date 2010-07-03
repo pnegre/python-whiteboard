@@ -192,14 +192,14 @@ class CalibrateDialog(QtGui.QDialog):
 		self.wdt = screenGeom.width()-2
 		self.hgt = screenGeom.height()-2
 		
-		self.gv = QtGui.QGraphicsView()
 		self.scene = qt.QGraphicsScene()
-		self.gv.setScene(self.scene)
-		self.layout = QtGui.QVBoxLayout()
-		self.layout.setMargin(0)
-		self.layout.setSpacing(0)
-		self.layout.addWidget(self.gv)
-		self.setLayout(self.layout)
+		gv = QtGui.QGraphicsView()
+		gv.setScene(self.scene)
+		layout = QtGui.QVBoxLayout()
+		layout.setMargin(0)
+		layout.setSpacing(0)
+		layout.addWidget(gv)
+		self.setLayout(layout)
 		
 		self.CalibrationPoints = [
 			[20,20], [self.wdt-20,20], [self.wdt-20,self.hgt-20], [20,self.hgt-20]
