@@ -205,7 +205,7 @@ class CalibrateDialog(QtGui.QDialog):
 			[20,20], [self.wdt-20,20], [self.wdt-20,self.hgt-20], [20,self.hgt-20]
 		]
 		
-		self.updateCalibrationPoints(0)		
+		self.updateCalibrationPoints(0)
 		
 		self.clock = clock()
 		
@@ -215,7 +215,8 @@ class CalibrateDialog(QtGui.QDialog):
 
 
 	def decCrosses(self):
-		self.updateCalibrationPoints(10)
+		if self.CalibrationPoints[0][0] < 350:
+			self.updateCalibrationPoints(10)
 	
 	def incCrosses(self):
 		if self.CalibrationPoints[0][0] > 15: 
