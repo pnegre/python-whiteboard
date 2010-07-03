@@ -191,11 +191,6 @@
          </item>
          <item>
           <property name="text">
-           <string>Double Click</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
            <string>Only Move</string>
           </property>
          </item>
@@ -223,11 +218,6 @@
          <item>
           <property name="text">
            <string>Left Click</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Double Click</string>
           </property>
          </item>
          <item>
@@ -263,11 +253,6 @@
          </item>
          <item>
           <property name="text">
-           <string>Double Click</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
            <string>Only Move</string>
           </property>
          </item>
@@ -295,11 +280,6 @@
          <item>
           <property name="text">
            <string>Left Click</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Double Click</string>
           </property>
          </item>
          <item>
