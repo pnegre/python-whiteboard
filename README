@@ -1,5 +1,5 @@
 Linux Electronic Whiteboard with Wiimote
-----------------------------------------
+========================================
 
 This program allows you to build and operate an electronic whiteboard using gnu/linux, a wiimote and an IR pen.
 
@@ -11,6 +11,22 @@ To download packaged versions of the program, point your browser to http://githu
 
 It's recommended to disable the desktop effects, to avoid program crashes and malfunctions.
 
+Calibration
+-----------
 
-Have Fun!
+The calibration process can be done in two ways:
+
+- You can choose "fullscreen calibration": The application will change into a white fullscreen and will draw four crosses, that you have to mark clockwise.
+
+- If you don't mark the "fullscreen" check in the main window, the calibration process is done in the same way, but you have to point at the four corners of the SCREEN, in the same order as before: top-left, top-right, bottom-left, bottom-right.
+
+After that, you simply push "activate".
+
+In the calibration screen, you can use the UP/DOWN keys to actually move inwards the calibration points, making it easier to do the process.
+
+Other stuff
+-----------
+
+There are other features (beware: some of them are a little experimental): you can save the calibration matrix and you can assign functions to the off-limits projection area.
+
 

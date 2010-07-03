@@ -218,7 +218,8 @@ class CalibrateDialog(QtGui.QDialog):
 		self.updateCalibrationPoints(10)
 	
 	def incCrosses(self):
-		self.updateCalibrationPoints(-10)
+		if self.CalibrationPoints[0][0] > 15: 
+			self.updateCalibrationPoints(-10)
 	
 	def updateCalibrationPoints(self,delta=0):
 		self.scene.clear()
@@ -243,6 +244,8 @@ class CalibrateDialog(QtGui.QDialog):
 		
 		self.smallScreen = SmallScreen(self.wdt,self.hgt,self.scene)
 		self.sandclock = SandClock(self.scene,self.wdt/2,self.hgt/2)
+		txt = self.scene.addSimpleText("Push UP/DOWN to alter the crosses' position")
+		txt.setPos(self.wdt/2 - txt.boundingRect().width()/2, 40)
 			
 
 	def doWork(self):
