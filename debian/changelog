@@ -1,3 +1,9 @@
+python-whiteboard (0.4) unstable; urgency=low
+
+  * Enhancements in calibration screen
+
+ -- pnegre <pere.negre@gmail.com>  Sat, 03 Jul 2010 12:20:15 +0200
+
 python-whiteboard (0.3) unstable; urgency=low
 
   * It is possible now to calibrate without going fullscreen
