@@ -173,17 +173,27 @@ class CalibrateDialog(QtGui.QDialog):
 		self.setContentsMargins(0,0,0,0)
 		self.setWindowState(QtCore.Qt.WindowActive | QtCore.Qt.WindowFullScreen)
 
-		self.shcut1 = QtGui.QShortcut(self)
-		self.shcut1.setKey("Esc")
-		self.connect(self.shcut1, QtCore.SIGNAL("activated()"), self.close)
+		sh = QtGui.QShortcut(self)
+		sh.setKey("Esc")
+		self.connect(sh, 
+			QtCore.SIGNAL("activated()"), self.close)
+		
+		sh = QtGui.QShortcut(self)
+		sh.setKey("Down")
+		self.connect(sh, 
+			QtCore.SIGNAL("activated()"), self.decCrosses)
+		
+		sh = QtGui.QShortcut(self)
+		sh.setKey("Up")
+		self.connect(sh, 
+			QtCore.SIGNAL("activated()"), self.incCrosses)
 		
 		screenGeom = QtGui.QDesktopWidget().screenGeometry()
-		wdt = screenGeom.width()-2
-		hgt = screenGeom.height()-2
+		self.wdt = screenGeom.width()-2
+		self.hgt = screenGeom.height()-2
 		
 		self.gv = QtGui.QGraphicsView()
 		self.scene = qt.QGraphicsScene()
-		self.scene.setSceneRect(0,0,wdt,hgt)
 		self.gv.setScene(self.scene)
 		self.layout = QtGui.QVBoxLayout()
 		self.layout.setMargin(0)
@@ -192,12 +202,37 @@ class CalibrateDialog(QtGui.QDialog):
 		self.setLayout(self.layout)
 		
 		self.CalibrationPoints = [
-			[20,20], [wdt-20,20], [wdt-20,hgt-20], [20,hgt-20]
+			[20,20], [self.wdt-20,20], [self.wdt-20,self.hgt-20], [20,self.hgt-20]
 		]
 		
+		self.updateCalibrationPoints(0)		
+		
+		self.clock = clock()
+		
+		self.timer = qt.QTimer(self)
+		self.connect(self.timer, QtCore.SIGNAL("timeout()"), self.doWork)
+		self.timer.start()
+
+
+	def decCrosses(self):
+		self.updateCalibrationPoints(10)
+	
+	def incCrosses(self):
+		self.updateCalibrationPoints(-10)
+	
+	def updateCalibrationPoints(self,delta=0):
+		self.scene.clear()
 		self.marks = []
 		self.wiiPoints = []
 		self.realCalibrationPoints = []
+		self.CalibrationPoints[0][0] += delta
+		self.CalibrationPoints[1][0] -= delta
+		self.CalibrationPoints[2][0] -= delta
+		self.CalibrationPoints[3][0] += delta
+		self.CalibrationPoints[0][1] += delta
+		self.CalibrationPoints[1][1] += delta
+		self.CalibrationPoints[2][1] -= delta
+		self.CalibrationPoints[3][1] -= delta
 		for p in self.CalibrationPoints:
 			self.scene.addPolygon(crossPoly(*p))
 			m = self.scene.addRect(p[0]-5,p[1]-5,10,10,
@@ -206,15 +241,9 @@ class CalibrateDialog(QtGui.QDialog):
 			self.marks.append(m)
 			self.realCalibrationPoints.append([p[0]+1,p[1]+1])
 		
-		self.smallScreen = SmallScreen(wdt,hgt,self.scene)
-		self.sandclock = SandClock(self.scene,wdt/2,hgt/2)
-		
-		self.clock = clock()
-		
-		self.timer = qt.QTimer(self)
-		self.connect(self.timer, QtCore.SIGNAL("timeout()"), self.doWork)
-		self.timer.start()
-
+		self.smallScreen = SmallScreen(self.wdt,self.hgt,self.scene)
+		self.sandclock = SandClock(self.scene,self.wdt/2,self.hgt/2)
+			
 
 	def doWork(self):
 		self.wii.getMsgs()
