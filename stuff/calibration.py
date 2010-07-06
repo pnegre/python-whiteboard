@@ -195,6 +195,7 @@ class CalibrateDialog(QtGui.QDialog):
 		self.scene = qt.QGraphicsScene()
 		gv = QtGui.QGraphicsView()
 		gv.setScene(self.scene)
+		gv.setStyleSheet( "QGraphicsView { border-style: none; }" )
 		layout = QtGui.QVBoxLayout()
 		layout.setMargin(0)
 		layout.setSpacing(0)
@@ -241,7 +242,7 @@ class CalibrateDialog(QtGui.QDialog):
 				qt.QPen(QtCore.Qt.red, 2, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin))
 			m.setVisible(False)
 			self.marks.append(m)
-			self.realCalibrationPoints.append([p[0]+1,p[1]+1])
+			self.realCalibrationPoints.append([p[0],p[1]])
 		
 		self.smallScreen = SmallScreen(self.wdt,self.hgt,self.scene)
 		self.sandclock = SandClock(self.scene,self.wdt/2,self.hgt/2)
