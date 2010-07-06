@@ -117,7 +117,7 @@ class CalibrateDialog2(QtGui.QDialog):
 		self.smallScreen = SmallScreen(viewport[0], viewport[1], self.scene)
 		self.sandclock = SandClock(self.scene,viewport[0]/2,viewport[1]/2)
 		
-		self.realCalibrationPoints = [
+		self.CalibrationPoints = [
 			[0,0], [wdt,0], [wdt,hgt], [0,hgt]
 		]
 		
@@ -189,8 +189,8 @@ class CalibrateDialog(QtGui.QDialog):
 			QtCore.SIGNAL("activated()"), self.incCrosses)
 		
 		screenGeom = QtGui.QDesktopWidget().screenGeometry()
-		self.wdt = screenGeom.width()-2
-		self.hgt = screenGeom.height()-2
+		self.wdt = screenGeom.width()
+		self.hgt = screenGeom.height()
 		
 		self.scene = qt.QGraphicsScene()
 		self.gv = QtGui.QGraphicsView()
@@ -227,7 +227,6 @@ class CalibrateDialog(QtGui.QDialog):
 		self.scene.clear()
 		self.marks = []
 		self.wiiPoints = []
-		self.realCalibrationPoints = []
 		self.CalibrationPoints[0][0] += delta
 		self.CalibrationPoints[1][0] -= delta
 		self.CalibrationPoints[2][0] -= delta
@@ -242,7 +241,6 @@ class CalibrateDialog(QtGui.QDialog):
 				qt.QPen(QtCore.Qt.red, 2, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin))
 			m.setVisible(False)
 			self.marks.append(m)
-			self.realCalibrationPoints.append([p[0],p[1]])
 		
 		self.smallScreen = SmallScreen(self.wdt,self.hgt,self.scene)
 		self.sandclock = SandClock(self.scene,self.wdt/2,self.hgt/2)
@@ -294,7 +292,7 @@ def doCalibration(parent,wii,fullscreen):
 	dialog.exec_()
 	print "C"
 	if len(dialog.wiiPoints) == 4:
-		print dialog.realCalibrationPoints
+		print dialog.CalibrationPoints
 		print dialog.wiiPoints
-		wii.calibrate(dialog.realCalibrationPoints,dialog.wiiPoints)
+		wii.calibrate(dialog.CalibrationPoints,dialog.wiiPoints)
 
