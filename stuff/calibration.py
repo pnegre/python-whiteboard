@@ -159,7 +159,7 @@ class CalibrateDialog2(QtGui.QDialog):
 	
 	
 	def closeEvent(self,e):
-		self.disconnect(self.timer, QtCore.SIGNAL("timeout()"), self.doWork)
+		#self.disconnect(self.timer, QtCore.SIGNAL("timeout()"), self.doWork)
 		e.accept()
 
 
@@ -193,14 +193,14 @@ class CalibrateDialog(QtGui.QDialog):
 		self.hgt = screenGeom.height()-2
 		
 		self.scene = qt.QGraphicsScene()
-		gv = QtGui.QGraphicsView()
-		gv.setScene(self.scene)
-		gv.setStyleSheet( "QGraphicsView { border-style: none; }" )
-		layout = QtGui.QVBoxLayout()
-		layout.setMargin(0)
-		layout.setSpacing(0)
-		layout.addWidget(gv)
-		self.setLayout(layout)
+		self.gv = QtGui.QGraphicsView()
+		self.gv.setScene(self.scene)
+		self.gv.setStyleSheet( "QGraphicsView { border-style: none; }" )
+		self.layout = QtGui.QVBoxLayout()
+		self.layout.setMargin(0)
+		self.layout.setSpacing(0)
+		self.layout.addWidget(self.gv)
+		self.setLayout(self.layout)
 		
 		self.CalibrationPoints = [
 			[20,20], [self.wdt-20,20], [self.wdt-20,self.hgt-20], [20,self.hgt-20]
@@ -279,7 +279,7 @@ class CalibrateDialog(QtGui.QDialog):
 	
 	
 	def closeEvent(self,e):
-		self.disconnect(self.timer, QtCore.SIGNAL("timeout()"), self.doWork)
+		#self.disconnect(self.timer, QtCore.SIGNAL("timeout()"), self.doWork)
 		e.accept()
 	
 
@@ -292,6 +292,7 @@ def doCalibration(parent,wii,fullscreen):
 	
 	dialog.show()
 	dialog.exec_()
+	print "C"
 	if len(dialog.wiiPoints) == 4:
 		print dialog.realCalibrationPoints
 		print dialog.wiiPoints
