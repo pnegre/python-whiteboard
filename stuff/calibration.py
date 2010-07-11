@@ -17,13 +17,23 @@ def clock():
 class SandClock:
 	READY, FIN1, FIN2 = range(3)
 	
-	def __init__(self,scene,px,py):
+	def __init__(self,scene,px,py,radius=30):
 		self.scene = scene
-		self.elipse = scene.addEllipse(px-30,py-30,60,60,
-			qt.QPen(QtCore.Qt.black, 3, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin),
+		self.radius = radius
+		self.elipse = None
+		self.setCenter(px,py)
+		self.initialize()
+		
+	
+	def setCenter(self,x,y):
+		if self.elipse:
+			self.scene.removeItem(self.elipse)
+		
+		self.elipse = self.scene.addEllipse(x-self.radius/2, y-self.radius/2, self.radius, self.radius,
+			qt.QPen(QtCore.Qt.black, 1, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin),
 			qt.QBrush(QtCore.Qt.red))
 		self.elipse.setVisible(False)
-		self.initialize()
+	
 	
 	def initialize(self):
 		self.totalTicks = 0
@@ -169,7 +179,7 @@ class CalibrateDialog(QtGui.QDialog):
 	def __init__(self,parent,wii):
 		QtGui.QWidget.__init__(self,parent,QtCore.Qt.FramelessWindowHint)
 		self.wii = wii
-		self.setFixedSize(QtGui.QDesktopWidget().size())
+		#self.setFixedSize(QtGui.QDesktopWidget().size())
 		self.setContentsMargins(0,0,0,0)
 		self.setWindowState(QtCore.Qt.WindowActive | QtCore.Qt.WindowFullScreen)
 
@@ -193,6 +203,7 @@ class CalibrateDialog(QtGui.QDialog):
 		self.hgt = screenGeom.height()
 		
 		self.scene = qt.QGraphicsScene()
+		self.scene.setSceneRect(0,0, screenGeom.width(), screenGeom.height())
 		self.gv = QtGui.QGraphicsView()
 		self.gv.setScene(self.scene)
 		self.gv.setStyleSheet( "QGraphicsView { border-style: none; }" )
@@ -203,7 +214,7 @@ class CalibrateDialog(QtGui.QDialog):
 		self.setLayout(self.layout)
 		
 		self.CalibrationPoints = [
-			[20,20], [self.wdt-20,20], [self.wdt-20,self.hgt-20], [20,self.hgt-20]
+			[40,40], [self.wdt-40,40], [self.wdt-40,self.hgt-40], [40,self.hgt-40]
 		]
 		
 		self.updateCalibrationPoints(0)
@@ -220,7 +231,7 @@ class CalibrateDialog(QtGui.QDialog):
 			self.updateCalibrationPoints(10)
 	
 	def incCrosses(self):
-		if self.CalibrationPoints[0][0] > 15: 
+		if self.CalibrationPoints[0][0] > 40: 
 			self.updateCalibrationPoints(-10)
 	
 	def updateCalibrationPoints(self,delta=0):
@@ -240,10 +251,10 @@ class CalibrateDialog(QtGui.QDialog):
 			m = self.scene.addRect(p[0]-5,p[1]-5,10,10,
 				qt.QPen(QtCore.Qt.red, 2, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin))
 			m.setVisible(False)
-			self.marks.append(m)
+			self.marks.append([m, p])
 		
 		self.smallScreen = SmallScreen(self.wdt,self.hgt,self.scene)
-		self.sandclock = SandClock(self.scene,self.wdt/2,self.hgt/2)
+		self.sandclock = SandClock(self.scene,*self.marks[0][1])
 		txt = self.scene.addSimpleText("Push UP/DOWN to alter the crosses' position")
 		txt.setPos(self.wdt/2 - txt.boundingRect().width()/2, 40)
 			
@@ -261,14 +272,15 @@ class CalibrateDialog(QtGui.QDialog):
 		
 		if self.sandclock.finished():
 			self.wiiPoints.append(self.sandclock.getPoint())
-			self.marks.pop(0).setVisible(True)
-			self.sandclock.initialize()
+			self.marks.pop(0)[0].setVisible(True)
 			if len(self.wiiPoints) == 4:
 				self.close()
 				return
+			self.sandclock.initialize()
+			self.sandclock.setCenter(*self.marks[0][1])
 				
 		if len(self.marks):
-			m = self.marks[0]
+			m = self.marks[0][0]
 			c = clock() - self.clock
 			if c >= 300:
 				if m.isVisible(): m.setVisible(False)
