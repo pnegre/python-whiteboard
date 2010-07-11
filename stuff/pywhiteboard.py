@@ -165,9 +165,9 @@ class MainWindow(QtGui.QMainWindow):
 			self.ui.combo2.setEnabled(0)
 			self.ui.combo3.setEnabled(0)
 			self.ui.combo4.setEnabled(0)
-			
-
-	def connectWii(self):
+	
+	
+	def disconnectDevice(self):
 		if self.connected:
 			TerminateWiiThread()
 			if Globals.wii:
@@ -181,6 +181,11 @@ class MainWindow(QtGui.QMainWindow):
 			self.ui.label_utilization.setText("Utilization: 0%")
 			self.clearScreenGraphic()
 			self.batteryLevel.setValue(0)
+			return
+
+	def connectWii(self):
+		if self.connected:
+			self.disconnectDevice()
 			return
 			
 		thread = ConnectThread()
@@ -319,10 +324,7 @@ class MainWindow(QtGui.QMainWindow):
 			self.settings.setValue("zone2", QtCore.QVariant(self.ui.combo2.currentIndex()))
 			self.settings.setValue("zone3", QtCore.QVariant(self.ui.combo3.currentIndex()))
 			self.settings.setValue("zone4", QtCore.QVariant(self.ui.combo4.currentIndex()))
-			
-			TerminateWiiThread()
-			if Globals.wii:
-				Globals.wii.close()
+			self.disconnectDevice()
 			e.accept()
 		else:
 			msgbox = QtGui.QMessageBox(self)
