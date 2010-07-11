@@ -177,7 +177,7 @@ class CalibrateDialog2(QtGui.QDialog):
 
 class CalibrateDialog(QtGui.QDialog):
 	def __init__(self,parent,wii):
-		QtGui.QWidget.__init__(self,parent,QtCore.Qt.FramelessWindowHint)
+		QtGui.QWidget.__init__(self,parent,QtCore.Qt.FramelessWindowHint | QtCore.Qt.WindowStaysOnTopHint)
 		self.wii = wii
 		#self.setFixedSize(QtGui.QDesktopWidget().size())
 		self.setContentsMargins(0,0,0,0)
