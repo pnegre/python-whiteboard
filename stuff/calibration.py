@@ -21,6 +21,7 @@ class SandClock:
 		self.scene = scene
 		self.radius = radius
 		self.elipse = None
+		self.circle = None
 		self.setCenter(px,py)
 		self.initialize()
 		
@@ -28,11 +29,15 @@ class SandClock:
 	def setCenter(self,x,y):
 		if self.elipse:
 			self.scene.removeItem(self.elipse)
+			self.scene.removeItem(self.circle)
 		
 		self.elipse = self.scene.addEllipse(x-self.radius/2, y-self.radius/2, self.radius, self.radius,
-			qt.QPen(QtCore.Qt.black, 1, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin),
+			qt.QPen(QtCore.Qt.red, 1, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin),
 			qt.QBrush(QtCore.Qt.red))
+		self.circle = self.scene.addEllipse(x-self.radius/2, y-self.radius/2, self.radius, self.radius,
+			qt.QPen(QtCore.Qt.black, 1, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin))
 		self.elipse.setVisible(False)
+		self.circle.setVisible(True)
 	
 	
 	def initialize(self):
