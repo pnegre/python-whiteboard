@@ -7,6 +7,7 @@ import wiimote
 from PyQt4 import QtCore, QtGui, uic
 import PyQt4.Qt as qt
 
+from configuration import Configuration
 
 
 
@@ -182,17 +183,28 @@ class CalibrateDialog2(QtGui.QDialog):
 
 class CalibrateDialog(QtGui.QDialog):
 	def __init__(self,parent,wii):
-		QtGui.QWidget.__init__(self, parent,
-			QtCore.Qt.FramelessWindowHint | 
-			QtCore.Qt.WindowStaysOnTopHint | 
-			QtCore.Qt.X11BypassWindowManagerHint )
-		self.wii = wii
 		screenGeom = QtGui.QDesktopWidget().screenGeometry()
 		self.wdt = screenGeom.width()
 		self.hgt = screenGeom.height()
+		
+		conf = Configuration()
+		if conf.getValueStr("alternate_fullscreen") == "Yes":
+			# Thanks, Pietro Pilolli!!
+			QtGui.QWidget.__init__(self, parent,
+				QtCore.Qt.FramelessWindowHint | 
+				QtCore.Qt.WindowStaysOnTopHint  | 
+				QtCore.Qt.X11BypassWindowManagerHint )
+			self.setGeometry(0, 0, self.wdt, self.hgt)
+		else:
+			QtGui.QWidget.__init__(self, parent,
+				QtCore.Qt.FramelessWindowHint | 
+				QtCore.Qt.WindowStaysOnTopHint )
+			self.setFixedSize(QtGui.QDesktopWidget().size())
+			self.setContentsMargins(0,0,0,0)
+			self.setWindowState(QtCore.Qt.WindowActive | QtCore.Qt.WindowFullScreen)
+		
+		self.wii = wii
 		self.setContentsMargins(0,0,0,0)
-		# Thanks, Pietro Pilolli!!
-		self.setGeometry(0, 0, self.wdt, self.hgt)
 
 		sh = QtGui.QShortcut(self)
 		sh.setKey("Esc")
@@ -300,16 +312,16 @@ class CalibrateDialog(QtGui.QDialog):
 		e.accept()
 	
 
-def doCalibration(parent,wii,fullscreen):
-	dialog = None
-	if fullscreen:
+def doCalibration(parent,wii):
+	conf = Configuration()
+	
+	if conf.getValueStr("fullscreen") == "Yes":
 		dialog = CalibrateDialog(parent,wii)
 	else:
 		dialog = CalibrateDialog2(parent,wii)
 	
 	dialog.show()
 	dialog.exec_()
-	print "C"
 	if len(dialog.wiiPoints) == 4:
 		print dialog.CalibrationPoints
 		print dialog.wiiPoints

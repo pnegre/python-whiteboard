@@ -7,6 +7,7 @@ import Globals
 from threads import *
 
 from calibration import doCalibration
+from configuration import Configuration, ConfigDialog
 
 
 import sys, time
@@ -71,10 +72,17 @@ class MainWindow(QtGui.QMainWindow):
 		
 		self.connect(self.ui.actionQuit,
 			QtCore.SIGNAL("activated()"), self.mustQuit)
+		self.connect(self.ui.actionConfiguration,
+			QtCore.SIGNAL("activated()"), self.showConfiguration)
 		
 		self.zones = {}
-		self.settings = QtCore.QSettings("pywhiteboard","pywhiteboard")
 		self.loadSettings()
+	
+	
+	def showConfiguration(self):
+		dialog = ConfigDialog(self)
+		dialog.show()
+		dialog.exec_()
 	
 	
 	def changeCombos(self,zone,text):
@@ -135,21 +143,18 @@ class MainWindow(QtGui.QMainWindow):
 			self.ui.pushButtonCalibrate.setEnabled(0)
 			self.ui.pushButtonActivate.setEnabled(0)
 			self.ui.pushButtonLoadCal.setEnabled(0)
-			self.ui.check_fullscreen.setEnabled(0)
 			return
 		if self.calibrated == False:
 			self.ui.pushButtonConnect.setEnabled(1)
 			self.ui.pushButtonCalibrate.setEnabled(1)
 			self.ui.pushButtonActivate.setEnabled(0)
 			self.ui.pushButtonLoadCal.setEnabled(1)
-			self.ui.check_fullscreen.setEnabled(1)
 			return
 		if self.active == False:
 			self.ui.pushButtonConnect.setEnabled(1)
 			self.ui.pushButtonCalibrate.setEnabled(1)
 			self.ui.pushButtonActivate.setEnabled(1)
 			self.ui.pushButtonLoadCal.setEnabled(1)
-			self.ui.check_fullscreen.setEnabled(1)
 			self.ui.combo1.setEnabled(1)
 			self.ui.combo2.setEnabled(1)
 			self.ui.combo3.setEnabled(1)
@@ -160,7 +165,6 @@ class MainWindow(QtGui.QMainWindow):
 			self.ui.pushButtonCalibrate.setEnabled(0)
 			self.ui.pushButtonLoadCal.setEnabled(0)
 			self.ui.pushButtonActivate.setEnabled(1)
-			self.ui.check_fullscreen.setEnabled(0)
 			self.ui.combo1.setEnabled(0)
 			self.ui.combo2.setEnabled(0)
 			self.ui.combo3.setEnabled(0)
@@ -224,7 +228,7 @@ class MainWindow(QtGui.QMainWindow):
 		
 		Globals.wii.state = Wiimote.NONCALIBRATED
 		if doScreen:
-			doCalibration(self,Globals.wii,fullscreen=self.ui.check_fullscreen.isChecked())
+			doCalibration(self,Globals.wii)
 		else:
 			self.loadCalibration(Globals.wii)
 		
@@ -254,26 +258,28 @@ class MainWindow(QtGui.QMainWindow):
 
 
 	def saveCalibrationPars(self,wii):
+		conf = Configuration()
 		for i,p in enumerate(wii.screenPoints):
-			self.settings.setValue("screenPoint"+str(i)+"x",QtCore.QVariant(str(p[0])))
-			self.settings.setValue("screenPoint"+str(i)+"y",QtCore.QVariant(str(p[1])))
+			conf.saveValue("screenPoint"+str(i)+"x",str(p[0]))
+			conf.saveValue("screenPoint"+str(i)+"y",str(p[1]))
 		
 		for i,p in enumerate(wii.calibrationPoints):
-			self.settings.setValue("wiiPoint"+str(i)+"x",QtCore.QVariant(str(p[0])))
-			self.settings.setValue("wiiPoint"+str(i)+"y",QtCore.QVariant(str(p[1])))
+			conf.saveValue("wiiPoint"+str(i)+"x",str(p[0]))
+			conf.saveValue("wiiPoint"+str(i)+"y",str(p[1]))
 	
 	
 	def loadCalibration(self,wii):
 		try:
+			conf = Configuration()
 			pwii = []
 			pscr = []
 			for i in range(0,4):
 				p = []
-				p.append(float(str(self.settings.value("screenPoint"+str(i)+"x").toString())))
-				p.append(float(str(self.settings.value("screenPoint"+str(i)+"y").toString())))
+				p.append(float(conf.getValueStr("screenPoint"+str(i)+"x")))
+				p.append(float(conf.getValueStr("screenPoint"+str(i)+"y")))
 				q = []
-				q.append(float(str(self.settings.value("wiiPoint"+str(i)+"x").toString())))
-				q.append(float(str(self.settings.value("wiiPoint"+str(i)+"y").toString())))
+				q.append(float(conf.getValueStr("wiiPoint"+str(i)+"x")))
+				q.append(float(conf.getValueStr("wiiPoint"+str(i)+"y")))
 				pwii.append(list(q))
 				pscr.append(list(p))
 			wii.calibrate(pscr,pwii)
@@ -303,27 +309,25 @@ class MainWindow(QtGui.QMainWindow):
 	
 	
 	def loadSettings(self):
-		z1 = self.settings.value("zone1").toString()
-		if z1 == '': return
-		z2 = self.settings.value("zone2").toString()
-		if z2 == '': return
-		z3 = self.settings.value("zone3").toString()
-		if z3 == '': return
-		z4 = self.settings.value("zone4").toString()
-		if z4 == '': return
-		self.ui.combo1.setCurrentIndex(int(z1))
-		self.ui.combo2.setCurrentIndex(int(z2))
-		self.ui.combo3.setCurrentIndex(int(z3))
-		self.ui.combo4.setCurrentIndex(int(z4))
+		conf = Configuration()
+		z1 = conf.getValueStr("zone1")
+		if z1 != '': self.ui.combo1.setCurrentIndex(int(z1))
+		z2 = conf.getValueStr("zone2")
+		if z2 != '': self.ui.combo2.setCurrentIndex(int(z2))
+		z3 = conf.getValueStr("zone3")
+		if z3 != '': self.ui.combo3.setCurrentIndex(int(z3))
+		z4 = conf.getValueStr("zone4")
+		if z4 != '': self.ui.combo4.setCurrentIndex(int(z4))
 	
 	
 	# Exit callback
 	def closeEvent(self,e):
 		if self.mustquit:
-			self.settings.setValue("zone1", QtCore.QVariant(self.ui.combo1.currentIndex()))
-			self.settings.setValue("zone2", QtCore.QVariant(self.ui.combo2.currentIndex()))
-			self.settings.setValue("zone3", QtCore.QVariant(self.ui.combo3.currentIndex()))
-			self.settings.setValue("zone4", QtCore.QVariant(self.ui.combo4.currentIndex()))
+			conf = Configuration()
+			conf.saveValue("zone1",self.ui.combo1.currentIndex())
+			conf.saveValue("zone2",self.ui.combo2.currentIndex())
+			conf.saveValue("zone3",self.ui.combo3.currentIndex())
+			conf.saveValue("zone4",self.ui.combo4.currentIndex())
 			self.disconnectDevice()
 			e.accept()
 		else:
