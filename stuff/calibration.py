@@ -177,11 +177,17 @@ class CalibrateDialog2(QtGui.QDialog):
 
 class CalibrateDialog(QtGui.QDialog):
 	def __init__(self,parent,wii):
-		QtGui.QWidget.__init__(self,parent,QtCore.Qt.FramelessWindowHint | QtCore.Qt.WindowStaysOnTopHint)
+		QtGui.QWidget.__init__(self, parent,
+			QtCore.Qt.FramelessWindowHint | 
+			QtCore.Qt.WindowStaysOnTopHint | 
+			QtCore.Qt.X11BypassWindowManagerHint )
 		self.wii = wii
-		#self.setFixedSize(QtGui.QDesktopWidget().size())
+		screenGeom = QtGui.QDesktopWidget().screenGeometry()
+		self.wdt = screenGeom.width()
+		self.hgt = screenGeom.height()
 		self.setContentsMargins(0,0,0,0)
-		self.setWindowState(QtCore.Qt.WindowActive | QtCore.Qt.WindowFullScreen)
+		# Thanks, Pietro Pilolli!!
+		self.setGeometry(0, 0, self.wdt, self.hgt)
 
 		sh = QtGui.QShortcut(self)
 		sh.setKey("Esc")
@@ -198,12 +204,8 @@ class CalibrateDialog(QtGui.QDialog):
 		self.connect(sh, 
 			QtCore.SIGNAL("activated()"), self.incCrosses)
 		
-		screenGeom = QtGui.QDesktopWidget().screenGeometry()
-		self.wdt = screenGeom.width()
-		self.hgt = screenGeom.height()
-		
 		self.scene = qt.QGraphicsScene()
-		self.scene.setSceneRect(0,0, screenGeom.width(), screenGeom.height())
+		self.scene.setSceneRect(0,0, self.wdt, self.hgt)
 		self.gv = QtGui.QGraphicsView()
 		self.gv.setScene(self.scene)
 		self.gv.setStyleSheet( "QGraphicsView { border-style: none; }" )
