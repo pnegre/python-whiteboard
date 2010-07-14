@@ -24,21 +24,14 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="0" colspan="2">
-    <widget class="QCheckBox" name="check_altfullscreen">
-     <property name="text">
-      <string>Use alternate fullscreen method</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
+   <item row="1" column="0">
     <widget class="QLabel" name="label">
      <property name="text">
       <string>Select allowed devices:</string>
      </property>
     </widget>
    </item>
-   <item row="3" column="0" colspan="2">
+   <item row="2" column="0" colspan="2">
     <widget class="QListWidget" name="listWidget">
      <item>
       <property name="text">
@@ -47,21 +40,21 @@
      </item>
     </widget>
    </item>
-   <item row="4" column="0">
+   <item row="3" column="0">
     <widget class="QPushButton" name="pushButton">
      <property name="text">
       <string>Add device</string>
      </property>
     </widget>
    </item>
-   <item row="4" column="1">
+   <item row="3" column="1">
     <widget class="QPushButton" name="pushButton_2">
      <property name="text">
       <string>Remove device</string>
      </property>
     </widget>
    </item>
-   <item row="5" column="0" colspan="2">
+   <item row="4" column="0" colspan="2">
     <spacer name="horizontalSpacer">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -74,7 +67,7 @@
      </property>
     </spacer>
    </item>
-   <item row="6" column="0" colspan="2">
+   <item row="5" column="0" colspan="2">
     <widget class="QPushButton" name="button_OK">
      <property name="text">
       <string>OK</string>
@@ -88,7 +81,6 @@
   <tabstop>pushButton</tabstop>
   <tabstop>pushButton_2</tabstop>
   <tabstop>check_fullscreen</tabstop>
-  <tabstop>check_altfullscreen</tabstop>
  </tabstops>
  <resources/>
  <connections/>

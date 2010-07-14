@@ -187,21 +187,12 @@ class CalibrateDialog(QtGui.QDialog):
 		self.wdt = screenGeom.width()
 		self.hgt = screenGeom.height()
 		
-		conf = Configuration()
-		if conf.getValueStr("alternate_fullscreen") == "Yes":
-			# Thanks, Pietro Pilolli!!
-			QtGui.QWidget.__init__(self, parent,
-				QtCore.Qt.FramelessWindowHint | 
-				QtCore.Qt.WindowStaysOnTopHint  | 
-				QtCore.Qt.X11BypassWindowManagerHint )
-			self.setGeometry(0, 0, self.wdt, self.hgt)
-		else:
-			QtGui.QWidget.__init__(self, parent,
-				QtCore.Qt.FramelessWindowHint | 
-				QtCore.Qt.WindowStaysOnTopHint )
-			self.setFixedSize(QtGui.QDesktopWidget().size())
-			self.setContentsMargins(0,0,0,0)
-			self.setWindowState(QtCore.Qt.WindowActive | QtCore.Qt.WindowFullScreen)
+		# Thanks, Pietro Pilolli!!
+		QtGui.QWidget.__init__(self, parent,
+			QtCore.Qt.FramelessWindowHint | 
+			QtCore.Qt.WindowStaysOnTopHint  | 
+			QtCore.Qt.X11BypassWindowManagerHint )
+		self.setGeometry(0, 0, self.wdt, self.hgt)
 		
 		self.wii = wii
 		self.setContentsMargins(0,0,0,0)
@@ -317,11 +308,13 @@ def doCalibration(parent,wii):
 	
 	if conf.getValueStr("fullscreen") == "Yes":
 		dialog = CalibrateDialog(parent,wii)
+		dialog.showFullScreen()
+		dialog.exec_()
 	else:
 		dialog = CalibrateDialog2(parent,wii)
+		dialog.show()
+		dialog.exec_()
 	
-	dialog.show()
-	dialog.exec_()
 	if len(dialog.wiiPoints) == 4:
 		print dialog.CalibrationPoints
 		print dialog.wiiPoints

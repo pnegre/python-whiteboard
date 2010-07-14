@@ -13,7 +13,6 @@ class Configuration:
 			self.settings = QtCore.QSettings("pywhiteboard","pywhiteboard")
 			self.defaults = {
 				"fullscreen": "Yes",
-				"alternate_fullscreen": "No",
 			}
 		
 		def saveValue(self,name,value):
@@ -61,8 +60,6 @@ class ConfigDialog(QtGui.QDialog):
 		conf = Configuration()
 		if conf.getValueStr("fullscreen") == "Yes":
 			self.ui.check_fullscreen.setChecked(True)
-		if conf.getValueStr("alternate_fullscreen") == "Yes":
-			self.ui.check_altfullscreen.setChecked(True)
 		
 		self.connect(self.ui.button_OK,
 			QtCore.SIGNAL("clicked()"), self.finish)
@@ -70,11 +67,6 @@ class ConfigDialog(QtGui.QDialog):
 		
 	def finish(self):
 		conf = Configuration()
-		
-		if self.ui.check_altfullscreen.isChecked():
-			conf.saveValue("alternate_fullscreen","Yes")
-		else:
-			conf.saveValue("alternate_fullscreen","No")
 		
 		if self.ui.check_fullscreen.isChecked():
 			conf.saveValue("fullscreen","Yes")
