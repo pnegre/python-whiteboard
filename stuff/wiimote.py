@@ -44,9 +44,12 @@ class Wiimote:
 		self.screenPoints = []
 		self.utilization = 0.0
 	
-	def bind(self):
+	def bind(self, addr=''):
 		try:
-			self.wii = cwiid.Wiimote()
+			if addr == '':
+				self.wii = cwiid.Wiimote()
+			else:
+				self.wii = cwiid.Wiimote(addr)
 			self.wii.rpt_mode = cwiid.RPT_BTN | cwiid.RPT_IR
 			self.wii.led = cwiid.LED1_ON
 			self.wii.enable(cwiid.FLAG_MESG_IFC)
