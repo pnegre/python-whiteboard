@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from numpy import matrix, linalg
-import cwiid
+import cwiid, bluetooth
 
 
 
@@ -47,9 +47,16 @@ class Wiimote:
 	def bind(self, addr=''):
 		try:
 			if addr == '':
-				self.wii = cwiid.Wiimote()
-			else:
-				self.wii = cwiid.Wiimote(addr)
+				nearby_devices = bluetooth.discover_devices()
+				for address in nearby_devices:
+					addr = address
+					break
+			
+			if addr == '': return False
+			
+			self.wii = cwiid.Wiimote(addr)
+			print addr
+			self.addr = addr
 			self.wii.rpt_mode = cwiid.RPT_BTN | cwiid.RPT_IR
 			self.wii.led = cwiid.LED1_ON
 			self.wii.enable(cwiid.FLAG_MESG_IFC)

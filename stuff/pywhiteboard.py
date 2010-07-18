@@ -77,6 +77,7 @@ class MainWindow(QtGui.QMainWindow):
 		
 		self.zones = {}
 		self.loadSettings()
+		
 	
 	
 	def showConfiguration(self):
@@ -143,7 +144,11 @@ class MainWindow(QtGui.QMainWindow):
 			self.ui.pushButtonCalibrate.setEnabled(0)
 			self.ui.pushButtonActivate.setEnabled(0)
 			self.ui.pushButtonLoadCal.setEnabled(0)
+			self.statusBar().showMessage("")
 			return
+		
+		self.statusBar().showMessage("Connected to " + Globals.wii.addr)
+		
 		if self.calibrated == False:
 			self.ui.pushButtonConnect.setEnabled(1)
 			self.ui.pushButtonCalibrate.setEnabled(1)
