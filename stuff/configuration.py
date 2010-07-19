@@ -13,6 +13,7 @@ class Configuration:
 			self.settings = QtCore.QSettings("pywhiteboard","pywhiteboard")
 			self.defaults = {
 				"fullscreen": "Yes",
+				"selectedmac": "All Devices",
 			}
 		
 		def saveValue(self,name,value):
@@ -92,11 +93,14 @@ class ConfigDialog(QtGui.QDialog):
 		item = QtGui.QListWidgetItem("All Devices")
 		self.ui.macListWidget.addItem(item)
 		self.ui.macListWidget.setItemSelected(item,True)
+		selectedmac = conf.getValueStr("selectedmac")
 		
 		macs = conf.readArray("macs")
 		for m in macs:
 			item = QtGui.QListWidgetItem(m)
 			self.ui.macListWidget.addItem(item)
+			if m == selectedmac:
+				self.ui.macListWidget.setItemSelected(item,True)
 		
 		
 		if self.wii == None:
@@ -140,6 +144,12 @@ class ConfigDialog(QtGui.QDialog):
 		
 		conf.writeArray("macs",mlist)
 		
+		slist = self.ui.macListWidget.selectedItems()
+		for item in slist:
+			mac = item.text()
+			conf.saveValue("selectedmac",mac)
+			break
+			
 		self.close()
 	
 	
