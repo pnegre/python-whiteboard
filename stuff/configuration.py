@@ -26,6 +26,23 @@ class Configuration:
 				return self.defaults[name]
 			else: return ''
 		
+		
+		def writeArray(self,name,lst):
+			self.settings.beginWriteArray(name)
+			for i,mac in enumerate(lst):
+				self.settings.setArrayIndex(i)
+				self.settings.setValue("item",mac)
+			self.settings.endArray()
+		
+		
+		def readArray(self,name):
+			n = self.settings.beginReadArray(name)
+			result = []
+			for i in range(0,n):
+				self.settings.setArrayIndex(i)
+				result.append(self.settings.value("item").toString())
+			self.settings.endArray()
+			return result
 
 
 
@@ -53,9 +70,12 @@ class Configuration:
 
 
 class ConfigDialog(QtGui.QDialog):
-	def __init__(self,parent):
+
+	def __init__(self, parent, wii=None):
 		QtGui.QWidget.__init__(self,parent)
 		self.ui = uic.loadUi("configuration.ui",self)
+		
+		self.wii = wii
 		
 		conf = Configuration()
 		if conf.getValueStr("fullscreen") == "Yes":
@@ -63,6 +83,44 @@ class ConfigDialog(QtGui.QDialog):
 		
 		self.connect(self.ui.button_OK,
 			QtCore.SIGNAL("clicked()"), self.finish)
+		
+		self.connect(self.ui.button_addDev,
+			QtCore.SIGNAL("clicked()"), self.addDevice)
+		self.connect(self.ui.button_remDev,
+			QtCore.SIGNAL("clicked()"), self.removeDevice)
+		
+		item = QtGui.QListWidgetItem("All Devices")
+		self.ui.macListWidget.addItem(item)
+		self.ui.macListWidget.setItemSelected(item,True)
+		
+		macs = conf.readArray("macs")
+		for m in macs:
+			item = QtGui.QListWidgetItem(m)
+			self.ui.macListWidget.addItem(item)
+		
+		
+		if self.wii == None:
+			self.ui.button_addDev.setEnabled(False)
+	
+	
+	def addDevice(self):
+		if self.wii == None: return
+		
+		address = self.wii.addr
+		f = self.ui.macListWidget.findItems(address, QtCore.Qt.MatchContains)
+		if len(f) != 0:
+			return
+		
+		item = QtGui.QListWidgetItem(address)
+		self.ui.macListWidget.addItem(item)
+	
+	
+	def removeDevice(self):
+		slist = self.ui.macListWidget.selectedItems()
+		for item in slist:
+			row = self.ui.macListWidget.row(item)
+			if row != 0:
+				self.ui.macListWidget.takeItem(row)
 		
 		
 	def finish(self):
@@ -72,6 +130,15 @@ class ConfigDialog(QtGui.QDialog):
 			conf.saveValue("fullscreen","Yes")
 		else:
 			conf.saveValue("fullscreen","No")
+		
+		mlist = []
+		for i in range(0,self.ui.macListWidget.count()):
+			item = self.ui.macListWidget.item(i)
+			t = item.text()
+			if t != "All Devices":
+				mlist.append(t)
+		
+		conf.writeArray("macs",mlist)
 		
 		self.close()
 	

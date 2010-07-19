@@ -81,7 +81,7 @@ class MainWindow(QtGui.QMainWindow):
 	
 	
 	def showConfiguration(self):
-		dialog = ConfigDialog(self)
+		dialog = ConfigDialog(self, Globals.wii)
 		dialog.show()
 		dialog.exec_()
 	

@@ -55,7 +55,6 @@ class Wiimote:
 			if addr == '': return False
 			
 			self.wii = cwiid.Wiimote(addr)
-			print addr
 			self.addr = addr
 			self.wii.rpt_mode = cwiid.RPT_BTN | cwiid.RPT_IR
 			self.wii.led = cwiid.LED1_ON
