@@ -1,3 +1,11 @@
+python-whiteboard (0.5) unstable; urgency=low
+
+  * Fullscreen calibration working properly on gnome desktop (i think)
+  * New configuration dialog
+  * The user can restrict the bluetooth connection to certain devices
+
+ -- pnegre <pere.negre@gmail.com>  Mon, 19 Jul 2010 23:25:34 +0200
+
 python-whiteboard (0.4) unstable; urgency=low
 
   * Enhancements in calibration screen
