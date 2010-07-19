@@ -5,6 +5,7 @@ import Globals
 
 from wiimote import Wiimote
 from cursor import FakeCursor
+from configuration import Configuration
 
 
 import PyQt4.Qt as qt
@@ -13,7 +14,12 @@ import PyQt4.Qt as qt
 class ConnectThread(qt.QThread):
 	def run(self):
 		Globals.wii = Wiimote()
-		if not Globals.wii.bind():
+		conf = Configuration()
+		mac = str(conf.getValueStr("selectedmac"))
+		if mac == "All Devices":
+			mac = ''
+		
+		if not Globals.wii.bind(mac):
 			Globals.wii = None
 
 

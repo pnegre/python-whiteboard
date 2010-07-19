@@ -53,7 +53,7 @@ class Wiimote:
 					break
 			
 			if addr == '': return False
-			
+			print "-" + addr + "-"
 			self.wii = cwiid.Wiimote(addr)
 			self.addr = addr
 			self.wii.rpt_mode = cwiid.RPT_BTN | cwiid.RPT_IR
