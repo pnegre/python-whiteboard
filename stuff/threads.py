@@ -37,6 +37,8 @@ class IdleWiiThread(qt.QThread):
 
 class RunWiiThread(qt.QThread):
 	def run(self):
+		conf = Configuration()
+		delayloop = int(conf.getValueStr("delayloop"))
 		while 1:
 			Globals.mutex.lock()
 			if Globals.mutexWiiRun == False: 
@@ -45,6 +47,7 @@ class RunWiiThread(qt.QThread):
 			Globals.mutex.unlock()
 			Globals.wii.getMsgs()
 			Globals.cursor.update()
+			qt.QThread.usleep(delayloop)
 
 
 

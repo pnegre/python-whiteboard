@@ -14,6 +14,7 @@ class Configuration:
 			self.defaults = {
 				"fullscreen": "Yes",
 				"selectedmac": "All Devices",
+				"delayloop": "10",
 			}
 		
 		def saveValue(self,name,value):
@@ -82,6 +83,14 @@ class ConfigDialog(QtGui.QDialog):
 		if conf.getValueStr("fullscreen") == "Yes":
 			self.ui.check_fullscreen.setChecked(True)
 		
+		self.ui.slider_delayloop.setMinimum(5)
+		self.ui.slider_delayloop.setMaximum(50)
+		self.connect(self.ui.slider_delayloop,
+			QtCore.SIGNAL("valueChanged(int)"), self.sliderMoved)
+		delayloop = int(conf.getValueStr("delayloop"))
+		self.ui.slider_delayloop.setValue(delayloop)
+		
+		
 		self.connect(self.ui.button_OK,
 			QtCore.SIGNAL("clicked()"), self.finish)
 		
@@ -106,6 +115,9 @@ class ConfigDialog(QtGui.QDialog):
 		if self.wii == None:
 			self.ui.button_addDev.setEnabled(False)
 	
+	
+	def sliderMoved(self,newVal):
+		self.ui.label_delayloop.setText(str(newVal))
 	
 	def addDevice(self):
 		if self.wii == None: return
@@ -149,7 +161,10 @@ class ConfigDialog(QtGui.QDialog):
 			mac = item.text()
 			conf.saveValue("selectedmac",mac)
 			break
-			
+		
+		delayloop = self.ui.slider_delayloop.value()
+		conf.saveValue("delayloop",str(delayloop))
+		
 		self.close()
 	
 	
