@@ -114,6 +114,12 @@ class ConfigDialog(QtGui.QDialog):
 		
 		if self.wii == None:
 			self.ui.button_addDev.setEnabled(False)
+		
+		pixmap = QtGui.QPixmap("screen.png")
+		self.areasScene = QtGui.QGraphicsScene()
+		self.areasScene.addPixmap(pixmap)
+		self.screenAreas.setScene(self.areasScene)
+		self.screenAreas.show()
 	
 	
 	def sliderMoved(self,newVal):
