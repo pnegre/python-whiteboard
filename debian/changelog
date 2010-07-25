@@ -1,3 +1,10 @@
+python-whiteboard (0.6) unstable; urgency=low
+
+  * Removed toggle configuration from main window
+  * Added autoconnect capability
+
+ -- pnegre <pere.negre@gmail.com>  Sun, 25 Jul 2010 11:10:49 +0200
+
 python-whiteboard (0.5) unstable; urgency=low
 
   * Fullscreen calibration working properly on gnome desktop (i think)

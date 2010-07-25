@@ -175,7 +175,7 @@ class CalibrateDialog2(QtGui.QDialog):
 	
 	
 	def closeEvent(self,e):
-		#self.disconnect(self.timer, QtCore.SIGNAL("timeout()"), self.doWork)
+		self.timer.stop()
 		e.accept()
 
 
@@ -299,7 +299,7 @@ class CalibrateDialog(QtGui.QDialog):
 	
 	
 	def closeEvent(self,e):
-		#self.disconnect(self.timer, QtCore.SIGNAL("timeout()"), self.doWork)
+		self.timer.stop()
 		e.accept()
 	
 
