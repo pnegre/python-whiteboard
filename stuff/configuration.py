@@ -3,6 +3,11 @@
 from PyQt4 import QtCore, QtGui, uic
 import PyQt4.Qt as qt
 
+from cursor import FakeCursor
+
+
+CONFIG_VERSION = 2
+
 
 class Configuration:
 
@@ -11,11 +16,22 @@ class Configuration:
 		
 		def __init__(self):
 			self.settings = QtCore.QSettings("pywhiteboard","pywhiteboard")
+			
 			self.defaults = {
 				"fullscreen": "Yes",
 				"selectedmac": "All Devices",
 				"delayloop": "10",
+				"zone1": "Left Click",
+				"zone2": "Left Click",
+				"zone3": "Left Click",
+				"zone4": "Left Click",
 			}
+			
+			version = self.getValueStr("version")
+			if version == '' or int(version) < CONFIG_VERSION:
+				self.settings.clear()
+				self.saveValue("version",str(CONFIG_VERSION))
+			
 		
 		def saveValue(self,name,value):
 			self.settings.setValue(name,QtCore.QVariant(value))
@@ -120,6 +136,16 @@ class ConfigDialog(QtGui.QDialog):
 		self.areasScene.addPixmap(pixmap)
 		self.screenAreas.setScene(self.areasScene)
 		self.screenAreas.show()
+		
+		self.connect(self.ui.combo1,
+			QtCore.SIGNAL("currentIndexChanged(const QString)"), self.changeCombo1)
+		self.connect(self.ui.combo2,
+			QtCore.SIGNAL("currentIndexChanged(const QString)"), self.changeCombo2)
+		self.connect(self.ui.combo3,
+			QtCore.SIGNAL("currentIndexChanged(const QString)"), self.changeCombo3)
+		self.connect(self.ui.combo4,
+			QtCore.SIGNAL("currentIndexChanged(const QString)"), self.changeCombo4)
+		self.updateCombos()
 	
 	
 	def sliderMoved(self,newVal):
@@ -172,6 +198,40 @@ class ConfigDialog(QtGui.QDialog):
 		conf.saveValue("delayloop",str(delayloop))
 		
 		self.close()
+	
+	
+	def updateCombos(self):
+		conf = Configuration()
+		for combo,zone in [(self.ui.combo1,"zone1"), (self.ui.combo2,"zone2"), (self.ui.combo3,"zone3"), (self.ui.combo4,"zone4")]:
+			text = conf.getValueStr(zone)
+			ind = combo.findText(text,QtCore.Qt.MatchContains)
+			combo.setCurrentIndex(ind)
+		
+		#if text == 'Right Click':
+			#self.zones[zone] = FakeCursor.RIGHT_BUTTON
+		#elif text == 'Left Click':
+			#self.zones[zone] = FakeCursor.LEFT_BUTTON
+		#elif text == 'Middle Click':
+			#self.zones[zone] = FakeCursor.MIDDLE_BUTTON
+		#elif text == 'Only Move':
+			#self.zones[zone] = FakeCursor.ONLY_MOVE
+
+
+	def changeCombo1(self,text):
+		conf = Configuration()
+		conf.saveValue("zone1",text)
+	
+	def changeCombo2(self,text):
+		conf = Configuration()
+		conf.saveValue("zone2",text)
+	
+	def changeCombo3(self,text):
+		conf = Configuration()
+		conf.saveValue("zone3",text)
+	
+	def changeCombo4(self,text):
+		conf = Configuration()
+		conf.saveValue("zone4",text)
 	
 	
 	

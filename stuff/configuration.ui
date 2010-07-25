@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>397</width>
-    <height>419</height>
+    <width>399</width>
+    <height>458</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <bool>true</bool>
   </property>
   <layout class="QGridLayout" name="gridLayout_3">
-   <item row="0" column="0">
+   <item row="0" column="0" colspan="2">
     <widget class="QTabWidget" name="tabWidget">
      <property name="enabled">
       <bool>true</bool>
@@ -105,39 +105,6 @@
         <widget class="QPushButton" name="button_remDev">
          <property name="text">
           <string>Remove device</string>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="0" colspan="4">
-        <spacer name="horizontalSpacer">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>416</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="7" column="0" colspan="3">
-        <spacer name="horizontalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>300</width>
-           <height>24</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="7" column="3">
-        <widget class="QPushButton" name="button_OK">
-         <property name="text">
-          <string>OK</string>
          </property>
         </widget>
        </item>
@@ -295,12 +262,31 @@
      </widget>
     </widget>
    </item>
+   <item row="1" column="0">
+    <spacer name="horizontalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>287</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="1">
+    <widget class="QPushButton" name="button_OK">
+     <property name="text">
+      <string>OK</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <tabstops>
   <tabstop>button_addDev</tabstop>
   <tabstop>button_remDev</tabstop>
-  <tabstop>button_OK</tabstop>
   <tabstop>check_fullscreen</tabstop>
   <tabstop>slider_delayloop</tabstop>
   <tabstop>macListWidget</tabstop>

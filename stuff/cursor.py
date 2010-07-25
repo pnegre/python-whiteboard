@@ -65,6 +65,17 @@ class FakeCursor:
 	def setZone(self,zone,clickType):
 		self.zones[zone] = clickType
 	
+	def setZones(self,actions):
+		for z,a in zip((FakeCursor.ZONE1,FakeCursor.ZONE2,FakeCursor.ZONE3,FakeCursor.ZONE4),actions):
+			if a == 'Right Click':
+				self.setZone(z,FakeCursor.RIGHT_BUTTON)
+			elif a == 'Left Click':
+				self.setZone(z,FakeCursor.LEFT_BUTTON)
+			elif a == 'Middle Click':
+				self.setZone(z,FakeCursor.MIDDLE_BUTTON)
+			elif a == 'Only Move':
+				self.setZone(z,FakeCursor.ONLY_MOVE)
+	
 	
 	def move(self,pos):
 		#self.root.warp_pointer(pos[0],pos[1])

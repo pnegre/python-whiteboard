@@ -61,15 +61,6 @@ class MainWindow(QtGui.QMainWindow):
 		
 		self.updateButtons()
 		
-		self.connect(self.ui.combo1,
-			QtCore.SIGNAL("currentIndexChanged(const QString)"), self.changeCombo1)
-		self.connect(self.ui.combo2,
-			QtCore.SIGNAL("currentIndexChanged(const QString)"), self.changeCombo2)
-		self.connect(self.ui.combo3,
-			QtCore.SIGNAL("currentIndexChanged(const QString)"), self.changeCombo3)
-		self.connect(self.ui.combo4,
-			QtCore.SIGNAL("currentIndexChanged(const QString)"), self.changeCombo4)
-		
 		self.connect(self.ui.actionQuit,
 			QtCore.SIGNAL("activated()"), self.mustQuit)
 		self.connect(self.ui.actionConfiguration,
@@ -86,28 +77,28 @@ class MainWindow(QtGui.QMainWindow):
 		dialog.exec_()
 	
 	
-	def changeCombos(self,zone,text):
-		print zone,text
-		if text == 'Right Click':
-			self.zones[zone] = FakeCursor.RIGHT_BUTTON
-		elif text == 'Left Click':
-			self.zones[zone] = FakeCursor.LEFT_BUTTON
-		elif text == 'Middle Click':
-			self.zones[zone] = FakeCursor.MIDDLE_BUTTON
-		elif text == 'Only Move':
-			self.zones[zone] = FakeCursor.ONLY_MOVE
+	#def changeCombos(self,zone,text):
+		#print zone,text
+		#if text == 'Right Click':
+			#self.zones[zone] = FakeCursor.RIGHT_BUTTON
+		#elif text == 'Left Click':
+			#self.zones[zone] = FakeCursor.LEFT_BUTTON
+		#elif text == 'Middle Click':
+			#self.zones[zone] = FakeCursor.MIDDLE_BUTTON
+		#elif text == 'Only Move':
+			#self.zones[zone] = FakeCursor.ONLY_MOVE
 
-	def changeCombo1(self,text):
-		self.changeCombos(FakeCursor.ZONE1,text)
+	#def changeCombo1(self,text):
+		#self.changeCombos(FakeCursor.ZONE1,text)
 	
-	def changeCombo2(self,text):
-		self.changeCombos(FakeCursor.ZONE2,text)
+	#def changeCombo2(self,text):
+		#self.changeCombos(FakeCursor.ZONE2,text)
 	
-	def changeCombo3(self,text):
-		self.changeCombos(FakeCursor.ZONE3,text)
+	#def changeCombo3(self,text):
+		#self.changeCombos(FakeCursor.ZONE3,text)
 	
-	def changeCombo4(self,text):
-		self.changeCombos(FakeCursor.ZONE4,text)
+	#def changeCombo4(self,text):
+		#self.changeCombos(FakeCursor.ZONE4,text)
 		
 
 		
@@ -304,9 +295,9 @@ class MainWindow(QtGui.QMainWindow):
 			# Activate
 			TerminateWiiThread()
 			Globals.cursor = FakeCursor(Globals.wii)
-			for zone,click in self.zones.items():
-				Globals.cursor.setZone(zone,click)
-			
+			conf = Configuration()
+			zones = [ conf.getValueStr(z) for z in ("zone1","zone2","zone3","zone4") ]
+			Globals.cursor.setZones(zones)
 			InitiateRunWiiThread()
 			self.active = True
 			self.pushButtonActivate.setText("Deactivate")
@@ -314,25 +305,12 @@ class MainWindow(QtGui.QMainWindow):
 	
 	
 	def loadSettings(self):
-		conf = Configuration()
-		z1 = conf.getValueStr("zone1")
-		if z1 != '': self.ui.combo1.setCurrentIndex(int(z1))
-		z2 = conf.getValueStr("zone2")
-		if z2 != '': self.ui.combo2.setCurrentIndex(int(z2))
-		z3 = conf.getValueStr("zone3")
-		if z3 != '': self.ui.combo3.setCurrentIndex(int(z3))
-		z4 = conf.getValueStr("zone4")
-		if z4 != '': self.ui.combo4.setCurrentIndex(int(z4))
+		pass
 	
 	
 	# Exit callback
 	def closeEvent(self,e):
 		if self.mustquit:
-			conf = Configuration()
-			conf.saveValue("zone1",self.ui.combo1.currentIndex())
-			conf.saveValue("zone2",self.ui.combo2.currentIndex())
-			conf.saveValue("zone3",self.ui.combo3.currentIndex())
-			conf.saveValue("zone4",self.ui.combo4.currentIndex())
 			self.disconnectDevice()
 			e.accept()
 		else:
