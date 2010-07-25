@@ -54,7 +54,7 @@ class SandClock:
 			if delta > 100:
 				if self.state == SandClock.FIN1:
 					self.state = SandClock.FIN2
-				if delta > 150:
+				if delta > 250:
 					self.initialize()
 			return
 		self.point = list(p)
@@ -149,33 +149,48 @@ class CalibrateDialog2(QtGui.QDialog):
 		self.shcut1.setKey("Esc")
 		self.connect(self.shcut1, QtCore.SIGNAL("activated()"), self.close)
 		
+		self.mutex = qt.QMutex()
+		
+		self.wii.setCallback(self.makeWiiCallback())
+		self.wii.enable()
+		
 		self.timer = qt.QTimer(self)
+		self.timer.setInterval(70)
 		self.connect(self.timer, QtCore.SIGNAL("timeout()"), self.doWork)
 		self.timer.start()
 	
 	
+	def makeWiiCallback(self):
+		def callback(pos):
+			self.mutex.lock()
+			self.smallScreen.drawPoint(pos)
+			self.sandclock.update(pos)
+			self.sandclock.draw()
+			# Restart the timer
+			self.timer.start()
+			self.mutex.unlock()
+		return callback
+	
+	
 	def doWork(self):
-		self.wii.getMsgs()
-		wii_pos = self.wii.getPos()
-		if wii_pos:
-			self.smallScreen.drawPoint(wii_pos)
-			self.sandclock.update(wii_pos)
-			self.sandclock.draw()
-		else:
-			self.sandclock.update(None)
-			self.sandclock.draw()
-		
+		self.mutex.lock()
+		self.sandclock.update(None)
+		self.sandclock.draw()
+	
 		if self.sandclock.finished():
 			self.wiiPoints.append(self.sandclock.getPoint())
 			self.sandclock.initialize()
 			if len(self.wiiPoints) == 4:
+				self.mutex.unlock()
 				self.close()
 				return
 			self.ui.label.setText(self.textMessages.pop(0))
-	
+		
+		self.mutex.unlock()
 	
 	def closeEvent(self,e):
 		self.timer.stop()
+		self.wii.disable()
 		e.accept()
 
 
@@ -227,11 +242,15 @@ class CalibrateDialog(QtGui.QDialog):
 			[40,40], [self.wdt-40,40], [self.wdt-40,self.hgt-40], [40,self.hgt-40]
 		]
 		
+		self.clock = clock()
+		self.mutex = qt.QMutex()
 		self.updateCalibrationPoints(0)
 		
-		self.clock = clock()
+		self.wii.setCallback(self.makeWiiCallback())
+		self.wii.enable()
 		
 		self.timer = qt.QTimer(self)
+		self.timer.setInterval(70)
 		self.connect(self.timer, QtCore.SIGNAL("timeout()"), self.doWork)
 		self.timer.start()
 
@@ -245,6 +264,7 @@ class CalibrateDialog(QtGui.QDialog):
 			self.updateCalibrationPoints(-10)
 	
 	def updateCalibrationPoints(self,delta=0):
+		self.mutex.lock()
 		self.scene.clear()
 		self.marks = []
 		self.wiiPoints = []
@@ -267,28 +287,25 @@ class CalibrateDialog(QtGui.QDialog):
 		self.sandclock = SandClock(self.scene,*self.marks[0][1])
 		txt = self.scene.addSimpleText("Push UP/DOWN to alter the crosses' position")
 		txt.setPos(self.wdt/2 - txt.boundingRect().width()/2, 40)
+		self.mutex.unlock()
 			
 
+	def makeWiiCallback(self):
+		def callback(pos):
+			self.mutex.lock()
+			self.smallScreen.drawPoint(pos)
+			self.sandclock.update(pos)
+			self.sandclock.draw()
+			# Restart the timer
+			self.timer.start()
+			self.mutex.unlock()
+		return callback
+
 	def doWork(self):
-		self.wii.getMsgs()
-		wii_pos = self.wii.getPos()
-		if wii_pos:
-			self.smallScreen.drawPoint(wii_pos)
-			self.sandclock.update(wii_pos)
-			self.sandclock.draw()
-		else:
-			self.sandclock.update(None)
-			self.sandclock.draw()
+		self.mutex.lock()
+		self.sandclock.update(None)
+		self.sandclock.draw()
 		
-		if self.sandclock.finished():
-			self.wiiPoints.append(self.sandclock.getPoint())
-			self.marks.pop(0)[0].setVisible(True)
-			if len(self.wiiPoints) == 4:
-				self.close()
-				return
-			self.sandclock.initialize()
-			self.sandclock.setCenter(*self.marks[0][1])
-				
 		if len(self.marks):
 			m = self.marks[0][0]
 			c = clock() - self.clock
@@ -296,10 +313,23 @@ class CalibrateDialog(QtGui.QDialog):
 				if m.isVisible(): m.setVisible(False)
 				else: m.setVisible(True)
 				self.clock = clock()
+		
+		if self.sandclock.finished():
+			self.wiiPoints.append(self.sandclock.getPoint())
+			self.marks.pop(0)[0].setVisible(True)
+			if len(self.wiiPoints) == 4:
+				self.mutex.unlock()
+				self.close()
+				return
+			self.sandclock.initialize()
+			self.sandclock.setCenter(*self.marks[0][1])
+		
+		self.mutex.unlock()
 	
 	
 	def closeEvent(self,e):
 		self.timer.stop()
+		self.wii.disable()
 		e.accept()
 	
 

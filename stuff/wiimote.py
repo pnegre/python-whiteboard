@@ -31,6 +31,8 @@ def calculateArea(points):
 
 
 
+
+
 class Wiimote:
 	CALIBRATED, NONCALIBRATED = range(2)
 	MAX_X = 1024
@@ -43,6 +45,28 @@ class Wiimote:
 		self.calibrationPoints = []
 		self.screenPoints = []
 		self.utilization = 0.0
+	
+	
+	def create_wiimote_callback(self,func):
+		# Closure
+		def wiimote_callback(messages,buttons):
+			if messages:
+				for m in messages:
+					if m[0] == cwiid.MESG_IR:
+						data = m[1][0]
+						if data:
+							p = list(data['pos'])
+							if self.state == Wiimote.NONCALIBRATED:
+								func(p)
+							if self.state == Wiimote.CALIBRATED:
+								pp = [0,0]
+								pp[0] = (self.h11*p[0] + self.h12*p[1] + self.h13) / \
+									(self.h31*p[0] + self.h32*p[1] + 1)
+								pp[1] = (self.h21*p[0] + self.h22*p[1] + self.h23) / \
+									(self.h31*p[0] + self.h32*p[1] + 1)
+								func(pp)
+		return wiimote_callback
+	
 	
 	def bind(self, addr=''):
 		try:
@@ -58,28 +82,24 @@ class Wiimote:
 			self.addr = addr
 			self.wii.rpt_mode = cwiid.RPT_BTN | cwiid.RPT_IR
 			self.wii.led = cwiid.LED1_ON
-			self.wii.enable(cwiid.FLAG_MESG_IFC)
-			self.wii.enable(cwiid.FLAG_NONBLOCK)
-			self.wii.enable(cwiid.FLAG_CONTINUOUS)
 			return True
 		except:
 			return False
+	
+	def enable(self):
+		self.wii.enable(cwiid.FLAG_MESG_IFC)
+	
+	def disable(self):
+		self.wii.disable(cwiid.FLAG_MESG_IFC)
+	
+	def setCallback(self,func):
+		self.wii.mesg_callback = self.create_wiimote_callback(func)
 	
 	def close(self):
 		self.wii.close()
 	
 	def battery(self):
 		return float(self.wii.state['battery']) / float(cwiid.BATTERY_MAX)
-	
-	def getMsgs(self):
-		msgs = self.wii.get_mesg()
-		if msgs:
-			for m in msgs:
-				if m:
-					if m[0] == cwiid.MESG_IR:
-						data = m[1][0]
-						if data:
-							self.pos = list(data['pos'])
 	
 	def getPos(self):
 		if self.pos == None: return None

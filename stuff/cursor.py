@@ -4,6 +4,8 @@ import Xlib.display
 import Xlib.ext.xtest
 import time
 
+import PyQt4.Qt as qt
+
 def clock():
 	return int(time.time()*1000)
 
@@ -60,6 +62,9 @@ class FakeCursor:
 		self.filt = None
 		self.clickType = FakeCursor.LEFT_BUTTON
 		self.zones = {}
+		self.mutex = qt.QMutex()
+		self.mustFinish = False
+		self.thread = None
 	
 	
 	def setZone(self,zone,clickType):
@@ -138,5 +143,56 @@ class FakeCursor:
 			return False
 		
 		return True
+	
+	
+	def makeCallback(self):
+		def callback(q):
+			self.mutex.lock()
+			if self.checkLimits(q):
+				if not self.filt:
+					self.filt = Filter()
+				p = self.filt.update(q)
+				
+				self.move(p)
+				
+				if not self.click:
+					self.click = Click(self)
+				else:
+					self.click.update(True)
+			self.mutex.unlock()
+		
+		return callback
+	
+	
+	def runThread(self):
+		def runFunc():
+			while 1:
+				qt.QThread.usleep(100)
+				self.mutex.lock()
+				if self.click and not self.click.update(False):
+					self.click = None
+					self.filt = None
+					self.clickType = FakeCursor.LEFT_BUTTON
+				if self.mustFinish:
+					break
+				self.mutex.unlock()
+		
+		from threads import CreateThreadClass
+		
+		self.wii.setCallback(self.makeCallback())
+		self.wii.enable()
+		thread = CreateThreadClass(runFunc)
+		self.thread = thread()
+		self.thread.start()
+	
+	
+	def finish(self):
+		self.mutex.lock()
+		self.mustFinish = True
+		self.mutex.unlock()
+		self.thread.wait()
+		self.wii.disable()
+		self.thread = None
+		
 
 

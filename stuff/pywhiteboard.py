@@ -3,7 +3,6 @@
 
 from wiimote import Wiimote
 from cursor import FakeCursor
-import Globals
 from threads import *
 
 from calibration import doCalibration
@@ -35,7 +34,8 @@ class MainWindow(QtGui.QMainWindow):
 		self.active = False
 		self.mustquit = False
 		
-		Globals.initGlobals()
+		self.wii = None
+		self.cursor = None
 		
 		self.batteryLevel.reset()
 		self.batteryLevel.setRange(0,99)
@@ -69,7 +69,6 @@ class MainWindow(QtGui.QMainWindow):
 			self.timer.setInterval(1000)
 			self.connect(self.timer, QtCore.SIGNAL("timeout()"), self.autoConnect)
 			self.timer.start()
-			#self.ui.pushButtonConnect.click()
 	
 	
 	def autoConnect(self):
@@ -79,7 +78,7 @@ class MainWindow(QtGui.QMainWindow):
 	
 	
 	def showConfiguration(self):
-		dialog = ConfigDialog(self, Globals.wii)
+		dialog = ConfigDialog(self, self.wii)
 		dialog.show()
 		dialog.exec_()
 		
@@ -91,7 +90,7 @@ class MainWindow(QtGui.QMainWindow):
 		self.scene = qt.QGraphicsScene()
 		self.scene.setSceneRect(0,0,max_x,max_y)
 		quad = QtGui.QPolygonF()
-		for p in Globals.wii.calibrationPoints:
+		for p in self.wii.calibrationPoints:
 			x = max_x * p[0]/Wiimote.MAX_X
 			y = max_y * (1-float(p[1])/Wiimote.MAX_Y)
 			quad.append(qt.QPointF(x,y))
@@ -121,7 +120,7 @@ class MainWindow(QtGui.QMainWindow):
 			self.statusBar().showMessage("")
 			return
 		
-		self.statusBar().showMessage("Connected to " + Globals.wii.addr)
+		self.statusBar().showMessage("Connected to " + self.wii.addr)
 		
 		if self.calibrated == False:
 			self.ui.pushButtonConnect.setEnabled(1)
@@ -143,11 +142,15 @@ class MainWindow(QtGui.QMainWindow):
 	
 	
 	def disconnectDevice(self):
-		if self.connected:
-			TerminateWiiThread()
-			if Globals.wii:
-				Globals.wii.close()
-			Globals.wii = None
+		if self.active:
+			if self.cursor:
+				self.cursor.finish()
+			self.active = False
+		
+		if self.wii:
+			self.wii.disable()
+			self.wii.close()
+			self.wii = None
 			self.connected = False
 			self.calibrated = False
 			self.active = False
@@ -173,15 +176,15 @@ class MainWindow(QtGui.QMainWindow):
 			while not thread.wait(30):
 				QtGui.QApplication.processEvents()
 			pBar.close()
-
-			if Globals.wii:
+			
+			self.wii = thread.getWii()
+			if self.wii:
 				self.connected = True
 				self.calibrated = False
 				self.active = False
 				self.updateButtons()
-				self.batteryLevel.setValue(Globals.wii.battery()*100)
+				self.batteryLevel.setValue(self.wii.battery()*100)
 				self.pushButtonConnect.setText("Disconnect")
-				InitiateIdleWiiThread()
 				return
 				
 		msgbox = QtGui.QMessageBox( self )
@@ -193,32 +196,29 @@ class MainWindow(QtGui.QMainWindow):
 	def calibrateWii(self,doScreen):
 		self.ui.label_utilization.setText("Utilization: 0%")
 		self.clearScreenGraphic()
-		TerminateWiiThread()
 		
 		self.calibrated = False
 		self.active = False
 		
-		Globals.wii.state = Wiimote.NONCALIBRATED
+		self.wii.state = Wiimote.NONCALIBRATED
 		if doScreen:
-			doCalibration(self,Globals.wii)
+			doCalibration(self,self.wii)
 		else:
-			self.loadCalibration(Globals.wii)
+			self.loadCalibration(self.wii)
 		
-		if Globals.wii.state == Wiimote.CALIBRATED:
+		if self.wii.state == Wiimote.CALIBRATED:
 			self.calibrated = True
 			self.active = False
 			self.drawScreenGraphic()
 			self.updateButtons()
-			self.ui.label_utilization.setText("Utilization: %d%%" % (100.0*Globals.wii.utilization))
-			self.saveCalibrationPars(Globals.wii)
+			self.ui.label_utilization.setText("Utilization: %d%%" % (100.0*self.wii.utilization))
+			self.saveCalibrationPars(self.wii)
 		else:
 			self.updateButtons()
 			msgbox = QtGui.QMessageBox( self )
 			msgbox.setText( "Error during Calibration" )
 			msgbox.setModal( True )
 			ret = msgbox.exec_()
-		
-		InitiateIdleWiiThread()
 
 	
 	def calibrateWiiScreen(self):
@@ -262,19 +262,17 @@ class MainWindow(QtGui.QMainWindow):
 	def activateWii(self):
 		if self.active:
 			# Deactivate
-			TerminateWiiThread()
+			self.cursor.finish()
 			self.active = False
 			self.pushButtonActivate.setText("Activate")
 			self.updateButtons()
-			InitiateIdleWiiThread()
 		else:
 			# Activate
-			TerminateWiiThread()
-			Globals.cursor = FakeCursor(Globals.wii)
+			self.cursor = FakeCursor(self.wii)
 			conf = Configuration()
 			zones = [ conf.getValueStr(z) for z in ("zone1","zone2","zone3","zone4") ]
-			Globals.cursor.setZones(zones)
-			InitiateRunWiiThread()
+			self.cursor.setZones(zones)
+			self.cursor.runThread()
 			self.active = True
 			self.pushButtonActivate.setText("Deactivate")
 			self.updateButtons()
