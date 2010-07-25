@@ -63,6 +63,19 @@ class MainWindow(QtGui.QMainWindow):
 		self.loadSettings()
 		#self.ui.textBrowser.setText("<b>Wiimote Linux WHITEBOARD</b>")
 		
+		conf = Configuration()
+		if conf.getValueStr("autoconnect") == "Yes":
+			self.timer = qt.QTimer(self)
+			self.timer.setInterval(1000)
+			self.connect(self.timer, QtCore.SIGNAL("timeout()"), self.autoConnect)
+			self.timer.start()
+			#self.ui.pushButtonConnect.click()
+	
+	
+	def autoConnect(self):
+		self.timer.stop()
+		self.connectWii(tries=3)
+		
 	
 	
 	def showConfiguration(self):
@@ -145,35 +158,36 @@ class MainWindow(QtGui.QMainWindow):
 			self.batteryLevel.setValue(0)
 			return
 
-	def connectWii(self):
+	def connectWii(self, tries=1):
 		if self.connected:
 			self.disconnectDevice()
 			return
-			
-		thread = ConnectThread()
-		thread.start()
 		
-		pBar = PBarDlg(self)
-		pBar.setModal( True )
-		pBar.show()
-		while not thread.wait(30):
-			QtGui.QApplication.processEvents()
-		pBar.close()
-
-		if Globals.wii:
-			self.connected = True
-			self.calibrated = False
-			self.active = False
-			self.updateButtons()
-			self.batteryLevel.setValue(Globals.wii.battery()*100)
-			self.pushButtonConnect.setText("Disconnect")
-			InitiateIdleWiiThread()
+		for i in range(tries):
+			thread = ConnectThread()
+			thread.start()
 			
-		else:
-			msgbox = QtGui.QMessageBox( self )
-			msgbox.setText( "Error during connection" )
-			msgbox.setModal( True )
-			ret = msgbox.exec_()
+			pBar = PBarDlg(self)
+			pBar.setModal( True )
+			pBar.show()
+			while not thread.wait(30):
+				QtGui.QApplication.processEvents()
+			pBar.close()
+
+			if Globals.wii:
+				self.connected = True
+				self.calibrated = False
+				self.active = False
+				self.updateButtons()
+				self.batteryLevel.setValue(Globals.wii.battery()*100)
+				self.pushButtonConnect.setText("Disconnect")
+				InitiateIdleWiiThread()
+				return
+				
+		msgbox = QtGui.QMessageBox( self )
+		msgbox.setText( "Error during connection" )
+		msgbox.setModal( True )
+		ret = msgbox.exec_()
 
 	# doscreen: if doscreen is true, calibrate by manual pointing
 	def calibrateWii(self,doScreen):

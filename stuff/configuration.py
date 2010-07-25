@@ -25,6 +25,7 @@ class Configuration:
 				"zone2": "Left Click",
 				"zone3": "Left Click",
 				"zone4": "Left Click",
+				"autoconnect": "No",
 			}
 			
 			version = self.getValueStr("version")
@@ -98,6 +99,8 @@ class ConfigDialog(QtGui.QDialog):
 		conf = Configuration()
 		if conf.getValueStr("fullscreen") == "Yes":
 			self.ui.check_fullscreen.setChecked(True)
+		if conf.getValueStr("autoconnect") == "Yes":
+			self.ui.check_autoconnect.setChecked(True)
 		
 		self.ui.slider_delayloop.setMinimum(5)
 		self.ui.slider_delayloop.setMaximum(50)
@@ -179,6 +182,11 @@ class ConfigDialog(QtGui.QDialog):
 		else:
 			conf.saveValue("fullscreen","No")
 		
+		if self.ui.check_autoconnect.isChecked():
+			conf.saveValue("autoconnect","Yes")
+		else:
+			conf.saveValue("autoconnect","No")
+		
 		mlist = []
 		for i in range(0,self.ui.macListWidget.count()):
 			item = self.ui.macListWidget.item(i)
@@ -206,15 +214,6 @@ class ConfigDialog(QtGui.QDialog):
 			text = conf.getValueStr(zone)
 			ind = combo.findText(text,QtCore.Qt.MatchContains)
 			combo.setCurrentIndex(ind)
-		
-		#if text == 'Right Click':
-			#self.zones[zone] = FakeCursor.RIGHT_BUTTON
-		#elif text == 'Left Click':
-			#self.zones[zone] = FakeCursor.LEFT_BUTTON
-		#elif text == 'Middle Click':
-			#self.zones[zone] = FakeCursor.MIDDLE_BUTTON
-		#elif text == 'Only Move':
-			#self.zones[zone] = FakeCursor.ONLY_MOVE
 
 
 	def changeCombo1(self,text):

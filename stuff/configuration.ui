@@ -6,9 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>399</width>
-    <height>458</height>
+    <width>415</width>
+    <height>472</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>415</width>
+    <height>472</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>415</width>
+    <height>472</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Configuration</string>
@@ -31,64 +43,58 @@
       </attribute>
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="0" column="0">
+        <widget class="QCheckBox" name="check_autoconnect">
+         <property name="text">
+          <string>Auto connect</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
         <widget class="QCheckBox" name="check_fullscreen">
          <property name="text">
           <string>Fullscreen Calibration</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
-        <spacer name="horizontalSpacer_4">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>49</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="1" column="0">
+       <item row="2" column="0">
         <widget class="QLabel" name="label_2">
          <property name="text">
           <string>Delay in active loop (usecs):</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
+       <item row="2" column="1">
         <widget class="QLabel" name="label_delayloop">
          <property name="text">
           <string>0</string>
          </property>
         </widget>
        </item>
-       <item row="2" column="0" colspan="4">
+       <item row="3" column="0" colspan="3">
         <widget class="QSlider" name="slider_delayloop">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
         </widget>
        </item>
-       <item row="3" column="0">
+       <item row="4" column="0">
         <widget class="QLabel" name="label">
          <property name="text">
           <string>Select allowed devices:</string>
          </property>
         </widget>
        </item>
-       <item row="4" column="0" colspan="4">
+       <item row="5" column="0" colspan="3">
         <widget class="QListWidget" name="macListWidget"/>
        </item>
-       <item row="5" column="0">
+       <item row="6" column="0">
         <widget class="QPushButton" name="button_addDev">
          <property name="text">
           <string>Add connected device</string>
          </property>
         </widget>
        </item>
-       <item row="5" column="1">
+       <item row="6" column="1">
         <spacer name="horizontalSpacer_3">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
@@ -101,7 +107,7 @@
          </property>
         </spacer>
        </item>
-       <item row="5" column="2" colspan="2">
+       <item row="6" column="2">
         <widget class="QPushButton" name="button_remDev">
          <property name="text">
           <string>Remove device</string>
