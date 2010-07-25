@@ -53,12 +53,6 @@ class MainWindow(QtGui.QMainWindow):
 		self.connect(self.ui.pushButtonLoadCal,
 			QtCore.SIGNAL("clicked()"), self.calibrateWiiFromSettings)
 		
-		pixmap = QtGui.QPixmap("screen.png")
-		self.areasScene = QtGui.QGraphicsScene()
-		self.areasScene.addPixmap(pixmap)
-		self.screenAreas.setScene(self.areasScene)
-		self.screenAreas.show()
-		
 		self.updateButtons()
 		
 		self.connect(self.ui.actionQuit,
@@ -66,8 +60,8 @@ class MainWindow(QtGui.QMainWindow):
 		self.connect(self.ui.actionConfiguration,
 			QtCore.SIGNAL("activated()"), self.showConfiguration)
 		
-		self.zones = {}
 		self.loadSettings()
+		#self.ui.textBrowser.setText("<b>Wiimote Linux WHITEBOARD</b>")
 		
 	
 	
@@ -75,30 +69,6 @@ class MainWindow(QtGui.QMainWindow):
 		dialog = ConfigDialog(self, Globals.wii)
 		dialog.show()
 		dialog.exec_()
-	
-	
-	#def changeCombos(self,zone,text):
-		#print zone,text
-		#if text == 'Right Click':
-			#self.zones[zone] = FakeCursor.RIGHT_BUTTON
-		#elif text == 'Left Click':
-			#self.zones[zone] = FakeCursor.LEFT_BUTTON
-		#elif text == 'Middle Click':
-			#self.zones[zone] = FakeCursor.MIDDLE_BUTTON
-		#elif text == 'Only Move':
-			#self.zones[zone] = FakeCursor.ONLY_MOVE
-
-	#def changeCombo1(self,text):
-		#self.changeCombos(FakeCursor.ZONE1,text)
-	
-	#def changeCombo2(self,text):
-		#self.changeCombos(FakeCursor.ZONE2,text)
-	
-	#def changeCombo3(self,text):
-		#self.changeCombos(FakeCursor.ZONE3,text)
-	
-	#def changeCombo4(self,text):
-		#self.changeCombos(FakeCursor.ZONE4,text)
 		
 
 		
@@ -151,20 +121,12 @@ class MainWindow(QtGui.QMainWindow):
 			self.ui.pushButtonCalibrate.setEnabled(1)
 			self.ui.pushButtonActivate.setEnabled(1)
 			self.ui.pushButtonLoadCal.setEnabled(1)
-			self.ui.combo1.setEnabled(1)
-			self.ui.combo2.setEnabled(1)
-			self.ui.combo3.setEnabled(1)
-			self.ui.combo4.setEnabled(1)
 			return
 		else:
 			self.ui.pushButtonConnect.setEnabled(0)
 			self.ui.pushButtonCalibrate.setEnabled(0)
 			self.ui.pushButtonLoadCal.setEnabled(0)
 			self.ui.pushButtonActivate.setEnabled(1)
-			self.ui.combo1.setEnabled(0)
-			self.ui.combo2.setEnabled(0)
-			self.ui.combo3.setEnabled(0)
-			self.ui.combo4.setEnabled(0)
 	
 	
 	def disconnectDevice(self):
