@@ -26,6 +26,7 @@ class Configuration:
 				"zone3": "Left Click",
 				"zone4": "Left Click",
 				"autoconnect": "No",
+				"autoactivate": "No",
 			}
 			
 			version = self.getValueStr("version")
@@ -101,6 +102,8 @@ class ConfigDialog(QtGui.QDialog):
 			self.ui.check_fullscreen.setChecked(True)
 		if conf.getValueStr("autoconnect") == "Yes":
 			self.ui.check_autoconnect.setChecked(True)
+		if conf.getValueStr("autoactivate") == "Yes":
+			self.ui.check_autoactivate.setChecked(True)
 		
 		self.ui.slider_delayloop.setMinimum(5)
 		self.ui.slider_delayloop.setMaximum(50)
@@ -186,6 +189,11 @@ class ConfigDialog(QtGui.QDialog):
 			conf.saveValue("autoconnect","Yes")
 		else:
 			conf.saveValue("autoconnect","No")
+		
+		if self.ui.check_autoactivate.isChecked():
+			conf.saveValue("autoactivate","Yes")
+		else:
+			conf.saveValue("autoactivate","No")
 		
 		mlist = []
 		for i in range(0,self.ui.macListWidget.count()):

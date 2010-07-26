@@ -213,6 +213,12 @@ class MainWindow(QtGui.QMainWindow):
 			self.updateButtons()
 			self.ui.label_utilization.setText("Utilization: %d%%" % (100.0*self.wii.utilization))
 			self.saveCalibrationPars(self.wii)
+			
+			# Auto-activate wiimote device if configuration says so
+			conf = Configuration()
+			if conf.getValueStr("autoactivate") == "Yes":
+				self.activateWii()
+			
 		else:
 			self.updateButtons()
 			msgbox = QtGui.QMessageBox( self )
