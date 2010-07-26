@@ -6,7 +6,7 @@ import PyQt4.Qt as qt
 from cursor import FakeCursor
 
 
-CONFIG_VERSION = 2
+CONFIG_VERSION = 3
 
 
 class Configuration:
@@ -27,7 +27,7 @@ class Configuration:
 				"autoconnect": "No",
 				"autoactivate": "No",
 				"autocalibration": "No",
-				"sensitivity": "2",
+				"sensitivity": "6",
 			}
 			
 			version = self.getValueStr("version")
@@ -147,7 +147,18 @@ class ConfigDialog(QtGui.QDialog):
 		self.connect(self.ui.combo4,
 			QtCore.SIGNAL("currentIndexChanged(const QString)"), self.changeCombo4)
 		self.updateCombos()
+		
+		self.ui.slider_ir.setMinimum(2)
+		self.ui.slider_ir.setMaximum(6)
+		self.connect(self.ui.slider_ir,
+			QtCore.SIGNAL("valueChanged(int)"), self.sliderIrMoved)
+		sens = int(conf.getValueStr("sensitivity"))
+		self.ui.slider_ir.setValue(sens)
 	
+	
+	def sliderIrMoved(self, val):
+		conf = Configuration()
+		conf.saveValue("sensitivity",str(val))
 	
 	def addDevice(self):
 		if self.wii == None: return

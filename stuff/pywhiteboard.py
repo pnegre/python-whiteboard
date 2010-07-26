@@ -161,7 +161,7 @@ class MainWindow(QtGui.QMainWindow):
 			self.batteryLevel.setValue(0)
 			return
 
-	def connectWii(self, tries=1):
+	def connectWii(self, tries=2):
 		if self.connected:
 			self.disconnectDevice()
 			return
