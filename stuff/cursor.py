@@ -29,6 +29,8 @@ class Filter:
 		return res
 
 class Click:
+	UP_TIMEOUT = 100
+	
 	def __init__(self,cursor):
 		self.initialTime = clock()
 		self.cursor = cursor
@@ -40,7 +42,7 @@ class Click:
 		if evt:
 			self.initialTime = clock()
 			return True
-		elif (t-self.initialTime)>100:
+		elif (t-self.initialTime) > Click.UP_TIMEOUT:
 			self.cursor.mouse_up()
 			return False
 		return True
@@ -56,7 +58,6 @@ class FakeCursor:
 	def __init__(self,wii):
 		self.display = Xlib.display.Display()
 		self.screen = self.display.screen()
-		self.root = self.screen.root
 		self.wii = wii
 		self.click = None
 		self.filt = None
@@ -83,7 +84,6 @@ class FakeCursor:
 	
 	
 	def move(self,pos):
-		#self.root.warp_pointer(pos[0],pos[1])
 		Xlib.ext.xtest.fake_input(self.display, Xlib.X.MotionNotify, x=pos[0], y=pos[1])
 		self.display.sync()
 	
@@ -100,27 +100,6 @@ class FakeCursor:
 		if button != FakeCursor.ONLY_MOVE:
 			Xlib.ext.xtest.fake_input(self.display, Xlib.X.ButtonRelease, button)
 			self.display.sync()
-	
-	
-	def update(self):
-		if self.wii.pos:
-			q = self.wii.getPos()
-			if self.checkLimits(q):
-				if not self.filt:
-					self.filt = Filter()
-				p = self.filt.update(q)
-				
-				self.move(p)
-				
-				if not self.click:
-						self.click = Click(self)
-				else:
-					self.click.update(True)
-		
-		elif self.click and not self.click.update(False):
-			self.click = None
-			self.filt = None
-			self.clickType = FakeCursor.LEFT_BUTTON
 	
 	
 	# Returns True if point is within screen limits
@@ -145,6 +124,10 @@ class FakeCursor:
 		return True
 	
 	
+	# This function fabricates the callback function that is to be
+	# passed to the wiimote object. It's called every time that IR data
+	# is available. It is necessary to do it this way because the callback
+	# has to be aware of the cursor object.
 	def makeCallback(self):
 		def callback(q):
 			self.mutex.lock()
@@ -164,6 +147,8 @@ class FakeCursor:
 		return callback
 	
 	
+	# This function creates the cursor thread. It makes the callback to the
+	# thread and enables the wiimote device
 	def runThread(self):
 		def runFunc():
 			while 1:
@@ -186,6 +171,7 @@ class FakeCursor:
 		self.thread.start()
 	
 	
+	# Destroys the cursor thread and disables the wiimote device
 	def finish(self):
 		self.mutex.lock()
 		self.mustFinish = True
