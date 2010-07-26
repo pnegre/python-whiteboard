@@ -60,17 +60,8 @@ class Wiimote:
 						if data:
 							if data['size'] > self.maxIrSensitivity:
 								continue
-							
-							p = list(data['pos'])
-							if self.state == Wiimote.NONCALIBRATED:
-								func(p)
-							if self.state == Wiimote.CALIBRATED:
-								pp = [0,0]
-								pp[0] = (self.h11*p[0] + self.h12*p[1] + self.h13) / \
-									(self.h31*p[0] + self.h32*p[1] + 1)
-								pp[1] = (self.h21*p[0] + self.h22*p[1] + self.h23) / \
-									(self.h31*p[0] + self.h32*p[1] + 1)
-								func(pp)
+							func(self.getPos(data['pos']))
+		
 		return wiimote_callback
 	
 	
@@ -93,6 +84,7 @@ class Wiimote:
 			return False
 	
 	def enable(self):
+		self.maxIrSensitivity = int(Configuration().getValueStr("sensitivity"))
 		self.wii.enable(cwiid.FLAG_MESG_IFC)
 	
 	def disable(self):
@@ -107,19 +99,15 @@ class Wiimote:
 	def battery(self):
 		return float(self.wii.state['battery']) / float(cwiid.BATTERY_MAX)
 	
-	def getPos(self):
-		if self.pos == None: return None
-		p = list(self.pos)
-		self.pos = None
+	def getPos(self,p):
 		if self.state == Wiimote.NONCALIBRATED:
 			return p
 		if self.state == Wiimote.CALIBRATED:
-			pp = [0,0]
-			pp[0] = (self.h11*p[0] + self.h12*p[1] + self.h13) / \
-				(self.h31*p[0] + self.h32*p[1] + 1)
-			pp[1] = (self.h21*p[0] + self.h22*p[1] + self.h23) / \
-				(self.h31*p[0] + self.h32*p[1] + 1)
-			return pp
+			return [
+				(self.h11*p[0] + self.h12*p[1] + self.h13) / \
+				(self.h31*p[0] + self.h32*p[1] + 1),
+				(self.h21*p[0] + self.h22*p[1] + self.h23) / \
+				(self.h31*p[0] + self.h32*p[1] + 1) ]
 	
 	def calibrate(self, p_screen, p_wii):
 		l = []
