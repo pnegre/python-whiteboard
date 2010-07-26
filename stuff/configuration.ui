@@ -49,38 +49,17 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="0" colspan="2">
+       <item row="2" column="0" colspan="2">
         <widget class="QCheckBox" name="check_autoactivate">
          <property name="text">
           <string>Activate cursor after calibration</string>
          </property>
         </widget>
        </item>
-       <item row="2" column="0">
+       <item row="3" column="0">
         <widget class="QCheckBox" name="check_fullscreen">
          <property name="text">
           <string>Fullscreen Calibration</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="label_2">
-         <property name="text">
-          <string>Delay in active loop (usecs):</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QLabel" name="label_delayloop">
-         <property name="text">
-          <string>0</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0" colspan="3">
-        <widget class="QSlider" name="slider_delayloop">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
          </property>
         </widget>
        </item>
@@ -118,6 +97,13 @@
         <widget class="QPushButton" name="button_remDev">
          <property name="text">
           <string>Remove device</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="QCheckBox" name="check_autocalibration">
+         <property name="text">
+          <string>Do calibration after connection</string>
          </property>
         </widget>
        </item>
@@ -301,7 +287,6 @@
   <tabstop>button_addDev</tabstop>
   <tabstop>button_remDev</tabstop>
   <tabstop>check_fullscreen</tabstop>
-  <tabstop>slider_delayloop</tabstop>
   <tabstop>macListWidget</tabstop>
  </tabstops>
  <resources/>

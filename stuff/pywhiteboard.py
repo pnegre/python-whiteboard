@@ -185,6 +185,12 @@ class MainWindow(QtGui.QMainWindow):
 				self.updateButtons()
 				self.batteryLevel.setValue(self.wii.battery()*100)
 				self.pushButtonConnect.setText("Disconnect")
+				
+				# Start calibration if configuration says so
+				conf = Configuration()
+				if conf.getValueStr("autocalibration") == "Yes":
+					self.calibrateWii()
+				
 				return
 				
 		msgbox = QtGui.QMessageBox( self )
@@ -193,7 +199,7 @@ class MainWindow(QtGui.QMainWindow):
 		ret = msgbox.exec_()
 
 	# doscreen: if doscreen is true, calibrate by manual pointing
-	def calibrateWii(self,doScreen):
+	def calibrateWii(self,doScreen=True):
 		self.ui.label_utilization.setText("Utilization: 0%")
 		self.clearScreenGraphic()
 		

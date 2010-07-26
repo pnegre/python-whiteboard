@@ -20,13 +20,13 @@ class Configuration:
 			self.defaults = {
 				"fullscreen": "Yes",
 				"selectedmac": "All Devices",
-				"delayloop": "10",
 				"zone1": "Left Click",
 				"zone2": "Left Click",
 				"zone3": "Left Click",
 				"zone4": "Left Click",
 				"autoconnect": "No",
 				"autoactivate": "No",
+				"autocalibration": "No",
 			}
 			
 			version = self.getValueStr("version")
@@ -104,14 +104,8 @@ class ConfigDialog(QtGui.QDialog):
 			self.ui.check_autoconnect.setChecked(True)
 		if conf.getValueStr("autoactivate") == "Yes":
 			self.ui.check_autoactivate.setChecked(True)
-		
-		self.ui.slider_delayloop.setMinimum(5)
-		self.ui.slider_delayloop.setMaximum(50)
-		self.connect(self.ui.slider_delayloop,
-			QtCore.SIGNAL("valueChanged(int)"), self.sliderMoved)
-		delayloop = int(conf.getValueStr("delayloop"))
-		self.ui.slider_delayloop.setValue(delayloop)
-		
+		if conf.getValueStr("autocalibration") == "Yes":
+			self.ui.check_autocalibration.setChecked(True)		
 		
 		self.connect(self.ui.button_OK,
 			QtCore.SIGNAL("clicked()"), self.finish)
@@ -154,9 +148,6 @@ class ConfigDialog(QtGui.QDialog):
 		self.updateCombos()
 	
 	
-	def sliderMoved(self,newVal):
-		self.ui.label_delayloop.setText(str(newVal))
-	
 	def addDevice(self):
 		if self.wii == None: return
 		
@@ -195,6 +186,11 @@ class ConfigDialog(QtGui.QDialog):
 		else:
 			conf.saveValue("autoactivate","No")
 		
+		if self.ui.check_autocalibration.isChecked():
+			conf.saveValue("autocalibration","Yes")
+		else:
+			conf.saveValue("autocalibration","No")
+		
 		mlist = []
 		for i in range(0,self.ui.macListWidget.count()):
 			item = self.ui.macListWidget.item(i)
@@ -209,9 +205,6 @@ class ConfigDialog(QtGui.QDialog):
 			mac = item.text()
 			conf.saveValue("selectedmac",mac)
 			break
-		
-		delayloop = self.ui.slider_delayloop.value()
-		conf.saveValue("delayloop",str(delayloop))
 		
 		self.close()
 	
