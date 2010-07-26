@@ -37,8 +37,8 @@ def calculateArea(points):
 
 class Wiimote:
 	CALIBRATED, NONCALIBRATED = range(2)
-	MAX_X = 1024
-	MAX_Y = 768
+	MAX_X = cwiid.IR_X_MAX
+	MAX_Y = cwiid.IR_Y_MAX
 	
 	def __init__(self):
 		self.wii = None
