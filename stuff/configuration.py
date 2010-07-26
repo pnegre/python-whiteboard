@@ -27,6 +27,7 @@ class Configuration:
 				"autoconnect": "No",
 				"autoactivate": "No",
 				"autocalibration": "No",
+				"sensitivity": "2",
 			}
 			
 			version = self.getValueStr("version")

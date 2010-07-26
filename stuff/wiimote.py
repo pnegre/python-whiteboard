@@ -4,6 +4,8 @@
 from numpy import matrix, linalg
 import cwiid, bluetooth
 
+from configuration import Configuration
+
 
 
 def calculateArea(points):
@@ -45,6 +47,7 @@ class Wiimote:
 		self.calibrationPoints = []
 		self.screenPoints = []
 		self.utilization = 0.0
+		self.maxIrSensitivity = int(Configuration().getValueStr("sensitivity"))
 	
 	
 	def create_wiimote_callback(self,func):
@@ -55,6 +58,9 @@ class Wiimote:
 					if m[0] == cwiid.MESG_IR:
 						data = m[1][0]
 						if data:
+							if data['size'] > self.maxIrSensitivity:
+								continue
+							
 							p = list(data['pos'])
 							if self.state == Wiimote.NONCALIBRATED:
 								func(p)
