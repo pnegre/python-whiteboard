@@ -25,8 +25,8 @@ class MainWindow(QtGui.QMainWindow):
 	
 	def __init__(self, parent=None):
 		QtGui.QWidget.__init__(self,parent)
-		self.ui = uic.loadUi("mainwindow.ui",self)	
-		self.setWindowTitle("Linux-whiteboard")
+		self.ui = uic.loadUi("mainwindow.ui",self)
+		self.setWindowTitle("python-whiteboard")
 		self.center()
 		
 		self.connected = False
@@ -120,7 +120,7 @@ class MainWindow(QtGui.QMainWindow):
 			self.statusBar().showMessage("")
 			return
 		
-		self.statusBar().showMessage("Connected to " + self.wii.addr)
+		self.statusBar().showMessage(self.tr("Connected to ") + self.wii.addr)
 		
 		if self.calibrated == False:
 			self.ui.pushButtonConnect.setEnabled(1)
@@ -154,9 +154,9 @@ class MainWindow(QtGui.QMainWindow):
 			self.connected = False
 			self.calibrated = False
 			self.active = False
-			self.pushButtonConnect.setText("Connect")
+			self.pushButtonConnect.setText(self.tr("Connect"))
 			self.updateButtons()
-			self.ui.label_utilization.setText("Utilization: 0%")
+			self.ui.label_utilization.setText(self.tr("Utilization: 0%"))
 			self.clearScreenGraphic()
 			self.batteryLevel.setValue(0)
 			return
@@ -184,7 +184,7 @@ class MainWindow(QtGui.QMainWindow):
 				self.active = False
 				self.updateButtons()
 				self.batteryLevel.setValue(self.wii.battery()*100)
-				self.pushButtonConnect.setText("Disconnect")
+				self.pushButtonConnect.setText(self.tr("Disconnect"))
 				
 				# Start calibration if configuration says so
 				conf = Configuration()
@@ -194,13 +194,13 @@ class MainWindow(QtGui.QMainWindow):
 				return
 				
 		msgbox = QtGui.QMessageBox( self )
-		msgbox.setText( "Error during connection" )
+		msgbox.setText( self.tr("Error during connection") )
 		msgbox.setModal( True )
 		ret = msgbox.exec_()
 
 	# doscreen: if doscreen is true, calibrate by manual pointing
 	def calibrateWii(self,doScreen=True):
-		self.ui.label_utilization.setText("Utilization: 0%")
+		self.ui.label_utilization.setText(self.tr("Utilization: 0%"))
 		self.clearScreenGraphic()
 		
 		self.calibrated = False
@@ -217,7 +217,7 @@ class MainWindow(QtGui.QMainWindow):
 			self.active = False
 			self.drawScreenGraphic()
 			self.updateButtons()
-			self.ui.label_utilization.setText("Utilization: %d%%" % (100.0*self.wii.utilization))
+			self.ui.label_utilization.setText(self.tr("Utilization: ") + "%d%%" % (100.0*self.wii.utilization))
 			self.saveCalibrationPars(self.wii)
 			
 			# Auto-activate wiimote device if configuration says so
@@ -228,7 +228,7 @@ class MainWindow(QtGui.QMainWindow):
 		else:
 			self.updateButtons()
 			msgbox = QtGui.QMessageBox( self )
-			msgbox.setText( "Error during Calibration" )
+			msgbox.setText( self.tr("Error during Calibration") )
 			msgbox.setModal( True )
 			ret = msgbox.exec_()
 
@@ -276,7 +276,7 @@ class MainWindow(QtGui.QMainWindow):
 			# Deactivate
 			self.cursor.finish()
 			self.active = False
-			self.pushButtonActivate.setText("Activate")
+			self.pushButtonActivate.setText(self.tr("Activate"))
 			self.updateButtons()
 		else:
 			# Activate
@@ -286,7 +286,7 @@ class MainWindow(QtGui.QMainWindow):
 			self.cursor.setZones(zones)
 			self.cursor.runThread()
 			self.active = True
-			self.pushButtonActivate.setText("Deactivate")
+			self.pushButtonActivate.setText(self.tr("Deactivate"))
 			self.updateButtons()
 	
 	
@@ -301,8 +301,8 @@ class MainWindow(QtGui.QMainWindow):
 			e.accept()
 		else:
 			msgbox = QtGui.QMessageBox(self)
-			msgbox.setText("The application will remain active (systray)." + "\n" + \
-				"To quit, use file->quit menu" )
+			msgbox.setText(self.tr("The application will remain active (systray).") + "\n" + \
+				self.tr("To quit, use file->quit menu") )
 			msgbox.setModal( True )
 			ret = msgbox.exec_()
 			self.showHide()
@@ -346,6 +346,9 @@ class SysTrayIcon(object):
 
 def main():
 	app = QtGui.QApplication(sys.argv)
+	#trl = qt.QTranslator()
+	#print trl.load("../prova.qm")
+	#app.installTranslator(trl)
 	mainWin = MainWindow()
 	stray = SysTrayIcon("icon.xpm", mainWin)
 	stray.show()
