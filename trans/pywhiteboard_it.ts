@@ -94,7 +94,7 @@
     <message>
         <location filename="configuration.ui" line="99"/>
         <source>Remove device</source>
-        <translation type="unfinished">Rimuvi periferica</translation>
+        <translation type="unfinished">Rimuovi periferica</translation>
     </message>
     <message>
         <location filename="configuration.ui" line="106"/>
@@ -109,27 +109,27 @@
     <message>
         <location filename="configuration.ui" line="128"/>
         <source>Toggles</source>
-        <translation type="unfinished">Opzioni aree</translation>
+        <translation type="unfinished">Opzioni di area</translation>
     </message>
     <message>
         <location filename="configuration.ui" line="145"/>
         <source>Area 1</source>
-        <translation type="unfinished">Zona 1</translation>
+        <translation type="unfinished">Area 1</translation>
     </message>
     <message>
         <location filename="configuration.ui" line="152"/>
         <source>Area 2</source>
-        <translation type="unfinished">Zona 2</translation>
+        <translation type="unfinished">Area 2</translation>
     </message>
     <message>
         <location filename="configuration.ui" line="159"/>
         <source>Area 3</source>
-        <translation type="unfinished">Zona 3</translation>
+        <translation type="unfinished">Area 3</translation>
     </message>
     <message>
         <location filename="configuration.ui" line="166"/>
         <source>Area 4</source>
-        <translation type="unfinished">Zona 4</translation>
+        <translation type="unfinished">Area 4</translation>
     </message>
     <message>
         <location filename="configuration.ui" line="250"/>
