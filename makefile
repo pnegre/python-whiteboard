@@ -20,4 +20,4 @@ install:
 	cp trans/*.qm $(DESTDIR)/usr/share/qt4/translations/
 
 deb:
-	fakeroot dpkg-buildpackage
+	fakeroot dpkg-buildpackage -us -uc

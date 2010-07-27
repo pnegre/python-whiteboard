@@ -6,7 +6,7 @@ import PyQt4.Qt as qt
 from cursor import FakeCursor
 
 
-CONFIG_VERSION = 3
+CONFIG_VERSION = 4
 
 
 class Configuration:
@@ -19,11 +19,11 @@ class Configuration:
 			
 			self.defaults = {
 				"fullscreen": "Yes",
-				"selectedmac": "All Devices",
-				"zone1": "Left Click",
-				"zone2": "Left Click",
-				"zone3": "Left Click",
-				"zone4": "Left Click",
+				"selectedmac": '*',
+				"zone1": "2",
+				"zone2": "2",
+				"zone3": "2",
+				"zone4": "2",
 				"autoconnect": "No",
 				"autoactivate": "No",
 				"autocalibration": "No",
@@ -116,7 +116,7 @@ class ConfigDialog(QtGui.QDialog):
 		self.connect(self.ui.button_remDev,
 			QtCore.SIGNAL("clicked()"), self.removeDevice)
 		
-		item = QtGui.QListWidgetItem("All Devices")
+		item = QtGui.QListWidgetItem(self.tr("All Devices"))
 		self.ui.macListWidget.addItem(item)
 		self.ui.macListWidget.setItemSelected(item,True)
 		selectedmac = conf.getValueStr("selectedmac")
@@ -139,13 +139,13 @@ class ConfigDialog(QtGui.QDialog):
 		self.screenAreas.show()
 		
 		self.connect(self.ui.combo1,
-			QtCore.SIGNAL("currentIndexChanged(const QString)"), self.changeCombo1)
+			QtCore.SIGNAL("currentIndexChanged(int)"), self.changeCombo1)
 		self.connect(self.ui.combo2,
-			QtCore.SIGNAL("currentIndexChanged(const QString)"), self.changeCombo2)
+			QtCore.SIGNAL("currentIndexChanged(int)"), self.changeCombo2)
 		self.connect(self.ui.combo3,
-			QtCore.SIGNAL("currentIndexChanged(const QString)"), self.changeCombo3)
+			QtCore.SIGNAL("currentIndexChanged(int)"), self.changeCombo3)
 		self.connect(self.ui.combo4,
-			QtCore.SIGNAL("currentIndexChanged(const QString)"), self.changeCombo4)
+			QtCore.SIGNAL("currentIndexChanged(int)"), self.changeCombo4)
 		self.updateCombos()
 		
 		self.ui.slider_ir.setMinimum(2)
@@ -204,18 +204,20 @@ class ConfigDialog(QtGui.QDialog):
 			conf.saveValue("autocalibration","No")
 		
 		mlist = []
-		for i in range(0,self.ui.macListWidget.count()):
+		for i in range(1,self.ui.macListWidget.count()):
 			item = self.ui.macListWidget.item(i)
 			t = item.text()
-			if t != "All Devices":
-				mlist.append(t)
+			mlist.append(t)
 		
 		conf.writeArray("macs",mlist)
 		
 		slist = self.ui.macListWidget.selectedItems()
 		for item in slist:
 			mac = item.text()
-			conf.saveValue("selectedmac",mac)
+			if ':' in mac:
+				conf.saveValue("selectedmac",mac)
+			else:
+				conf.saveValue("selectedmac",'*')
 			break
 		
 		self.close()
@@ -224,26 +226,25 @@ class ConfigDialog(QtGui.QDialog):
 	def updateCombos(self):
 		conf = Configuration()
 		for combo,zone in [(self.ui.combo1,"zone1"), (self.ui.combo2,"zone2"), (self.ui.combo3,"zone3"), (self.ui.combo4,"zone4")]:
-			text = conf.getValueStr(zone)
-			ind = combo.findText(text,QtCore.Qt.MatchContains)
+			ind = int(conf.getValueStr(zone))
 			combo.setCurrentIndex(ind)
 
 
-	def changeCombo1(self,text):
+	def changeCombo1(self,i):
 		conf = Configuration()
-		conf.saveValue("zone1",text)
+		conf.saveValue("zone1",str(i))
 	
-	def changeCombo2(self,text):
+	def changeCombo2(self,i):
 		conf = Configuration()
-		conf.saveValue("zone2",text)
+		conf.saveValue("zone2",str(i))
 	
-	def changeCombo3(self,text):
+	def changeCombo3(self,i):
 		conf = Configuration()
-		conf.saveValue("zone3",text)
+		conf.saveValue("zone3",str(i))
 	
-	def changeCombo4(self,text):
+	def changeCombo4(self,i):
 		conf = Configuration()
-		conf.saveValue("zone4",text)
+		conf.saveValue("zone4",str(i))
 	
 	
 	

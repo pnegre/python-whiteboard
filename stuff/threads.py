@@ -13,7 +13,7 @@ class ConnectThread(qt.QThread):
 		self.wii = Wiimote()
 		conf = Configuration()
 		mac = str(conf.getValueStr("selectedmac"))
-		if mac == "All Devices":
+		if mac == '*':
 			mac = ''
 		
 		if not self.wii.bind(mac):

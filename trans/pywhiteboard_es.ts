@@ -1,15 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1">
 <context>
+    <name>CalibrateDialog</name>
+    <message>
+        <location filename="calibration.py" line="292"/>
+        <source>Push UP/DOWN to alter the crosses&apos; position</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CalibrateDialog2</name>
+    <message>
+        <location filename="calibration.py" line="142"/>
+        <source>TOP-LEFT</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="calibration.py" line="143"/>
+        <source>TOP-RIGHT</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="calibration.py" line="144"/>
+        <source>BOTTOM-RIGHT</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="calibration.py" line="145"/>
+        <source>BOTTOM-LEFT</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ConfigDialog</name>
+    <message>
+        <location filename="configuration.py" line="119"/>
+        <source>All Devices</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Dialog</name>
     <message>
         <location filename="calibration2.ui" line="32"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="calibration2.ui" line="48"/>
-        <source>abc</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

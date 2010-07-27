@@ -138,7 +138,11 @@ class CalibrateDialog2(QtGui.QDialog):
 		]
 		
 		self.wiiPoints = []
-		self.textMessages = [ "TOP-LEFT", "TOP-RIGHT", "BOTTOM-RIGHT", "BOTTOM-LEFT" ]
+		self.textMessages = [ 
+			self.tr("TOP-LEFT"), 
+			self.tr("TOP-RIGHT"), 
+			self.tr("BOTTOM-RIGHT"), 
+			self.tr("BOTTOM-LEFT") ]
 		
 		self.ui.label.setText(self.textMessages.pop(0))
 		
@@ -285,7 +289,7 @@ class CalibrateDialog(QtGui.QDialog):
 		
 		self.smallScreen = SmallScreen(self.wdt,self.hgt,self.scene)
 		self.sandclock = SandClock(self.scene,*self.marks[0][1])
-		txt = self.scene.addSimpleText("Push UP/DOWN to alter the crosses' position")
+		txt = self.scene.addSimpleText(self.tr("Push UP/DOWN to alter the crosses' position"))
 		txt.setPos(self.wdt/2 - txt.boundingRect().width()/2, 40)
 		self.mutex.unlock()
 			
