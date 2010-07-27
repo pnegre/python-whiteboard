@@ -9,7 +9,7 @@ from calibration import doCalibration
 from configuration import Configuration, ConfigDialog
 
 
-import sys, time
+import sys, time, locale
 from PyQt4 import QtCore, QtGui, uic
 import PyQt4.Qt as qt
 
@@ -342,13 +342,27 @@ class SysTrayIcon(object):
 
 
 
+def getTranslator():
+	trl = qt.QTranslator()
+	loc = locale.getdefaultlocale()[0]
+	if loc:
+		code = loc.lower()
+		if len(code) > 1:
+			code = code[0:2]
+			#fname = "../trans/pywhiteboard_" + code + ".qm"
+			fname = "/usr/share/qt4/translations/pywhiteboard_" + code + ".qm"
+			print fname
+			print trl.load(fname)
+	return trl
+
+
+
 
 
 def main():
 	app = QtGui.QApplication(sys.argv)
-	#trl = qt.QTranslator()
-	#print trl.load("../prova.qm")
-	#app.installTranslator(trl)
+	t = getTranslator()
+	app.installTranslator(t)
 	mainWin = MainWindow()
 	stray = SysTrayIcon("icon.xpm", mainWin)
 	stray.show()

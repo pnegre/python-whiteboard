@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1">
+<!DOCTYPE TS>
+<TS version="2.0" language="ca_ES">
 <context>
     <name>Dialog</name>
     <message>
@@ -142,32 +143,32 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="pywhiteboard.py" line="157"/>
         <source>Connect</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Connecta</translation>
     </message>
     <message>
         <location filename="pywhiteboard.py" line="279"/>
         <source>Activate</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Activa</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="71"/>
         <source>Calibrate</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Calibra</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="97"/>
         <source>Wiimote Battery level:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nivell de la bateria:</translation>
     </message>
     <message>
         <location filename="pywhiteboard.py" line="203"/>
         <source>Utilization: 0%</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Utilització: 0%</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="169"/>
         <source>Load Calibration</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Carrega la calibració</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="182"/>
