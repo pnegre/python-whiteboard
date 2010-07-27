@@ -1,3 +1,9 @@
+python-whiteboard (0.8) unstable; urgency=low
+
+  * Small fixes
+
+ -- pnegre <pere.negre@gmail.com>  Tue, 27 Jul 2010 23:39:52 +0200
+
 python-whiteboard (0.7) unstable; urgency=low
 
   * Big improvements in respect to cpu usage
