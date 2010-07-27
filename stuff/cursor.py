@@ -159,11 +159,13 @@ class FakeCursor:
 					self.filt = None
 					self.clickType = FakeCursor.LEFT_BUTTON
 				if self.mustFinish:
+					self.mutex.unlock()
 					break
 				self.mutex.unlock()
 		
 		from threads import CreateThreadClass
 		
+		self.mustFinish = False
 		self.wii.setCallback(self.makeCallback())
 		self.wii.enable()
 		thread = CreateThreadClass(runFunc)
