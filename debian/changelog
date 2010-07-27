@@ -1,3 +1,12 @@
+python-whiteboard (0.7) unstable; urgency=low
+
+  * Big improvements in respect to cpu usage
+  * Switched from polling interface to a callback interface for the wiimote messages
+  * Changes in configuration screen
+  * Added internationalization support. Italian translation included
+
+ -- pnegre <pere.negre@gmail.com>  Tue, 27 Jul 2010 22:57:43 +0200
+
 python-whiteboard (0.6) unstable; urgency=low
 
   * Removed toggle configuration from main window

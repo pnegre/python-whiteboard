@@ -42,28 +42,28 @@
        <string>General options</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_2">
-       <item row="0" column="0">
+       <item row="0" column="0" colspan="3">
         <widget class="QCheckBox" name="check_autoconnect">
          <property name="text">
           <string>Auto connect</string>
          </property>
         </widget>
        </item>
-       <item row="2" column="0" colspan="2">
+       <item row="2" column="0" colspan="3">
         <widget class="QCheckBox" name="check_autoactivate">
          <property name="text">
           <string>Activate cursor after calibration</string>
          </property>
         </widget>
        </item>
-       <item row="3" column="0">
+       <item row="3" column="0" colspan="3">
         <widget class="QCheckBox" name="check_fullscreen">
          <property name="text">
           <string>Fullscreen Calibration</string>
          </property>
         </widget>
        </item>
-       <item row="6" column="0">
+       <item row="6" column="0" colspan="3">
         <widget class="QLabel" name="label">
          <property name="text">
           <string>Select allowed devices:</string>
@@ -100,7 +100,7 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="0" colspan="2">
+       <item row="1" column="0" colspan="3">
         <widget class="QCheckBox" name="check_autocalibration">
          <property name="text">
           <string>Do calibration after connection</string>
@@ -114,7 +114,7 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="0">
+       <item row="4" column="0" colspan="3">
         <widget class="QLabel" name="label_2">
          <property name="text">
           <string>IR Sensitivity:</string>
