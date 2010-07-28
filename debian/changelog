@@ -1,3 +1,9 @@
+python-whiteboard (0.8.3+nmu1) unstable; urgency=low
+
+  * Corrected italian translation issues
+
+ -- pnegre <pnegre@andromeda.lan>  Wed, 28 Jul 2010 23:08:13 +0200
+
 python-whiteboard (0.8.3) unstable; urgency=low
 
   * Corrected some catalan translation issues 
