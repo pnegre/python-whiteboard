@@ -6,7 +6,7 @@
     <message>
         <location filename="calibration.py" line="292"/>
         <source>Push UP/DOWN to alter the crosses&apos; position</source>
-        <translation type="unfinished">Pitja les tecles AMUNT/AVALL del cursor per alterar la posició de les creus</translation>
+        <translation type="unfinished">Pitja les tecles del cursor AMUNT/AVALL per moure les creus</translation>
     </message>
 </context>
 <context>
@@ -48,7 +48,7 @@
         <translation>Diàleg</translation>
     </message>
     <message>
-        <location filename="calibration2.ui" line="1"/>
+        <location filename="calibration2.ui" line="4"/>
         <source>abc</source>
         <translation type="obsolete">abc</translation>
     </message>
@@ -110,7 +110,7 @@
     <message>
         <location filename="configuration.ui" line="128"/>
         <source>Toggles</source>
-        <translation></translation>
+        <translation>Commutadors</translation>
     </message>
     <message>
         <location filename="configuration.ui" line="145"/>
@@ -242,7 +242,7 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Linux Electronic Whiteboard amb Wiimote&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aquest programa us permet coonstruir i usar una pissarra electrònica usant gnu/linux, un wiimote i un llapis d&apos;infrarojos. &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aquest programa us permet construir i usar una pissarra electrònica usant gnu/linux, un wiimote i un llapis d&apos;infrarojos. &lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Si teniu git instal·lat al vostre sistema, podeu obtenir la darrera versió (en desenvolupament), teclejant: $ git clone git://github.com/pnegre/python-whiteboard.git &lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
@@ -256,7 +256,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Addicionalment, podeu restringir la connexió bluetooth als dispositius autoritzats. Per afegir un dispositiu, primer feis la connexió i després premeu el botó &amp;quot;afegeix dispositiu&amp;quot; al diàleg de configuració.&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Tant la llista d&apos;adreces MAC com el dispositiu selccionat seran desats al fitxer de configuració (usant els qsettings de qt).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Tant la llista d&apos;adreces MAC com el dispositiu seleccionat seran desats al fitxer de configuració (usant els qsettings de qt).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="218"/>
