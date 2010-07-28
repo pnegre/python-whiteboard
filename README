@@ -12,6 +12,25 @@ To download packaged versions of the program, point your browser to http://githu
 It's recommended to disable the desktop effects, to avoid program crashes and malfunctions.
 
 
+Compilation and installation
+----------------------------
+
+Use make:
+
+$ make all
+# make install
+
+If you want to create a .deb package:
+
+$ make deb
+
+Required packages:
+
+- To run make: libqt4-dev qt4-dev-tools python-qt4-dev
+- To make the deb package: build-essential fakeroot dpkg-dev
+
+
+
 Configuration
 -------------
 
