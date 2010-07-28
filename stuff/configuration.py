@@ -35,6 +35,9 @@ class Configuration:
 				self.settings.clear()
 				self.saveValue("version",str(CONFIG_VERSION))
 			
+			self.activeGroup = None
+			self.setGroup("default")
+			
 		
 		def saveValue(self,name,value):
 			self.settings.setValue(name,QtCore.QVariant(value))
@@ -64,7 +67,13 @@ class Configuration:
 				result.append(self.settings.value("item").toString())
 			self.settings.endArray()
 			return result
-
+		
+		
+		def setGroup(self,name):
+			if self.activeGroup:
+				self.settings.endGroup(self.activeGroup)
+			self.activeGroup = name
+			self.settings.beginGroup(name)
 
 
 	# storage for the instance reference
