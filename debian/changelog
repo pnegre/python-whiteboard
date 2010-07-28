@@ -1,3 +1,9 @@
+python-whiteboard (0.8.1) unstable; urgency=low
+
+  * Added catalan translation
+
+ -- pnegre <pere.negre@gmail.com>  Wed, 28 Jul 2010 17:48:38 +0200
+
 python-whiteboard (0.8) unstable; urgency=low
 
   * Small fixes
