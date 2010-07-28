@@ -37,7 +37,7 @@
      <rect>
       <x>10</x>
       <y>20</y>
-      <width>101</width>
+      <width>91</width>
       <height>41</height>
      </rect>
     </property>
@@ -49,7 +49,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>80</y>
+      <y>70</y>
       <width>211</width>
       <height>41</height>
      </rect>
@@ -75,7 +75,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>160</y>
+      <y>200</y>
       <width>211</width>
       <height>23</height>
      </rect>
@@ -88,7 +88,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>130</y>
+      <y>180</y>
       <width>211</width>
       <height>19</height>
      </rect>
@@ -101,9 +101,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>220</y>
+      <y>260</y>
       <width>211</width>
-      <height>141</height>
+      <height>91</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -134,7 +134,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>190</y>
+      <y>240</y>
       <width>211</width>
       <height>19</height>
      </rect>
@@ -201,6 +201,34 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Both the mac list and the selected device will be saved in the configuration file (using qt's qsettings).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>120</y>
+      <width>201</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Profile:</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>140</y>
+      <width>211</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>Default</string>
+     </property>
+    </item>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>

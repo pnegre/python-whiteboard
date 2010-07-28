@@ -5,7 +5,7 @@
     <message>
         <location filename="calibration.py" line="292"/>
         <source>Push UP/DOWN to alter the crosses&apos; position</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"> Schiaccia Su/Giù per cambiare la posizione delle croci</translation>
     </message>
 </context>
 <context>
@@ -13,17 +13,17 @@
     <message>
         <location filename="calibration.py" line="142"/>
         <source>TOP-LEFT</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">IN-ALTO-A-SINISTRA</translation>
     </message>
     <message>
         <location filename="calibration.py" line="143"/>
         <source>TOP-RIGHT</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">IN-ALTO-A-DESTRA</translation>
     </message>
     <message>
         <location filename="calibration.py" line="144"/>
         <source>BOTTOM-RIGHT</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">IN-BASSO-A-DESTRA</translation>
     </message>
     <message>
         <location filename="calibration.py" line="145"/>
@@ -34,7 +34,7 @@
 <context>
     <name>ConfigDialog</name>
     <message>
-        <location filename="configuration.py" line="119"/>
+        <location filename="configuration.py" line="128"/>
         <source>All Devices</source>
         <translation type="unfinished">Tutte le periferiche</translation>
     </message>
@@ -44,7 +44,7 @@
     <message>
         <location filename="calibration2.ui" line="32"/>
         <source>Dialog</source>
-        <translation type="unfinished">Dialogo</translation>
+        <translation type="unfinished">Finestra</translation>
     </message>
     <message>
         <location filename="calibration2.ui" line="48"/>
@@ -104,7 +104,7 @@
     <message>
         <location filename="configuration.ui" line="120"/>
         <source>IR Sensitivity:</source>
-        <translation type="unfinished">Sensibilita&apos; all&apos;infrarosso</translation>
+        <translation type="unfinished">Sensibilità all&apos;infrarosso</translation>
     </message>
     <message>
         <location filename="configuration.ui" line="128"/>
@@ -144,12 +144,12 @@
     <message>
         <location filename="configuration.ui" line="260"/>
         <source>Right Click</source>
-        <translation type="unfinished">click destro</translation>
+        <translation type="unfinished">Click destro</translation>
     </message>
     <message>
         <location filename="configuration.ui" line="265"/>
         <source>Middle Click</source>
-        <translation type="unfinished">click centrale</translation>
+        <translation type="unfinished">Click centrale</translation>
     </message>
     <message>
         <location filename="configuration.ui" line="294"/>
@@ -200,7 +200,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="mainwindow.ui" line="97"/>
         <source>Wiimote Battery level:</source>
-        <translation type="unfinished">Livello pile wiimote</translation>
+        <translation type="unfinished">Carica della batteria del wiimote</translation>
     </message>
     <message>
         <location filename="pywhiteboard.py" line="203"/>
@@ -241,11 +241,11 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Lavagna Elettronica col Wiimote su Linux&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Questo programma ti permette di costruire e utilizzare una lavagna elettronica usando il sistema operativo gnu/linux un wiimote e una penna a infrarossi. &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Questo programma ti permette di costruire e utilizzare una lavagna elettronica usando il sistema operativo GNU/Linux un wiimote e una penna a infrarossi. &lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Se hai installalto il programma git sul tuo computer puoi ottenere l&apos;ultima versione in via di sviluppo digidando: $ git clone git://github.com/pnegre/python-whiteboard.git &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Se hai installalto il programma git sul tuo computer puoi ottenere l&apos;ultima versione in via di sviluppo digidando: &lt;br&gt; $ git clone git://github.com/pnegre/python-whiteboard.git &lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Per scaricare il pacchetto binario del programma visita http://github.com/pnegre/python-whiteboard/downloads &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Per scaricare il pacchetto binario del programma visita &lt;br&gt;  http://github.com/pnegre/python-whiteboard/downloads &lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;E&apos; raccomandato disabilitare gli effetti del desktop in caso di crash e malfunzionamenti.&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
@@ -258,27 +258,27 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;La lista degli indirizzi mac e le periferiche selezionate verranno salvate in un file di configurazione (usando qsettings).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="218"/>
+        <location filename="mainwindow.ui" line="246"/>
         <source>File</source>
         <translation type="unfinished">File</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="244"/>
+        <location filename="mainwindow.ui" line="272"/>
         <source>Help</source>
         <translation type="unfinished">Aiuto</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="234"/>
+        <location filename="mainwindow.ui" line="262"/>
         <source>Exit</source>
         <translation type="unfinished">Esci</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="239"/>
+        <location filename="mainwindow.ui" line="267"/>
         <source>Quit</source>
         <translation type="unfinished">Esci</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="249"/>
+        <location filename="mainwindow.ui" line="277"/>
         <source>Configuration</source>
         <translation type="unfinished">Configurazione</translation>
     </message>
@@ -315,12 +315,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="pywhiteboard.py" line="304"/>
         <source>The application will remain active (systray).</source>
-        <translation type="unfinished">L&apos;applicazione rimarra&apos; attiva (area di notifica).</translation>
+        <translation type="unfinished">L&apos;applicazione rimarrà attiva (area di notifica).</translation>
     </message>
     <message>
         <location filename="pywhiteboard.py" line="304"/>
         <source>To quit, use file-&gt;quit menu</source>
         <translation type="unfinished">Per uscire,usa il menu file-&gt;eci</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="215"/>
+        <source>Profile:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="229"/>
+        <source>Default</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

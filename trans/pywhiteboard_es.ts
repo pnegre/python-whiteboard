@@ -34,7 +34,7 @@
 <context>
     <name>ConfigDialog</name>
     <message>
-        <location filename="configuration.py" line="119"/>
+        <location filename="configuration.py" line="128"/>
         <source>All Devices</source>
         <translation type="unfinished"></translation>
     </message>
@@ -229,27 +229,27 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="218"/>
+        <location filename="mainwindow.ui" line="246"/>
         <source>File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="244"/>
+        <location filename="mainwindow.ui" line="272"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="234"/>
+        <location filename="mainwindow.ui" line="262"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="239"/>
+        <location filename="mainwindow.ui" line="267"/>
         <source>Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="249"/>
+        <location filename="mainwindow.ui" line="277"/>
         <source>Configuration</source>
         <translation type="unfinished"></translation>
     </message>
@@ -291,6 +291,16 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="pywhiteboard.py" line="304"/>
         <source>To quit, use file-&gt;quit menu</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="215"/>
+        <source>Profile:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="229"/>
+        <source>Default</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
