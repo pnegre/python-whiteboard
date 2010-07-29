@@ -3,8 +3,6 @@
 from PyQt4 import QtCore, QtGui, uic
 import PyQt4.Qt as qt
 
-from cursor import FakeCursor
-
 
 CONFIG_VERSION = 4
 
@@ -102,7 +100,7 @@ class Configuration:
 class ConfigDialog(QtGui.QDialog):
 
 	def __init__(self, parent, wii=None):
-		QtGui.QWidget.__init__(self,parent)
+		super(ConfigDialog, self).__init__(parent)
 		self.ui = uic.loadUi("configuration.ui",self)
 		
 		self.wii = wii

@@ -24,7 +24,7 @@ class PBarDlg(QtGui.QDialog):
 class MainWindow(QtGui.QMainWindow):
 	
 	def __init__(self, parent=None):
-		QtGui.QWidget.__init__(self,parent)
+		super(MainWindow, self).__init__(parent)
 		self.ui = uic.loadUi("mainwindow.ui",self)
 		self.setWindowTitle("python-whiteboard")
 		self.center()
