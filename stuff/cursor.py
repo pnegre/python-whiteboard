@@ -69,18 +69,21 @@ class FakeCursor:
 	
 	
 	def setZone(self,zone,clickType):
+		print zone,clickType
 		self.zones[zone] = clickType
 	
 	def setZones(self,actions):
 		for z,a in zip((FakeCursor.ZONE1,FakeCursor.ZONE2,FakeCursor.ZONE3,FakeCursor.ZONE4),actions):
-			if a == 2:
-				self.setZone(z,FakeCursor.RIGHT_BUTTON)
-			elif a == 0:
-				self.setZone(z,FakeCursor.LEFT_BUTTON)
-			elif a == 3:
-				self.setZone(z,FakeCursor.MIDDLE_BUTTON)
-			elif a == 1:
-				self.setZone(z,FakeCursor.ONLY_MOVE)
+			if a == '2':
+				self.zones[z] = FakeCursor.RIGHT_BUTTON
+			elif a == '0':
+				self.zones[z] = FakeCursor.LEFT_BUTTON
+			elif a == '3':
+				self.zones[z] = FakeCursor.MIDDLE_BUTTON
+			elif a == '1':
+				self.zones[z] = FakeCursor.ONLY_MOVE
+			else:
+				self.zones[z] = FakeCursor.LEFT_BUTTON
 	
 	
 	def move(self,pos):
