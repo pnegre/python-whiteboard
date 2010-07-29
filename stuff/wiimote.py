@@ -61,6 +61,8 @@ class Wiimote:
 							if data['size'] > self.maxIrSensitivity:
 								continue
 							func(self.getPos(data['pos']))
+					elif m[0] == cwiid.MESG_ERROR:
+						self.error = True
 		
 		return wiimote_callback
 	
@@ -79,11 +81,13 @@ class Wiimote:
 			self.addr = addr
 			self.wii.rpt_mode = cwiid.RPT_BTN | cwiid.RPT_IR
 			self.wii.led = cwiid.LED1_ON
+			self.error = False
 			return True
 		except:
 			return False
 	
 	def enable(self):
+		self.error = False
 		self.maxIrSensitivity = int(Configuration().getValueStr("sensitivity"))
 		self.wii.enable(cwiid.FLAG_MESG_IFC)
 	
@@ -95,6 +99,14 @@ class Wiimote:
 	
 	def close(self):
 		self.wii.close()
+	
+	def checkStatus(self):
+		if self.wii == None or self.error == True: return False
+		try:
+			self.wii.request_status()
+			return True
+		except:
+			return False
 	
 	def battery(self):
 		return float(self.wii.state['battery']) / float(cwiid.BATTERY_MAX)

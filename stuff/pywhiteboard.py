@@ -69,6 +69,35 @@ class MainWindow(QtGui.QMainWindow):
 			self.timer.setInterval(1000)
 			self.connect(self.timer, QtCore.SIGNAL("timeout()"), self.autoConnect)
 			self.timer.start()
+		
+		self.timer2 = qt.QTimer(self)
+		self.timer2.setInterval(2000)
+		self.connect(self.timer2, QtCore.SIGNAL("timeout()"), self.checkWii)
+		self.timer2.start()
+	
+	
+	def checkWii(self):
+		if self.wii == None: return
+		if self.connected == False: return
+		if self.wii.checkStatus() == False:
+			# Deactivate cursor
+			self.deactivateWii()
+			# Deactivate device
+			self.connected = False
+			self.calibrated = False
+			self.active = False
+			self.pushButtonConnect.setText(self.tr("Connect"))
+			self.updateButtons()
+			self.ui.label_utilization.setText(self.tr("Utilization: 0%"))
+			self.clearScreenGraphic()
+			self.batteryLevel.setValue(0)
+			
+			msgbox = QtGui.QMessageBox( self )
+			msgbox.setText( self.tr("Wii device disconnected") )
+			msgbox.setModal( True )
+			ret = msgbox.exec_()
+			return
+		self.batteryLevel.setValue(self.wii.battery()*100)
 	
 	
 	def autoConnect(self):
@@ -271,13 +300,18 @@ class MainWindow(QtGui.QMainWindow):
 			pass
 		
 	
-	def activateWii(self):
+	def deactivateWii(self):
 		if self.active:
-			# Deactivate
 			self.cursor.finish()
 			self.active = False
 			self.pushButtonActivate.setText(self.tr("Activate"))
 			self.updateButtons()
+	
+	
+	def activateWii(self):
+		if self.active:
+			# Deactivate
+			self.deactivateWii()
 		else:
 			# Activate
 			self.cursor = FakeCursor(self.wii)
