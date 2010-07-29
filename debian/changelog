@@ -1,3 +1,9 @@
+python-whiteboard (0.8.5) unstable; urgency=low
+
+  * Fixed toggles error 
+
+ -- pnegre <pere.negre@gmail.com>  Thu, 29 Jul 2010 22:39:26 +0200
+
 python-whiteboard (0.8.4) unstable; urgency=low
 
   * Corrected italian translation issues
