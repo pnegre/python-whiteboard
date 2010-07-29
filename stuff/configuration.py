@@ -146,13 +146,13 @@ class ConfigDialog(QtGui.QDialog):
 		self.screenAreas.show()
 		
 		self.connect(self.ui.combo1,
-			QtCore.SIGNAL("currentIndexChanged(int)"), self.changeCombo1)
+			QtCore.SIGNAL("currentIndexChanged(int)"), self.changeCombo)
 		self.connect(self.ui.combo2,
-			QtCore.SIGNAL("currentIndexChanged(int)"), self.changeCombo2)
+			QtCore.SIGNAL("currentIndexChanged(int)"), self.changeCombo)
 		self.connect(self.ui.combo3,
-			QtCore.SIGNAL("currentIndexChanged(int)"), self.changeCombo3)
+			QtCore.SIGNAL("currentIndexChanged(int)"), self.changeCombo)
 		self.connect(self.ui.combo4,
-			QtCore.SIGNAL("currentIndexChanged(int)"), self.changeCombo4)
+			QtCore.SIGNAL("currentIndexChanged(int)"), self.changeCombo)
 		self.updateCombos()
 		
 		self.ui.slider_ir.setMinimum(2)
@@ -236,23 +236,17 @@ class ConfigDialog(QtGui.QDialog):
 			ind = int(conf.getValueStr(zone))
 			combo.setCurrentIndex(ind)
 
-
-	def changeCombo1(self,i):
+	def changeCombo(self,i):
+		sender = self.sender()
 		conf = Configuration()
-		conf.saveValue("zone1",str(i))
-	
-	def changeCombo2(self,i):
-		conf = Configuration()
-		conf.saveValue("zone2",str(i))
-	
-	def changeCombo3(self,i):
-		conf = Configuration()
-		conf.saveValue("zone3",str(i))
-	
-	def changeCombo4(self,i):
-		conf = Configuration()
-		conf.saveValue("zone4",str(i))
-	
+		if sender == self.ui.combo1:
+			conf.saveValue("zone1",str(i))
+		elif sender == self.ui.combo2:
+			conf.saveValue("zone2",str(i))
+		elif sender == self.ui.combo3:
+			conf.saveValue("zone3",str(i))
+		elif sender == self.ui.combo4:
+			conf.saveValue("zone4",str(i))
 	
 	
 	def closeEvent(self,e):
