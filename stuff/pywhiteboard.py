@@ -72,8 +72,11 @@ class MainWindow(QtGui.QMainWindow):
 	
 	
 	def autoConnect(self):
-		self.timer.stop()
-		self.connectWii(tries=3)
+		if self.isVisible():
+			self.timer.stop()
+			self.connectWii(tries=3)
+		else:
+			self.timer.start()
 		
 	
 	
