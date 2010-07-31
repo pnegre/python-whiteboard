@@ -66,7 +66,7 @@ class MainWindow(QtGui.QMainWindow):
 		conf = Configuration()
 		if conf.getValueStr("autoconnect") == "Yes":
 			self.timer = qt.QTimer(self)
-			self.timer.setInterval(1000)
+			self.timer.setInterval(500)
 			self.connect(self.timer, QtCore.SIGNAL("timeout()"), self.autoConnect)
 			self.timer.start()
 		
@@ -101,9 +101,11 @@ class MainWindow(QtGui.QMainWindow):
 	
 	
 	def autoConnect(self):
-		self.timer.stop()
-		self.connectWii(tries=3)
-		
+		if self.isVisible():
+			self.timer.stop()
+			self.connectWii(tries=3)
+		else:
+			self.timer.start()
 	
 	
 	def showConfiguration(self):
