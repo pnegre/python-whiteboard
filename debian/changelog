@@ -1,3 +1,9 @@
+python-whiteboard (0.8.7) unstable; urgency=low
+
+  * Fixed translations 
+
+ -- pnegre <pere.negre@gmail.com>  Mon, 02 Aug 2010 00:46:09 +0200
+
 python-whiteboard (0.8.6) unstable; urgency=low
 
   * Small fix in autoconnect when starting the program
