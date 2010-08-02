@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+import re
+
 from numpy import matrix, linalg
 import cwiid, bluetooth
 
@@ -70,10 +72,11 @@ class Wiimote:
 	def bind(self, addr=''):
 		try:
 			if addr == '':
-				nearby_devices = bluetooth.discover_devices()
-				for address in nearby_devices:
-					addr = address
-					break
+				nearby_devices = bluetooth.discover_devices(lookup_names=True)
+				for address, name in nearby_devices:
+					if re.match('.*nintendo.*',name.lower()):
+						addr = address
+						break
 			
 			if addr == '': return False
 			print "-" + addr + "-"
