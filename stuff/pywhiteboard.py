@@ -19,6 +19,12 @@ class PBarDlg(QtGui.QDialog):
 	def __init__(self, parent=None):
 		QtGui.QWidget.__init__(self,parent)
 		self.ui = uic.loadUi("pbar.ui",self)
+		self.cancelled = False
+		self.connect(self.ui.butCancel,
+			QtCore.SIGNAL("clicked()"), self.cancelConnection)
+	
+	def cancelConnection(self):
+		self.cancelled = True
 
 
 class MainWindow(QtGui.QMainWindow):
@@ -206,7 +212,13 @@ class MainWindow(QtGui.QMainWindow):
 			pBar.show()
 			while not thread.wait(30):
 				QtGui.QApplication.processEvents()
+				if pBar.cancelled == True:
+					break
 			pBar.close()
+			
+			if pBar.cancelled == True:
+				thread.terminate()
+				return
 			
 			self.wii = thread.getWii()
 			if self.wii:

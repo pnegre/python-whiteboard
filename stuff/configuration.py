@@ -22,8 +22,8 @@ class Configuration:
 				"zone2": "2",
 				"zone3": "3",
 				"zone4": "0",
-				"autoconnect": "No",
-				"autocalibration": "No",
+				"autoconnect": "Yes",
+				"autocalibration": "Yes",
 				"sensitivity": "6",
 			}
 			
