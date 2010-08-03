@@ -18,10 +18,10 @@ class Configuration:
 			self.defaults = {
 				"fullscreen": "Yes",
 				"selectedmac": '*',
-				"zone1": "2",
+				"zone1": "1",
 				"zone2": "2",
-				"zone3": "2",
-				"zone4": "2",
+				"zone3": "3",
+				"zone4": "0",
 				"autoconnect": "No",
 				"autocalibration": "No",
 				"sensitivity": "6",
