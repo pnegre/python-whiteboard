@@ -251,10 +251,8 @@ class MainWindow(QtGui.QMainWindow):
 			self.ui.label_utilization.setText(self.tr("Utilization: ") + "%d%%" % (100.0*self.wii.utilization))
 			self.saveCalibrationPars(self.wii)
 			
-			# Auto-activate wiimote device if configuration says so
-			conf = Configuration()
-			if conf.getValueStr("autoactivate") == "Yes":
-				self.activateWii()
+			# Activate cursor after calibration (always)
+			self.activateWii()
 			
 		else:
 			self.updateButtons()

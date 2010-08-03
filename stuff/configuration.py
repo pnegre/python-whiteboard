@@ -23,7 +23,6 @@ class Configuration:
 				"zone3": "2",
 				"zone4": "2",
 				"autoconnect": "No",
-				"autoactivate": "No",
 				"autocalibration": "No",
 				"sensitivity": "6",
 			}
@@ -110,8 +109,6 @@ class ConfigDialog(QtGui.QDialog):
 			self.ui.check_fullscreen.setChecked(True)
 		if conf.getValueStr("autoconnect") == "Yes":
 			self.ui.check_autoconnect.setChecked(True)
-		if conf.getValueStr("autoactivate") == "Yes":
-			self.ui.check_autoactivate.setChecked(True)
 		if conf.getValueStr("autocalibration") == "Yes":
 			self.ui.check_autocalibration.setChecked(True)		
 		
@@ -199,11 +196,6 @@ class ConfigDialog(QtGui.QDialog):
 			conf.saveValue("autoconnect","Yes")
 		else:
 			conf.saveValue("autoconnect","No")
-		
-		if self.ui.check_autoactivate.isChecked():
-			conf.saveValue("autoactivate","Yes")
-		else:
-			conf.saveValue("autoactivate","No")
 		
 		if self.ui.check_autocalibration.isChecked():
 			conf.saveValue("autocalibration","Yes")
