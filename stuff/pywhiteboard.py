@@ -167,7 +167,7 @@ class MainWindow(QtGui.QMainWindow):
 			return
 		else:
 			self.ui.pushButtonConnect.setEnabled(0)
-			self.ui.pushButtonCalibrate.setEnabled(0)
+			self.ui.pushButtonCalibrate.setEnabled(1)
 			self.ui.pushButtonLoadCal.setEnabled(0)
 			self.ui.pushButtonActivate.setEnabled(1)
 	
@@ -231,6 +231,7 @@ class MainWindow(QtGui.QMainWindow):
 
 	# doscreen: if doscreen is true, calibrate by manual pointing
 	def calibrateWii(self,doScreen=True):
+		self.deactivateWii()
 		self.ui.label_utilization.setText(self.tr("Utilization: 0%"))
 		self.clearScreenGraphic()
 		
