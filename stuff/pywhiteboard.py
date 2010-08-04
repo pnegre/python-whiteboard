@@ -25,6 +25,8 @@ class PBarDlg(QtGui.QDialog):
 	
 	def cancelConnection(self):
 		self.cancelled = True
+		self.ui.butCancel.setEnabled(False)
+		self.ui.label.setText("Cancelling...")
 
 
 class MainWindow(QtGui.QMainWindow):
@@ -213,12 +215,12 @@ class MainWindow(QtGui.QMainWindow):
 			while not thread.wait(30):
 				QtGui.QApplication.processEvents()
 				if pBar.cancelled == True:
-					break
+					while not thread.wait(30):
+						QtGui.QApplication.processEvents()
+					pBar.close()
+					return
+
 			pBar.close()
-			
-			if pBar.cancelled == True:
-				thread.terminate()
-				return
 			
 			self.wii = thread.getWii()
 			if self.wii:
