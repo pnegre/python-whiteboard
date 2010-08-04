@@ -6,6 +6,9 @@ import time
 
 import PyQt4.Qt as qt
 
+from configuration import Configuration
+
+
 def clock():
 	return int(time.time()*1000)
 
@@ -13,10 +16,12 @@ def clock():
 class Filter:
 	def __init__(self):
 		self.data = []
+		conf = Configuration()
+		self.limit = int(conf.getValueStr("smoothing"))
 	
 	def update(self,p):
 		self.data.append(p)
-		if len(self.data)>5:
+		if len(self.data) > self.limit:
 			self.data.pop(0)
 			
 		n = len(self.data)

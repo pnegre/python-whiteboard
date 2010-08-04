@@ -25,6 +25,7 @@ class Configuration:
 				"autoconnect": "Yes",
 				"autocalibration": "Yes",
 				"sensitivity": "6",
+				"smoothing": "5",
 			}
 			
 			version = self.getValueStr("version")
@@ -158,6 +159,18 @@ class ConfigDialog(QtGui.QDialog):
 			QtCore.SIGNAL("valueChanged(int)"), self.sliderIrMoved)
 		sens = int(conf.getValueStr("sensitivity"))
 		self.ui.slider_ir.setValue(sens)
+		
+		self.ui.slider_smoothing.setMinimum(1)
+		self.ui.slider_smoothing.setMaximum(7)
+		self.connect(self.ui.slider_smoothing,
+			QtCore.SIGNAL("valueChanged(int)"), self.sliderSmMoved)
+		smth = int(conf.getValueStr("smoothing"))
+		self.ui.slider_smoothing.setValue(smth)
+	
+	
+	def sliderSmMoved(self,val):
+		conf = Configuration()
+		conf.saveValue("smoothing",str(val))
 	
 	
 	def sliderIrMoved(self, val):
