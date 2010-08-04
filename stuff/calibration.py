@@ -343,7 +343,9 @@ def doCalibration(parent,wii):
 	if conf.getValueStr("fullscreen") == "Yes":
 		dialog = CalibrateDialog(parent,wii)
 		dialog.showFullScreen()
+		dialog.grabKeyboard()
 		dialog.exec_()
+		dialog.releaseKeyboard()
 	else:
 		dialog = CalibrateDialog2(parent,wii)
 		dialog.show()
