@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="it_IT">
+<!DOCTYPE TS>
+<TS version="2.0" language="it_IT">
 <context>
     <name>CalibrateDialog</name>
     <message>
@@ -34,7 +35,7 @@
 <context>
     <name>ConfigDialog</name>
     <message>
-        <location filename="configuration.py" line="128"/>
+        <location filename="configuration.py" line="124"/>
         <source>All Devices</source>
         <translation type="unfinished">Tutte le periferiche</translation>
     </message>
@@ -62,97 +63,97 @@
         <translation type="unfinished">Configurazione</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="42"/>
+        <location filename="configuration.ui" line="62"/>
         <source>General options</source>
         <translation type="unfinished">Opzioni generiche</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="48"/>
+        <location filename="configuration.ui" line="70"/>
         <source>Auto connect</source>
         <translation type="unfinished">Connetti all&apos;avvio</translation>
     </message>
     <message>
         <location filename="configuration.ui" line="55"/>
         <source>Activate cursor after calibration</source>
-        <translation type="unfinished">Attiva il cursore dopo la calibrazione</translation>
+        <translation type="obsolete">Attiva il cursore dopo la calibrazione</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="62"/>
+        <location filename="configuration.ui" line="293"/>
         <source>Fullscreen Calibration</source>
         <translation type="unfinished">Calibrazione a tutto schermo</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="69"/>
+        <location filename="configuration.ui" line="91"/>
         <source>Select allowed devices:</source>
         <translation type="unfinished">Scegli periferiche</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="79"/>
+        <location filename="configuration.ui" line="105"/>
         <source>Add connected device</source>
         <translation type="unfinished">Aggiungi periferica</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="99"/>
+        <location filename="configuration.ui" line="125"/>
         <source>Remove device</source>
         <translation type="unfinished">Rimuovi periferica</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="106"/>
+        <location filename="configuration.ui" line="300"/>
         <source>Do calibration after connection</source>
         <translation type="unfinished">Calibra dopo la connessione</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="120"/>
+        <location filename="configuration.ui" line="77"/>
         <source>IR Sensitivity:</source>
         <translation type="unfinished">Sensibilità all&apos;infrarosso</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="128"/>
+        <location filename="configuration.ui" line="135"/>
         <source>Toggles</source>
         <translation type="unfinished">Opzioni di area</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="145"/>
+        <location filename="configuration.ui" line="152"/>
         <source>Area 1</source>
         <translation type="unfinished">Area 1</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="152"/>
+        <location filename="configuration.ui" line="159"/>
         <source>Area 2</source>
         <translation type="unfinished">Area 2</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="159"/>
+        <location filename="configuration.ui" line="166"/>
         <source>Area 3</source>
         <translation type="unfinished">Area 3</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="166"/>
+        <location filename="configuration.ui" line="173"/>
         <source>Area 4</source>
         <translation type="unfinished">Area 4</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="250"/>
+        <location filename="configuration.ui" line="257"/>
         <source>Left Click</source>
         <translation type="unfinished">Click sinistro</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="255"/>
+        <location filename="configuration.ui" line="262"/>
         <source>Only Move</source>
         <translation type="unfinished">Muovi solamente</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="260"/>
+        <location filename="configuration.ui" line="267"/>
         <source>Right Click</source>
         <translation type="unfinished">Click destro</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="265"/>
+        <location filename="configuration.ui" line="272"/>
         <source>Middle Click</source>
         <translation type="unfinished">Click centrale</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="294"/>
+        <location filename="configuration.ui" line="48"/>
         <source>OK</source>
         <translation type="unfinished">Conferma</translation>
     </message>
@@ -162,7 +163,7 @@
         <translation type="unfinished">Sto lavorando...</translation>
     </message>
     <message>
-        <location filename="pbar.ui" line="48"/>
+        <location filename="pbar.ui" line="40"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -174,6 +175,36 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Premi Buttone 1 e 2 sul Wiimote&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
+    <message>
+        <location filename="configuration.ui" line="285"/>
+        <source>Advanced</source>
+        <translation type="unfinished">Opzioni Avanzate</translation>
+    </message>
+    <message>
+        <location filename="configuration.ui" line="311"/>
+        <source>Smoothing:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configuration.ui" line="329"/>
+        <source>Profile management:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configuration.ui" line="343"/>
+        <source>New</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configuration.ui" line="350"/>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="pbar.ui" line="76"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -183,12 +214,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">Finestra Principale</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="157"/>
+        <location filename="pywhiteboard.py" line="196"/>
         <source>Connect</source>
         <translation type="unfinished">Connetti</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="279"/>
+        <location filename="pywhiteboard.py" line="322"/>
         <source>Activate</source>
         <translation type="unfinished">Attiva</translation>
     </message>
@@ -203,7 +234,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">Carica della batteria del wiimote</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="203"/>
+        <location filename="pywhiteboard.py" line="249"/>
         <source>Utilization: 0%</source>
         <translation type="unfinished">Utilizzo: 0%</translation>
     </message>
@@ -283,42 +314,42 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">Configurazione</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="123"/>
+        <location filename="pywhiteboard.py" line="162"/>
         <source>Connected to </source>
         <translation type="unfinished">Connesso a</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="187"/>
+        <location filename="pywhiteboard.py" line="232"/>
         <source>Disconnect</source>
         <translation type="unfinished">Disconnetti</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="197"/>
+        <location filename="pywhiteboard.py" line="242"/>
         <source>Error during connection</source>
         <translation type="unfinished">Errore durante la connessione</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="220"/>
+        <location filename="pywhiteboard.py" line="266"/>
         <source>Utilization: </source>
         <translation type="unfinished">Utilizzo: </translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="231"/>
+        <location filename="pywhiteboard.py" line="275"/>
         <source>Error during Calibration</source>
         <translation type="unfinished">Errore durante la calibrazione</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="289"/>
+        <location filename="pywhiteboard.py" line="338"/>
         <source>Deactivate</source>
         <translation type="unfinished">Disattiva</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="304"/>
+        <location filename="pywhiteboard.py" line="353"/>
         <source>The application will remain active (systray).</source>
         <translation type="unfinished">L&apos;applicazione rimarrà attiva (area di notifica).</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="304"/>
+        <location filename="pywhiteboard.py" line="353"/>
         <source>To quit, use file-&gt;quit menu</source>
         <translation type="unfinished">Per uscire,usa il menu file-&gt;eci</translation>
     </message>
@@ -330,6 +361,11 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="mainwindow.ui" line="229"/>
         <source>Default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="pywhiteboard.py" line="104"/>
+        <source>Wii device disconnected</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
