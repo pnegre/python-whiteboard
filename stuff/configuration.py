@@ -171,6 +171,7 @@ class ConfigDialog(QtGui.QDialog):
 	def sliderSmMoved(self,val):
 		conf = Configuration()
 		conf.saveValue("smoothing",str(val))
+		self.ui.label_smoothing.setText("Smoothing: %d" % val)
 	
 	
 	def sliderIrMoved(self, val):

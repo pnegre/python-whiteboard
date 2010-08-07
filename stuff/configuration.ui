@@ -55,7 +55,7 @@
       <bool>true</bool>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -306,7 +306,7 @@
        <item row="1" column="0">
         <layout class="QVBoxLayout" name="verticalLayout_4">
          <item>
-          <widget class="QLabel" name="label_7">
+          <widget class="QLabel" name="label_smoothing">
            <property name="text">
             <string>Smoothing:</string>
            </property>
@@ -316,6 +316,9 @@
           <widget class="QSlider" name="slider_smoothing">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="tickPosition">
+            <enum>QSlider::NoTicks</enum>
            </property>
           </widget>
          </item>
