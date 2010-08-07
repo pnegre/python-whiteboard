@@ -177,6 +177,7 @@ class ConfigDialog(QtGui.QDialog):
 	def sliderIrMoved(self, val):
 		conf = Configuration()
 		conf.saveValue("sensitivity",str(val))
+		self.ui.label_sensitivity.setText("IR Sensitivity: %d" % val)
 	
 	def addDevice(self):
 		if self.wii == None: return

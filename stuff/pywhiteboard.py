@@ -14,6 +14,15 @@ from PyQt4 import QtCore, QtGui, uic
 import PyQt4.Qt as qt
 
 
+class AboutDlg(QtGui.QDialog):
+	
+	def __init__(self, parent=None):
+		super(AboutDlg, self).__init__(parent)
+		self.ui = uic.loadUi("about.ui",self)
+		self.connect(self.ui.butOK,
+			QtCore.SIGNAL("clicked()"), self.close)
+
+
 
 class PBarDlg(QtGui.QDialog):
 	def __init__(self, parent=None):
@@ -67,6 +76,8 @@ class MainWindow(QtGui.QMainWindow):
 			QtCore.SIGNAL("activated()"), self.mustQuit)
 		self.connect(self.ui.actionConfiguration,
 			QtCore.SIGNAL("activated()"), self.showConfiguration)
+		self.connect(self.ui.actionHelp,
+			QtCore.SIGNAL("activated()"), self.showAboutDlg)
 		
 		self.loadSettings()
 		#self.ui.textBrowser.setText("<b>Wiimote Linux WHITEBOARD</b>")
@@ -82,6 +93,12 @@ class MainWindow(QtGui.QMainWindow):
 		self.timer2.setInterval(2000)
 		self.connect(self.timer2, QtCore.SIGNAL("timeout()"), self.checkWii)
 		self.timer2.start()
+	
+	
+	def showAboutDlg(self):
+		about = AboutDlg(self)
+		about.show()
+		about.exec_()
 	
 	
 	def checkWii(self):
