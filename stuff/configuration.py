@@ -4,7 +4,7 @@ from PyQt4 import QtCore, QtGui, uic
 import PyQt4.Qt as qt
 
 
-CONFIG_VERSION = 4
+CONFIG_VERSION = 6
 
 
 class Configuration:
@@ -51,9 +51,10 @@ class Configuration:
 		
 		def writeArray(self,name,lst):
 			self.settings.beginWriteArray(name)
-			for i,mac in enumerate(lst):
+			for i,dct in enumerate(lst):
 				self.settings.setArrayIndex(i)
-				self.settings.setValue("item",mac)
+				for k in dct.keys():
+					self.settings.setValue(k,dct[k])
 			self.settings.endArray()
 		
 		
@@ -62,9 +63,15 @@ class Configuration:
 			result = []
 			for i in range(0,n):
 				self.settings.setArrayIndex(i)
-				result.append(self.settings.value("item").toString())
+				kys = self.settings.childKeys()
+				d = dict()
+				for k in kys:
+					d[unicode(k)] = unicode(self.settings.value(k).toString())
+				result.append(d)
 			self.settings.endArray()
 			return result
+		
+		
 		
 		
 		def setGroup(self,name):
@@ -121,18 +128,7 @@ class ConfigDialog(QtGui.QDialog):
 		self.connect(self.ui.button_remDev,
 			QtCore.SIGNAL("clicked()"), self.removeDevice)
 		
-		item = QtGui.QListWidgetItem(self.tr("All Devices"))
-		self.ui.macListWidget.addItem(item)
-		self.ui.macListWidget.setItemSelected(item,True)
-		selectedmac = conf.getValueStr("selectedmac")
-		
-		macs = conf.readArray("macs")
-		for m in macs:
-			item = QtGui.QListWidgetItem(m)
-			self.ui.macListWidget.addItem(item)
-			if m == selectedmac:
-				self.ui.macListWidget.setItemSelected(item,True)
-		
+		self.setupMacTable()
 		
 		if self.wii == None:
 			self.ui.button_addDev.setEnabled(False)
@@ -168,6 +164,81 @@ class ConfigDialog(QtGui.QDialog):
 		self.ui.slider_smoothing.setValue(smth)
 	
 	
+	
+	def setupMacTable(self):
+		self.ui.tableMac.setColumnCount(2)
+		self.ui.tableMac.setHorizontalHeaderLabels(['Address','Comment'])
+		self.ui.tableMac.setSelectionMode(QtGui.QTableWidget.SingleSelection)
+		self.ui.tableMac.setSelectionBehavior(QtGui.QTableWidget.SelectRows)
+		self.refreshMacTable()
+		header = self.ui.tableMac.horizontalHeader()
+		header.setStretchLastSection(True)
+		self.connect(self.ui.tableMac,
+			QtCore.SIGNAL("cellClicked(int,int)"), self.macTableCellSelected)
+	
+	
+	def macTableCellSelected(self,r,c):
+		address = unicode(self.ui.tableMac.item(r,0).text())
+		conf = Configuration()
+		conf.saveValue('selectedmac',address)
+	
+	
+	def refreshMacTable(self):
+		while self.ui.tableMac.item(0,0):
+			self.ui.tableMac.removeRow(0)
+		
+		self.ui.tableMac.insertRow(0)
+		item = QtGui.QTableWidgetItem('*')
+		self.ui.tableMac.setItem(0,0,item)
+		item = QtGui.QTableWidgetItem(self.tr('All devices'))
+		self.ui.tableMac.setItem(0,1,item)
+		self.ui.tableMac.selectRow(0)
+		conf = Configuration()
+		lst = conf.readArray('maclist')
+		for elem in lst:
+			rc = self.ui.tableMac.rowCount()
+			self.ui.tableMac.insertRow(rc)
+			item = QtGui.QTableWidgetItem(elem['address'])
+			self.ui.tableMac.setItem(rc,0,item)
+			item = QtGui.QTableWidgetItem(elem['comment'])
+			self.ui.tableMac.setItem(rc,1,item)
+			selected = conf.getValueStr('selectedmac')
+			if selected == elem['address']:
+				self.ui.tableMac.selectRow(rc)
+	
+	
+	
+	
+	def addDevice(self):
+		if self.wii == None: return
+		conf = Configuration()
+		d = conf.readArray('maclist')
+		address = self.wii.addr
+		for item in d:
+			if item['address'] == address: return
+		
+		comment, ok = QtGui.QInputDialog.getText(self,
+			self.tr("Comment"), self.tr('Wii device description'))
+		
+		if ok:
+			d.append( {'address': address, 'comment': comment} )
+			conf.writeArray('maclist',d)
+			self.refreshMacTable()
+	
+	
+	def removeDevice(self):
+		conf = Configuration()
+		mlist = conf.readArray('maclist')
+		for it in self.ui.tableMac.selectedItems():
+			if it.column() == 0:
+				address = it.text()
+				mlist = [ elem for elem in mlist if elem['address'] != address ]
+				conf.writeArray('maclist',mlist)
+				self.refreshMacTable()
+				conf.saveValue('selectedmac','*')
+				return
+	
+	
 	def sliderSmMoved(self,val):
 		conf = Configuration()
 		conf.saveValue("smoothing",str(val))
@@ -179,25 +250,6 @@ class ConfigDialog(QtGui.QDialog):
 		conf.saveValue("sensitivity",str(val))
 		self.ui.label_sensitivity.setText(self.tr("IR Sensitivity: ") + str(val))
 	
-	def addDevice(self):
-		if self.wii == None: return
-		
-		address = self.wii.addr
-		f = self.ui.macListWidget.findItems(address, QtCore.Qt.MatchContains)
-		if len(f) != 0:
-			return
-		
-		item = QtGui.QListWidgetItem(address)
-		self.ui.macListWidget.addItem(item)
-	
-	
-	def removeDevice(self):
-		slist = self.ui.macListWidget.selectedItems()
-		for item in slist:
-			row = self.ui.macListWidget.row(item)
-			if row != 0:
-				self.ui.macListWidget.takeItem(row)
-		
 		
 	def finish(self):
 		conf = Configuration()
@@ -217,22 +269,22 @@ class ConfigDialog(QtGui.QDialog):
 		else:
 			conf.saveValue("autocalibration","No")
 		
-		mlist = []
-		for i in range(1,self.ui.macListWidget.count()):
-			item = self.ui.macListWidget.item(i)
-			t = item.text()
-			mlist.append(t)
+		#mlist = []
+		#for i in range(1,self.ui.macListWidget.count()):
+			#item = self.ui.macListWidget.item(i)
+			#t = item.text()
+			#mlist.append(t)
 		
-		conf.writeArray("macs",mlist)
+		#conf.writeArray("macs",mlist)
 		
-		slist = self.ui.macListWidget.selectedItems()
-		for item in slist:
-			mac = item.text()
-			if ':' in mac:
-				conf.saveValue("selectedmac",mac)
-			else:
-				conf.saveValue("selectedmac",'*')
-			break
+		#slist = self.ui.macListWidget.selectedItems()
+		#for item in slist:
+			#mac = item.text()
+			#if ':' in mac:
+				#conf.saveValue("selectedmac",mac)
+			#else:
+				#conf.saveValue("selectedmac",'*')
+			#break
 		
 		self.close()
 	

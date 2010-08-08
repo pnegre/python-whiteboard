@@ -63,54 +63,50 @@
       </attribute>
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="0" column="0">
-        <layout class="QVBoxLayout" name="verticalLayout_7">
+        <widget class="QCheckBox" name="check_autoconnect">
+         <property name="text">
+          <string>Auto connect</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Select allowed devices:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QTableWidget" name="tableMac"/>
+       </item>
+       <item row="3" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
-          <widget class="QCheckBox" name="check_autoconnect">
+          <widget class="QPushButton" name="button_addDev">
            <property name="text">
-            <string>Auto connect</string>
+            <string>Add connected device</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label">
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="button_remDev">
            <property name="text">
-            <string>Select allowed devices:</string>
+            <string>Remove device</string>
            </property>
           </widget>
-         </item>
-         <item>
-          <widget class="QListWidget" name="macListWidget"/>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_3">
-           <item>
-            <widget class="QPushButton" name="button_addDev">
-             <property name="text">
-              <string>Add connected device</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer name="horizontalSpacer_3">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item>
-            <widget class="QPushButton" name="button_remDev">
-             <property name="text">
-              <string>Remove device</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
          </item>
         </layout>
        </item>
@@ -386,7 +382,6 @@
  <tabstops>
   <tabstop>button_addDev</tabstop>
   <tabstop>button_remDev</tabstop>
-  <tabstop>macListWidget</tabstop>
  </tabstops>
  <resources/>
  <connections/>
