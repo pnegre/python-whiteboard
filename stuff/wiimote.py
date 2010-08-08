@@ -102,6 +102,7 @@ class Wiimote:
 	
 	def close(self):
 		self.wii.close()
+		self.wii = None
 	
 	def checkStatus(self):
 		if self.wii == None or self.error == True: return False

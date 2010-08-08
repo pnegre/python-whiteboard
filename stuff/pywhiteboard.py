@@ -90,7 +90,7 @@ class MainWindow(QtGui.QMainWindow):
 			self.timer.start()
 		
 		self.timer2 = qt.QTimer(self)
-		self.timer2.setInterval(2000)
+		self.timer2.setInterval(4000)
 		self.connect(self.timer2, QtCore.SIGNAL("timeout()"), self.checkWii)
 		self.timer2.start()
 	

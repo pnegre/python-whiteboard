@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="it_IT">
+<!DOCTYPE TS>
+<TS version="2.0" language="it_IT">
 <context>
     <name>CalibrateDialog</name>
     <message>
@@ -51,17 +52,17 @@
     <message>
         <location filename="configuration.py" line="193"/>
         <source>All devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Tutte le periferiche</translation>
     </message>
     <message>
         <location filename="configuration.py" line="220"/>
         <source>Comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Commento</translation>
     </message>
     <message>
         <location filename="configuration.py" line="220"/>
         <source>Wii device description</source>
-        <translation type="unfinished"></translation>
+        <translation>Dwscrizione della periferica</translation>
     </message>
 </context>
 <context>
@@ -466,7 +467,7 @@ p, li { white-space: pre-wrap; }
         <source>Ok</source>
         <translation>Conferma</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="about.ui" line="42"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -685,7 +686,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="pywhiteboard.py" line="38"/>
         <source>Cancelling...</source>
-        <translation type="unfinished"></translation>
+        <translation>Sto annullando l&apos;operazione...</translation>
     </message>
 </context>
 </TS>
