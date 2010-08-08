@@ -35,7 +35,7 @@ class PBarDlg(QtGui.QDialog):
 	def cancelConnection(self):
 		self.cancelled = True
 		self.ui.butCancel.setEnabled(False)
-		self.ui.label.setText("Cancelling...")
+		self.ui.label.setText(self.tr("Cancelling..."))
 
 
 class MainWindow(QtGui.QMainWindow):
