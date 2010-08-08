@@ -34,18 +34,28 @@
 <context>
     <name>ConfigDialog</name>
     <message>
-        <location filename="configuration.py" line="124"/>
-        <source>All Devices</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="configuration.py" line="174"/>
+        <location filename="configuration.py" line="245"/>
         <source>Smoothing: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configuration.py" line="180"/>
+        <location filename="configuration.py" line="251"/>
         <source>IR Sensitivity: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configuration.py" line="193"/>
+        <source>All devices</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configuration.py" line="220"/>
+        <source>Comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configuration.py" line="220"/>
+        <source>Wii device description</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -77,7 +87,7 @@
         <translation>Opcions generals</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="70"/>
+        <location filename="configuration.ui" line="68"/>
         <source>Auto connect</source>
         <translation>Auto connecta</translation>
     </message>
@@ -87,77 +97,77 @@
         <translation type="obsolete">Activa el cursor després de la calibració</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="279"/>
+        <location filename="configuration.ui" line="275"/>
         <source>Fullscreen Calibration</source>
         <translation>Calibració a pantalla completa</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="77"/>
+        <location filename="configuration.ui" line="75"/>
         <source>Select allowed devices:</source>
         <translation>Seleccioneu els dispositius permesos:</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="89"/>
+        <location filename="configuration.ui" line="87"/>
         <source>Add connected device</source>
         <translation>Afegiu el dispositiu connectat</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="109"/>
+        <location filename="configuration.ui" line="107"/>
         <source>Remove device</source>
         <translation>Elimineu dispositiu</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="286"/>
+        <location filename="configuration.ui" line="282"/>
         <source>Do calibration after connection</source>
         <translation>Calibra en connectar</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="318"/>
+        <location filename="configuration.ui" line="314"/>
         <source>IR Sensitivity:</source>
         <translation>Sensibilitat IR:</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="121"/>
+        <location filename="configuration.ui" line="117"/>
         <source>Toggles</source>
         <translation>Commutadors</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="138"/>
+        <location filename="configuration.ui" line="134"/>
         <source>Area 1</source>
         <translation>Àrea 1</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="145"/>
+        <location filename="configuration.ui" line="141"/>
         <source>Area 2</source>
         <translation>Àrea 2</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="152"/>
+        <location filename="configuration.ui" line="148"/>
         <source>Area 3</source>
         <translation>Àrea 3</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="159"/>
+        <location filename="configuration.ui" line="155"/>
         <source>Area 4</source>
         <translation>Àrea 4</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="243"/>
+        <location filename="configuration.ui" line="239"/>
         <source>Left Click</source>
         <translation>Clic esquerre</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="248"/>
+        <location filename="configuration.ui" line="244"/>
         <source>Only Move</source>
         <translation>Només mou</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="253"/>
+        <location filename="configuration.ui" line="249"/>
         <source>Right Click</source>
         <translation>Clic dret</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="258"/>
+        <location filename="configuration.ui" line="254"/>
         <source>Middle Click</source>
         <translation>Clic central</translation>
     </message>
@@ -185,27 +195,27 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Premeu els botons 1 i 2 del vostre Wiimote&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="271"/>
+        <location filename="configuration.ui" line="267"/>
         <source>Advanced</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="297"/>
+        <location filename="configuration.ui" line="293"/>
         <source>Smoothing:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="336"/>
+        <location filename="configuration.ui" line="332"/>
         <source>Profile management:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="350"/>
+        <location filename="configuration.ui" line="346"/>
         <source>New</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="357"/>
+        <location filename="configuration.ui" line="353"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
@@ -374,7 +384,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="mainwindow.ui" line="32"/>
+        <location filename="mainwindow.ui" line="26"/>
         <source>MainWindow</source>
         <translation>Finestra Principal</translation>
     </message>
@@ -389,12 +399,12 @@ p, li { white-space: pre-wrap; }
         <translation>Activa</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="71"/>
+        <location filename="mainwindow.ui" line="48"/>
         <source>Calibrate</source>
         <translation>Calibra</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="97"/>
+        <location filename="mainwindow.ui" line="82"/>
         <source>Wiimote Battery level:</source>
         <translation>Nivell de la bateria:</translation>
     </message>
@@ -404,7 +414,7 @@ p, li { white-space: pre-wrap; }
         <translation>Ús: 0%</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="169"/>
+        <location filename="mainwindow.ui" line="130"/>
         <source>Load Calibration</source>
         <translation>Carrega calibració</translation>
     </message>
@@ -431,7 +441,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Also, you can restrict the bluetooth connection to authorized devices. To add a device, first make the connection and then press the &amp;quot;add device&amp;quot; button in the configuration dialog.&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Both the mac list and the selected device will be saved in the configuration file (using qt&apos;s qsettings).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -454,27 +464,27 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Tant la llista d&apos;adreces MAC com el dispositiu seleccionat seran desats al fitxer de configuració (usant els qsettings de qt).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="309"/>
+        <location filename="mainwindow.ui" line="210"/>
         <source>File</source>
         <translation>Fitxer</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="335"/>
+        <location filename="mainwindow.ui" line="236"/>
         <source>Help</source>
         <translation>Ajuda</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="325"/>
+        <location filename="mainwindow.ui" line="226"/>
         <source>Exit</source>
         <translation>Surt</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="330"/>
+        <location filename="mainwindow.ui" line="231"/>
         <source>Quit</source>
         <translation>Surt</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="340"/>
+        <location filename="mainwindow.ui" line="241"/>
         <source>Configuration</source>
         <translation>Configuració</translation>
     </message>
@@ -519,12 +529,12 @@ p, li { white-space: pre-wrap; }
         <translation>Per sortir, usau el menú Fitxer -&gt; Surt</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="215"/>
+        <location filename="mainwindow.ui" line="66"/>
         <source>Profile:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="229"/>
+        <location filename="mainwindow.ui" line="74"/>
         <source>Default</source>
         <translation type="unfinished"></translation>
     </message>
@@ -534,17 +544,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="258"/>
+        <location filename="mainwindow.ui" line="152"/>
         <source>Mouse Control</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="275"/>
-        <source>Click &amp;&amp; Move</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="285"/>
+        <location filename="mainwindow.ui" line="169"/>
         <source>Move Only</source>
         <translation type="unfinished"></translation>
     </message>

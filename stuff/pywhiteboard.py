@@ -351,7 +351,7 @@ class MainWindow(QtGui.QMainWindow):
 		else:
 			# Activate
 			self.cursor = FakeCursor(self.wii)
-			if self.ui.rad_moveOnly.isChecked():
+			if self.ui.moveOnlyCheck.isChecked():
 				self.cursor.noClicks = True
 			
 			conf = Configuration()
