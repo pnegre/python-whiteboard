@@ -173,6 +173,7 @@ class MainWindow(QtGui.QMainWindow):
 			self.ui.pushButtonCalibrate.setEnabled(0)
 			self.ui.pushButtonActivate.setEnabled(0)
 			self.ui.pushButtonLoadCal.setEnabled(0)
+			self.ui.frame_mouseControl.setEnabled(1)
 			self.statusBar().showMessage("")
 			return
 		
@@ -183,18 +184,21 @@ class MainWindow(QtGui.QMainWindow):
 			self.ui.pushButtonCalibrate.setEnabled(1)
 			self.ui.pushButtonActivate.setEnabled(0)
 			self.ui.pushButtonLoadCal.setEnabled(1)
+			self.ui.frame_mouseControl.setEnabled(1)
 			return
 		if self.active == False:
 			self.ui.pushButtonConnect.setEnabled(1)
 			self.ui.pushButtonCalibrate.setEnabled(1)
 			self.ui.pushButtonActivate.setEnabled(1)
 			self.ui.pushButtonLoadCal.setEnabled(1)
+			self.ui.frame_mouseControl.setEnabled(1)
 			return
 		else:
 			self.ui.pushButtonConnect.setEnabled(0)
 			self.ui.pushButtonCalibrate.setEnabled(1)
 			self.ui.pushButtonLoadCal.setEnabled(0)
 			self.ui.pushButtonActivate.setEnabled(1)
+			self.ui.frame_mouseControl.setEnabled(0)
 	
 	
 	def disconnectDevice(self):
@@ -347,6 +351,9 @@ class MainWindow(QtGui.QMainWindow):
 		else:
 			# Activate
 			self.cursor = FakeCursor(self.wii)
+			if self.ui.rad_moveOnly.isChecked():
+				self.cursor.noClicks = True
+			
 			conf = Configuration()
 			zones = [ conf.getValueStr(z) for z in ("zone1","zone2","zone3","zone4") ]
 			self.cursor.setZones(zones)

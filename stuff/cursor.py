@@ -71,6 +71,7 @@ class FakeCursor:
 		self.mutex = qt.QMutex()
 		self.mustFinish = False
 		self.thread = None
+		self.noClicks = False
 	
 	
 	def setZone(self,zone,clickType):
@@ -96,6 +97,7 @@ class FakeCursor:
 	
 	
 	def mouse_down(self):
+		if self.noClicks: return
 		button = self.clickType
 		if button != FakeCursor.ONLY_MOVE:
 			Xlib.ext.xtest.fake_input(self.display, Xlib.X.ButtonPress, button)
@@ -103,6 +105,7 @@ class FakeCursor:
 	
 	
 	def mouse_up(self):
+		if self.noClicks: return
 		button = self.clickType
 		if button != FakeCursor.ONLY_MOVE:
 			Xlib.ext.xtest.fake_input(self.display, Xlib.X.ButtonRelease, button)
