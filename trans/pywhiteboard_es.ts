@@ -495,4 +495,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
 </context>
+<context>
+    <name>PBarDlg</name>
+    <message>
+        <location filename="pywhiteboard.py" line="38"/>
+        <source>Cancelling...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 </TS>
