@@ -171,13 +171,13 @@ class ConfigDialog(QtGui.QDialog):
 	def sliderSmMoved(self,val):
 		conf = Configuration()
 		conf.saveValue("smoothing",str(val))
-		self.ui.label_smoothing.setText("Smoothing: %d" % val)
+		self.ui.label_smoothing.setText(self.tr("Smoothing: ") + str(val))
 	
 	
 	def sliderIrMoved(self, val):
 		conf = Configuration()
 		conf.saveValue("sensitivity",str(val))
-		self.ui.label_sensitivity.setText("IR Sensitivity: %d" % val)
+		self.ui.label_sensitivity.setText(self.tr("IR Sensitivity: ") + str(val))
 	
 	def addDevice(self):
 		if self.wii == None: return

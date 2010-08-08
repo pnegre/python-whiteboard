@@ -38,6 +38,16 @@
         <source>All Devices</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="configuration.py" line="174"/>
+        <source>Smoothing: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configuration.py" line="180"/>
+        <source>IR Sensitivity: </source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Dialog</name>
@@ -355,12 +365,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="213"/>
+        <location filename="pywhiteboard.py" line="217"/>
         <source>Connect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="339"/>
+        <location filename="pywhiteboard.py" line="343"/>
         <source>Activate</source>
         <translation type="unfinished"></translation>
     </message>
@@ -375,7 +385,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="266"/>
+        <location filename="pywhiteboard.py" line="270"/>
         <source>Utilization: 0%</source>
         <translation type="unfinished"></translation>
     </message>
@@ -410,67 +420,67 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="246"/>
+        <location filename="mainwindow.ui" line="309"/>
         <source>File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="272"/>
+        <location filename="mainwindow.ui" line="335"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="262"/>
+        <location filename="mainwindow.ui" line="325"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="267"/>
+        <location filename="mainwindow.ui" line="330"/>
         <source>Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="277"/>
+        <location filename="mainwindow.ui" line="340"/>
         <source>Configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="179"/>
+        <location filename="pywhiteboard.py" line="180"/>
         <source>Connected to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="249"/>
+        <location filename="pywhiteboard.py" line="253"/>
         <source>Disconnect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="259"/>
+        <location filename="pywhiteboard.py" line="263"/>
         <source>Error during connection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="283"/>
+        <location filename="pywhiteboard.py" line="287"/>
         <source>Utilization: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="292"/>
+        <location filename="pywhiteboard.py" line="296"/>
         <source>Error during Calibration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="355"/>
+        <location filename="pywhiteboard.py" line="362"/>
         <source>Deactivate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="370"/>
+        <location filename="pywhiteboard.py" line="377"/>
         <source>The application will remain active (systray).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="370"/>
+        <location filename="pywhiteboard.py" line="377"/>
         <source>To quit, use file-&gt;quit menu</source>
         <translation type="unfinished"></translation>
     </message>
@@ -487,6 +497,21 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="pywhiteboard.py" line="121"/>
         <source>Wii device disconnected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="258"/>
+        <source>Mouse Control</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="275"/>
+        <source>Click &amp;&amp; Move</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="285"/>
+        <source>Move Only</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
