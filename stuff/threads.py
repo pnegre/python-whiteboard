@@ -16,8 +16,7 @@ class ConnectThread(qt.QThread):
 		if mac == '*':
 			mac = ''
 		
-		if not self.wii.bind(mac):
-			self.wii = None
+		self.wii.bind(mac)
 	
 	def getWii(self):
 		return self.wii

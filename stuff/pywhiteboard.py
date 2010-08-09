@@ -128,7 +128,7 @@ class MainWindow(QtGui.QMainWindow):
 	def autoConnect(self):
 		if self.isVisible():
 			self.timer.stop()
-			self.connectWii(tries=300)
+			self.connectWii()
 		else:
 			self.timer.start()
 	
@@ -221,12 +221,12 @@ class MainWindow(QtGui.QMainWindow):
 			self.batteryLevel.setValue(0)
 			return
 
-	def connectWii(self, tries=2):
+	def connectWii(self):
 		if self.connected:
 			self.disconnectDevice()
 			return
 		
-		for i in range(tries):
+		while 1:
 			thread = ConnectThread()
 			thread.start()
 			
@@ -235,19 +235,11 @@ class MainWindow(QtGui.QMainWindow):
 			pBar.show()
 			while not thread.wait(30):
 				QtGui.QApplication.processEvents()
-				if pBar.cancelled == True:
-					while not thread.wait(30):
-						QtGui.QApplication.processEvents()
-					
-					pBar.close()
-					w = thread.getWii()
-					if w is not None: w.close()
-					return
 
 			pBar.close()
 			
 			self.wii = thread.getWii()
-			if self.wii:
+			if self.wii.isConnected():
 				self.connected = True
 				self.calibrated = False
 				self.active = False
@@ -259,13 +251,18 @@ class MainWindow(QtGui.QMainWindow):
 				conf = Configuration()
 				if conf.getValueStr("autocalibration") == "Yes":
 					self.calibrateWii()
-				
 				return
-				
-		msgbox = QtGui.QMessageBox( self )
-		msgbox.setText( self.tr("Error during connection") )
-		msgbox.setModal( True )
-		ret = msgbox.exec_()
+			
+			if self.wii.error:
+				self.wii = None
+				msgbox = QtGui.QMessageBox( self )
+				msgbox.setText( self.tr("Error. Check your bluetooth driver") )
+				msgbox.setModal( True )
+				ret = msgbox.exec_()
+				return
+			
+			if pBar.cancelled == True:
+				break
 
 	# doscreen: if doscreen is true, calibrate by manual pointing
 	def calibrateWii(self,doScreen=True):
@@ -425,10 +422,8 @@ def getTranslator():
 		code = loc.lower()
 		if len(code) > 1:
 			code = code[0:2]
-			#fname = "../trans/pywhiteboard_" + code + ".qm"
 			fname = "/usr/share/qt4/translations/pywhiteboard_" + code + ".qm"
-			print fname
-			print trl.load(fname)
+			trl.load(fname)
 	return trl
 
 

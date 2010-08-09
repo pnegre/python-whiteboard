@@ -44,6 +44,7 @@ class Wiimote:
 	
 	def __init__(self):
 		self.wii = None
+		self.error = False
 		self.pos = None
 		self.state = Wiimote.NONCALIBRATED
 		self.calibrationPoints = []
@@ -91,9 +92,20 @@ class Wiimote:
 			self.wii = None
 			return False
 		
+		except bluetooth.BluetoothError, errString:
+			self.wii = None
+			self.error = True
+			return False
+		
 		except:
+			self.wii = None
+			self.error = True
 			print "Unexpected error:", sys.exc_info()[0]
 			raise
+	
+	def isConnected(self):
+		if self.wii: return True
+		return False
 	
 	def enable(self):
 		self.error = False
