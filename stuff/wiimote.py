@@ -3,6 +3,8 @@
 
 import sys,re
 
+import PyQt4.Qt as qt
+
 from numpy import matrix, linalg
 import cwiid, bluetooth
 
@@ -124,6 +126,8 @@ class Wiimote:
 		self.wii.mesg_callback = self.create_wiimote_callback(func)
 	
 	def close(self):
+		self.disable()
+		qt.QThread.msleep(800)
 		self.wii.close()
 		self.wii = None
 	

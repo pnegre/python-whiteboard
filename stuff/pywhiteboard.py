@@ -227,18 +227,24 @@ class MainWindow(QtGui.QMainWindow):
 			return
 		
 		self.wii = Wiimote()
+		pBar = PBarDlg(self)
+		pBar.setModal( True )
+		pBar.show()
 		while 1:
 			thread = self.wii.createConnectThread()
 			thread.start()
 			
-			pBar = PBarDlg(self)
-			pBar.setModal( True )
-			pBar.show()
 			while not thread.wait(30):
 				QtGui.QApplication.processEvents()
-
-			pBar.close()
 			
+			if pBar.cancelled == True:
+				if self.wii.isConnected():
+					self.wii.close()
+					
+				self.wii = None
+				pBar.close()
+				return
+
 			if self.wii.isConnected():
 				self.connected = True
 				self.calibrated = False
@@ -246,6 +252,8 @@ class MainWindow(QtGui.QMainWindow):
 				self.updateButtons()
 				self.batteryLevel.setValue(self.wii.battery()*100)
 				self.pushButtonConnect.setText(self.tr("Disconnect"))
+				
+				pBar.close()
 				
 				# Start calibration if configuration says so
 				conf = Configuration()
@@ -259,11 +267,11 @@ class MainWindow(QtGui.QMainWindow):
 				msgbox.setText( self.tr("Error. Check your bluetooth driver") )
 				msgbox.setModal( True )
 				ret = msgbox.exec_()
+				pBar.close()
 				return
 			
-			if pBar.cancelled == True:
-				self.wii = None
-				break
+			
+			
 
 	# doscreen: if doscreen is true, calibrate by manual pointing
 	def calibrateWii(self,doScreen=True):
