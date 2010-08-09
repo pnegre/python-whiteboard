@@ -73,17 +73,21 @@ class Wiimote:
 	
 	def bind(self, addr='*'):
 		try:
-			if addr == '*':
-				nearby_devices = bluetooth.discover_devices(lookup_names=True)
-				for address, name in nearby_devices:
-					if re.match('.*nintendo.*',name.lower()):
-						addr = address
-						break
+			self.addr = None
+			devices = dict(bluetooth.discover_devices(lookup_names=True))
+			if len(devices) == 0: return
 			
-			if addr == '*': return False
-			print "-" + addr + "-"
-			self.wii = cwiid.Wiimote(addr)
-			self.addr = addr
+			if addr == '*':
+				for address in devices.keys():
+					if re.match('.*nintendo.*',devices[address].lower()):
+						self.addr = address
+			else:
+				if addr.upper() in devices.keys():
+					self.addr = addr
+			
+			if self.addr is None: return
+			
+			self.wii = cwiid.Wiimote(self.addr)
 			self.wii.rpt_mode = cwiid.RPT_BTN | cwiid.RPT_IR
 			self.wii.led = cwiid.LED1_ON
 			self.error = False
