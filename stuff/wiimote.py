@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import re
+import sys,re
 
 from numpy import matrix, linalg
 import cwiid, bluetooth
@@ -86,8 +86,14 @@ class Wiimote:
 			self.wii.led = cwiid.LED1_ON
 			self.error = False
 			return True
-		except:
+			
+		except RuntimeError, errString:
+			self.wii = None
 			return False
+		
+		except:
+			print "Unexpected error:", sys.exc_info()[0]
+			raise
 	
 	def enable(self):
 		self.error = False

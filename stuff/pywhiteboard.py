@@ -238,7 +238,10 @@ class MainWindow(QtGui.QMainWindow):
 				if pBar.cancelled == True:
 					while not thread.wait(30):
 						QtGui.QApplication.processEvents()
+					
 					pBar.close()
+					w = thread.getWii()
+					if w is not None: w.close()
 					return
 
 			pBar.close()
