@@ -262,6 +262,7 @@ class MainWindow(QtGui.QMainWindow):
 				return
 			
 			if pBar.cancelled == True:
+				self.wii = None
 				break
 
 	# doscreen: if doscreen is true, calibrate by manual pointing
