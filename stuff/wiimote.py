@@ -7,6 +7,7 @@ from numpy import matrix, linalg
 import cwiid, bluetooth
 
 from configuration import Configuration
+from threads import CreateThreadClass
 
 
 
@@ -70,16 +71,16 @@ class Wiimote:
 		return wiimote_callback
 	
 	
-	def bind(self, addr=''):
+	def bind(self, addr='*'):
 		try:
-			if addr == '':
+			if addr == '*':
 				nearby_devices = bluetooth.discover_devices(lookup_names=True)
 				for address, name in nearby_devices:
 					if re.match('.*nintendo.*',name.lower()):
 						addr = address
 						break
 			
-			if addr == '': return False
+			if addr == '*': return False
 			print "-" + addr + "-"
 			self.wii = cwiid.Wiimote(addr)
 			self.addr = addr
@@ -183,6 +184,16 @@ class Wiimote:
 		area_inside = calculateArea(self.calibrationPoints)
 		total_area = Wiimote.MAX_X * Wiimote.MAX_Y
 		self.utilization = float(area_inside)/float(total_area)
+	
+	
+	def createConnectThread(self):
+		def func():
+			conf = Configuration()
+			mac = str(conf.getValueStr("selectedmac"))
+			self.bind(mac)
+		
+		thread = CreateThreadClass(func)
+		return thread() 
 
 
 

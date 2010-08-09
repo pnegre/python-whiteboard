@@ -226,8 +226,9 @@ class MainWindow(QtGui.QMainWindow):
 			self.disconnectDevice()
 			return
 		
+		self.wii = Wiimote()
 		while 1:
-			thread = ConnectThread()
+			thread = self.wii.createConnectThread()
 			thread.start()
 			
 			pBar = PBarDlg(self)
@@ -238,7 +239,6 @@ class MainWindow(QtGui.QMainWindow):
 
 			pBar.close()
 			
-			self.wii = thread.getWii()
 			if self.wii.isConnected():
 				self.connected = True
 				self.calibrated = False
