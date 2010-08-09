@@ -44,7 +44,6 @@ class MainWindow(QtGui.QMainWindow):
 		super(MainWindow, self).__init__(parent)
 		self.ui = uic.loadUi("mainwindow.ui",self)
 		self.setWindowTitle("python-whiteboard")
-		self.center()
 		
 		self.connected = False
 		self.calibrated = False
@@ -74,13 +73,10 @@ class MainWindow(QtGui.QMainWindow):
 		
 		self.connect(self.ui.actionQuit,
 			QtCore.SIGNAL("activated()"), self.mustQuit)
-		self.connect(self.ui.actionConfiguration,
-			QtCore.SIGNAL("activated()"), self.showConfiguration)
 		self.connect(self.ui.actionHelp,
 			QtCore.SIGNAL("activated()"), self.showAboutDlg)
 		
 		self.loadSettings()
-		#self.ui.textBrowser.setText("<b>Wiimote Linux WHITEBOARD</b>")
 		
 		conf = Configuration()
 		if conf.getValueStr("autoconnect") == "Yes":
@@ -93,6 +89,12 @@ class MainWindow(QtGui.QMainWindow):
 		self.timer2.setInterval(4000)
 		self.connect(self.timer2, QtCore.SIGNAL("timeout()"), self.checkWii)
 		self.timer2.start()
+		
+		self.confDialog = ConfigDialog(self, self.wii)
+		layout = QtGui.QGridLayout()
+		layout.addWidget(self.confDialog)
+		self.ui.confContainer.setLayout(layout)
+		self.center()
 	
 	
 	def showAboutDlg(self):
@@ -131,12 +133,6 @@ class MainWindow(QtGui.QMainWindow):
 			self.connectWii()
 		else:
 			self.timer.start()
-	
-	
-	def showConfiguration(self):
-		dialog = ConfigDialog(self, self.wii)
-		dialog.show()
-		dialog.exec_()
 		
 
 		
@@ -219,6 +215,8 @@ class MainWindow(QtGui.QMainWindow):
 			self.ui.label_utilization.setText(self.tr("Utilization: 0%"))
 			self.clearScreenGraphic()
 			self.batteryLevel.setValue(0)
+			self.confDialog.wii = None
+			self.confDialog.checkButtons()
 			return
 
 	def connectWii(self):
@@ -254,6 +252,9 @@ class MainWindow(QtGui.QMainWindow):
 				self.pushButtonConnect.setText(self.tr("Disconnect"))
 				
 				pBar.close()
+				
+				self.confDialog.wii = self.wii
+				self.confDialog.checkButtons()
 				
 				# Start calibration if configuration says so
 				conf = Configuration()

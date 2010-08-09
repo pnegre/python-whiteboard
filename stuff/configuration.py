@@ -118,10 +118,14 @@ class ConfigDialog(QtGui.QDialog):
 		if conf.getValueStr("autoconnect") == "Yes":
 			self.ui.check_autoconnect.setChecked(True)
 		if conf.getValueStr("autocalibration") == "Yes":
-			self.ui.check_autocalibration.setChecked(True)		
+			self.ui.check_autocalibration.setChecked(True)
 		
-		self.connect(self.ui.button_OK,
-			QtCore.SIGNAL("clicked()"), self.finish)
+		self.connect(self.ui.check_fullscreen,
+			QtCore.SIGNAL("stateChanged(int)"), self.checkStateChanged)
+		self.connect(self.ui.check_autoconnect,
+			QtCore.SIGNAL("stateChanged(int)"), self.checkStateChanged)
+		self.connect(self.ui.check_autocalibration,
+			QtCore.SIGNAL("stateChanged(int)"), self.checkStateChanged)
 		
 		self.connect(self.ui.button_addDev,
 			QtCore.SIGNAL("clicked()"), self.addDevice)
@@ -129,9 +133,6 @@ class ConfigDialog(QtGui.QDialog):
 			QtCore.SIGNAL("clicked()"), self.removeDevice)
 		
 		self.setupMacTable()
-		
-		if self.wii == None:
-			self.ui.button_addDev.setEnabled(False)
 		
 		pixmap = QtGui.QPixmap("screen.png")
 		self.areasScene = QtGui.QGraphicsScene()
@@ -162,6 +163,15 @@ class ConfigDialog(QtGui.QDialog):
 			QtCore.SIGNAL("valueChanged(int)"), self.sliderSmMoved)
 		smth = int(conf.getValueStr("smoothing"))
 		self.ui.slider_smoothing.setValue(smth)
+		
+		self.checkButtons()
+	
+	
+	def checkButtons(self):
+		if self.wii == None:
+			self.ui.button_addDev.setEnabled(False)
+		else:
+			self.ui.button_addDev.setEnabled(True)
 	
 	
 	
@@ -252,40 +262,6 @@ class ConfigDialog(QtGui.QDialog):
 	
 		
 	def finish(self):
-		conf = Configuration()
-		
-		if self.ui.check_fullscreen.isChecked():
-			conf.saveValue("fullscreen","Yes")
-		else:
-			conf.saveValue("fullscreen","No")
-		
-		if self.ui.check_autoconnect.isChecked():
-			conf.saveValue("autoconnect","Yes")
-		else:
-			conf.saveValue("autoconnect","No")
-		
-		if self.ui.check_autocalibration.isChecked():
-			conf.saveValue("autocalibration","Yes")
-		else:
-			conf.saveValue("autocalibration","No")
-		
-		#mlist = []
-		#for i in range(1,self.ui.macListWidget.count()):
-			#item = self.ui.macListWidget.item(i)
-			#t = item.text()
-			#mlist.append(t)
-		
-		#conf.writeArray("macs",mlist)
-		
-		#slist = self.ui.macListWidget.selectedItems()
-		#for item in slist:
-			#mac = item.text()
-			#if ':' in mac:
-				#conf.saveValue("selectedmac",mac)
-			#else:
-				#conf.saveValue("selectedmac",'*')
-			#break
-		
 		self.close()
 	
 	
@@ -306,6 +282,18 @@ class ConfigDialog(QtGui.QDialog):
 			conf.saveValue("zone3",str(i))
 		elif sender == self.ui.combo4:
 			conf.saveValue("zone4",str(i))
+	
+	def checkStateChanged(self,i):
+		yesno = 'Yes'
+		if i == 0: yesno = 'No'
+		sender = self.sender()
+		conf = Configuration()
+		if sender == self.ui.check_fullscreen:
+			conf.saveValue('fullscreen',yesno)
+		if sender == self.ui.check_autoconnect:
+			conf.saveValue('autoconnect',yesno)
+		if sender == self.ui.check_autocalibration:
+			conf.saveValue('autocalibration',yesno)
 	
 	
 	def closeEvent(self,e):
