@@ -84,7 +84,16 @@
                <item>
                 <widget class="QPushButton" name="pushButtonSettings">
                  <property name="text">
-                  <string>Show / Hide Settings</string>
+                  <string>Show Settings</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="autoDefault">
+                  <bool>false</bool>
+                 </property>
+                 <property name="flat">
+                  <bool>false</bool>
                  </property>
                 </widget>
                </item>
@@ -241,7 +250,7 @@
      <x>0</x>
      <y>0</y>
      <width>273</width>
-     <height>25</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

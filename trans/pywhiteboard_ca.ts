@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="ca_ES">
+<!DOCTYPE TS><TS version="1.1" language="ca_ES">
 <context>
     <name>CalibrateDialog</name>
     <message>
@@ -255,7 +254,7 @@ p, li { white-space: pre-wrap; }
         <source>Ok</source>
         <translation>D&apos;acord</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="about.ui" line="42"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -358,12 +357,12 @@ p, li { white-space: pre-wrap; }
         <translation>Finestra Principal</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="239"/>
+        <location filename="pywhiteboard.py" line="240"/>
         <source>Connect</source>
         <translation>Connecta</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="380"/>
+        <location filename="pywhiteboard.py" line="381"/>
         <source>Activate</source>
         <translation>Activa</translation>
     </message>
@@ -373,17 +372,17 @@ p, li { white-space: pre-wrap; }
         <translation>Calibra</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="110"/>
+        <location filename="mainwindow.ui" line="119"/>
         <source>Wiimote Battery level:</source>
         <translation>Nivell de la bateria:</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="307"/>
+        <location filename="pywhiteboard.py" line="308"/>
         <source>Utilization: 0%</source>
         <translation>Ús: 0%</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="158"/>
+        <location filename="mainwindow.ui" line="167"/>
         <source>Load Calibration</source>
         <translation>Carrega calibració</translation>
     </message>
@@ -433,37 +432,37 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Tant la llista d&apos;adreces MAC com el dispositiu seleccionat seran desats al fitxer de configuració (usant els qsettings de qt).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="249"/>
+        <location filename="mainwindow.ui" line="258"/>
         <source>File</source>
         <translation>Fitxer</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="274"/>
+        <location filename="mainwindow.ui" line="283"/>
         <source>Help</source>
         <translation>Ajuda</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="264"/>
+        <location filename="mainwindow.ui" line="273"/>
         <source>Exit</source>
         <translation>Surt</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="269"/>
+        <location filename="mainwindow.ui" line="278"/>
         <source>Quit</source>
         <translation>Surt</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="279"/>
+        <location filename="mainwindow.ui" line="288"/>
         <source>Configuration</source>
         <translation>Configuració</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="202"/>
+        <location filename="pywhiteboard.py" line="203"/>
         <source>Connected to </source>
         <translation>Connectat a </translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="278"/>
+        <location filename="pywhiteboard.py" line="279"/>
         <source>Disconnect</source>
         <translation>Desconnecta</translation>
     </message>
@@ -473,69 +472,84 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Error en la connexió</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="324"/>
+        <location filename="pywhiteboard.py" line="325"/>
         <source>Utilization: </source>
         <translation>Ús: </translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="333"/>
+        <location filename="pywhiteboard.py" line="334"/>
         <source>Error during Calibration</source>
         <translation>Error en la calibració</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="399"/>
+        <location filename="pywhiteboard.py" line="400"/>
         <source>Deactivate</source>
         <translation>Desactiva</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="410"/>
+        <location filename="pywhiteboard.py" line="411"/>
         <source>The application will remain active (systray).</source>
         <translation>L&apos;aplicació romandrà activa (safata del sistema).</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="410"/>
+        <location filename="pywhiteboard.py" line="411"/>
         <source>To quit, use file-&gt;quit menu</source>
         <translation>Per sortir, usau el menú Fitxer -&gt; Surt</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="94"/>
+        <location filename="mainwindow.ui" line="103"/>
         <source>Profile:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="102"/>
+        <location filename="mainwindow.ui" line="111"/>
         <source>Default</source>
         <translation>Per defecte</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="149"/>
+        <location filename="pywhiteboard.py" line="150"/>
         <source>Wii device disconnected</source>
         <translation>Dispositiu Wiimote desconnectat</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="180"/>
+        <location filename="mainwindow.ui" line="189"/>
         <source>Mouse Control</source>
         <translation>Control del ratolí</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="197"/>
+        <location filename="mainwindow.ui" line="206"/>
         <source>Move Only</source>
         <translation>Només moure</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="295"/>
+        <location filename="pywhiteboard.py" line="296"/>
         <source>Error. Check your bluetooth driver</source>
         <translation>Error. Comprova la connexió bluetooth</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="87"/>
         <source>Show / Hide Settings</source>
-        <translation>Mostra / Amaga configuració</translation>
+        <translation type="obsolete">Mostra / Amaga configuració</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="294"/>
+        <location filename="pywhiteboard.py" line="295"/>
         <source>Error</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="87"/>
+        <source>Show Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="pywhiteboard.py" line="114"/>
+        <source>Hide settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="pywhiteboard.py" line="116"/>
+        <source>Show settings</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -720,12 +720,12 @@ p, li { white-space: pre-wrap; }
         <translation>Finestra Principale</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="239"/>
+        <location filename="pywhiteboard.py" line="240"/>
         <source>Connect</source>
         <translation>Connetti</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="380"/>
+        <location filename="pywhiteboard.py" line="381"/>
         <source>Activate</source>
         <translation>Attiva</translation>
     </message>
@@ -735,17 +735,17 @@ p, li { white-space: pre-wrap; }
         <translation>Calibra</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="110"/>
+        <location filename="mainwindow.ui" line="119"/>
         <source>Wiimote Battery level:</source>
         <translation>Carica della batteria del wiimote:</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="307"/>
+        <location filename="pywhiteboard.py" line="308"/>
         <source>Utilization: 0%</source>
         <translation>Utilizzo: 0%</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="158"/>
+        <location filename="mainwindow.ui" line="167"/>
         <source>Load Calibration</source>
         <translation>Carica calibrazione</translation>
     </message>
@@ -795,37 +795,37 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;La lista degli indirizzi mac e le periferiche selezionate verranno salvate in un file di configurazione (usando qsettings).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="249"/>
+        <location filename="mainwindow.ui" line="258"/>
         <source>File</source>
         <translation>File</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="274"/>
+        <location filename="mainwindow.ui" line="283"/>
         <source>Help</source>
         <translation>Aiuto</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="264"/>
+        <location filename="mainwindow.ui" line="273"/>
         <source>Exit</source>
         <translation>Esci</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="269"/>
+        <location filename="mainwindow.ui" line="278"/>
         <source>Quit</source>
         <translation>Esci</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="279"/>
+        <location filename="mainwindow.ui" line="288"/>
         <source>Configuration</source>
         <translation>Configurazione</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="202"/>
+        <location filename="pywhiteboard.py" line="203"/>
         <source>Connected to </source>
         <translation>Connesso a</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="278"/>
+        <location filename="pywhiteboard.py" line="279"/>
         <source>Disconnect</source>
         <translation>Disconnetti</translation>
     </message>
@@ -835,47 +835,47 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Errore durante la connessione</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="324"/>
+        <location filename="pywhiteboard.py" line="325"/>
         <source>Utilization: </source>
         <translation>Utilizzo: </translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="333"/>
+        <location filename="pywhiteboard.py" line="334"/>
         <source>Error during Calibration</source>
         <translation>Errore durante la calibrazione</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="399"/>
+        <location filename="pywhiteboard.py" line="400"/>
         <source>Deactivate</source>
         <translation>Disattiva</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="410"/>
+        <location filename="pywhiteboard.py" line="411"/>
         <source>The application will remain active (systray).</source>
         <translation>L&apos;applicazione rimarrà attiva (area di notifica).</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="410"/>
+        <location filename="pywhiteboard.py" line="411"/>
         <source>To quit, use file-&gt;quit menu</source>
         <translation>Per uscire,usa il menu file-&gt;esci</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="94"/>
+        <location filename="mainwindow.ui" line="103"/>
         <source>Profile:</source>
         <translation>Profilo:</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="102"/>
+        <location filename="mainwindow.ui" line="111"/>
         <source>Default</source>
         <translation>Impostazioni predefinite</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="149"/>
+        <location filename="pywhiteboard.py" line="150"/>
         <source>Wii device disconnected</source>
         <translation>Periferica wiimote disconnessa</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="180"/>
+        <location filename="mainwindow.ui" line="189"/>
         <source>Mouse Control</source>
         <translation>Controllo del mouse</translation>
     </message>
@@ -885,23 +885,38 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Clicca e muovi</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="197"/>
+        <location filename="mainwindow.ui" line="206"/>
         <source>Move Only</source>
         <translation>Muovi solamente</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="295"/>
+        <location filename="pywhiteboard.py" line="296"/>
         <source>Error. Check your bluetooth driver</source>
         <translation>Errore. Controlla il driver bluetooth</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="87"/>
         <source>Show / Hide Settings</source>
-        <translation>Mostra / Nascondi Configurazione</translation>
+        <translation type="obsolete">Mostra / Nascondi Configurazione</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="294"/>
+        <location filename="pywhiteboard.py" line="295"/>
         <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="87"/>
+        <source>Show Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="pywhiteboard.py" line="114"/>
+        <source>Hide settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="pywhiteboard.py" line="116"/>
+        <source>Show settings</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
