@@ -799,12 +799,12 @@ p, li { white-space: pre-wrap; }
         <translation>Finestra Principale</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="240"/>
+        <location filename="pywhiteboard.py" line="244"/>
         <source>Connect</source>
         <translation>Connetti</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="381"/>
+        <location filename="pywhiteboard.py" line="385"/>
         <source>Activate</source>
         <translation>Attiva</translation>
     </message>
@@ -819,7 +819,7 @@ p, li { white-space: pre-wrap; }
         <translation>Carica della batteria del wiimote:</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="308"/>
+        <location filename="pywhiteboard.py" line="312"/>
         <source>Utilization: 0%</source>
         <translation>Utilizzo: 0%</translation>
     </message>
@@ -899,12 +899,12 @@ p, li { white-space: pre-wrap; }
         <translation>Configurazione</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="203"/>
+        <location filename="pywhiteboard.py" line="207"/>
         <source>Connected to </source>
         <translation>Connesso a</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="279"/>
+        <location filename="pywhiteboard.py" line="283"/>
         <source>Disconnect</source>
         <translation>Disconnetti</translation>
     </message>
@@ -914,27 +914,27 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Errore durante la connessione</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="325"/>
+        <location filename="pywhiteboard.py" line="329"/>
         <source>Utilization: </source>
         <translation>Utilizzo: </translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="334"/>
+        <location filename="pywhiteboard.py" line="338"/>
         <source>Error during Calibration</source>
         <translation>Errore durante la calibrazione</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="400"/>
+        <location filename="pywhiteboard.py" line="404"/>
         <source>Deactivate</source>
         <translation>Disattiva</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="411"/>
+        <location filename="pywhiteboard.py" line="415"/>
         <source>The application will remain active (systray).</source>
         <translation>L&apos;applicazione rimarrà attiva (area di notifica).</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="411"/>
+        <location filename="pywhiteboard.py" line="415"/>
         <source>To quit, use file-&gt;quit menu</source>
         <translation>Per uscire,usa il menu file-&gt;esci</translation>
     </message>
@@ -949,7 +949,7 @@ p, li { white-space: pre-wrap; }
         <translation>Impostazioni predefinite</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="150"/>
+        <location filename="pywhiteboard.py" line="154"/>
         <source>Wii device disconnected</source>
         <translation>Periferica wiimote disconnessa</translation>
     </message>
@@ -969,7 +969,7 @@ p, li { white-space: pre-wrap; }
         <translation>Muovi solamente</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="296"/>
+        <location filename="pywhiteboard.py" line="300"/>
         <source>Error. Check your bluetooth driver</source>
         <translation>Errore. Controlla il driver bluetooth</translation>
     </message>
@@ -979,7 +979,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Mostra / Nascondi Configurazione</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="295"/>
+        <location filename="pywhiteboard.py" line="299"/>
         <source>Error</source>
         <translation>Errore</translation>
     </message>
@@ -989,12 +989,12 @@ p, li { white-space: pre-wrap; }
         <translation>Mostra configurazione</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="114"/>
+        <location filename="pywhiteboard.py" line="115"/>
         <source>Hide settings</source>
         <translation>Nascondi configurazione</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="116"/>
+        <location filename="pywhiteboard.py" line="119"/>
         <source>Show settings</source>
         <translation>Mostra configurazione</translation>
     </message>
