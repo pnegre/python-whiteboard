@@ -26,6 +26,7 @@ class Configuration:
 				"autocalibration": "Yes",
 				"sensitivity": "6",
 				"smoothing": "5",
+				"moveonly": "No",
 			}
 			
 			version = self.getValueStr("version")

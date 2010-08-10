@@ -56,6 +56,8 @@ class MainWindow(QtGui.QMainWindow):
 		self.batteryLevel.reset()
 		self.batteryLevel.setRange(0,99)
 		self.batteryLevel.setValue(0)
+		
+		conf = Configuration()
 
 		self.connect(self.ui.pushButtonConnect,
 			QtCore.SIGNAL("clicked()"), self.connectWii)
@@ -76,9 +78,12 @@ class MainWindow(QtGui.QMainWindow):
 		self.connect(self.ui.actionHelp,
 			QtCore.SIGNAL("activated()"), self.showAboutDlg)
 		
-		self.loadSettings()
 		
-		conf = Configuration()
+		if conf.getValueStr('moveonly') == 'Yes':
+			self.ui.moveOnlyCheck.setChecked(True)
+		self.connect(self.ui.moveOnlyCheck,
+			QtCore.SIGNAL("stateChanged(int)"), self.checkMoveOnly)
+		
 		if conf.getValueStr("autoconnect") == "Yes":
 			self.timer = qt.QTimer(self)
 			self.timer.setInterval(500)
@@ -95,6 +100,14 @@ class MainWindow(QtGui.QMainWindow):
 		layout.addWidget(self.confDialog)
 		self.ui.confContainer.setLayout(layout)
 		self.center()
+	
+	
+	def checkMoveOnly(self,i):
+		conf = Configuration()
+		if self.sender().isChecked():
+			conf.saveValue('moveonly','Yes')
+		else:
+			conf.saveValue('moveonly','No')
 	
 	
 	def showAboutDlg(self):
@@ -371,10 +384,6 @@ class MainWindow(QtGui.QMainWindow):
 			self.active = True
 			self.pushButtonActivate.setText(self.tr("Deactivate"))
 			self.updateButtons()
-	
-	
-	def loadSettings(self):
-		pass
 	
 	
 	# Exit callback
