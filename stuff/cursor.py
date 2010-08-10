@@ -97,19 +97,20 @@ class FakeCursor:
 	
 	
 	def mouse_down(self):
-		if self.noClicks: return
+		if self.noClicks or self.clickType == FakeCursor.ONLY_MOVE: 
+			self.clickType = None
+			return
 		button = self.clickType
-		if button != FakeCursor.ONLY_MOVE:
-			Xlib.ext.xtest.fake_input(self.display, Xlib.X.ButtonPress, button)
-			self.display.sync()
+		Xlib.ext.xtest.fake_input(self.display, Xlib.X.ButtonPress, button)
+		self.display.sync()
 	
 	
 	def mouse_up(self):
-		if self.noClicks: return
+		if self.clickType is None:
+			return
 		button = self.clickType
-		if button != FakeCursor.ONLY_MOVE:
-			Xlib.ext.xtest.fake_input(self.display, Xlib.X.ButtonRelease, button)
-			self.display.sync()
+		Xlib.ext.xtest.fake_input(self.display, Xlib.X.ButtonRelease, button)
+		self.display.sync()
 	
 	
 	# Returns True if point is within screen limits

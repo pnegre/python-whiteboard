@@ -124,8 +124,12 @@ class MainWindow(QtGui.QMainWindow):
 		conf = Configuration()
 		if self.sender().isChecked():
 			conf.saveValue('moveonly','Yes')
+			if self.cursor:
+				self.cursor.noClicks = True
 		else:
 			conf.saveValue('moveonly','No')
+			if self.cursor:
+				self.cursor.noClicks = False
 	
 	
 	def showAboutDlg(self):
@@ -200,7 +204,7 @@ class MainWindow(QtGui.QMainWindow):
 			self.ui.pushButtonCalibrate.setEnabled(0)
 			self.ui.pushButtonActivate.setEnabled(0)
 			self.ui.pushButtonLoadCal.setEnabled(0)
-			self.ui.frame_mouseControl.setEnabled(1)
+			#self.ui.frame_mouseControl.setEnabled(1)
 			self.statusBar().showMessage("")
 			return
 		
@@ -211,21 +215,21 @@ class MainWindow(QtGui.QMainWindow):
 			self.ui.pushButtonCalibrate.setEnabled(1)
 			self.ui.pushButtonActivate.setEnabled(0)
 			self.ui.pushButtonLoadCal.setEnabled(1)
-			self.ui.frame_mouseControl.setEnabled(1)
+			#self.ui.frame_mouseControl.setEnabled(1)
 			return
 		if self.active == False:
 			self.ui.pushButtonConnect.setEnabled(1)
 			self.ui.pushButtonCalibrate.setEnabled(1)
 			self.ui.pushButtonActivate.setEnabled(1)
 			self.ui.pushButtonLoadCal.setEnabled(1)
-			self.ui.frame_mouseControl.setEnabled(1)
+			#self.ui.frame_mouseControl.setEnabled(1)
 			return
 		else:
 			self.ui.pushButtonConnect.setEnabled(0)
 			self.ui.pushButtonCalibrate.setEnabled(1)
 			self.ui.pushButtonLoadCal.setEnabled(0)
 			self.ui.pushButtonActivate.setEnabled(1)
-			self.ui.frame_mouseControl.setEnabled(0)
+			#self.ui.frame_mouseControl.setEnabled(0)
 	
 	
 	def disconnectDevice(self):
