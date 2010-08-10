@@ -44,6 +44,8 @@ class MainWindow(QtGui.QMainWindow):
 		super(MainWindow, self).__init__(parent)
 		self.ui = uic.loadUi("mainwindow.ui",self)
 		self.setWindowTitle("python-whiteboard")
+		self.setWindowFlags( qt.Qt.CustomizeWindowHint | qt.Qt.WindowMinimizeButtonHint |
+			qt.Qt.WindowCloseButtonHint )
 		
 		self.connected = False
 		self.calibrated = False
