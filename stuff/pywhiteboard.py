@@ -110,6 +110,8 @@ class MainWindow(QtGui.QMainWindow):
 		self.ui.confContainer.setVisible(not self.ui.confContainer.isVisible())
 		QtGui.QApplication.processEvents()
 		self.adjustSize()
+		QtGui.QApplication.processEvents()
+		self.adjustSize()
 		#QtGui.QApplication.processEvents()
 	
 	
