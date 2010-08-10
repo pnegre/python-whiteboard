@@ -6,207 +6,211 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>675</width>
-    <height>506</height>
+    <width>285</width>
+    <height>583</height>
    </rect>
-  </property>
-  <property name="sizePolicy">
-   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-    <horstretch>0</horstretch>
-    <verstretch>0</verstretch>
-   </sizepolicy>
-  </property>
-  <property name="minimumSize">
-   <size>
-    <width>675</width>
-    <height>506</height>
-   </size>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>675</width>
-    <height>506</height>
-   </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_3">
+   <layout class="QGridLayout" name="gridLayout_4">
     <item row="0" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout_4">
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_3">
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout_2">
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_2">
-            <item>
-             <widget class="QPushButton" name="pushButtonConnect">
-              <property name="text">
-               <string>Connect</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButtonCalibrate">
-              <property name="text">
-               <string>Calibrate</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QVBoxLayout" name="verticalLayout">
-            <item>
-             <widget class="QPushButton" name="pushButtonActivate">
-              <property name="text">
-               <string>Activate</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_2">
-              <property name="text">
-               <string>Profile:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QComboBox" name="comboBox">
-              <item>
-               <property name="text">
-                <string>Default</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label">
-              <property name="text">
-               <string>Wiimote Battery level:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QProgressBar" name="batteryLevel">
-              <property name="value">
-               <number>24</number>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_utilization">
-              <property name="text">
-               <string>Utilization: 0%</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QGraphicsView" name="wiiScreen">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="verticalScrollBarPolicy">
-               <enum>Qt::ScrollBarAlwaysOff</enum>
-              </property>
-              <property name="horizontalScrollBarPolicy">
-               <enum>Qt::ScrollBarAlwaysOff</enum>
-              </property>
-              <property name="sceneRect">
-               <rectf>
-                <x>0.000000000000000</x>
-                <y>0.000000000000000</y>
-                <width>0.000000000000000</width>
-                <height>0.000000000000000</height>
-               </rectf>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButtonLoadCal">
-              <property name="text">
-               <string>Load Calibration</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QFrame" name="frame_mouseControl">
-              <property name="styleSheet">
-               <string notr="true"/>
-              </property>
-              <property name="frameShape">
-               <enum>QFrame::StyledPanel</enum>
-              </property>
-              <property name="frameShadow">
-               <enum>QFrame::Raised</enum>
-              </property>
-              <layout class="QGridLayout" name="gridLayout_2">
-               <item row="0" column="0">
-                <widget class="QGroupBox" name="groupBox">
+     <widget class="QWidget" name="widget" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>251</width>
+        <height>518</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>251</width>
+        <height>518</height>
+       </size>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_2">
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_2">
+               <item>
+                <widget class="QPushButton" name="pushButtonConnect">
+                 <property name="text">
+                  <string>Connect</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButtonCalibrate">
+                 <property name="text">
+                  <string>Calibrate</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayout">
+               <item>
+                <widget class="QPushButton" name="pushButtonActivate">
+                 <property name="text">
+                  <string>Activate</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButtonSettings">
+                 <property name="text">
+                  <string>Show / Hide Settings</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_2">
+                 <property name="text">
+                  <string>Profile:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="comboBox">
+                 <item>
+                  <property name="text">
+                   <string>Default</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label">
+                 <property name="text">
+                  <string>Wiimote Battery level:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QProgressBar" name="batteryLevel">
+                 <property name="value">
+                  <number>24</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_utilization">
+                 <property name="text">
+                  <string>Utilization: 0%</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGraphicsView" name="wiiScreen">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="verticalScrollBarPolicy">
+                  <enum>Qt::ScrollBarAlwaysOff</enum>
+                 </property>
+                 <property name="horizontalScrollBarPolicy">
+                  <enum>Qt::ScrollBarAlwaysOff</enum>
+                 </property>
+                 <property name="sceneRect">
+                  <rectf>
+                   <x>0.000000000000000</x>
+                   <y>0.000000000000000</y>
+                   <width>0.000000000000000</width>
+                   <height>0.000000000000000</height>
+                  </rectf>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButtonLoadCal">
+                 <property name="text">
+                  <string>Load Calibration</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frame_mouseControl">
                  <property name="styleSheet">
                   <string notr="true"/>
                  </property>
-                 <property name="title">
-                  <string>Mouse Control</string>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
                  </property>
-                 <property name="flat">
-                  <bool>false</bool>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
                  </property>
-                 <property name="checkable">
-                  <bool>false</bool>
-                 </property>
-                 <property name="checked">
-                  <bool>false</bool>
-                 </property>
-                 <layout class="QGridLayout" name="gridLayout">
+                 <layout class="QGridLayout" name="gridLayout_2">
                   <item row="0" column="0">
-                   <layout class="QHBoxLayout" name="horizontalLayout">
-                    <item>
-                     <widget class="QCheckBox" name="moveOnlyCheck">
-                      <property name="text">
-                       <string>Move Only</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
+                   <widget class="QGroupBox" name="groupBox">
+                    <property name="styleSheet">
+                     <string notr="true"/>
+                    </property>
+                    <property name="title">
+                     <string>Mouse Control</string>
+                    </property>
+                    <property name="flat">
+                     <bool>false</bool>
+                    </property>
+                    <property name="checkable">
+                     <bool>false</bool>
+                    </property>
+                    <property name="checked">
+                     <bool>false</bool>
+                    </property>
+                    <layout class="QGridLayout" name="gridLayout">
+                     <item row="0" column="0">
+                      <layout class="QHBoxLayout" name="horizontalLayout">
+                       <item>
+                        <widget class="QCheckBox" name="moveOnlyCheck">
+                         <property name="text">
+                          <string>Move Only</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                    </layout>
+                   </widget>
                   </item>
                  </layout>
                 </widget>
                </item>
               </layout>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <widget class="Line" name="line">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="Line" name="line">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+      <zorder>label_2</zorder>
+      <zorder></zorder>
+      <zorder></zorder>
+     </widget>
     </item>
     <item row="0" column="1">
      <widget class="QWidget" name="confContainer" native="true">
-      <property name="minimumSize">
-       <size>
-        <width>381</width>
-        <height>0</height>
-       </size>
-      </property>
       <property name="styleSheet">
        <string notr="true"/>
       </property>
@@ -220,7 +224,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>675</width>
+     <width>285</width>
      <height>25</height>
     </rect>
    </property>

@@ -71,6 +71,9 @@ class MainWindow(QtGui.QMainWindow):
 		self.connect(self.ui.pushButtonLoadCal,
 			QtCore.SIGNAL("clicked()"), self.calibrateWiiFromSettings)
 		
+		self.connect(self.ui.pushButtonSettings,
+			QtCore.SIGNAL("clicked()"), self.showHideSettings)
+		
 		self.updateButtons()
 		
 		self.connect(self.ui.actionQuit,
@@ -99,7 +102,15 @@ class MainWindow(QtGui.QMainWindow):
 		layout = QtGui.QGridLayout()
 		layout.addWidget(self.confDialog)
 		self.ui.confContainer.setLayout(layout)
+		self.ui.confContainer.setVisible(False)
 		self.center()
+	
+	
+	def showHideSettings(self):
+		self.ui.confContainer.setVisible(not self.ui.confContainer.isVisible())
+		QtGui.QApplication.processEvents()
+		self.adjustSize()
+		#QtGui.QApplication.processEvents()
 	
 	
 	def checkMoveOnly(self,i):
