@@ -87,12 +87,12 @@
         <translation>Configuració</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="180"/>
+        <location filename="configuration.ui" line="186"/>
         <source>General options</source>
         <translation>Opcions generals</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="186"/>
+        <location filename="configuration.ui" line="192"/>
         <source>Auto connect</source>
         <translation>Auto connecta</translation>
     </message>
@@ -102,77 +102,77 @@
         <translation type="obsolete">Activa el cursor després de la calibració</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="243"/>
+        <location filename="configuration.ui" line="249"/>
         <source>Fullscreen Calibration</source>
         <translation>Calibració a pantalla completa</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="193"/>
+        <location filename="configuration.ui" line="199"/>
         <source>Select allowed devices:</source>
         <translation>Seleccioneu els dispositius permesos:</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="205"/>
+        <location filename="configuration.ui" line="211"/>
         <source>Add connected device</source>
         <translation>Afegiu el dispositiu connectat</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="225"/>
+        <location filename="configuration.ui" line="231"/>
         <source>Remove device</source>
         <translation>Elimineu dispositiu</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="250"/>
+        <location filename="configuration.ui" line="256"/>
         <source>Do calibration after connection</source>
         <translation>Calibra en connectar</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="282"/>
+        <location filename="configuration.ui" line="288"/>
         <source>IR Sensitivity:</source>
         <translation>Sensibilitat IR:</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="30"/>
+        <location filename="configuration.ui" line="36"/>
         <source>Toggles</source>
         <translation>Commutadors</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="47"/>
+        <location filename="configuration.ui" line="53"/>
         <source>Area 1</source>
         <translation>Àrea 1</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="54"/>
+        <location filename="configuration.ui" line="60"/>
         <source>Area 2</source>
         <translation>Àrea 2</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="61"/>
+        <location filename="configuration.ui" line="67"/>
         <source>Area 3</source>
         <translation>Àrea 3</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="68"/>
+        <location filename="configuration.ui" line="74"/>
         <source>Area 4</source>
         <translation>Àrea 4</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="152"/>
+        <location filename="configuration.ui" line="158"/>
         <source>Left Click</source>
         <translation>Clic esquerre</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="157"/>
+        <location filename="configuration.ui" line="163"/>
         <source>Only Move</source>
         <translation>Només mou</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="162"/>
+        <location filename="configuration.ui" line="168"/>
         <source>Right Click</source>
         <translation>Clic dret</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="167"/>
+        <location filename="configuration.ui" line="173"/>
         <source>Middle Click</source>
         <translation>Clic central</translation>
     </message>
@@ -200,27 +200,27 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Premeu els botons 1 i 2 del vostre Wiimote&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="235"/>
+        <location filename="configuration.ui" line="241"/>
         <source>Advanced</source>
         <translation>Avançat</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="261"/>
+        <location filename="configuration.ui" line="267"/>
         <source>Smoothing:</source>
         <translation>Suavitzat:</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="300"/>
+        <location filename="configuration.ui" line="306"/>
         <source>Profile management:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="314"/>
+        <location filename="configuration.ui" line="320"/>
         <source>New</source>
         <translation>Nou</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="321"/>
+        <location filename="configuration.ui" line="327"/>
         <source>Delete</source>
         <translation>Elimina</translation>
     </message>
