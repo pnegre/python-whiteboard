@@ -178,7 +178,7 @@ class ConfigDialog(QtGui.QDialog):
 	
 	def setupMacTable(self):
 		self.ui.tableMac.setColumnCount(2)
-		self.ui.tableMac.setHorizontalHeaderLabels(['Address','Comment'])
+		self.ui.tableMac.setHorizontalHeaderLabels([self.tr('Address'), self.tr('Comment')])
 		self.ui.tableMac.setSelectionMode(QtGui.QTableWidget.SingleSelection)
 		self.ui.tableMac.setSelectionBehavior(QtGui.QTableWidget.SelectRows)
 		self.refreshMacTable()
