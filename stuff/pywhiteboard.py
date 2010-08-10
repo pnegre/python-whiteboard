@@ -109,11 +109,12 @@ class MainWindow(QtGui.QMainWindow):
 	def showHideSettings(self):
 		self.ui.confContainer.setVisible(not self.ui.confContainer.isVisible())
 		QtGui.QApplication.processEvents()
-		self.adjustSize()
 		if self.ui.confContainer.isVisible():
 			self.ui.pushButtonSettings.setText(self.tr('Hide settings'))
+			self.resize(771,583)
 		else:
 			self.ui.pushButtonSettings.setText(self.tr('Show settings'))
+			self.adjustSize()
 	
 	
 	def checkMoveOnly(self,i):
