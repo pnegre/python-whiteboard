@@ -113,7 +113,8 @@ class MainWindow(QtGui.QMainWindow):
 		QtGui.QApplication.processEvents()
 		if self.ui.confContainer.isVisible():
 			self.ui.pushButtonSettings.setText(self.tr('Hide settings'))
-			self.resize(771,583)
+			# Res¡ze to max
+			self.resize(1000,1000)
 		else:
 			self.ui.pushButtonSettings.setText(self.tr('Show settings'))
 			self.adjustSize()
