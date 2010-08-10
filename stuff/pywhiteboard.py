@@ -289,6 +289,7 @@ class MainWindow(QtGui.QMainWindow):
 			if self.wii.error:
 				self.wii = None
 				msgbox = QtGui.QMessageBox( self )
+				msgbox.setWindowTitle( self.tr('Error') )
 				msgbox.setText( self.tr("Error. Check your bluetooth driver") )
 				msgbox.setModal( True )
 				ret = msgbox.exec_()

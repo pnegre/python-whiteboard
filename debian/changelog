@@ -1,3 +1,9 @@
+python-whiteboard (0.9) unstable; urgency=low
+
+  * Revamped ui
+
+ -- pnegre <pere.negre@gmail.com>  Tue, 10 Aug 2010 14:21:30 +0200
+
 python-whiteboard (0.8) unstable; urgency=low
 
   * Small fixes

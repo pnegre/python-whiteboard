@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1">
+<!DOCTYPE TS>
+<TS version="2.0" language="ca_ES">
 <context>
     <name>CalibrateDialog</name>
     <message>
         <location filename="calibration.py" line="292"/>
         <source>Push UP/DOWN to alter the crosses&apos; position</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Empra els botons AMUNT/AVALL del cursor per moure les creus</translation>
     </message>
 </context>
 <context>
@@ -36,27 +37,27 @@
     <message>
         <location filename="configuration.py" line="256"/>
         <source>Smoothing: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Suavitzat:</translation>
     </message>
     <message>
         <location filename="configuration.py" line="262"/>
         <source>IR Sensitivity: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sensibilitat IR:</translation>
     </message>
     <message>
         <location filename="configuration.py" line="204"/>
         <source>All devices</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tots els dispositius</translation>
     </message>
     <message>
         <location filename="configuration.py" line="231"/>
         <source>Comment</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Comentari</translation>
     </message>
     <message>
         <location filename="configuration.py" line="231"/>
         <source>Wii device description</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Descripció del Wiimote</translation>
     </message>
 </context>
 <context>
@@ -67,7 +68,7 @@
         <translation>Diàleg</translation>
     </message>
     <message>
-        <location filename="" line="6"/>
+        <location filename="calibration2.ui" line="6"/>
         <source>abc</source>
         <translation type="obsolete">abc</translation>
     </message>
@@ -197,12 +198,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="configuration.ui" line="241"/>
         <source>Advanced</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Avançat</translation>
     </message>
     <message>
         <location filename="configuration.ui" line="267"/>
         <source>Smoothing:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Suavitzat:</translation>
     </message>
     <message>
         <location filename="configuration.ui" line="306"/>
@@ -212,17 +213,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="configuration.ui" line="320"/>
         <source>New</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nou</translation>
     </message>
     <message>
         <location filename="configuration.ui" line="327"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Elimina</translation>
     </message>
     <message>
         <location filename="pbar.ui" line="76"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Cancel·la</translation>
     </message>
     <message>
         <location filename="about.ui" line="26"/>
@@ -232,12 +233,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="about.ui" line="36"/>
         <source>Information</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Informació</translation>
     </message>
     <message>
         <location filename="about.ui" line="65"/>
         <source>Translations</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Traduccions</translation>
     </message>
     <message>
         <location filename="about.ui" line="71"/>
@@ -256,14 +257,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="about.ui" line="88"/>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Llicència</translation>
     </message>
     <message>
         <location filename="about.ui" line="173"/>
         <source>Ok</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">D&apos;acord</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="about.ui" line="42"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -497,32 +498,32 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="mainwindow.ui" line="102"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Per defecte</translation>
     </message>
     <message>
         <location filename="pywhiteboard.py" line="147"/>
         <source>Wii device disconnected</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dispositiu Wiimote desconnectat</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="180"/>
         <source>Mouse Control</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Control del ratolí</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="197"/>
         <source>Move Only</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Només moure</translation>
     </message>
     <message>
         <location filename="pywhiteboard.py" line="292"/>
         <source>Error. Check your bluetooth driver</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Error. Comprova la connexió bluetooth</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="87"/>
         <source>Show / Hide Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mostra / Amaga configuració</translation>
     </message>
 </context>
 <context>
@@ -530,7 +531,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="pywhiteboard.py" line="38"/>
         <source>Cancelling...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Cancel·lant...</translation>
     </message>
 </context>
 </TS>
