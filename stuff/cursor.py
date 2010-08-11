@@ -192,6 +192,7 @@ class FakeCursor:
 		self.mutex.unlock()
 		self.thread.wait()
 		self.wii.disable()
+		self.wii.putCallbackIR(None)
 		self.thread = None
 		
 
