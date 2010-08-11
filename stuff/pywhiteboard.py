@@ -301,6 +301,11 @@ class MainWindow(QtGui.QMainWindow):
 				self.confDialog.wii = self.wii
 				self.confDialog.checkButtons()
 				
+				self.wii.disable()
+				self.wii.putCallbackBTN(self.makeBTNCallback())
+				self.wii.putCallbackIR(None)
+				self.wii.enable()
+				
 				# Start calibration if configuration says so
 				conf = Configuration()
 				if conf.getValueStr("autocalibration") == "Yes":
@@ -325,7 +330,7 @@ class MainWindow(QtGui.QMainWindow):
 
 	# doscreen: if doscreen is true, calibrate by manual pointing
 	def calibrateWii(self,loadFromSettings=False):
-		self.deactivateWii()
+		self.deactivateWii()		
 		self.ui.label_utilization.setText(self.tr("Utilization: 0%"))
 		self.clearScreenGraphic()
 		
@@ -358,6 +363,12 @@ class MainWindow(QtGui.QMainWindow):
 			msgbox.setText( self.tr("Error during Calibration") )
 			msgbox.setModal( True )
 			ret = msgbox.exec_()
+		
+			# Installs button callback (for calling calibration)
+			self.wii.disable()
+			self.wii.putCallbackBTN(self.makeBTNCallback())
+			self.wii.putCallbackIR(None)
+			self.wii.enable()
 
 	
 	def calibrateWiiScreen(self):
@@ -405,10 +416,6 @@ class MainWindow(QtGui.QMainWindow):
 			self.active = False
 			self.pushButtonActivate.setText(self.tr("Activate"))
 			self.updateButtons()
-			
-			# removes button callback
-			self.wii.disable()
-			self.wii.putCallbackBTN(None)
 	
 	
 	def activateWii(self):

@@ -340,6 +340,8 @@ class CalibrateDialog(QtGui.QDialog):
 
 def doCalibration(parent,wii):
 	conf = Configuration()
+	wii.disable()
+	wii.putCallbackBTN(None)
 	
 	if conf.getValueStr("fullscreen") == "Yes":
 		dialog = CalibrateDialog(parent,wii)
