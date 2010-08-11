@@ -104,7 +104,7 @@ class Wiimote:
 	
 	def bind(self, addr):
 		try:
-			self.addr = addr
+			self.addr = str(addr)
 			self.wii = cwiid.Wiimote(self.addr)
 			self.wii.rpt_mode = cwiid.RPT_BTN | cwiid.RPT_IR
 			self.wii.led = cwiid.LED1_ON
