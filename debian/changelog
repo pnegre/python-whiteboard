@@ -1,3 +1,12 @@
+python-whiteboard (0.9.2) unstable; urgency=low
+
+  * The program is capable to detect more than one wiimote device
+  * The program allows the user to select the wiimote
+  * Pushing "A" on the wiimote device triggers calibration window
+  * New option to load automatically the saved calibration matrix on startup
+
+ -- pnegre <pere.negre@gmail.com>  Wed, 11 Aug 2010 17:21:40 +0200
+
 python-whiteboard (0.9.1) unstable; urgency=low
 
   * Minor fixes.
