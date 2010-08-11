@@ -304,7 +304,10 @@ class MainWindow(QtGui.QMainWindow):
 				# Start calibration if configuration says so
 				conf = Configuration()
 				if conf.getValueStr("autocalibration") == "Yes":
-					self.calibrateWii()
+					if conf.getValueStr("automatrix") == "Yes":
+						self.calibrateWiiFromSettings()
+					else:
+						self.calibrateWiiScreen()
 				return
 			
 			if self.wii.error:
@@ -321,7 +324,7 @@ class MainWindow(QtGui.QMainWindow):
 			
 
 	# doscreen: if doscreen is true, calibrate by manual pointing
-	def calibrateWii(self,doScreen=True):
+	def calibrateWii(self,loadFromSettings=False):
 		self.deactivateWii()
 		self.ui.label_utilization.setText(self.tr("Utilization: 0%"))
 		self.clearScreenGraphic()
@@ -330,10 +333,13 @@ class MainWindow(QtGui.QMainWindow):
 		self.active = False
 		
 		self.wii.state = Wiimote.NONCALIBRATED
-		if doScreen:
-			doCalibration(self,self.wii)
+		if loadFromSettings:
+			# If calibration matrix can't be loaded, calibrate manually
+			if not self.loadCalibration(self.wii):
+				doCalibration(self,self.wii)
 		else:
-			self.loadCalibration(self.wii)
+			doCalibration(self,self.wii)
+		
 		
 		if self.wii.state == Wiimote.CALIBRATED:
 			self.calibrated = True
@@ -355,11 +361,11 @@ class MainWindow(QtGui.QMainWindow):
 
 	
 	def calibrateWiiScreen(self):
-		self.calibrateWii(True)
+		self.calibrateWii()
 	
 	
 	def calibrateWiiFromSettings(self):
-		self.calibrateWii(False)
+		self.calibrateWii(loadFromSettings=True)
 
 
 	def saveCalibrationPars(self,wii):
@@ -388,8 +394,9 @@ class MainWindow(QtGui.QMainWindow):
 				pwii.append(list(q))
 				pscr.append(list(p))
 			wii.calibrate(pscr,pwii)
+			return True
 		except:
-			pass
+			return False
 		
 	
 	def deactivateWii(self):

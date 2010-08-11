@@ -27,6 +27,7 @@ class Configuration:
 				"sensitivity": "6",
 				"smoothing": "5",
 				"moveonly": "No",
+				"automatrix": "No",
 			}
 			
 			version = self.getValueStr("version")
@@ -120,12 +121,16 @@ class ConfigDialog(QtGui.QDialog):
 			self.ui.check_autoconnect.setChecked(True)
 		if conf.getValueStr("autocalibration") == "Yes":
 			self.ui.check_autocalibration.setChecked(True)
+		if conf.getValueStr("automatrix") == "Yes":
+			self.ui.check_automatrix.setChecked(True)
 		
 		self.connect(self.ui.check_fullscreen,
 			QtCore.SIGNAL("stateChanged(int)"), self.checkStateChanged)
 		self.connect(self.ui.check_autoconnect,
 			QtCore.SIGNAL("stateChanged(int)"), self.checkStateChanged)
 		self.connect(self.ui.check_autocalibration,
+			QtCore.SIGNAL("stateChanged(int)"), self.checkStateChanged)
+		self.connect(self.ui.check_automatrix,
 			QtCore.SIGNAL("stateChanged(int)"), self.checkStateChanged)
 		
 		self.connect(self.ui.button_addDev,
@@ -295,6 +300,8 @@ class ConfigDialog(QtGui.QDialog):
 			conf.saveValue('autoconnect',yesno)
 		if sender == self.ui.check_autocalibration:
 			conf.saveValue('autocalibration',yesno)
+		if sender == self.ui.check_automatrix:
+			conf.saveValue('automatrix',yesno)
 	
 	
 	def closeEvent(self,e):
