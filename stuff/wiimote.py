@@ -87,37 +87,34 @@ class Wiimote:
 		self.funcBTN = funcBTN
 	
 	
-	def bind(self, addr='*'):
+	def detectWiimotes(self):
 		try:
-			self.addr = None
-			devices = dict(bluetooth.discover_devices(lookup_names=True))
-			if len(devices) == 0: return
-			
-			if addr == '*':
-				for address in devices.keys():
-					if re.match('.*nintendo.*',devices[address].lower()):
-						self.addr = address
-			else:
-				if addr.upper() in devices.keys():
-					self.addr = addr
-			
-			if self.addr is None: return
-			
+			self.wiimotesDetected = []
+			devices = bluetooth.discover_devices(duration=10, lookup_names=True)
+			for mac,name in devices:
+				if re.match('.*nintendo.*', name.lower()):
+					self.wiimotesDetected.append(mac)
+			return
+		
+		except bluetooth.BluetoothError, errString:
+			self.wii = None
+			self.error = True
+			return
+	
+	
+	def bind(self, addr):
+		try:
+			self.addr = addr
 			self.wii = cwiid.Wiimote(self.addr)
 			self.wii.rpt_mode = cwiid.RPT_BTN | cwiid.RPT_IR
 			self.wii.led = cwiid.LED1_ON
 			self.error = False
 			self.wii.mesg_callback = self.create_wiimote_callback()
-			return True
+			return
 			
 		except RuntimeError, errString:
 			self.wii = None
-			return False
-		
-		except bluetooth.BluetoothError, errString:
-			self.wii = None
-			self.error = True
-			return False
+			return
 		
 		except:
 			self.wii = None
@@ -206,11 +203,21 @@ class Wiimote:
 		self.utilization = float(area_inside)/float(total_area)
 	
 	
-	def createConnectThread(self):
+	def createConnectThread(self, selectedmac):
 		def func():
-			conf = Configuration()
-			mac = str(conf.getValueStr("selectedmac"))
-			self.bind(mac)
+			self.detectWiimotes()
+			if len(self.wiimotesDetected) == 0: return
+			
+			if selectedmac == '*':
+				if len(self.wiimotesDetected) == 1:
+					self.bind(self.wiimotesDetected[0])
+				else:
+					# Presentar llista
+					print self.wiimotesDetected
+					pass
+			else:
+				if selectedmac in self.wiimotesDetected:
+					self.bind(selectedmac)
 		
 		thread = CreateThreadClass(func)
 		return thread() 

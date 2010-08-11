@@ -273,8 +273,10 @@ class MainWindow(QtGui.QMainWindow):
 		pBar = PBarDlg(self)
 		pBar.setModal( True )
 		pBar.show()
+		conf = Configuration()
+		selectedMac = conf.getValueStr("selectedmac")
 		while 1:
-			thread = self.wii.createConnectThread()
+			thread = self.wii.createConnectThread(selectedMac)
 			thread.start()
 			
 			while not thread.wait(30):
@@ -324,6 +326,12 @@ class MainWindow(QtGui.QMainWindow):
 				ret = msgbox.exec_()
 				pBar.close()
 				return
+			
+			if not self.wii.isConnected() and len(self.wii.wiimotesDetected) > 1:
+				item, ok = QtGui.QInputDialog.getItem(self,
+					self.tr("Warning"), self.tr("Choose device"), self.wii.wiimotesDetected, 0, False)
+				if ok:
+					selectedMac = unicode(item)
 			
 			
 			
