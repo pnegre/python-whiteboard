@@ -26,7 +26,8 @@ class AboutDlg(QtGui.QDialog):
 
 class PBarDlg(QtGui.QDialog):
 	def __init__(self, parent=None):
-		QtGui.QWidget.__init__(self,parent)
+		super(PBarDlg,self).__init__(parent, qt.Qt.CustomizeWindowHint | qt.Qt.WindowTitleHint)
+		
 		self.ui = uic.loadUi("pbar.ui",self)
 		self.cancelled = False
 		self.connect(self.ui.butCancel,
