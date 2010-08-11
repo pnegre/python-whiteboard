@@ -177,7 +177,8 @@ class FakeCursor:
 		from threads import CreateThreadClass
 		
 		self.mustFinish = False
-		self.wii.setCallback(self.makeCallback())
+		self.wii.disable()
+		self.wii.putCallbackIR(self.makeCallback())
 		self.wii.enable()
 		thread = CreateThreadClass(runFunc)
 		self.thread = thread()

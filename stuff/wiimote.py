@@ -54,9 +54,11 @@ class Wiimote:
 		self.screenPoints = []
 		self.utilization = 0.0
 		self.maxIrSensitivity = int(Configuration().getValueStr("sensitivity"))
+		self.funcIR = None
+		self.funcBTN = None
 	
 	
-	def create_wiimote_callback(self,func):
+	def create_wiimote_callback(self):
 		# Closure
 		def wiimote_callback(messages,buttons):
 			if messages:
@@ -66,11 +68,23 @@ class Wiimote:
 						if data:
 							if data['size'] > self.maxIrSensitivity:
 								continue
-							func(self.getPos(data['pos']))
+							if self.funcIR is not None:
+								self.funcIR(self.getPos(data['pos']))
 					elif m[0] == cwiid.MESG_ERROR:
 						self.error = True
+					elif m[0] == cwiid.MESG_BTN:
+						if m[1] == cwiid.BTN_A:
+							if self.funcBTN is not None:
+								self.funcBTN()
 		
 		return wiimote_callback
+	
+	
+	def putCallbackIR(self,funcIR):
+		self.funcIR = funcIR
+	
+	def putCallbackBTN(self,funcBTN):
+		self.funcBTN = funcBTN
 	
 	
 	def bind(self, addr='*'):
@@ -93,6 +107,7 @@ class Wiimote:
 			self.wii.rpt_mode = cwiid.RPT_BTN | cwiid.RPT_IR
 			self.wii.led = cwiid.LED1_ON
 			self.error = False
+			self.wii.mesg_callback = self.create_wiimote_callback()
 			return True
 			
 		except RuntimeError, errString:
@@ -121,9 +136,6 @@ class Wiimote:
 	
 	def disable(self):
 		self.wii.disable(cwiid.FLAG_MESG_IFC)
-	
-	def setCallback(self,func):
-		self.wii.mesg_callback = self.create_wiimote_callback(func)
 	
 	def close(self):
 		self.disable()

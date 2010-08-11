@@ -254,6 +254,16 @@ class MainWindow(QtGui.QMainWindow):
 			self.confDialog.checkButtons()
 			return
 
+
+	def makeBTNCallback(self):
+		def func():
+			# Simulate click to calibrate button
+			self.ui.pushButtonCalibrate.click()
+		
+		return func
+
+	
+
 	def connectWii(self):
 		if self.connected:
 			self.disconnectDevice()
@@ -388,6 +398,10 @@ class MainWindow(QtGui.QMainWindow):
 			self.active = False
 			self.pushButtonActivate.setText(self.tr("Activate"))
 			self.updateButtons()
+			
+			# removes button callback
+			self.wii.disable()
+			self.wii.putCallbackBTN(None)
 	
 	
 	def activateWii(self):
@@ -399,6 +413,10 @@ class MainWindow(QtGui.QMainWindow):
 			self.cursor = FakeCursor(self.wii)
 			if self.ui.moveOnlyCheck.isChecked():
 				self.cursor.noClicks = True
+			
+			# Installs button callback (for calling calibration)
+			self.wii.disable()
+			self.wii.putCallbackBTN(self.makeBTNCallback())
 			
 			conf = Configuration()
 			zones = [ conf.getValueStr(z) for z in ("zone1","zone2","zone3","zone4") ]

@@ -155,7 +155,8 @@ class CalibrateDialog2(QtGui.QDialog):
 		
 		self.mutex = qt.QMutex()
 		
-		self.wii.setCallback(self.makeWiiCallback())
+		self.wii.disable()
+		self.wii.putCallbackIR(self.makeWiiCallback())
 		self.wii.enable()
 		
 		self.timer = qt.QTimer(self)
@@ -250,7 +251,7 @@ class CalibrateDialog(QtGui.QDialog):
 		self.mutex = qt.QMutex()
 		self.updateCalibrationPoints(0)
 		
-		self.wii.setCallback(self.makeWiiCallback())
+		self.wii.putCallbackIR(self.makeWiiCallback())
 		self.wii.enable()
 		
 		self.timer = qt.QTimer(self)
