@@ -10,6 +10,8 @@ from configuration import Configuration, ConfigDialog
 
 
 import sys, time, locale
+import hashlib
+
 from PyQt4 import QtCore, QtGui, uic
 import PyQt4.Qt as qt
 
@@ -77,12 +79,19 @@ class MainWindow(QtGui.QMainWindow):
 		self.connect(self.ui.pushButtonSettings,
 			QtCore.SIGNAL("clicked()"), self.showHideSettings)
 		
+		self.connect(self.ui.comboProfiles,
+			QtCore.SIGNAL("currentIndexChanged(int)"), self.changeProfile)
+		
 		self.updateButtons()
 		
 		self.connect(self.ui.actionQuit,
 			QtCore.SIGNAL("activated()"), self.mustQuit)
 		self.connect(self.ui.actionHelp,
 			QtCore.SIGNAL("activated()"), self.showAboutDlg)
+		self.connect(self.ui.actionNew_Profile,
+			QtCore.SIGNAL("activated()"), self.addProfile)
+		self.connect(self.ui.actionDelete_Current_Profile,
+			QtCore.SIGNAL("activated()"), self.delCurrentProfile)
 		
 		
 		if conf.getValueStr('moveonly') == 'Yes':
@@ -106,7 +115,66 @@ class MainWindow(QtGui.QMainWindow):
 		layout.addWidget(self.confDialog)
 		self.ui.confContainer.setLayout(layout)
 		self.ui.confContainer.setVisible(False)
+		
+		self.refreshProfiles()
+		
 		self.center()
+	
+	
+	def changeProfile(self,i):
+		conf = Configuration()
+		if i == 0:
+			conf.setGroup("default")
+		else:
+			g = unicode(self.ui.comboProfiles.currentText())
+			conf.setGroup(hashlib.md5(g).hexdigest())
+		
+		self.confDialog.refreshWidgets()
+	
+	def refreshProfiles(self):
+		conf = Configuration()
+		self.ui.comboProfiles.clear()
+		self.ui.comboProfiles.addItem(self.tr("default"))
+		
+		activeGroup = conf.setGroup("default")
+		profiles = conf.readArray("profiles")
+		for p in profiles:
+			self.ui.comboProfiles.addItem(p['name'])
+		conf.setGroup(activeGroup)
+	
+	
+	def addProfile(self):
+		profName, ok = QtGui.QInputDialog.getText(self,
+			self.tr("New Profile"), self.tr('Name:'))
+		if ok:
+			profName = unicode(profName)
+			hsh = hashlib.md5(profName).hexdigest()
+			conf = Configuration()
+			activeGroup = conf.setGroup("default")
+			profiles = conf.readArray("profiles")
+			for p in profiles:
+				if hsh == p['hash']:
+					conf.setGroup(activeGroup)
+					return
+			profiles.append({ 'hash': hsh, 'name': profName })
+			conf.writeArray("profiles",profiles)
+			self.refreshProfiles()
+			i = self.ui.comboProfiles.findText(profName)
+			self.ui.comboProfiles.setCurrentIndex(i)
+	
+	
+	def delCurrentProfile(self):
+		i = self.ui.comboProfiles.currentIndex()
+		currentProfile = unicode(self.ui.comboProfiles.currentText())
+		if i == 0: return
+		conf = Configuration()
+		activeGroup = conf.setGroup("default")
+		profiles = conf.readArray("profiles")
+		profiles = [ p for p in profiles if p['name'] != currentProfile ]
+		conf.writeArray("profiles", profiles)
+		self.refreshProfiles()
+		self.ui.comboProfiles.setCurrentIndex(0)
+	
 	
 	
 	def showHideSettings(self):

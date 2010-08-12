@@ -4,7 +4,7 @@ from PyQt4 import QtCore, QtGui, uic
 import PyQt4.Qt as qt
 
 
-CONFIG_VERSION = 6
+CONFIG_VERSION = 7
 
 
 class Configuration:
@@ -78,9 +78,11 @@ class Configuration:
 		
 		def setGroup(self,name):
 			if self.activeGroup:
-				self.settings.endGroup(self.activeGroup)
+				self.settings.endGroup()
+			pastGroup = self.activeGroup
 			self.activeGroup = name
 			self.settings.beginGroup(name)
+			return pastGroup
 
 
 	# storage for the instance reference
@@ -114,16 +116,6 @@ class ConfigDialog(QtGui.QDialog):
 		
 		self.wii = wii
 		
-		conf = Configuration()
-		if conf.getValueStr("fullscreen") == "Yes":
-			self.ui.check_fullscreen.setChecked(True)
-		if conf.getValueStr("autoconnect") == "Yes":
-			self.ui.check_autoconnect.setChecked(True)
-		if conf.getValueStr("autocalibration") == "Yes":
-			self.ui.check_autocalibration.setChecked(True)
-		if conf.getValueStr("automatrix") == "Yes":
-			self.ui.check_automatrix.setChecked(True)
-		
 		self.connect(self.ui.check_fullscreen,
 			QtCore.SIGNAL("stateChanged(int)"), self.checkStateChanged)
 		self.connect(self.ui.check_autoconnect,
@@ -137,8 +129,6 @@ class ConfigDialog(QtGui.QDialog):
 			QtCore.SIGNAL("clicked()"), self.addDevice)
 		self.connect(self.ui.button_remDev,
 			QtCore.SIGNAL("clicked()"), self.removeDevice)
-		
-		self.setupMacTable()
 		
 		pixmap = QtGui.QPixmap("screen.png")
 		self.areasScene = QtGui.QGraphicsScene()
@@ -160,17 +150,32 @@ class ConfigDialog(QtGui.QDialog):
 		self.ui.slider_ir.setMaximum(6)
 		self.connect(self.ui.slider_ir,
 			QtCore.SIGNAL("valueChanged(int)"), self.sliderIrMoved)
-		sens = int(conf.getValueStr("sensitivity"))
-		self.ui.slider_ir.setValue(sens)
 		
 		self.ui.slider_smoothing.setMinimum(1)
 		self.ui.slider_smoothing.setMaximum(7)
 		self.connect(self.ui.slider_smoothing,
 			QtCore.SIGNAL("valueChanged(int)"), self.sliderSmMoved)
+		
+		self.refreshWidgets()
+		self.checkButtons()
+	
+	
+	
+	def refreshWidgets(self):
+		conf = Configuration()
+		self.ui.check_fullscreen.setChecked(conf.getValueStr("fullscreen") == "Yes")
+		self.ui.check_autoconnect.setChecked(conf.getValueStr("autoconnect") == "Yes")
+		self.ui.check_autocalibration.setChecked(conf.getValueStr("autocalibration") == "Yes")
+		self.ui.check_automatrix.setChecked(conf.getValueStr("automatrix") == "Yes")
+		
+		self.updateCombos()
+		self.setupMacTable()
+		
+		sens = int(conf.getValueStr("sensitivity"))
+		self.ui.slider_ir.setValue(sens)
 		smth = int(conf.getValueStr("smoothing"))
 		self.ui.slider_smoothing.setValue(smth)
 		
-		self.checkButtons()
 	
 	
 	def checkButtons(self):

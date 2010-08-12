@@ -105,7 +105,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QComboBox" name="comboBox">
+                <widget class="QComboBox" name="comboProfiles">
                  <item>
                   <property name="text">
                    <string>Default</string>
@@ -257,6 +257,10 @@
     <property name="title">
      <string>File</string>
     </property>
+    <addaction name="actionNew_Profile"/>
+    <addaction name="actionDelete_Current_Profile"/>
+    <addaction name="separator"/>
+    <addaction name="actionRestart"/>
     <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
@@ -286,6 +290,24 @@
   <action name="actionConfiguration">
    <property name="text">
     <string>Configuration</string>
+   </property>
+  </action>
+  <action name="actionNew_Profile">
+   <property name="text">
+    <string>New Profile</string>
+   </property>
+  </action>
+  <action name="actionDelete_Current_Profile">
+   <property name="text">
+    <string>Delete Current Profile</string>
+   </property>
+  </action>
+  <action name="actionRestart">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Restart</string>
    </property>
   </action>
  </widget>
