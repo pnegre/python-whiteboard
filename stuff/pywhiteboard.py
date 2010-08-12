@@ -127,7 +127,7 @@ class MainWindow(QtGui.QMainWindow):
 			conf.setGroup("default")
 		else:
 			g = unicode(self.ui.comboProfiles.currentText())
-			conf.setGroup(hashlib.md5(g).hexdigest())
+			conf.setGroup(hashlib.md5(g.encode('utf-8')).hexdigest())
 		
 		self.confDialog.refreshWidgets()
 	
@@ -141,6 +141,7 @@ class MainWindow(QtGui.QMainWindow):
 		for p in profiles:
 			self.ui.comboProfiles.addItem(p['name'])
 		conf.setGroup(activeGroup)
+		self.confDialog.refreshWidgets()
 	
 	
 	def addProfile(self):
@@ -148,7 +149,7 @@ class MainWindow(QtGui.QMainWindow):
 			self.tr("New Profile"), self.tr('Name:'))
 		if ok:
 			profName = unicode(profName)
-			hsh = hashlib.md5(profName).hexdigest()
+			hsh = hashlib.md5(profName.encode('utf-8')).hexdigest()
 			conf = Configuration()
 			activeGroup = conf.setGroup("default")
 			profiles = conf.readArray("profiles")
