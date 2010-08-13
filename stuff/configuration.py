@@ -4,7 +4,7 @@ from PyQt4 import QtCore, QtGui, uic
 import PyQt4.Qt as qt
 
 
-CONFIG_VERSION = 7
+CONFIG_VERSION = 9
 
 
 class Configuration:
@@ -74,8 +74,6 @@ class Configuration:
 			return result
 		
 		
-		
-		
 		def setGroup(self,name):
 			if self.activeGroup:
 				self.settings.endGroup()
@@ -83,7 +81,31 @@ class Configuration:
 			self.activeGroup = name
 			self.settings.beginGroup(name)
 			return pastGroup
-
+		
+		
+		########### Get and set profile list ########################
+		def getProfileList(self):
+			activeGroup = self.setGroup("default")
+			result = []
+			n = self.settings.beginReadArray("profiles")
+			for i in range(0,n):
+				self.settings.setArrayIndex(i)
+				result.append(unicode(self.settings.value('item').toString()))
+			self.settings.endArray()
+			self.setGroup(activeGroup)
+			return result
+		
+		
+		def setProfileList(self, profileList):
+			activeGroup = self.setGroup("default")
+			self.settings.beginWriteArray("profiles")
+			for i, profileName in enumerate(profileList):
+				self.settings.setArrayIndex(i)
+				self.settings.setValue('item', profileName)
+			self.settings.endArray()
+			self.setGroup(activeGroup)
+		##############################################################
+		
 
 	# storage for the instance reference
 	__instance = None

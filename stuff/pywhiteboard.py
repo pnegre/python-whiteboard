@@ -94,8 +94,7 @@ class MainWindow(QtGui.QMainWindow):
 			QtCore.SIGNAL("activated()"), self.delCurrentProfile)
 		
 		
-		if conf.getValueStr('moveonly') == 'Yes':
-			self.ui.moveOnlyCheck.setChecked(True)
+		self.ui.moveOnlyCheck.setChecked( conf.getValueStr('moveonly') == 'Yes' )
 		self.connect(self.ui.moveOnlyCheck,
 			QtCore.SIGNAL("stateChanged(int)"), self.checkMoveOnly)
 		
@@ -130,35 +129,33 @@ class MainWindow(QtGui.QMainWindow):
 			conf.setGroup(hashlib.md5(g.encode('utf-8')).hexdigest())
 		
 		self.confDialog.refreshWidgets()
+		self.ui.moveOnlyCheck.setChecked( conf.getValueStr('moveonly') == 'Yes' )
+	
 	
 	def refreshProfiles(self):
 		conf = Configuration()
 		self.ui.comboProfiles.clear()
 		self.ui.comboProfiles.addItem(self.tr("default"))
 		
-		activeGroup = conf.setGroup("default")
-		profiles = conf.readArray("profiles")
-		for p in profiles:
-			self.ui.comboProfiles.addItem(p['name'])
-		conf.setGroup(activeGroup)
+		for p in conf.getProfileList():
+			self.ui.comboProfiles.addItem(p)
+		
 		self.confDialog.refreshWidgets()
+		self.ui.moveOnlyCheck.setChecked( conf.getValueStr('moveonly') == 'Yes' )
 	
 	
 	def addProfile(self):
 		profName, ok = QtGui.QInputDialog.getText(self,
 			self.tr("New Profile"), self.tr('Name:'))
-		if ok:
-			profName = unicode(profName)
-			hsh = hashlib.md5(profName.encode('utf-8')).hexdigest()
+		
+		profName = unicode(profName)
+		if ok and profName != '':
 			conf = Configuration()
-			activeGroup = conf.setGroup("default")
-			profiles = conf.readArray("profiles")
+			profiles = conf.getProfileList()
 			for p in profiles:
-				if hsh == p['hash']:
-					conf.setGroup(activeGroup)
-					return
-			profiles.append({ 'hash': hsh, 'name': profName })
-			conf.writeArray("profiles",profiles)
+				if p == profName: return
+			profiles.append(profName)
+			conf.setProfileList(profiles)
 			self.refreshProfiles()
 			i = self.ui.comboProfiles.findText(profName)
 			self.ui.comboProfiles.setCurrentIndex(i)
@@ -169,10 +166,9 @@ class MainWindow(QtGui.QMainWindow):
 		currentProfile = unicode(self.ui.comboProfiles.currentText())
 		if i == 0: return
 		conf = Configuration()
-		activeGroup = conf.setGroup("default")
-		profiles = conf.readArray("profiles")
-		profiles = [ p for p in profiles if p['name'] != currentProfile ]
-		conf.writeArray("profiles", profiles)
+		profiles = conf.getProfileList()
+		profiles = [ p for p in profiles if p != currentProfile ]
+		conf.setProfileList(profiles)
 		self.refreshProfiles()
 		self.ui.comboProfiles.setCurrentIndex(0)
 	
