@@ -3,7 +3,7 @@
 <context>
     <name>CalibrateDialog</name>
     <message>
-        <location filename="calibration.py" line="292"/>
+        <location filename="calibration.py" line="293"/>
         <source>Push UP/DOWN to alter the crosses&apos; position</source>
         <translation>Pulsa los botones ARRIBA/ABAJO del cursor para mover las marcas</translation>
     </message>
@@ -34,32 +34,32 @@
 <context>
     <name>ConfigDialog</name>
     <message>
-        <location filename="configuration.py" line="256"/>
+        <location filename="configuration.py" line="288"/>
         <source>Smoothing: </source>
         <translation>Suavizado:</translation>
     </message>
     <message>
-        <location filename="configuration.py" line="262"/>
+        <location filename="configuration.py" line="294"/>
         <source>IR Sensitivity: </source>
         <translation>Sensibilidad IR:</translation>
     </message>
     <message>
-        <location filename="configuration.py" line="204"/>
+        <location filename="configuration.py" line="236"/>
         <source>All devices</source>
         <translation>Todos los dispositivos</translation>
     </message>
     <message>
-        <location filename="configuration.py" line="231"/>
+        <location filename="configuration.py" line="263"/>
         <source>Comment</source>
         <translation>Comentario</translation>
     </message>
     <message>
-        <location filename="configuration.py" line="231"/>
+        <location filename="configuration.py" line="263"/>
         <source>Wii device description</source>
         <translation>Descripción del dispositivo</translation>
     </message>
     <message>
-        <location filename="configuration.py" line="181"/>
+        <location filename="configuration.py" line="213"/>
         <source>Address</source>
         <translation>MAC</translation>
     </message>
@@ -117,7 +117,7 @@
         <translation>Calibra después de conectar</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="288"/>
+        <location filename="configuration.ui" line="295"/>
         <source>IR Sensitivity:</source>
         <translation>Sensibilidad IR:</translation>
     </message>
@@ -190,24 +190,19 @@ p, li { white-space: pre-wrap; }
         <translation>Avanzado</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="267"/>
+        <location filename="configuration.ui" line="274"/>
         <source>Smoothing:</source>
         <translation>Suavizado:</translation>
     </message>
     <message>
-        <location filename="configuration.ui" line="306"/>
-        <source>Profile management:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="configuration.ui" line="320"/>
         <source>New</source>
-        <translation>Nuevo</translation>
+        <translation type="obsolete">Nuevo</translation>
     </message>
     <message>
         <location filename="configuration.ui" line="327"/>
         <source>Delete</source>
-        <translation>Elimina</translation>
+        <translation type="obsolete">Elimina</translation>
     </message>
     <message>
         <location filename="pbar.ui" line="76"/>
@@ -333,6 +328,11 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-size:large; font-weight:600;&quot;&gt;END OF TERMS AND CONDITIONS&lt;/span&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;;&quot;&gt; &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="configuration.ui" line="263"/>
+        <source>Use calibration matrix from settings if available</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -342,12 +342,12 @@ p, li { white-space: pre-wrap; }
         <translation>Ventana principal</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="244"/>
+        <location filename="pywhiteboard.py" line="314"/>
         <source>Connect</source>
         <translation>Conectar</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="385"/>
+        <location filename="pywhiteboard.py" line="491"/>
         <source>Activate</source>
         <translation>Activar</translation>
     </message>
@@ -362,7 +362,7 @@ p, li { white-space: pre-wrap; }
         <translation>Nivel de la bateria:</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="312"/>
+        <location filename="pywhiteboard.py" line="408"/>
         <source>Utilization: 0%</source>
         <translation>Utilización: 0%</translation>
     </message>
@@ -377,57 +377,57 @@ p, li { white-space: pre-wrap; }
         <translation>Fichero</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="283"/>
+        <location filename="mainwindow.ui" line="287"/>
         <source>Help</source>
         <translation>Ayuda</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="273"/>
+        <location filename="mainwindow.ui" line="277"/>
         <source>Exit</source>
         <translation>Salir</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="278"/>
+        <location filename="mainwindow.ui" line="282"/>
         <source>Quit</source>
         <translation>Salir</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="288"/>
+        <location filename="mainwindow.ui" line="292"/>
         <source>Configuration</source>
         <translation>Configuración</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="207"/>
+        <location filename="pywhiteboard.py" line="277"/>
         <source>Connected to </source>
         <translation>Conectado a </translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="283"/>
+        <location filename="pywhiteboard.py" line="365"/>
         <source>Disconnect</source>
         <translation>Desconectar</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="329"/>
+        <location filename="pywhiteboard.py" line="428"/>
         <source>Utilization: </source>
         <translation>Utilización:</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="338"/>
+        <location filename="pywhiteboard.py" line="437"/>
         <source>Error during Calibration</source>
         <translation>Error en la calibración</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="404"/>
+        <location filename="pywhiteboard.py" line="514"/>
         <source>Deactivate</source>
         <translation>Desactivar</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="415"/>
+        <location filename="pywhiteboard.py" line="525"/>
         <source>The application will remain active (systray).</source>
         <translation type="unfinished">La aplicación se mantendrá activa (systray)</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="415"/>
+        <location filename="pywhiteboard.py" line="525"/>
         <source>To quit, use file-&gt;quit menu</source>
         <translation>Para salir: Fichero -&gt; Salir</translation>
     </message>
@@ -442,7 +442,7 @@ p, li { white-space: pre-wrap; }
         <translation>Por defecto</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="154"/>
+        <location filename="pywhiteboard.py" line="224"/>
         <source>Wii device disconnected</source>
         <translation>Dispositivo wiimote desconectado</translation>
     </message>
@@ -457,7 +457,7 @@ p, li { white-space: pre-wrap; }
         <translation>Mover solamente</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="300"/>
+        <location filename="pywhiteboard.py" line="390"/>
         <source>Error. Check your bluetooth driver</source>
         <translation>Error. Comprueba la conexión bluetooth</translation>
     </message>
@@ -467,7 +467,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Muestra / esconde configuración</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="299"/>
+        <location filename="pywhiteboard.py" line="389"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -477,20 +477,55 @@ p, li { white-space: pre-wrap; }
         <translation>Muestra configuración</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="115"/>
+        <location filename="pywhiteboard.py" line="181"/>
         <source>Hide settings</source>
         <translation>Esconde configuración</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="119"/>
+        <location filename="pywhiteboard.py" line="185"/>
         <source>Show settings</source>
         <translation>Muestra configuración</translation>
+    </message>
+    <message>
+        <location filename="pywhiteboard.py" line="148"/>
+        <source>New Profile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="302"/>
+        <source>Delete Current Profile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="310"/>
+        <source>Restart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="pywhiteboard.py" line="138"/>
+        <source>default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="pywhiteboard.py" line="148"/>
+        <source>Name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="pywhiteboard.py" line="397"/>
+        <source>Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="pywhiteboard.py" line="397"/>
+        <source>Choose device</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>PBarDlg</name>
     <message>
-        <location filename="pywhiteboard.py" line="38"/>
+        <location filename="pywhiteboard.py" line="41"/>
         <source>Cancelling...</source>
         <translation>Cancelando...</translation>
     </message>
