@@ -1,3 +1,10 @@
+python-whiteboard (0.9.4) unstable; urgency=low
+
+  * Added profiles feature
+  * Added chinese translation
+
+ -- pnegre <pere.negre@gmail.com>  Mon, 06 Sep 2010 15:49:06 +0200
+
 python-whiteboard (0.9.3) unstable; urgency=low
 
   * Minor fixes 
