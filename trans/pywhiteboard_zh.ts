@@ -52,7 +52,7 @@
     <message>
         <location filename="configuration.py" line="236"/>
         <source>All devices</source>
-        <translation>所有設備</translation>
+        <translation>所有裝置</translation>
     </message>
     <message>
         <location filename="configuration.py" line="263"/>
@@ -62,7 +62,7 @@
     <message>
         <location filename="configuration.py" line="263"/>
         <source>Wii device description</source>
-        <translation>Ｗiimote描述</translation>
+        <translation>Ｗii裝置描述</translation>
     </message>
     <message>
         <location filename="configuration.py" line="213"/>
@@ -115,17 +115,17 @@
     <message>
         <location filename="configuration.ui" line="199"/>
         <source>Select allowed devices:</source>
-        <translation>選取已允許的設備:</translation>
+        <translation>選取已允許的裝置:</translation>
     </message>
     <message>
         <location filename="configuration.ui" line="211"/>
         <source>Add connected device</source>
-        <translation>添加已連接的設備</translation>
+        <translation>添加已連接的裝置</translation>
     </message>
     <message>
         <location filename="configuration.ui" line="231"/>
         <source>Remove device</source>
-        <translation>移除設備</translation>
+        <translation>移除裝置</translation>
     </message>
     <message>
         <location filename="configuration.ui" line="256"/>
@@ -165,7 +165,7 @@
     <message>
         <location filename="configuration.ui" line="158"/>
         <source>Left Click</source>
-        <translation>模擬點擊左鍵</translation>
+        <translation>模擬為點擊左鍵</translation>
     </message>
     <message>
         <location filename="configuration.ui" line="163"/>
@@ -175,12 +175,12 @@
     <message>
         <location filename="configuration.ui" line="168"/>
         <source>Right Click</source>
-        <translation>模擬點擊右鍵</translation>
+        <translation>模擬為點擊右鍵</translation>
     </message>
     <message>
         <location filename="configuration.ui" line="173"/>
         <source>Middle Click</source>
-        <translation>模擬點擊中鍵</translation>
+        <translation>模擬為點擊中鍵</translation>
     </message>
     <message>
         <location filename="configuration.ui" line="48"/>
@@ -190,7 +190,7 @@
     <message>
         <location filename="pbar.ui" line="32"/>
         <source>Progress...</source>
-        <translation>程序處理中...</translation>
+        <translation>程式處理中...</translation>
     </message>
     <message>
         <location filename="pbar.ui" line="40"/>
@@ -202,7 +202,7 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:14pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;同時按下Wiimote上的１，2鍵&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
@@ -686,9 +686,12 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;;&quot;&gt;* Pietro Pilolli&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-weight:600;&quot;&gt;Spanish Translation:&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;;&quot;&gt;* Pere Negre&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans&apos;;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;tom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;;&quot;&gt;* Pietro Pilolli&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;;&quot;&gt;* Pietro Pilolli&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-weight:600;&quot;&gt;Traduzione in spagnolo:&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;;&quot;&gt;* Pere Negre&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans&apos;;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-weight:600;&quot;&gt;Traditional Chineses Translation:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;;&quot;&gt;* Kent Chang (張哲剛)&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans&apos;;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
@@ -805,7 +808,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="configuration.ui" line="263"/>
         <source>Use calibration matrix from settings if available</source>
-        <translation>如果可行的話，使用已設定的校準範本</translation>
+        <translation>如果可行的話，使用已設定的定位範本</translation>
     </message>
 </context>
 <context>
@@ -923,7 +926,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="pywhiteboard.py" line="365"/>
         <source>Disconnect</source>
-        <translation>停止與Wiimote的連接</translation>
+        <translation>中斷Wiimote</translation>
     </message>
     <message>
         <location filename="pywhiteboard.py" line="263"/>
@@ -1048,7 +1051,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="pywhiteboard.py" line="397"/>
         <source>Choose device</source>
-        <translation>選擇設備</translation>
+        <translation>選擇裝置</translation>
     </message>
 </context>
 <context>
