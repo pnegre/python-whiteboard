@@ -203,19 +203,17 @@ class Wiimote:
 		self.utilization = float(area_inside)/float(total_area)
 	
 	
-	def createConnectThread(self, selectedmac):
+	def createConnectThread(self, selectedmac, pool):
 		def func():
 			if selectedmac == '*':
 				self.detectWiimotes()
 				if len(self.wiimotesDetected) == 0: return
 				
-				self.bind(self.wiimotesDetected[0])
-				#if len(self.wiimotesDetected) == 1:
-					#self.bind(self.wiimotesDetected[0])
-				#else:
-					## Presentar llista
-					#print self.wiimotesDetected
-					#pass
+				for p in self.wiimotesDetected:
+					if not p in pool:
+						pool.append(p)
+				
+				#self.bind(self.wiimotesDetected[0])
 			else:
 				self.bind(selectedmac)
 		

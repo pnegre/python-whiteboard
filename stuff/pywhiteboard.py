@@ -32,13 +32,35 @@ class PBarDlg(QtGui.QDialog):
 		
 		self.ui = uic.loadUi("pbar.ui",self)
 		self.cancelled = False
+		self.choice = 0
 		self.connect(self.ui.butCancel,
 			QtCore.SIGNAL("clicked()"), self.cancelConnection)
+		self.connect(self.ui.butChoose,
+			QtCore.SIGNAL("clicked()"), self.makeChoice)
+		self.ui.butChoose.hide()
+	
+	def reInit(self):
+		self.cancelled = False
+		self.choice = 0
+		self.ui.butChoose.hide()
+		self.ui.butCancel.setEnabled(True)
+		self.ui.butChoose.setEnabled(True)
+		self.ui.label.setText(self.tr("Press 1+2 on you wiimote"))
 	
 	def cancelConnection(self):
 		self.cancelled = True
 		self.ui.butCancel.setEnabled(False)
 		self.ui.label.setText(self.tr("Cancelling..."))
+	
+	def makeChoice(self):
+		self.choice = True
+		self.ui.label.setText(self.tr("Wait..."))
+		self.ui.butChoose.setEnabled(False)
+		self.ui.butCancel.setEnabled(False)
+	
+	def inform(self,txt):
+		self.ui.butChoose.setText(txt)
+		self.ui.butChoose.show()
 
 
 class MainWindow(QtGui.QMainWindow):
@@ -341,8 +363,9 @@ class MainWindow(QtGui.QMainWindow):
 		pBar.show()
 		conf = Configuration()
 		selectedMac = conf.getValueStr("selectedmac")
+		pool = []
 		while 1:
-			thread = self.wii.createConnectThread(selectedMac)
+			thread = self.wii.createConnectThread(selectedMac,pool)
 			thread.start()
 			
 			while not thread.wait(30):
@@ -355,6 +378,9 @@ class MainWindow(QtGui.QMainWindow):
 				self.wii = None
 				pBar.close()
 				return
+			
+			if selectedMac == '*' and len(pool) >= 1:
+				pBar.inform('Found ' + str(len(pool)) + ' Devices. Press to Choose')
 
 			if self.wii.isConnected():
 				self.connected = True
@@ -393,11 +419,19 @@ class MainWindow(QtGui.QMainWindow):
 				pBar.close()
 				return
 			
-			if not self.wii.isConnected() and len(self.wii.wiimotesDetected) > 1:
-				item, ok = QtGui.QInputDialog.getItem(self,
-					self.tr("Warning"), self.tr("Choose device"), self.wii.wiimotesDetected, 0, False)
-				if ok:
-					selectedMac = unicode(item)
+			if pBar.choice:
+				if len(pool) == 1:
+					selectedMac = unicode(pool[0])
+					pBar.reInit()
+				else:
+					item, ok = QtGui.QInputDialog.getItem(self,
+						self.tr("Warning"), self.tr("Choose device"), pool, 0, False)
+					if ok:
+						selectedMac = unicode(item)
+						pBar.reInit()
+					else:
+						pBar.close()
+						return
 			
 			
 			
