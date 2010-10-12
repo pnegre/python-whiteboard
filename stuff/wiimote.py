@@ -205,19 +205,19 @@ class Wiimote:
 	
 	def createConnectThread(self, selectedmac):
 		def func():
-			self.detectWiimotes()
-			if len(self.wiimotesDetected) == 0: return
-			
 			if selectedmac == '*':
-				if len(self.wiimotesDetected) == 1:
-					self.bind(self.wiimotesDetected[0])
-				else:
-					# Presentar llista
-					print self.wiimotesDetected
-					pass
+				self.detectWiimotes()
+				if len(self.wiimotesDetected) == 0: return
+				
+				self.bind(self.wiimotesDetected[0])
+				#if len(self.wiimotesDetected) == 1:
+					#self.bind(self.wiimotesDetected[0])
+				#else:
+					## Presentar llista
+					#print self.wiimotesDetected
+					#pass
 			else:
-				if selectedmac in self.wiimotesDetected:
-					self.bind(selectedmac)
+				self.bind(selectedmac)
 		
 		thread = CreateThreadClass(func)
 		return thread() 
