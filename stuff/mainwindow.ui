@@ -259,6 +259,7 @@
     </property>
     <addaction name="actionNew_Profile"/>
     <addaction name="actionDelete_Current_Profile"/>
+    <addaction name="actionWipe_configuration"/>
     <addaction name="separator"/>
     <addaction name="actionRestart"/>
     <addaction name="actionQuit"/>
@@ -308,6 +309,11 @@
    </property>
    <property name="text">
     <string>Restart</string>
+   </property>
+  </action>
+  <action name="actionWipe_configuration">
+   <property name="text">
+    <string>Wipe configuration</string>
    </property>
   </action>
  </widget>

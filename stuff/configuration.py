@@ -39,6 +39,10 @@ class Configuration:
 			self.setGroup("default")
 			
 		
+		def wipe(self):
+			self.settings.clear()
+		
+		
 		def saveValue(self,name,value):
 			self.settings.setValue(name,QtCore.QVariant(value))
 

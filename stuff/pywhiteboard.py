@@ -117,6 +117,8 @@ class MainWindow(QtGui.QMainWindow):
 			QtCore.SIGNAL("activated()"), self.addProfile)
 		self.connect(self.ui.actionDelete_Current_Profile,
 			QtCore.SIGNAL("activated()"), self.delCurrentProfile)
+		self.connect(self.ui.actionWipe_configuration,
+			QtCore.SIGNAL("activated()"), self.wipeConfiguration)
 		
 		
 		self.ui.moveOnlyCheck.setChecked( conf.getValueStr('moveonly') == 'Yes' )
@@ -197,6 +199,15 @@ class MainWindow(QtGui.QMainWindow):
 		self.refreshProfiles()
 		self.ui.comboProfiles.setCurrentIndex(0)
 	
+	
+	def wipeConfiguration(self):
+		conf = Configuration()
+		conf.wipe()
+		msgbox = QtGui.QMessageBox(self)
+		msgbox.setText(self.tr("The application will close. Please restart manually") )
+		msgbox.setModal( True )
+		ret = msgbox.exec_()
+		self.mustQuit()
 	
 	
 	def showHideSettings(self):
