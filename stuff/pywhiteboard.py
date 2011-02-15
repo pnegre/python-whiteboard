@@ -39,13 +39,16 @@ class PBarDlg(QtGui.QDialog):
 			QtCore.SIGNAL("clicked()"), self.makeChoice)
 		self.ui.butChoose.hide()
 	
-	def reInit(self):
+	def reInit(self,mac='*'):
 		self.cancelled = False
 		self.choice = 0
 		self.ui.butChoose.hide()
 		self.ui.butCancel.setEnabled(True)
 		self.ui.butChoose.setEnabled(True)
-		self.ui.label.setText(self.tr("Press 1+2 on you wiimote"))
+		if mac == '*':
+			self.ui.label.setText(self.tr("Press 1+2 on your wiimote"))
+		else:
+			self.ui.label.setText(self.tr("Press 1+2 on ") + mac)
 	
 	def cancelConnection(self):
 		self.cancelled = True
@@ -363,6 +366,7 @@ class MainWindow(QtGui.QMainWindow):
 		pBar.show()
 		conf = Configuration()
 		selectedMac = conf.getValueStr("selectedmac")
+		pBar.reInit(selectedMac)
 		pool = []
 		while 1:
 			thread = self.wii.createConnectThread(selectedMac,pool)
@@ -422,13 +426,13 @@ class MainWindow(QtGui.QMainWindow):
 			if pBar.choice:
 				if len(pool) == 1:
 					selectedMac = unicode(pool[0])
-					pBar.reInit()
+					pBar.reInit(selectedMac)
 				else:
 					item, ok = QtGui.QInputDialog.getItem(self,
 						self.tr("Warning"), self.tr("Choose device"), pool, 0, False)
 					if ok:
 						selectedMac = unicode(item)
-						pBar.reInit()
+						pBar.reInit(selectedMac)
 					else:
 						pBar.close()
 						return
