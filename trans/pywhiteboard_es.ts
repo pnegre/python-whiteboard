@@ -540,6 +540,16 @@ p, li { white-space: pre-wrap; }
         <source>The application will close. Please restart manually</source>
         <translation>La aplicación se cerrará. Iníciala manualmente.</translation>
     </message>
+    <message>
+        <location filename="pywhiteboard.py" line="398"/>
+        <source>Found </source>
+        <translation type="unfinished">Encontrados </translation>
+    </message>
+    <message>
+        <location filename="pywhiteboard.py" line="398"/>
+        <source> Devices. Press to Choose</source>
+        <translation> Dispositivos. Pulsa para escoger</translation>
+    </message>
 </context>
 <context>
     <name>PBarDlg</name>

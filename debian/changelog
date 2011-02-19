@@ -1,3 +1,10 @@
+python-whiteboard (0.9.5) unstable; urgency=low
+
+  * Some minor fixes
+  * Connection code changed a bit
+
+ -- pnegre <pere.negre@gmail.com>  Sat, 19 Feb 2011 14:58:09 +0100
+
 python-whiteboard (0.9.4) unstable; urgency=low
 
   * Added profiles feature

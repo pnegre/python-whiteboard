@@ -508,7 +508,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="mainwindow.ui" line="103"/>
         <source>Profile:</source>
-        <translation type="unfinished">Perfil:</translation>
+        <translation>Perfil:</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="111"/>
@@ -604,6 +604,16 @@ p, li { white-space: pre-wrap; }
         <location filename="pywhiteboard.py" line="207"/>
         <source>The application will close. Please restart manually</source>
         <translation>L&apos;aplicació es tancarà. Per favor inicia de nou.</translation>
+    </message>
+    <message>
+        <location filename="pywhiteboard.py" line="398"/>
+        <source>Found </source>
+        <translation>Trobat </translation>
+    </message>
+    <message>
+        <location filename="pywhiteboard.py" line="398"/>
+        <source> Devices. Press to Choose</source>
+        <translation> Dispositius. Pitja per triar</translation>
     </message>
 </context>
 <context>
