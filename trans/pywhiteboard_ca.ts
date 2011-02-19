@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="ca_ES">
+<!DOCTYPE TS>
+<TS version="2.0" language="ca_ES">
 <context>
     <name>CalibrateDialog</name>
     <message>
@@ -34,32 +35,32 @@
 <context>
     <name>ConfigDialog</name>
     <message>
-        <location filename="configuration.py" line="288"/>
+        <location filename="configuration.py" line="292"/>
         <source>Smoothing: </source>
         <translation>Suavitzat:</translation>
     </message>
     <message>
-        <location filename="configuration.py" line="294"/>
+        <location filename="configuration.py" line="298"/>
         <source>IR Sensitivity: </source>
         <translation>Sensibilitat IR:</translation>
     </message>
     <message>
-        <location filename="configuration.py" line="236"/>
+        <location filename="configuration.py" line="240"/>
         <source>All devices</source>
         <translation>Tots els dispositius</translation>
     </message>
     <message>
-        <location filename="configuration.py" line="263"/>
+        <location filename="configuration.py" line="267"/>
         <source>Comment</source>
         <translation>Comentari</translation>
     </message>
     <message>
-        <location filename="configuration.py" line="263"/>
+        <location filename="configuration.py" line="267"/>
         <source>Wii device description</source>
         <translation>Descripció del Wiimote</translation>
     </message>
     <message>
-        <location filename="configuration.py" line="213"/>
+        <location filename="configuration.py" line="217"/>
         <source>Address</source>
         <translation>Adreça</translation>
     </message>
@@ -220,14 +221,14 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Elimina</translation>
     </message>
     <message>
-        <location filename="pbar.ui" line="76"/>
+        <location filename="pbar.ui" line="94"/>
         <source>Cancel</source>
         <translation>Cancel·la</translation>
     </message>
     <message>
         <location filename="about.ui" line="26"/>
         <source>About python-whiteboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Informació del programa</translation>
     </message>
     <message>
         <location filename="about.ui" line="36"/>
@@ -240,16 +241,16 @@ p, li { white-space: pre-wrap; }
         <translation>Traduccions</translation>
     </message>
     <message>
-        <location filename="about.ui" line="90"/>
+        <location filename="about.ui" line="93"/>
         <source>License</source>
         <translation>Llicència</translation>
     </message>
     <message>
-        <location filename="about.ui" line="178"/>
+        <location filename="about.ui" line="181"/>
         <source>Ok</source>
         <translation>D&apos;acord</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="about.ui" line="42"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -270,23 +271,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="about.ui" line="71"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-weight:600;&quot;&gt;Catalan Translation:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;;&quot;&gt;* Pau Cabot&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;;&quot;&gt;* Pere Negre&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-weight:600;&quot;&gt;Italian Translation:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;;&quot;&gt;* Pietro Pilolli&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-weight:600;&quot;&gt;Spanish Translation:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;;&quot;&gt;* Pere Negre&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans&apos;;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="about.ui" line="99"/>
+        <location filename="about.ui" line="102"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -348,6 +333,30 @@ p, li { white-space: pre-wrap; }
         <source>Use calibration matrix from settings if available</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="about.ui" line="71"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-weight:600;&quot;&gt;Catalan Translation:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;;&quot;&gt;* Pau Cabot&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;;&quot;&gt;* Pere Negre&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-weight:600;&quot;&gt;Italian Translation:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;;&quot;&gt;* Pietro Pilolli&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-weight:600;&quot;&gt;Spanish Translation:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;;&quot;&gt;* Pere Negre&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-weight:600;&quot;&gt;Chinese Translation:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;;&quot;&gt;* Kentxchang Chang&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans&apos;;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans&apos;;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="pbar.ui" line="68"/>
+        <source>Choose</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -357,12 +366,12 @@ p, li { white-space: pre-wrap; }
         <translation>Finestra Principal</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="314"/>
+        <location filename="pywhiteboard.py" line="350"/>
         <source>Connect</source>
         <translation>Connecta</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="491"/>
+        <location filename="pywhiteboard.py" line="540"/>
         <source>Activate</source>
         <translation>Activa</translation>
     </message>
@@ -377,7 +386,7 @@ p, li { white-space: pre-wrap; }
         <translation>Nivell de la bateria:</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="408"/>
+        <location filename="pywhiteboard.py" line="457"/>
         <source>Utilization: 0%</source>
         <translation>Ús: 0%</translation>
     </message>
@@ -437,32 +446,32 @@ p, li { white-space: pre-wrap; }
         <translation>Fitxer</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="287"/>
+        <location filename="mainwindow.ui" line="288"/>
         <source>Help</source>
         <translation>Ajuda</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="277"/>
+        <location filename="mainwindow.ui" line="278"/>
         <source>Exit</source>
         <translation>Surt</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="282"/>
+        <location filename="mainwindow.ui" line="283"/>
         <source>Quit</source>
         <translation>Surt</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="292"/>
+        <location filename="mainwindow.ui" line="293"/>
         <source>Configuration</source>
         <translation>Configuració</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="277"/>
+        <location filename="pywhiteboard.py" line="313"/>
         <source>Connected to </source>
         <translation>Connectat a </translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="365"/>
+        <location filename="pywhiteboard.py" line="406"/>
         <source>Disconnect</source>
         <translation>Desconnecta</translation>
     </message>
@@ -472,34 +481,34 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Error en la connexió</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="428"/>
+        <location filename="pywhiteboard.py" line="477"/>
         <source>Utilization: </source>
         <translation>Ús: </translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="437"/>
+        <location filename="pywhiteboard.py" line="486"/>
         <source>Error during Calibration</source>
         <translation>Error en la calibració</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="514"/>
+        <location filename="pywhiteboard.py" line="563"/>
         <source>Deactivate</source>
         <translation>Desactiva</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="525"/>
+        <location filename="pywhiteboard.py" line="574"/>
         <source>The application will remain active (systray).</source>
         <translation>L&apos;aplicació romandrà activa (safata del sistema).</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="525"/>
+        <location filename="pywhiteboard.py" line="574"/>
         <source>To quit, use file-&gt;quit menu</source>
         <translation>Per sortir, usau el menú Fitxer -&gt; Surt</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="103"/>
         <source>Profile:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Perfil:</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="111"/>
@@ -507,7 +516,7 @@ p, li { white-space: pre-wrap; }
         <translation>Per defecte</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="224"/>
+        <location filename="pywhiteboard.py" line="260"/>
         <source>Wii device disconnected</source>
         <translation>Dispositiu Wiimote desconnectat</translation>
     </message>
@@ -522,7 +531,7 @@ p, li { white-space: pre-wrap; }
         <translation>Només moure</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="390"/>
+        <location filename="pywhiteboard.py" line="431"/>
         <source>Error. Check your bluetooth driver</source>
         <translation>Error. Comprova la connexió bluetooth</translation>
     </message>
@@ -532,7 +541,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Mostra / Amaga configuració</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="389"/>
+        <location filename="pywhiteboard.py" line="430"/>
         <source>Error</source>
         <translation></translation>
     </message>
@@ -542,57 +551,82 @@ p, li { white-space: pre-wrap; }
         <translation>Mostra configuració</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="181"/>
+        <location filename="pywhiteboard.py" line="217"/>
         <source>Hide settings</source>
         <translation>Amaga configuració</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="185"/>
+        <location filename="pywhiteboard.py" line="221"/>
         <source>Show settings</source>
         <translation>Mostra configuració</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="148"/>
+        <location filename="pywhiteboard.py" line="175"/>
         <source>New Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Nou Perfil</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="302"/>
+        <location filename="mainwindow.ui" line="303"/>
         <source>Delete Current Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Esborra el perfil actual</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="310"/>
+        <location filename="mainwindow.ui" line="311"/>
         <source>Restart</source>
-        <translation type="unfinished"></translation>
+        <translation>Reincia</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="138"/>
+        <location filename="pywhiteboard.py" line="165"/>
         <source>default</source>
-        <translation type="unfinished"></translation>
+        <translation>Per defecte</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="148"/>
+        <location filename="pywhiteboard.py" line="175"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom:</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="397"/>
+        <location filename="pywhiteboard.py" line="442"/>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Advertència</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="397"/>
+        <location filename="pywhiteboard.py" line="442"/>
         <source>Choose device</source>
-        <translation type="unfinished"></translation>
+        <translation>Tria el dispositiu</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="316"/>
+        <source>Wipe configuration</source>
+        <translation>Esborra tota la configuració</translation>
+    </message>
+    <message>
+        <location filename="pywhiteboard.py" line="207"/>
+        <source>The application will close. Please restart manually</source>
+        <translation>L&apos;aplicació es tancarà. Per favor inicia de nou.</translation>
     </message>
 </context>
 <context>
     <name>PBarDlg</name>
     <message>
-        <location filename="pywhiteboard.py" line="41"/>
+        <location filename="pywhiteboard.py" line="56"/>
         <source>Cancelling...</source>
         <translation>Cancel·lant...</translation>
+    </message>
+    <message>
+        <location filename="pywhiteboard.py" line="49"/>
+        <source>Press 1+2 on your wiimote</source>
+        <translation>Pitja els botons 1+2 al wiimote</translation>
+    </message>
+    <message>
+        <location filename="pywhiteboard.py" line="51"/>
+        <source>Press 1+2 on </source>
+        <translation>Pitja 1+2 a</translation>
+    </message>
+    <message>
+        <location filename="pywhiteboard.py" line="60"/>
+        <source>Wait...</source>
+        <translation>Espera...</translation>
     </message>
 </context>
 </TS>
