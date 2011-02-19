@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import sys,re
+import sys, re, time
 
 import PyQt4.Qt as qt
 
@@ -109,6 +109,9 @@ class Wiimote:
 			self.wii.rpt_mode = cwiid.RPT_BTN | cwiid.RPT_IR
 			self.wii.led = cwiid.LED1_ON
 			self.error = False
+			self.wii.rumble = 1
+			time.sleep(0.2)
+			self.wii.rumble = 0
 			self.wii.mesg_callback = self.create_wiimote_callback()
 			return
 			
