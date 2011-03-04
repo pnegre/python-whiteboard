@@ -40,17 +40,18 @@ class Click:
 		self.initialTime = clock()
 		self.cursor = cursor
 		self.cursor.mouse_down()
-		
 	
-	def update(self,evt):
-		t = clock()
-		if evt:
-			self.initialTime = clock()
-			return True
-		elif (t-self.initialTime) > Click.UP_TIMEOUT:
+	# Called when needing to update without IR Data
+	def updateWithoutData(self):
+		if (clock() - self.initialTime) > Click.UP_TIMEOUT:
 			self.cursor.mouse_up()
 			return False
+		
 		return True
+	
+	# Update event with IR Data
+	def updateWithData(self):
+		self.initialTime = clock()
 
 
 class FakeCursor:
@@ -152,7 +153,7 @@ class FakeCursor:
 				if not self.click:
 					self.click = Click(self)
 				else:
-					self.click.update(True)
+					self.click.updateWithData()
 			self.mutex.unlock()
 		
 		return callback
@@ -165,7 +166,7 @@ class FakeCursor:
 			while 1:
 				qt.QThread.usleep(50)
 				self.mutex.lock()
-				if self.click and not self.click.update(False):
+				if self.click and self.click.updateWithoutData() == False:
 					self.click = None
 					self.filt = None
 					self.clickType = FakeCursor.LEFT_BUTTON
