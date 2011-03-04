@@ -163,7 +163,7 @@ class FakeCursor:
 	def runThread(self):
 		def runFunc():
 			while 1:
-				qt.QThread.usleep(100)
+				qt.QThread.usleep(50)
 				self.mutex.lock()
 				if self.click and not self.click.update(False):
 					self.click = None
