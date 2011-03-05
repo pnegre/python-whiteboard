@@ -1,3 +1,9 @@
+python-whiteboard (0.9.6) unstable; urgency=low
+
+  * Fixed cursor 
+
+ -- pnegre <pere.negre@gmail.com>  Sun, 06 Mar 2011 00:30:33 +0100
+
 python-whiteboard (0.9.5) unstable; urgency=low
 
   * Some minor fixes
