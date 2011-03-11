@@ -70,6 +70,7 @@ class Wiimote:
 								continue
 							if self.funcIR is not None:
 								self.funcIR(self.getPos(data['pos']))
+								return
 					elif m[0] == cwiid.MESG_ERROR:
 						self.error = True
 					elif m[0] == cwiid.MESG_BTN:

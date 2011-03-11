@@ -39,6 +39,7 @@ class Click:
 	def __init__(self,cursor):
 		self.initialTime = clock()
 		self.cursor = cursor
+		self.cursor.mouse_up()
 		self.cursor.mouse_down()
 	
 	# Called when needing to update without IR Data
