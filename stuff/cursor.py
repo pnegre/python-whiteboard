@@ -60,6 +60,8 @@ class FakeCursor:
 	MIDDLE_BUTTON = 2
 	RIGHT_BUTTON = 3
 	ONLY_MOVE = 4
+	RIGHT_CLICK_TIMEOUT = 750
+	CLICK_TIMEOUT = 60
 	ZONE1, ZONE2, ZONE3, ZONE4 = range(4)
 	
 	def __init__(self,wii):
@@ -74,6 +76,14 @@ class FakeCursor:
 		self.mustFinish = False
 		self.thread = None
 		self.noClicks = False
+		# Start of click - measure timeout for right click
+		self.begin = None
+		# Keepalive of IR signal
+		self.lastdata = 0
+		# Starts click (left or right) on timeout or move
+		self.run = False
+		# Delay to only move, before click
+		self.toclick = False
 	
 	
 	def setZone(self,zone,clickType):
@@ -151,10 +161,37 @@ class FakeCursor:
 				
 				self.move(p)
 				
-				if not self.click:
-					self.click = Click(self)
+				if self.run:
+					if not self.click:
+						self.click = Click(self)
+					else:
+						self.click.updateWithData()
 				else:
-					self.click.updateWithData()
+					if not self.begin:
+						self.begin = clock()
+						self.clkP = p
+					else:
+						self.lastdata = clock()
+						# timeout for "only move" flash
+						if clock() - self.begin > FakeCursor.CLICK_TIMEOUT:
+							self.toclick = True
+						
+						# timeout for "right click"
+						if clock() - self.begin > FakeCursor.RIGHT_CLICK_TIMEOUT:
+							self.begin = None
+							self.run = True
+							self.clickType = FakeCursor.RIGHT_BUTTON
+						else:
+							dX = p[0]-self.clkP[0]
+							dY = p[1]-self.clkP[1]
+							# if the cursor moves, start click (drag) immediatly
+							if (dX*dX)+(dY*dY) > 16:
+								self.begin = None
+								self.run = True
+								# Returns to the originlal point and clicks there
+								self.move(self.clkP)
+								self.click = Click(self)
+
 			self.mutex.unlock()
 		
 		return callback
@@ -167,9 +204,21 @@ class FakeCursor:
 			while 1:
 				qt.QThread.usleep(50)
 				self.mutex.lock()
+				# A click had occourred: a short burst (noot an impulse) with no movement
+				if self.toclick and not self.run and clock() - self.lastdata > Click.UP_TIMEOUT:
+					self.begin = None
+					self.lastdata = None
+					self.toclick = False
+					self.run = True
+					self.click = Click(self)
+					
 				if self.click and self.click.updateWithoutData() == False:
 					self.click = None
 					self.filt = None
+					self.begin = None
+					self.lastdata = None
+					self.run = False
+					self.toclick = False
 					self.clickType = FakeCursor.LEFT_BUTTON
 				if self.mustFinish:
 					self.mutex.unlock()
