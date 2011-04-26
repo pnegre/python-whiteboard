@@ -26,21 +26,18 @@ $ make deb
 
 Required packages:
 
+- To run the program: python-bluez, python-qt4, python-numpy, python-cwiid, python-xlib, python, python-support
 - To run make: libqt4-dev qt4-dev-tools python-qt4-dev
-- To make the deb package: build-essential fakeroot dpkg-dev
+- To build the deb package: build-essential fakeroot dpkg-dev
 
 
 
 Configuration
 -------------
 
-In menu: File -> configuration
+The configuration screen has been integrated into the main screen. Siply push the button labeled "Show configuration".
 
-Here you can choose if you want to do calibration fullscreen (recommended).
-
-Also, you can restrict the bluetooth connection to authorized devices. To add a device, first make the connection and then press the "add device" button in the configuration dialog.
-
-Both the mac list and the selected device will be saved in the configuration file (using qt's qsettings).
+There are three tabs. In the first one, you can assign actions to the offscreen areas. In the second one, you can manage the wiimote devices. And in the third one, you'll find some more options.
 
 
 Calibration
@@ -55,10 +52,5 @@ The calibration process can be done in two ways:
 After that, you simply push "activate".
 
 In the calibration screen, you can use the UP/DOWN keys to actually move inwards the calibration points, making it easier to do the process.
-
-Other stuff
------------
-
-There are other features (beware: some of them are a little experimental): you can save the calibration matrix and you can assign functions to the off-limits projection area.
 
 
