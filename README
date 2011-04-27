@@ -26,9 +26,9 @@ $ make deb
 
 Required packages:
 
-- To run the program: python-bluez, python-qt4, python-numpy, python-cwiid, python-xlib, python, python-support
+- To run the program: python-bluez python-qt4 python-numpy python-cwiid python-xlib python python-support
 - To run make: libqt4-dev qt4-dev-tools python-qt4-dev
-- To build the deb package: build-essential fakeroot dpkg-dev
+- To build the deb package: build-essential fakeroot dpkg-dev debhelper
 
 
 
