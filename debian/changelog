@@ -1,3 +1,10 @@
+python-whiteboard (0.9.7) unstable; urgency=low
+
+  * Added french translation
+  * Long click
+
+ -- pnegre <pere.negre@gmail.com>  Sun, 29 May 2011 22:25:56 +0200
+
 python-whiteboard (0.9.6) unstable; urgency=low
 
   * Fixed cursor 
