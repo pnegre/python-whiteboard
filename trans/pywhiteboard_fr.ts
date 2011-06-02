@@ -319,7 +319,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="configuration.ui" line="256"/>
         <source>Do calibration after connection</source>
-        <translation>Faire la calibration après la correction</translation>
+        <translation>Faire la calibration après le branchement</translation>
     </message>
     <message>
         <location filename="configuration.ui" line="263"/>
@@ -565,7 +565,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="pywhiteboard.py" line="574"/>
         <source>To quit, use file-&gt;quit menu</source>
-        <translation>Pour quitter, untiliser le menu Fichier -&gt; quitter</translation>
+        <translation>Pour quitter, utiliser* le menu Fichier -> quitter</translation>
     </message>
 </context>
 <context>
