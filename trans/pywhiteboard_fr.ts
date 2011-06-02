@@ -565,7 +565,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="pywhiteboard.py" line="574"/>
         <source>To quit, use file-&gt;quit menu</source>
-        <translation>Pour quitter, utiliser* le menu Fichier -> quitter</translation>
+        <translation>Pour quitter, utiliser le menu Fichier -&gt; quitter</translation>
     </message>
 </context>
 <context>
