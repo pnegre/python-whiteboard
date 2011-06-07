@@ -1,0 +1,12 @@
+python-whiteboard for Debian
+----------------------------
+
+the source comes from https://github.com/pnegre/python-whiteboard.git
+
+modifications are managed by quilt, see
+"/usr/share/doc/quilt/README.source"
+
+
+
+
+ -- Georges Khaznadar <georgesk@ofset.org>, Sat, 28 May 2011 23:41:52 +0200

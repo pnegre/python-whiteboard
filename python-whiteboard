@@ -3,7 +3,7 @@
 
 import sys, os
 
-STUFFDIR = '/usr/lib/python-whiteboard'
+STUFFDIR = '/usr/share/python-whiteboard'
 
 def main():
 	global STUFFDIR

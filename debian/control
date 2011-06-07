@@ -1,14 +1,18 @@
 Source: python-whiteboard
-Section: games
-Priority: optional
-Maintainer: Pere Negre <pere.negre@gmail.com>
-Build-Depends-Indep: python (>= 2.1)
-Build-Depends: debhelper (>= 4.1.25)
-Standards-Version: 3.7.2
+Section: python
+Priority: extra
+Maintainer: Georges Khaznadar <georgesk@ofset.org>
+Build-Depends: debhelper (>= 7.0.50~), quilt,
+ python-all (>=2.6.6-3 ), libqt4-dev
+X-Python-Version: >= 2.5
+Standards-Version: 3.9.2
+Homepage: https://github.com/pnegre/python-whiteboard
 
 Package: python-whiteboard
 Architecture: all
-Depends: python-bluez (>= 0.14), python-qt4 (>= 4.0), python-numpy (>= 1:1.0), python-cwiid (>= 0.5), python-xlib (>= 0.10), ${python:Depends}
+Depends: python-bluez (>= 0.14), python-qt4 (>= 4.0), python-numpy (>= 1:1.0),
+ python-cwiid (>= 0.5), python-xlib (>= 0.10),
+ ${python:Depends}, ${misc:Depends}
 Description: Make your own electronic whiteboard
  python whiteboard is a program that lets you build your own
  electronic whiteboard. You only need a wii remote and a IR pen

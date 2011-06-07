@@ -1,9 +1,30 @@
 python-whiteboard (0.9.7) unstable; urgency=low
 
-  * Added french translation
+  * Applied debian patches (thanks to George Khaznadar)
   * Long click
 
- -- pnegre <pere.negre@gmail.com>  Sun, 29 May 2011 22:25:56 +0200
+ -- pnegre <pnegre@andromeda.lan>  Tue, 07 Jun 2011 23:15:59 +0200
+
+python-whiteboard (0.9.6+git20110528-3) unstable; urgency=low
+
+  * added a French localization
+
+ -- Georges Khaznadar <georgesk@ofset.org>  Sun, 29 May 2011 20:38:52 +0200
+
+python-whiteboard (0.9.6+git20110528-2) unstable; urgency=low
+
+  * updated the name and the address of the author
+
+ -- Georges Khaznadar <georgesk@ofset.org>  Sun, 29 May 2011 00:30:24 +0200
+
+python-whiteboard (0.9.6+git20110528-1) unstable; urgency=low
+
+  * Initial release (Closes: #628434)
+  * added build-dependencies: quilt, python-all, libqt4-dev
+  * moved stuff to /usr/share
+  * written a short manpage
+
+ -- Georges Khaznadar <georgesk@ofset.org>  Sat, 28 May 2011 23:18:08 +0200
 
 python-whiteboard (0.9.6) unstable; urgency=low
 
@@ -178,4 +199,3 @@ python-whiteboard (0.1-1) unstable; urgency=low
   * First release.
 
  -- pnegre <pere.negre@gmail.com>  Wed, 28 Apr 2010 10:13:19 +0200
-
