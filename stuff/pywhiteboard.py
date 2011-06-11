@@ -395,7 +395,10 @@ class MainWindow(QtGui.QMainWindow):
 				return
 			
 			if selectedMac == '*' and len(pool) >= 1:
-				pBar.inform(self.tr('Found ') + str(len(pool)) + self.tr(' Devices. Press to Choose'))
+				if Configuration().getValueStr('nowaitdevices') == 'Yes':
+					selectedMac = pool[0]
+				else:
+					pBar.inform(self.tr('Found ') + str(len(pool)) + self.tr(' Devices. Press to Choose'))
 
 			if self.wii.isConnected():
 				self.connected = True

@@ -4,7 +4,7 @@ from PyQt4 import QtCore, QtGui, uic
 import PyQt4.Qt as qt
 
 
-CONFIG_VERSION = 9
+CONFIG_VERSION = 10
 
 
 class Configuration:
@@ -28,6 +28,7 @@ class Configuration:
 				"smoothing": "5",
 				"moveonly": "No",
 				"automatrix": "No",
+				"nowaitdevices": "Yes",
 			}
 			
 			version = self.getValueStr("version")
@@ -150,6 +151,8 @@ class ConfigDialog(QtGui.QDialog):
 			QtCore.SIGNAL("stateChanged(int)"), self.checkStateChanged)
 		self.connect(self.ui.check_automatrix,
 			QtCore.SIGNAL("stateChanged(int)"), self.checkStateChanged)
+		self.connect(self.ui.check_nowait,
+			QtCore.SIGNAL("stateChanged(int)"), self.checkStateChanged)
 		
 		self.connect(self.ui.button_addDev,
 			QtCore.SIGNAL("clicked()"), self.addDevice)
@@ -193,7 +196,7 @@ class ConfigDialog(QtGui.QDialog):
 		self.ui.check_autoconnect.setChecked(conf.getValueStr("autoconnect") == "Yes")
 		self.ui.check_autocalibration.setChecked(conf.getValueStr("autocalibration") == "Yes")
 		self.ui.check_automatrix.setChecked(conf.getValueStr("automatrix") == "Yes")
-		
+		self.ui.check_nowait.setChecked(conf.getValueStr("nowaitdevices") == "Yes")
 		self.updateCombos()
 		self.setupMacTable()
 		
@@ -333,6 +336,8 @@ class ConfigDialog(QtGui.QDialog):
 			conf.saveValue('autocalibration',yesno)
 		if sender == self.ui.check_automatrix:
 			conf.saveValue('automatrix',yesno)
+		if sender == self.ui.check_nowait:
+			conf.saveValue('nowaitdevices',yesno)
 	
 	
 	def closeEvent(self,e):

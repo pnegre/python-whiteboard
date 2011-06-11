@@ -208,7 +208,7 @@ class Wiimote:
 	
 	
 	def createConnectThread(self, selectedmac, pool):
-		def func():
+		def func():			
 			if selectedmac == '*':
 				self.detectWiimotes()
 				if len(self.wiimotesDetected) == 0: return
@@ -217,7 +217,6 @@ class Wiimote:
 					if not p in pool:
 						pool.append(p)
 				
-				#self.bind(self.wiimotesDetected[0])
 			else:
 				self.bind(selectedmac)
 		
