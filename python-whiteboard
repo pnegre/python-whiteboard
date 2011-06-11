@@ -7,10 +7,9 @@ STUFFDIR = '/usr/share/python-whiteboard'
 
 def main():
 	global STUFFDIR
-	localpath = os.path.split(os.path.abspath(sys.argv[0]))[0]
-	teststuff = os.path.join(localpath, 'stuff')
-	if os.path.isdir(teststuff):
-		STUFFDIR = teststuff
+	if not os.path.isdir(STUFFDIR):
+		print "Can't find " + STUFFDIR
+		sys.exit(1)
 	
 	#apply our directories and test environment
 	os.chdir(STUFFDIR)
