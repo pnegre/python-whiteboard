@@ -1,9 +1,15 @@
+python-whiteboard (0.9.8) unstable; urgency=low
+
+  * Added option to pick the first wiimote available when connecting.
+
+ -- pnegre <pere.negre@gmail.com>  Sat, 11 Jun 2011 10:54:52 +0200
+
 python-whiteboard (0.9.7) unstable; urgency=low
 
   * Applied debian patches (thanks to George Khaznadar)
   * Long click
 
- -- pnegre <pnegre@andromeda.lan>  Tue, 07 Jun 2011 23:15:59 +0200
+ -- pnegre <pere.negre@gmail.com>  Tue, 07 Jun 2011 23:15:59 +0200
 
 python-whiteboard (0.9.6+git20110528-3) unstable; urgency=low
 

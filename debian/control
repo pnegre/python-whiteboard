@@ -2,11 +2,13 @@ Source: python-whiteboard
 Section: python
 Priority: extra
 Maintainer: Georges Khaznadar <georgesk@ofset.org>
-Build-Depends: debhelper (>= 7.0.50~), quilt,
- python-all (>=2.6.6-3 ), libqt4-dev
+Build-Depends: debhelper (>= 7.0.50~), 
+ python-all (>=2.6 ), libqt4-dev
 X-Python-Version: >= 2.5
 Standards-Version: 3.9.2
 Homepage: https://github.com/pnegre/python-whiteboard
+Uploaders: Georges Khaznadar <georgesk@ofset.org>
+
 
 Package: python-whiteboard
 Architecture: all
