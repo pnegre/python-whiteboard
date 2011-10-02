@@ -64,7 +64,7 @@
         <translation>Sensibilité IR :</translation>
     </message>
 </context>
-<context>
+<context encoding="UTF-8">
     <name>Dialog</name>
     <message>
         <location filename="about.ui" line="26"/>
