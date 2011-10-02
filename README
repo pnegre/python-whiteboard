@@ -66,3 +66,28 @@ In the calibration screen, you can use the UP/DOWN keys to actually move
 inwards the calibration points, making it easier to do the process.
 
 
+Translations
+------------
+
+If you want to contribute with some translations, make sure you have the proper
+tools installed on your system. In Ubuntu/Debian you'll need the following packages:
+
+- qt4-dev-tools
+- pyqt4-dev-tools
+
+(and all its dependencies, of course).
+
+Also, make sure that you have the latest version of the program (check it with git).
+
+To update a translation, go to the trans/ directory and execute the following:
+
+$ linguist pywhiteboard_whatever.ts
+
+And supply the translations.
+
+If you want to contribute a fresh, new translation for an unsupported language,
+you first have to generate the .ts file (look at the "generate_trans.sh".
+
+Have fun!
+
+
