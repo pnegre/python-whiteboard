@@ -629,12 +629,36 @@ def getTranslator():
 
 
 
+# Checks that only one instance of python-whiteboard is running
+import fcntl
+fp = None
+def checkSingle():
+	lockfile = '/tmp/python-whiteboard.lock'
+	global fp
+	fp = open(lockfile, 'w')
+	try:
+		fcntl.lockf(fp, fcntl.LOCK_EX | fcntl.LOCK_NB)
+		return True
+	except IOError:
+		return False
+
+
+
+
 
 def main():
 	app = QtGui.QApplication(sys.argv)
 	t = getTranslator()
 	app.installTranslator(t)
 	mainWin = MainWindow()
+	
+	if checkSingle() == False:
+		msgbox = QtGui.QMessageBox( mainWin )
+		msgbox.setText( app.tr("Application already running") )
+		msgbox.setModal( True )
+		ret = msgbox.exec_()
+		sys.exit()
+	
 	stray = SysTrayIcon("icon.xpm", mainWin)
 	stray.show()
 	mainWin.show()
