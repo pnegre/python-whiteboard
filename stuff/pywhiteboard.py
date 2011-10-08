@@ -5,7 +5,7 @@ from wiimote import Wiimote
 from cursor import FakeCursor
 from threads import *
 
-from calibration import doCalibration
+from calibration import doCalibration, CalibrationAbort
 from configuration import Configuration, ConfigDialog
 
 
@@ -462,39 +462,40 @@ class MainWindow(QtGui.QMainWindow):
 		
 		self.calibrated = False
 		self.active = False
-		
-		self.wii.state = Wiimote.NONCALIBRATED
-		if loadFromSettings:
-			# If calibration matrix can't be loaded, calibrate manually
-			if not self.loadCalibration(self.wii):
+		try:
+			self.wii.state = Wiimote.NONCALIBRATED
+			if loadFromSettings:
+				# If calibration matrix can't be loaded, calibrate manually
+				if not self.loadCalibration(self.wii):
+					doCalibration(self,self.wii)
+			else:
 				doCalibration(self,self.wii)
-		else:
-			doCalibration(self,self.wii)
-		
-		
-		if self.wii.state == Wiimote.CALIBRATED:
-			self.calibrated = True
-			self.active = False
-			self.drawScreenGraphic()
-			self.updateButtons()
-			self.ui.label_utilization.setText(self.tr("Utilization: ") + "%d%%" % (100.0*self.wii.utilization))
-			self.saveCalibrationPars(self.wii)
 			
-			# Activate cursor after calibration (always)
-			self.activateWii()
 			
-		else:
-			self.updateButtons()
-			msgbox = QtGui.QMessageBox( self )
-			msgbox.setText( self.tr("Error during Calibration") )
-			msgbox.setModal( True )
-			ret = msgbox.exec_()
+			if self.wii.state == Wiimote.CALIBRATED:
+				self.calibrated = True
+				self.active = False
+				self.drawScreenGraphic()
+				self.updateButtons()
+				self.ui.label_utilization.setText(self.tr("Utilization: ") + "%d%%" % (100.0*self.wii.utilization))
+				self.saveCalibrationPars(self.wii)
+				
+				# Activate cursor after calibration (always)
+				self.activateWii()
 		
+		except CalibrationAbort:		
 			# Installs button callback (for calling calibration)
 			self.wii.disable()
 			self.wii.putCallbackBTN(self.makeBTNCallback())
 			self.wii.putCallbackIR(None)
 			self.wii.enable()
+		
+		except:
+			self.updateButtons()
+			msgbox = QtGui.QMessageBox( self )
+			msgbox.setText( self.tr("Error during Calibration") )
+			msgbox.setModal( True )
+			ret = msgbox.exec_()
 
 	
 	def calibrateWiiScreen(self):

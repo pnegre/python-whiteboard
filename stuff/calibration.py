@@ -10,6 +10,9 @@ import PyQt4.Qt as qt
 from configuration import Configuration
 
 
+class CalibrationAbort(Exception):
+	pass
+
 
 def clock():
 	return int(time.time()*1000)
@@ -358,4 +361,6 @@ def doCalibration(parent,wii):
 		print dialog.CalibrationPoints
 		print dialog.wiiPoints
 		wii.calibrate(dialog.CalibrationPoints,dialog.wiiPoints)
+	else:
+		raise CalibrationAbort()
 
