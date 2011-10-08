@@ -1,3 +1,10 @@
+python-whiteboard (0.9.9) unstable; urgency=low
+
+  * Added code to detect to prevent multiple instance running
+  * Minor fixes
+
+ -- pnegre <pere.negre@gmail.com>  Sat, 08 Oct 2011 15:02:22 +0200
+
 python-whiteboard (0.9.8) unstable; urgency=low
 
   * Added option to pick the first wiimote available when connecting.

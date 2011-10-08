@@ -3,7 +3,7 @@
 <context>
     <name>CalibrateDialog</name>
     <message>
-        <location filename="calibration.py" line="293"/>
+        <location filename="calibration.py" line="296"/>
         <source>Push UP/DOWN to alter the crosses&apos; position</source>
         <translation>按上/下鍵來改變十字定位點的位置</translation>
     </message>
@@ -11,22 +11,22 @@
 <context>
     <name>CalibrateDialog2</name>
     <message>
-        <location filename="calibration.py" line="142"/>
+        <location filename="calibration.py" line="145"/>
         <source>TOP-LEFT</source>
         <translation>點擊左上定位點</translation>
     </message>
     <message>
-        <location filename="calibration.py" line="143"/>
+        <location filename="calibration.py" line="146"/>
         <source>TOP-RIGHT</source>
         <translation>點擊右上定位點</translation>
     </message>
     <message>
-        <location filename="calibration.py" line="144"/>
+        <location filename="calibration.py" line="147"/>
         <source>BOTTOM-RIGHT</source>
         <translation>點擊右下定位點</translation>
     </message>
     <message>
-        <location filename="calibration.py" line="145"/>
+        <location filename="calibration.py" line="148"/>
         <source>BOTTOM-LEFT</source>
         <translation>點擊左下定位點</translation>
     </message>
@@ -932,7 +932,7 @@ p, li { white-space: pre-wrap; }
         <translation>連接Wiimote</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="543"/>
+        <location filename="pywhiteboard.py" line="548"/>
         <source>Activate</source>
         <translation>啟用電子白板</translation>
     </message>
@@ -1047,22 +1047,22 @@ p, li { white-space: pre-wrap; }
         <translation>採用率: </translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="489"/>
+        <location filename="pywhiteboard.py" line="494"/>
         <source>Error during Calibration</source>
         <translation>在定位時出現錯誤</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="566"/>
+        <location filename="pywhiteboard.py" line="571"/>
         <source>Deactivate</source>
         <translation>停用電子白板</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="577"/>
+        <location filename="pywhiteboard.py" line="582"/>
         <source>The application will remain active (systray).</source>
         <translation>程序將保持啟用狀態 (縮小至系統工具列中).</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="577"/>
+        <location filename="pywhiteboard.py" line="582"/>
         <source>To quit, use file-&gt;quit menu</source>
         <translation>要關閉程式，請使用選單中的[檔案]-&gt;[關閉程式]</translation>
     </message>
@@ -1202,6 +1202,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="pywhiteboard.py" line="60"/>
         <source>Wait...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>app</name>
+    <message>
+        <location filename="pywhiteboard.py" line="662"/>
+        <source>Application already running</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

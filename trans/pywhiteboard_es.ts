@@ -3,7 +3,7 @@
 <context>
     <name>CalibrateDialog</name>
     <message>
-        <location filename="calibration.py" line="293"/>
+        <location filename="calibration.py" line="296"/>
         <source>Push UP/DOWN to alter the crosses&apos; position</source>
         <translation>Pulsa los botones ARRIBA/ABAJO del cursor para mover las marcas</translation>
     </message>
@@ -11,22 +11,22 @@
 <context>
     <name>CalibrateDialog2</name>
     <message>
-        <location filename="calibration.py" line="142"/>
+        <location filename="calibration.py" line="145"/>
         <source>TOP-LEFT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="calibration.py" line="143"/>
+        <location filename="calibration.py" line="146"/>
         <source>TOP-RIGHT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="calibration.py" line="144"/>
+        <location filename="calibration.py" line="147"/>
         <source>BOTTOM-RIGHT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="calibration.py" line="145"/>
+        <location filename="calibration.py" line="148"/>
         <source>BOTTOM-LEFT</source>
         <translation type="unfinished"></translation>
     </message>
@@ -362,7 +362,7 @@ p, li { white-space: pre-wrap; }
         <translation>Conectar</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="543"/>
+        <location filename="pywhiteboard.py" line="548"/>
         <source>Activate</source>
         <translation>Activar</translation>
     </message>
@@ -427,22 +427,22 @@ p, li { white-space: pre-wrap; }
         <translation>Utilización:</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="489"/>
+        <location filename="pywhiteboard.py" line="494"/>
         <source>Error during Calibration</source>
         <translation>Error en la calibración</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="566"/>
+        <location filename="pywhiteboard.py" line="571"/>
         <source>Deactivate</source>
         <translation>Desactivar</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="577"/>
+        <location filename="pywhiteboard.py" line="582"/>
         <source>The application will remain active (systray).</source>
         <translation>La aplicación se mantendrá activa (systray)</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="577"/>
+        <location filename="pywhiteboard.py" line="582"/>
         <source>To quit, use file-&gt;quit menu</source>
         <translation>Para salir: Fichero -&gt; Salir</translation>
     </message>
@@ -582,6 +582,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="pywhiteboard.py" line="51"/>
         <source>Press 1+2 on</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>app</name>
+    <message>
+        <location filename="pywhiteboard.py" line="662"/>
+        <source>Application already running</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

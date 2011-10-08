@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="it_IT">
+<!DOCTYPE TS><TS version="1.1" language="it_IT">
 <context>
     <name>CalibrateDialog</name>
     <message>
-        <location filename="calibration.py" line="293"/>
+        <location filename="calibration.py" line="296"/>
         <source>Push UP/DOWN to alter the crosses&apos; position</source>
         <translation> Schiaccia Su/Giù per cambiare la posizione delle croci</translation>
     </message>
@@ -12,22 +11,22 @@
 <context>
     <name>CalibrateDialog2</name>
     <message>
-        <location filename="calibration.py" line="142"/>
+        <location filename="calibration.py" line="145"/>
         <source>TOP-LEFT</source>
         <translation>IN-ALTO-A-SINISTRA</translation>
     </message>
     <message>
-        <location filename="calibration.py" line="143"/>
+        <location filename="calibration.py" line="146"/>
         <source>TOP-RIGHT</source>
         <translation>IN-ALTO-A-DESTRA</translation>
     </message>
     <message>
-        <location filename="calibration.py" line="144"/>
+        <location filename="calibration.py" line="147"/>
         <source>BOTTOM-RIGHT</source>
         <translation>IN-BASSO-A-DESTRA</translation>
     </message>
     <message>
-        <location filename="calibration.py" line="145"/>
+        <location filename="calibration.py" line="148"/>
         <source>BOTTOM-LEFT</source>
         <translation>IN-BASSO-A-SINISTRA</translation>
     </message>
@@ -472,7 +471,7 @@ p, li { white-space: pre-wrap; }
         <source>Ok</source>
         <translation>Conferma</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="about.ui" line="42"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -618,7 +617,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;12.&lt;/span&gt; IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR REDISTRIBUTE THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. &lt;/p&gt;
 &lt;p style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:large; font-weight:600;&quot;&gt;END OF TERMS AND CONDITIONS&lt;/span&gt; &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="about.ui" line="42"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -801,7 +800,7 @@ p, li { white-space: pre-wrap; }
         <source>Choose</source>
         <translation>Scegli</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="about.ui" line="42"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -929,7 +928,6 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:600;&quot;&gt;11.&lt;/span&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-size:10pt;&quot;&gt; BECAUSE THE PROGRAM IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM &amp;quot;AS IS&amp;quot; WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION. &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:600;&quot;&gt;12.&lt;/span&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-size:10pt;&quot;&gt; IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR REDISTRIBUTE THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:600;&quot;&gt;END OF TERMS AND CONDITIONS&lt;/span&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-size:10pt;&quot;&gt; &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translatorcomment>In italy only the english version is valid for legal issue and than I have recopy the original text of the license</translatorcomment>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -1004,7 +1002,7 @@ p, li { white-space: pre-wrap; }
         <translation>Connetti</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="543"/>
+        <location filename="pywhiteboard.py" line="548"/>
         <source>Activate</source>
         <translation>Attiva</translation>
     </message>
@@ -1119,22 +1117,22 @@ p, li { white-space: pre-wrap; }
         <translation>Utilizzo: </translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="489"/>
+        <location filename="pywhiteboard.py" line="494"/>
         <source>Error during Calibration</source>
         <translation>Errore durante la calibrazione</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="566"/>
+        <location filename="pywhiteboard.py" line="571"/>
         <source>Deactivate</source>
         <translation>Disattiva</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="577"/>
+        <location filename="pywhiteboard.py" line="582"/>
         <source>The application will remain active (systray).</source>
         <translation>L&apos;applicazione rimarrà attiva (area di notifica).</translation>
     </message>
     <message>
-        <location filename="pywhiteboard.py" line="577"/>
+        <location filename="pywhiteboard.py" line="582"/>
         <source>To quit, use file-&gt;quit menu</source>
         <translation>Per uscire,usa il menu file-&gt;esci</translation>
     </message>
@@ -1275,6 +1273,14 @@ p, li { white-space: pre-wrap; }
         <location filename="pywhiteboard.py" line="51"/>
         <source>Press 1+2 on</source>
         <translation>Schiaccia 1+2 sul</translation>
+    </message>
+</context>
+<context>
+    <name>app</name>
+    <message>
+        <location filename="pywhiteboard.py" line="662"/>
+        <source>Application already running</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
