@@ -482,13 +482,11 @@ class MainWindow(QtGui.QMainWindow):
 				
 				# Activate cursor after calibration (always)
 				self.activateWii()
+				return
 		
-		except CalibrationAbort:		
-			# Installs button callback (for calling calibration)
-			self.wii.disable()
-			self.wii.putCallbackBTN(self.makeBTNCallback())
-			self.wii.putCallbackIR(None)
-			self.wii.enable()
+		except CalibrationAbort:
+			# Do nothing (user choice)
+			pass
 		
 		except:
 			self.updateButtons()
@@ -496,6 +494,12 @@ class MainWindow(QtGui.QMainWindow):
 			msgbox.setText( self.tr("Error during Calibration") )
 			msgbox.setModal( True )
 			ret = msgbox.exec_()
+		
+		# Installs button callback (for calling calibration)
+		self.wii.disable()
+		self.wii.putCallbackBTN(self.makeBTNCallback())
+		self.wii.putCallbackIR(None)
+		self.wii.enable()
 
 	
 	def calibrateWiiScreen(self):
