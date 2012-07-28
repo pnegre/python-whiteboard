@@ -4,7 +4,7 @@ from PyQt4 import QtCore, QtGui, uic
 import PyQt4.Qt as qt
 
 
-CONFIG_VERSION = 10
+CONFIG_VERSION = 11
 
 
 class Configuration:
@@ -24,8 +24,8 @@ class Configuration:
 				"zone4": "0",
 				"autoconnect": "Yes",
 				"autocalibration": "Yes",
-				"sensitivity": "6",
-				"smoothing": "5",
+				"sensitivity": "10",
+				"smoothing": "10",
 				"moveonly": "No",
 				"automatrix": "No",
 				"nowaitdevices": "Yes",
@@ -119,7 +119,7 @@ class Configuration:
 		""" Create singleton instance """
 		# Check whether we already have an instance
 		if Configuration.__instance is None:
-			# Create and remember instance
+			# Create and remember i10nstance
 			Configuration.__instance = Configuration.__impl()
 
 		# Store instance reference as the only member in the handle
@@ -175,13 +175,13 @@ class ConfigDialog(QtGui.QDialog):
 			QtCore.SIGNAL("currentIndexChanged(int)"), self.changeCombo)
 		self.updateCombos()
 		
-		self.ui.slider_ir.setMinimum(2)
-		self.ui.slider_ir.setMaximum(6)
+		self.ui.slider_ir.setMinimum(1)
+		self.ui.slider_ir.setMaximum(10)
 		self.connect(self.ui.slider_ir,
 			QtCore.SIGNAL("valueChanged(int)"), self.sliderIrMoved)
 		
 		self.ui.slider_smoothing.setMinimum(1)
-		self.ui.slider_smoothing.setMaximum(7)
+		self.ui.slider_smoothing.setMaximum(10)
 		self.connect(self.ui.slider_smoothing,
 			QtCore.SIGNAL("valueChanged(int)"), self.sliderSmMoved)
 		

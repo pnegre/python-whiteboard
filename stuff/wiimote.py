@@ -65,8 +65,14 @@ class Wiimote:
 				for m in messages:
 					if m[0] == cwiid.MESG_IR:
 						data = m[1][0]
+						# This is the max_lightness value seen with cwiid;
+						# the correctness of this value must be seen
+						# by doc or measured; the maximum value of the
+						# slide might be this value minus one
+						# the minimum value of the slide might be 1.
+						max_lightness = 9
 						if data:
-							if data['size'] > self.maxIrSensitivity:
+							if data['size'] < max_lightness - self.maxIrSensitivity:
 								continue
 							if self.funcIR is not None:
 								self.funcIR(self.getPos(data['pos']))
