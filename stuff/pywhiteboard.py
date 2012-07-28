@@ -574,18 +574,35 @@ class MainWindow(QtGui.QMainWindow):
 	
 	# Exit callback
 	def closeEvent(self,e):
-		if self.mustquit:
+		# Unity does not support qt systray anymore.
+		# So, I'm putting the old code on hold
+		
+		#if self.mustquit:
+			#self.disconnectDevice()
+			#e.accept()
+		#else:
+			#msgbox = QtGui.QMessageBox(self)
+			#msgbox.setText(self.tr("The application will remain active (systray).") + "\n" + \
+				#self.tr("To quit, use file->quit menu") )
+			#msgbox.setModal( True )
+			#ret = msgbox.exec_()
+			#self.showHide()
+			#e.ignore()
+		
+		# Instead, we simply ask if the user wants to really quit.
+		
+		msgbox = QtGui.QMessageBox(self)
+		msgbox.setText(self.tr("Are you sure you want to exit?") )
+		msgbox.setStandardButtons(QtGui.QMessageBox.Ok | QtGui.QMessageBox.Cancel)
+		msgbox.setModal( True )
+		ret = msgbox.exec_()
+		if ret == QtGui.QMessageBox.Ok:
+			# Exit the application
 			self.disconnectDevice()
 			e.accept()
 		else:
-			msgbox = QtGui.QMessageBox(self)
-			msgbox.setText(self.tr("The application will remain active (systray).") + "\n" + \
-				self.tr("To quit, use file->quit menu") )
-			msgbox.setModal( True )
-			ret = msgbox.exec_()
-			self.showHide()
 			e.ignore()
-	
+		
 	
 	def showHide(self):
 		if self.isVisible():
