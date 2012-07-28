@@ -1,3 +1,10 @@
+python-whiteboard (1.0.0) unstable; urgency=low
+
+  * Added patch by Pietro Pilolli: enhanced sensitivity detection
+  * Disabled systray icon because of Unity (Ubuntu) incompatibility
+
+ -- pnegre <pere.negre@gmail.com>  Sat, 28 Jul 2012 13:04:06 +0200
+
 python-whiteboard (0.9.9) unstable; urgency=low
 
   * Added code to detect to prevent multiple instance running
