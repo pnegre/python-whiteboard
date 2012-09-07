@@ -19,10 +19,20 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
+#
+# (Modified by Pere Negre)
+#
+
 
 import threading
 import time
 import bluetooth
+
+IRCallback = None
+
+def setCallBack(func):
+	global IRCallback
+	IRCallback = func
 
 
 def i2bs(val):
@@ -147,7 +157,18 @@ class Parser:
 			irstate.MidX = float(irstate.RawMidX) / 1024
 			irstate.MidY = float(irstate.RawMidY) / 768
 		else: irstate.MidX = irstate.MidY = 0
-			
+		
+		if IRCallback is not None:
+			if irstate.Found1:
+				IRCallback(irstate.RawX1, irstate.RawY1)
+			elif irstate.Found2:
+				IRCallback(irstate.RawX2, irstate.RawY2)
+			elif irstate.Found3:
+				IRCallback(irstate.RawX3, irstate.RawY3)
+			elif irstate.Found4:
+				IRCallback(irstate.RawX4, irstate.RawY4)
+		
+
 class Setter: 
 	"""The opposite from the Parser class: returns the signal needed to set the values in the wiimote"""
 	LED1 = 0x10
@@ -338,7 +359,40 @@ class Wiimote(threading.Thread):
 					self.running2 = False
 					battery_level = x[7]
 		self.WiimoteState.Battery = battery_level
-		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#def funcCallback(x,y):
+	#print x
+	#print y
+
+#if __name__ == "__main__":
+	#w = Wiimote()
+	#print "Press 1+2"
+	#setCallBack(funcCallback)
+	#w.Connect()
+	#w.activate_IR()
+	#while 1:
+		#time.sleep(0.1)
+
+
+
+
+
+
 if __name__ == "__main__":
 	wiimote = Wiimote()
 	print "Press 1 and 2 on wiimote to make it discoverable"
@@ -350,3 +404,4 @@ if __name__ == "__main__":
 		#print wiimote.state
 		print wiimote.WiimoteState.ButtonState.A, wiimote.WiimoteState.ButtonState.B, wiimote.WiimoteState.ButtonState.Up, wiimote.WiimoteState.ButtonState.Down, wiimote.WiimoteState.ButtonState.Left, wiimote.WiimoteState.ButtonState.Right, wiimote.WiimoteState.ButtonState.Minus, wiimote.WiimoteState.ButtonState.Plus, wiimote.WiimoteState.ButtonState.Home, wiimote.WiimoteState.ButtonState.One, wiimote.WiimoteState.ButtonState.Two, wiimote.WiimoteState.IRState.RawX1, wiimote.WiimoteState.IRState.RawY1, wiimote.WiimoteState.IRState.Size1, wiimote.WiimoteState.IRState.RawX2, wiimote.WiimoteState.IRState.RawY2, wiimote.WiimoteState.IRState.Size2
 		#print wiimote.IRState.Found1	
+

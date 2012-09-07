@@ -6,8 +6,9 @@ import sys, re
 import PyQt4.Qt as qt
 
 from numpy import matrix, linalg
-import cwiid, bluetooth
+import bluetooth
 
+import linuxWiimoteLib as wiLib
 from configuration import Configuration
 from threads import CreateThreadClass
 
@@ -42,8 +43,8 @@ def calculateArea(points):
 
 class Wiimote:
 	CALIBRATED, NONCALIBRATED = range(2)
-	MAX_X = cwiid.IR_X_MAX
-	MAX_Y = cwiid.IR_Y_MAX
+	MAX_X = 1023
+	MAX_Y = 768
 	
 	def __init__(self):
 		self.wii = None
@@ -60,29 +61,9 @@ class Wiimote:
 	
 	def create_wiimote_callback(self):
 		# Closure
-		def wiimote_callback(messages,buttons):
-			if messages:
-				for m in messages:
-					if m[0] == cwiid.MESG_IR:
-						data = m[1][0]
-						# This is the max_lightness value seen with cwiid;
-						# the correctness of this value must be seen
-						# by doc or measured; the maximum value of the
-						# slide might be this value minus one
-						# the minimum value of the slide might be 1.
-						max_lightness = 9
-						if data:
-							if data['size'] < max_lightness - self.maxIrSensitivity:
-								continue
-							if self.funcIR is not None:
-								self.funcIR(self.getPos(data['pos']))
-								return
-					elif m[0] == cwiid.MESG_ERROR:
-						self.error = True
-					elif m[0] == cwiid.MESG_BTN:
-						if m[1] == cwiid.BTN_A:
-							if self.funcBTN is not None:
-								self.funcBTN()
+		def wiimote_callback(px,py):
+			if self.funcIR is not None:
+				self.funcIR(self.getPos([px,py]))
 		
 		return wiimote_callback
 	
@@ -112,14 +93,11 @@ class Wiimote:
 	def bind(self, addr):
 		try:
 			self.addr = str(addr)
-			self.wii = cwiid.Wiimote(self.addr)
-			self.wii.rpt_mode = cwiid.RPT_BTN | cwiid.RPT_IR
-			self.wii.led = cwiid.LED1_ON
+			self.wii = wiLib.Wiimote()
+			self.wii.Connect(self.addr)
+			wiLib.setCallBack(self.create_wiimote_callback())
+			self.wii.activate_IR()
 			self.error = False
-			self.wii.rumble = 1
-			qt.QThread.msleep(200)
-			self.wii.rumble = 0
-			self.wii.mesg_callback = self.create_wiimote_callback()
 			return
 			
 		except RuntimeError, errString:
@@ -138,28 +116,32 @@ class Wiimote:
 	
 	def enable(self):
 		self.error = False
-		self.maxIrSensitivity = int(Configuration().getValueStr("sensitivity"))
-		self.wii.enable(cwiid.FLAG_MESG_IFC)
+		self.wii.activate_IR()
+		#self.maxIrSensitivity = int(Configuration().getValueStr("sensitivity"))
+		#self.wii.enable(cwiid.FLAG_MESG_IFC)
 	
 	def disable(self):
-		self.wii.disable(cwiid.FLAG_MESG_IFC)
+		pass
+		#self.wii.disable(cwiid.FLAG_MESG_IFC)
 	
 	def close(self):
+		wiLib.setCallBack = None
 		self.disable()
-		qt.QThread.msleep(800)
-		self.wii.close()
+		self.wii.Disconnect()
 		self.wii = None
 	
 	def checkStatus(self):
-		if self.wii == None or self.error == True: return False
-		try:
-			self.wii.request_status()
-			return True
-		except:
-			return False
+		return True
+		#if self.wii == None or self.error == True: return False
+		#try:
+			#self.wii.request_status()
+			#return True
+		#except:
+			#return False
 	
 	def battery(self):
-		return float(self.wii.state['battery']) / float(cwiid.BATTERY_MAX)
+		return 0.5
+		#return float(self.wii.state['battery']) / float(cwiid.BATTERY_MAX)
 	
 	def getPos(self,p):
 		if self.state == Wiimote.NONCALIBRATED:
