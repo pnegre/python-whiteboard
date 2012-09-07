@@ -358,7 +358,7 @@ class Wiimote(threading.Thread):
 				if len(x) >= 7:
 					self.running2 = False
 					battery_level = x[7]
-		self.WiimoteState.Battery = battery_level
+		self.WiimoteState.Battery = float(battery_level) / float(208)
 
 
 

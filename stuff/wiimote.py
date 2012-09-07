@@ -54,15 +54,16 @@ class Wiimote:
 		self.calibrationPoints = []
 		self.screenPoints = []
 		self.utilization = 0.0
-		self.maxIrSensitivity = int(Configuration().getValueStr("sensitivity"))
+		#self.maxIrSensitivity = int(Configuration().getValueStr("sensitivity"))
 		self.funcIR = None
 		self.funcBTN = None
+		self.enableCallback = False
 	
 	
 	def create_wiimote_callback(self):
 		# Closure
 		def wiimote_callback(px,py):
-			if self.funcIR is not None:
+			if self.enableCallback and self.funcIR is not None:
 				self.funcIR(self.getPos([px,py]))
 		
 		return wiimote_callback
@@ -97,6 +98,7 @@ class Wiimote:
 			self.wii.Connect(self.addr)
 			wiLib.setCallBack(self.create_wiimote_callback())
 			self.wii.activate_IR()
+			self.wii.SetLEDs(True, False, False, True)
 			self.error = False
 			return
 			
@@ -116,16 +118,13 @@ class Wiimote:
 	
 	def enable(self):
 		self.error = False
-		self.wii.activate_IR()
+		self.enableCallback = True
 		#self.maxIrSensitivity = int(Configuration().getValueStr("sensitivity"))
-		#self.wii.enable(cwiid.FLAG_MESG_IFC)
 	
 	def disable(self):
-		pass
-		#self.wii.disable(cwiid.FLAG_MESG_IFC)
+		self.enableCallback = False
 	
 	def close(self):
-		wiLib.setCallBack = None
 		self.disable()
 		self.wii.Disconnect()
 		self.wii = None
@@ -140,8 +139,7 @@ class Wiimote:
 			#return False
 	
 	def battery(self):
-		return 0.5
-		#return float(self.wii.state['battery']) / float(cwiid.BATTERY_MAX)
+		return self.wii.WiimoteState.Battery 
 	
 	def getPos(self,p):
 		if self.state == Wiimote.NONCALIBRATED:
