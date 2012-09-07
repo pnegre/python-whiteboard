@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 #
-# (Modified by Pere Negre)
+# Modified by Pere Negre and Pietro Pilolli
 #
 
 
@@ -228,14 +228,12 @@ class Wiimote(threading.Thread):
 			del dd
 			time.sleep(1) #necessary before opening socket !
 		else: self.bd_addr = bd_addr
-		self.isocket = bluetooth.BluetoothSocket(bluetooth.L2CAP)
-		self.osocket = bluetooth.BluetoothSocket(bluetooth.L2CAP)
+		self.datasocket = bluetooth.BluetoothSocket(bluetooth.L2CAP)
 			
-		self.isocket.connect((self.bd_addr,19))
-		self.osocket.connect((self.bd_addr,17))
+		self.datasocket.connect((self.bd_addr,19))
 		
 		try:
-			self.isocket.settimeout(1)
+			self.datasocket.settimeout(1)
 		except NotImplementedError:
 			print "socket timeout not implemented with this bluetooth module"
 		
@@ -267,7 +265,7 @@ class Wiimote(threading.Thread):
 		self.WiimoteState.LEDState.LED3 = led3
 		self.WiimoteState.LEDState.LED4 = led4
 		
-		self._send_data((0x52,0x11,self.setter.SetLEDs(self.WiimoteState.LEDState)))
+		self._send_data((0xa2,0x11,self.setter.SetLEDs(self.WiimoteState.LEDState)))
 
 	def SetReportType(self,reporttype,continuous):
 		if reporttype == self.InputReport.IRAccel:
@@ -279,7 +277,7 @@ class Wiimote(threading.Thread):
 		self.running = True
 		while self.running:
 			try:
-				x= map(ord,self.isocket.recv(32))
+				x= map(ord,self.datasocket.recv(32))
 			except bluetooth.BluetoothError:
 				continue
 			self.state = ""
@@ -288,8 +286,7 @@ class Wiimote(threading.Thread):
 			if len(x) >= 4: self.parser.parseButtons((x[2]<<8) + x[3], self.WiimoteState.ButtonState)
 			if len(x) >= 19: self.parser.parseIR(x[7:19],self.WiimoteState.IRState)
 				
-		self.isocket.close()
-		self.osocket.close()
+		self.datasocket.close()
 		print "Bluetooth socket closed succesfully."
 		self.Dispose()
 		print "stopping"
@@ -308,26 +305,26 @@ class Wiimote(threading.Thread):
 		str_data = ""
 		for each in data:
 			str_data += chr(each)
-		self.osocket.send(str_data)
+		self.datasocket.send(str_data)
 	
 	def activate_accel(self):
-		self._send_data(i2bs(0x52120031))#accel
+		self._send_data(i2bs(0xa2120031))#accel
 	
 	def _write_to_mem(self, address, value):
 		val = i2bs(value)
 		val_len=len(val)
 		val += [0]*(16-val_len)
-		msg = [0x52,0x16] + i2bs(address) + [val_len] +val
+		msg = [0xa2,0x16] + i2bs(address) + [val_len] +val
 		self._send_data(msg)
 	
 	def SetRumble(self,on):
-		if on: self._send_data((0x52,0x11,0x01)) 
-		else: self._send_data((0x52,0x11,0x00)) 
+		if on: self._send_data((0xa2,0x11,0x01)) 
+		else: self._send_data((0xa2,0x11,0x00)) 
 	
 	def activate_IR(self, maxsensitivity = True):
-		self._send_data([0x52]+i2bs(0x120033)) #mode IR
-		self._send_data([0x52]+i2bs(0x1304))#enable transmission
-		self._send_data([0x52]+i2bs(0x1a04))#enable transmission
+		self._send_data([0xa2]+i2bs(0x120033)) #mode IR
+		self._send_data([0xa2]+i2bs(0x1304))#enable transmission
+		self._send_data([0xa2]+i2bs(0x1a04))#enable transmission
 		
 		self._write_to_mem(0x04b00030,0x08)
 		time.sleep(0.1)
@@ -346,11 +343,11 @@ class Wiimote(threading.Thread):
 		
 	
 	def _get_battery_status(self):
-		self._send_data((0x52,0x15,0x00))
+		self._send_data((0xa2,0x15,0x00))
 		self.running2 = True
 		while self.running2:
 			try:
-				x= map(ord,self.isocket.recv(32))
+				x= map(ord,self.datasocket.recv(32))
 			except bluetooth.BluetoothError:
 				continue
 			self.state = ""
