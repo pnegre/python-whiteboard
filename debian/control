@@ -13,7 +13,7 @@ Uploaders: Georges Khaznadar <georgesk@ofset.org>
 Package: python-whiteboard
 Architecture: all
 Depends: python-bluez (>= 0.14), python-qt4 (>= 4.0), python-numpy (>= 1:1.0),
- python-cwiid (>= 0.5), python-xlib (>= 0.10),
+ python-xlib (>= 0.10),
  ${python:Depends}, ${misc:Depends}
 Description: Make your own electronic whiteboard
  python whiteboard is a program that lets you build your own

@@ -1,3 +1,10 @@
+python-whiteboard (1.0.1) unstable; urgency=low
+
+  * Interaction with wiimote device using linuxWiimoteLib (from Stephane Duchesneau)
+  * cwiid is no longer a requirement.
+
+ -- pnegre <pere.negre@gmail.com>  Fri, 07 Sep 2012 14:55:27 +0200
+
 python-whiteboard (1.0.0) unstable; urgency=low
 
   * Added patch by Pietro Pilolli: enhanced sensitivity detection
