@@ -190,7 +190,7 @@ class DeviceDiscoverer(bluetooth.DeviceDiscoverer):
 		self.found = None
 	
 	def device_discovered(self,address, device_class, name):
-		if name == "Nintendo RVL-CNT-01": self.found = address
+		if name.startswith("Nintendo RVL-CNT-01"): self.found = address
 			
 	def find(self):
 		self.find_devices(True,2,True)
