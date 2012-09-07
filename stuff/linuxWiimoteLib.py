@@ -28,12 +28,6 @@ import threading
 import time
 import bluetooth
 
-IRCallback = None
-
-def setCallBack(func):
-	global IRCallback
-	IRCallback = func
-
 
 def i2bs(val):
 	lst = []
@@ -158,16 +152,6 @@ class Parser:
 			irstate.MidY = float(irstate.RawMidY) / 768
 		else: irstate.MidX = irstate.MidY = 0
 		
-		if IRCallback is not None:
-			if irstate.Found1:
-				IRCallback(irstate.RawX1, irstate.RawY1)
-			elif irstate.Found2:
-				IRCallback(irstate.RawX2, irstate.RawY2)
-			elif irstate.Found3:
-				IRCallback(irstate.RawX3, irstate.RawY3)
-			elif irstate.Found4:
-				IRCallback(irstate.RawX4, irstate.RawY4)
-		
 
 class Setter: 
 	"""The opposite from the Parser class: returns the signal needed to set the values in the wiimote"""
@@ -220,6 +204,7 @@ class Wiimote(threading.Thread):
 		threading.Thread.__init__(self)
 		self.parser = Parser()
 		self.setter = Setter()
+		self.IRCallback = None
 		
 	def Connect(self, bd_addr=None):
 		if not bd_addr: #use bluetooth DeviceDiscoverer
@@ -283,9 +268,12 @@ class Wiimote(threading.Thread):
 			self.state = ""
 			for each in x[:17]:
 				self.state += self.char_to_binary_string(chr(each)) + " "
-			if len(x) >= 4: self.parser.parseButtons((x[2]<<8) + x[3], self.WiimoteState.ButtonState)
-			if len(x) >= 19: self.parser.parseIR(x[7:19],self.WiimoteState.IRState)
-				
+			if len(x) >= 4:
+				self.parser.parseButtons((x[2]<<8) + x[3], self.WiimoteState.ButtonState)
+			if len(x) >= 19: 
+				self.parser.parseIR(x[7:19],self.WiimoteState.IRState)
+				self.doIRCallback()
+			
 		self.datasocket.close()
 		print "Bluetooth socket closed succesfully."
 		self.Dispose()
@@ -356,36 +344,23 @@ class Wiimote(threading.Thread):
 					self.running2 = False
 					battery_level = x[7]
 		self.WiimoteState.Battery = float(battery_level) / float(208)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#def funcCallback(x,y):
-	#print x
-	#print y
-
-#if __name__ == "__main__":
-	#w = Wiimote()
-	#print "Press 1+2"
-	#setCallBack(funcCallback)
-	#w.Connect()
-	#w.activate_IR()
-	#while 1:
-		#time.sleep(0.1)
-
-
+	
+	
+	def setIRCallBack(self, func):
+		self.IRCallback = func
+	
+	def doIRCallback(self):
+		if self.IRCallback == None: return
+		irstate = self.WiimoteState.IRState
+		
+		if irstate.Found1:
+			self.IRCallback(irstate.RawX1, irstate.RawY1)
+		elif irstate.Found2:
+			self.IRCallback(irstate.RawX2, irstate.RawY2)
+		elif irstate.Found3:
+			self.IRCallback(irstate.RawX3, irstate.RawY3)
+		elif irstate.Found4:
+			self.IRCallback(irstate.RawX4, irstate.RawY4)
 
 
 

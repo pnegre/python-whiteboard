@@ -96,7 +96,7 @@ class Wiimote:
 			self.addr = str(addr)
 			self.wii = wiLib.Wiimote()
 			self.wii.Connect(self.addr)
-			wiLib.setCallBack(self.create_wiimote_callback())
+			self.wii.setIRCallBack(self.create_wiimote_callback())
 			self.wii.activate_IR()
 			self.wii.SetLEDs(True, False, False, True)
 			self.error = False
