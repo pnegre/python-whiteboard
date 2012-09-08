@@ -96,9 +96,12 @@ class Wiimote:
 			self.addr = str(addr)
 			self.wii = wiLib.Wiimote()
 			self.wii.Connect(self.addr)
+			self.wii.SetRumble(True)
+			qt.QThread.msleep(200)
+			self.wii.SetRumble(False)
 			self.wii.setIRCallBack(self.create_wiimote_callback())
 			self.wii.activate_IR()
-			self.wii.SetLEDs(True, False, False, True)
+			self.wii.SetLEDs(True, False, False, False)
 			self.error = False
 			return
 			
