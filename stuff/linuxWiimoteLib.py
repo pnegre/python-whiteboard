@@ -317,6 +317,9 @@ class Wiimote(threading.Thread):
 		self.setIRSensitivity(sens)
 	
 	def setIRSensitivity(self, n):
+		if n < 1 or n > 6:
+			return
+		
 		self._write_to_mem(0x04b00030,0x08)
 		time.sleep(0.1)
 		self._write_to_mem(0x04b00006,0x90)
