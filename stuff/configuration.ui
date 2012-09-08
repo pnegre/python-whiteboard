@@ -29,7 +29,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab_2">
       <attribute name="title">
@@ -313,6 +313,9 @@
          </item>
          <item>
           <widget class="QSlider" name="slider_ir">
+           <property name="pageStep">
+            <number>6</number>
+           </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>

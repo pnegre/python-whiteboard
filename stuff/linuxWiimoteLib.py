@@ -309,16 +309,12 @@ class Wiimote(threading.Thread):
 		if on: self._send_data((0xa2,0x11,0x01)) 
 		else: self._send_data((0xa2,0x11,0x00)) 
 	
-	def activate_IR(self, maxsensitivity = True):
+	def activate_IR(self, sens=6):
 		self._send_data([0xa2]+i2bs(0x120033)) #mode IR
 		self._send_data([0xa2]+i2bs(0x1304))#enable transmission
 		self._send_data([0xa2]+i2bs(0x1a04))#enable transmission
 		
-		if maxsensitivity:
-			self.setIRSensitivity(6)
-		else: 
-			self.setIRSensitivity(3)
-		
+		self.setIRSensitivity(sens)
 	
 	def setIRSensitivity(self, n):
 		self._write_to_mem(0x04b00030,0x08)

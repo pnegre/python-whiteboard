@@ -4,7 +4,7 @@ from PyQt4 import QtCore, QtGui, uic
 import PyQt4.Qt as qt
 
 
-CONFIG_VERSION = 11
+CONFIG_VERSION = 12
 
 
 class Configuration:
@@ -24,7 +24,7 @@ class Configuration:
 				"zone4": "0",
 				"autoconnect": "Yes",
 				"autocalibration": "Yes",
-				"sensitivity": "10",
+				"sensitivity": "6",
 				"smoothing": "10",
 				"moveonly": "No",
 				"automatrix": "No",
@@ -176,7 +176,7 @@ class ConfigDialog(QtGui.QDialog):
 		self.updateCombos()
 		
 		self.ui.slider_ir.setMinimum(1)
-		self.ui.slider_ir.setMaximum(10)
+		self.ui.slider_ir.setMaximum(6)
 		self.connect(self.ui.slider_ir,
 			QtCore.SIGNAL("valueChanged(int)"), self.sliderIrMoved)
 		

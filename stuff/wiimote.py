@@ -54,7 +54,6 @@ class Wiimote:
 		self.calibrationPoints = []
 		self.screenPoints = []
 		self.utilization = 0.0
-		#self.maxIrSensitivity = int(Configuration().getValueStr("sensitivity"))
 		self.funcIR = None
 		self.funcBTN = None
 		self.enableCallback = False
@@ -100,7 +99,7 @@ class Wiimote:
 			qt.QThread.msleep(200)
 			self.wii.SetRumble(False)
 			self.wii.setIRCallBack(self.create_wiimote_callback())
-			self.wii.activate_IR()
+			self.wii.activate_IR(int(Configuration().getValueStr("sensitivity")))
 			self.wii.SetLEDs(True, False, False, False)
 			self.error = False
 			return
@@ -121,8 +120,8 @@ class Wiimote:
 	
 	def enable(self):
 		self.error = False
+		self.wii.setIRSensitivity(int(Configuration().getValueStr("sensitivity")))
 		self.enableCallback = True
-		#self.maxIrSensitivity = int(Configuration().getValueStr("sensitivity"))
 	
 	def disable(self):
 		self.enableCallback = False
