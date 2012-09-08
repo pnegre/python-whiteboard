@@ -314,21 +314,46 @@ class Wiimote(threading.Thread):
 		self._send_data([0xa2]+i2bs(0x1304))#enable transmission
 		self._send_data([0xa2]+i2bs(0x1a04))#enable transmission
 		
+		if maxsensitivity:
+			setIRSensitivity(6)
+		else: 
+			setIRSensitivity(3)
+		
+	
+	def setIRSensitivity(self, n):
 		self._write_to_mem(0x04b00030,0x08)
 		time.sleep(0.1)
 		self._write_to_mem(0x04b00006,0x90)
 		time.sleep(0.1)
-		if maxsensitivity:
-			self._write_to_mem(0x04b00008,0x41)
+		
+		if n == 1:
+			self._write_to_mem(0x04b00008,0xfe)
 			time.sleep(0.1)
-			self._write_to_mem(0x04b0001a,0x4000)
-		else: 
+			self._write_to_mem(0x04b0001a,0xfd05)
+		elif n == 2:
+			self._write_to_mem(0x04b00008,0xb4)
+			time.sleep(0.1)
+			self._write_to_mem(0x04b0001a,0xb304)
+		elif n == 3:
 			self._write_to_mem(0x04b00008,0x64)
 			time.sleep(0.1)
 			self._write_to_mem(0x04b0001a,0x6303)
+		elif n == 4:
+			self._write_to_mem(0x04b00008,0x36)
+			time.sleep(0.1)
+			self._write_to_mem(0x04b0001a,0x3503)
+		elif n == 5:
+			self._write_to_mem(0x04b00008,0x20)
+			time.sleep(0.1)
+			self._write_to_mem(0x04b0001a,0x1f03)
+		# MAX
+		elif n == 6:
+			self._write_to_mem(0x04b00008,0x41)
+			time.sleep(0.1)
+			self._write_to_mem(0x04b0001a,0x4000)
+		
 		time.sleep(0.1)
 		self._write_to_mem(0x04b00033,0x33)
-		
 	
 	def _get_battery_status(self):
 		self._send_data((0xa2,0x15,0x00))
