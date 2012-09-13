@@ -213,8 +213,10 @@ class Wiimote(threading.Thread):
 			del dd
 			time.sleep(1) #necessary before opening socket !
 		else: self.bd_addr = bd_addr
+		
+		self.controlsocket = bluetooth.BluetoothSocket(bluetooth.L2CAP)
+		self.controlsocket.connect((self.bd_addr,17))
 		self.datasocket = bluetooth.BluetoothSocket(bluetooth.L2CAP)
-			
 		self.datasocket.connect((self.bd_addr,19))
 		
 		try:
