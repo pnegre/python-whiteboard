@@ -1,3 +1,9 @@
+python-whiteboard (1.0.2) unstable; urgency=low
+
+  * Fixed compatibility issues with wiimote plus.
+
+ -- pnegre <pere.negre@gmail.com>  Fri, 07 Sep 2012 14:55:27 +0200
+
 python-whiteboard (1.0.1) unstable; urgency=low
 
   * Interaction with wiimote device using linuxWiimoteLib (from Stephane Duchesneau)
