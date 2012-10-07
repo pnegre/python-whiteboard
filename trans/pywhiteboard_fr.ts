@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="fr_FR">
+<!DOCTYPE TS>
+<TS version="2.0" language="fr_FR">
 <context>
     <name>CalibrateDialog</name>
     <message>
         <location filename="calibration.py" line="296"/>
         <source>Push UP/DOWN to alter the crosses&apos; position</source>
-        <translation>Appuyer sur HAY/BAS pour modifier la position de la croix</translation>
+        <translation>Appuyer sur HAUT/BAS pour modifier la position de la croix</translation>
     </message>
 </context>
 <context>
@@ -64,7 +65,7 @@
         <translation>Sensibilité IR :</translation>
     </message>
 </context>
-<context encoding="UTF-8">
+<context>
     <name>Dialog</name>
     <message>
         <location filename="about.ui" line="26"/>
@@ -76,7 +77,7 @@
         <source>Information</source>
         <translation>Information</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="about.ui" line="42"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -180,7 +181,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="configuration.ui" line="36"/>
         <source>Toggles</source>
-        <translation>Bascules</translation>
+        <translation>Actions</translation>
     </message>
     <message>
         <location filename="configuration.ui" line="53"/>
@@ -210,27 +211,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="configuration.ui" line="163"/>
         <source>Only Move</source>
-        <translation>Déplacement seulement</translation>
+        <translation>Déplacement Seul</translation>
     </message>
     <message>
         <location filename="configuration.ui" line="168"/>
         <source>Right Click</source>
-        <translation>Clic droit</translation>
+        <translation>Clic Droit</translation>
     </message>
     <message>
         <location filename="configuration.ui" line="173"/>
         <source>Middle Click</source>
-        <translation>Clic du milieu</translation>
+        <translation>Clic Milieu</translation>
     </message>
     <message>
         <location filename="configuration.ui" line="186"/>
         <source>General options</source>
-        <translation>OPtions générales</translation>
+        <translation>Options générales</translation>
     </message>
     <message>
         <location filename="configuration.ui" line="196"/>
         <source>Auto connect</source>
-        <translation>Connexion auto</translation>
+        <translation>Connexion automatique</translation>
     </message>
     <message>
         <location filename="configuration.ui" line="210"/>
@@ -245,7 +246,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="configuration.ui" line="244"/>
         <source>Remove device</source>
-        <translation>Ôter un appareil</translation>
+        <translation>Supprimer un appareil</translation>
     </message>
     <message>
         <location filename="configuration.ui" line="256"/>
@@ -275,7 +276,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="configuration.ui" line="310"/>
         <source>IR Sensitivity:</source>
-        <translation>Sesibilité IR :</translation>
+        <translation>Sensibilité IR :</translation>
     </message>
     <message>
         <location filename="pbar.ui" line="32"/>
@@ -305,7 +306,7 @@ p, li { white-space: pre-wrap; }
         <source>Cancel</source>
         <translation>Abandonner</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="about.ui" line="42"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -323,7 +324,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://github.com/pnegre/python-whiteboard&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; text-decoration: underline; color:#0000ff;&quot;&gt;http://github.com/pnegre/python-whiteboard&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans&apos;; font-size:10pt; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-size:10pt;&quot;&gt;Special thanks to Pietro Pilolli for his continuous suggestions and ideas.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="about.ui" line="71"/>
@@ -344,7 +345,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-size:10pt;&quot;&gt;* Georges Khaznadar&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="about.ui" line="104"/>
@@ -402,12 +403,12 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:600;&quot;&gt;11.&lt;/span&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-size:10pt;&quot;&gt; BECAUSE THE PROGRAM IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM &amp;quot;AS IS&amp;quot; WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION. &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:600;&quot;&gt;12.&lt;/span&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-size:10pt;&quot;&gt; IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR REDISTRIBUTE THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:600;&quot;&gt;END OF TERMS AND CONDITIONS&lt;/span&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-size:10pt;&quot;&gt; &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="configuration.ui" line="203"/>
         <source>Don&apos;t wait for devices. Pick the first one</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir la première wiimote qui apparait</translation>
     </message>
 </context>
 <context>
@@ -455,7 +456,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="pywhiteboard.py" line="460"/>
         <source>Utilization: 0%</source>
-        <translation>Untilisation : 0%</translation>
+        <translation>Utilisation : 0%</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="167"/>
@@ -505,7 +506,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="mainwindow.ui" line="303"/>
         <source>Delete Current Profile</source>
-        <translation>Supprier le profil courant</translation>
+        <translation>Supprimer le profil courant</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="311"/>
@@ -545,7 +546,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="pywhiteboard.py" line="260"/>
         <source>Wii device disconnected</source>
-        <translation>La Wii est déconnectée</translation>
+        <translation>La Wiimote est déconnectée</translation>
     </message>
     <message>
         <location filename="pywhiteboard.py" line="313"/>
@@ -590,7 +591,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="pywhiteboard.py" line="480"/>
         <source>Utilization: </source>
-        <translation>Unitilisation : </translation>
+        <translation>Utilisation : </translation>
     </message>
     <message>
         <location filename="pywhiteboard.py" line="494"/>
@@ -605,7 +606,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="pywhiteboard.py" line="582"/>
         <source>The application will remain active (systray).</source>
-        <translation>L&apos;application restera active (systray).</translation>
+        <translation>L&apos;application restera active (zone de notification).</translation>
     </message>
     <message>
         <location filename="pywhiteboard.py" line="582"/>
@@ -641,7 +642,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="pywhiteboard.py" line="662"/>
         <source>Application already running</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;application est déjà lancée</translation>
     </message>
 </context>
 </TS>
