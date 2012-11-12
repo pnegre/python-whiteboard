@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="it_IT">
+<!DOCTYPE TS><TS version="2.0" language="it_IT" sourcelanguage="">
 <context>
     <name>CalibrateDialog</name>
     <message>
@@ -986,7 +986,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="configuration.ui" line="203"/>
         <source>Don&apos;t wait for devices. Pick the first one</source>
-        <translation>No aspettare di rilevare i dispositivi. Scegli il primo disponibile</translation>
+        <translation>Non aspettare di rilevare i dispositivi. Scegli il primo disponibile</translation>
     </message>
 </context>
 <context>
@@ -1129,12 +1129,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="pywhiteboard.py" line="582"/>
         <source>The application will remain active (systray).</source>
-        <translation>L&apos;applicazione rimarrà attiva (area di notifica).</translation>
+        <translation type="obsolete">L&apos;applicazione rimarrà attiva (area di notifica).</translation>
     </message>
     <message>
         <location filename="pywhiteboard.py" line="582"/>
         <source>To quit, use file-&gt;quit menu</source>
-        <translation>Per uscire,usa il menu file-&gt;esci</translation>
+        <translation type="obsolete">Per uscire,usa il menu file-&gt;esci</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="103"/>
@@ -1251,6 +1251,11 @@ p, li { white-space: pre-wrap; }
         <source> Devices. Press to Choose</source>
         <translation> Periferiche. Schiaccia per scegliere</translation>
     </message>
+    <message>
+        <location filename="pywhiteboard.py" line="595"/>
+        <source>Are you sure you want to exit?</source>
+        <translation>Vuoi veramente uscire?</translation>
+    </message>
 </context>
 <context>
     <name>PBarDlg</name>
@@ -1278,9 +1283,9 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>app</name>
     <message>
-        <location filename="pywhiteboard.py" line="662"/>
+        <location filename="pywhiteboard.py" line="679"/>
         <source>Application already running</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;applicazione è già in esecuzione</translation>
     </message>
 </context>
 </TS>

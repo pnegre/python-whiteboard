@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="fr_FR">
+<!DOCTYPE TS><TS version="2.0" language="fr_FR" sourcelanguage="">
 <context>
     <name>CalibrateDialog</name>
     <message>
@@ -65,7 +64,7 @@
         <translation>Sensibilité IR :</translation>
     </message>
 </context>
-<context>
+<context encoding="UTF-8">
     <name>Dialog</name>
     <message>
         <location filename="about.ui" line="26"/>
@@ -77,7 +76,7 @@
         <source>Information</source>
         <translation>Information</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="about.ui" line="42"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -306,7 +305,7 @@ p, li { white-space: pre-wrap; }
         <source>Cancel</source>
         <translation>Abandonner</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="about.ui" line="42"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -606,12 +605,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="pywhiteboard.py" line="582"/>
         <source>The application will remain active (systray).</source>
-        <translation>L&apos;application restera active (zone de notification).</translation>
+        <translation type="obsolete">L&apos;application restera active (zone de notification).</translation>
     </message>
     <message>
         <location filename="pywhiteboard.py" line="582"/>
         <source>To quit, use file-&gt;quit menu</source>
-        <translation>Pour quitter, utiliser le menu Fichier -&gt; quitter</translation>
+        <translation type="obsolete">Pour quitter, utiliser le menu Fichier -&gt; quitter</translation>
+    </message>
+    <message>
+        <location filename="pywhiteboard.py" line="595"/>
+        <source>Are you sure you want to exit?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -640,7 +644,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>app</name>
     <message>
-        <location filename="pywhiteboard.py" line="662"/>
+        <location filename="pywhiteboard.py" line="679"/>
         <source>Application already running</source>
         <translation>L&apos;application est déjà lancée</translation>
     </message>

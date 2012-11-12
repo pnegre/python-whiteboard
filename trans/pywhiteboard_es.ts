@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="es">
+<!DOCTYPE TS><TS version="2.0" language="es" sourcelanguage="">
 <context>
     <name>CalibrateDialog</name>
     <message>
@@ -439,12 +439,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="pywhiteboard.py" line="582"/>
         <source>The application will remain active (systray).</source>
-        <translation>La aplicación se mantendrá activa (systray)</translation>
+        <translation type="obsolete">La aplicación se mantendrá activa (systray)</translation>
     </message>
     <message>
         <location filename="pywhiteboard.py" line="582"/>
         <source>To quit, use file-&gt;quit menu</source>
-        <translation>Para salir: Fichero -&gt; Salir</translation>
+        <translation type="obsolete">Para salir: Fichero -&gt; Salir</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="103"/>
@@ -556,6 +556,11 @@ p, li { white-space: pre-wrap; }
         <source> Devices. Press to Choose</source>
         <translation> Dispositivos. Pulsa para escoger</translation>
     </message>
+    <message>
+        <location filename="pywhiteboard.py" line="595"/>
+        <source>Are you sure you want to exit?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PBarDlg</name>
@@ -588,7 +593,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>app</name>
     <message>
-        <location filename="pywhiteboard.py" line="662"/>
+        <location filename="pywhiteboard.py" line="679"/>
         <source>Application already running</source>
         <translation type="unfinished"></translation>
     </message>

@@ -1,3 +1,9 @@
+python-whiteboard (1.0.3) unstable; urgency=low
+
+  * Updated italian translation.
+
+ -- pnegre <pere.negre@gmail.com>  Mon, 12 Nov 2012 23:58:28 +0100
+
 python-whiteboard (1.0.2) unstable; urgency=low
 
   * Fixed compatibility issues with wiimote plus.
