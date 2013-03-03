@@ -1,3 +1,9 @@
+python-whiteboard (1.0.4) unstable; urgency=low
+
+  * Patch by Pietro Pilolli. Fixed problem with old wiimote model.
+
+ -- Pere Negre <pnegre@rasczak>  Sun, 03 Mar 2013 21:38:16 +0100
+
 python-whiteboard (1.0.3) unstable; urgency=low
 
   * Updated italian translation.

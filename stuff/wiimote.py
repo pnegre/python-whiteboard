@@ -79,9 +79,9 @@ class Wiimote:
 		try:
 			self.wiimotesDetected = []
 			devices = bluetooth.discover_devices(duration=10, lookup_names=True)
-			for mac,name in devices:
-				if re.match('.*nintendo.*', name.lower()):
-					self.wiimotesDetected.append(mac)
+			for device in devices:
+				if re.match('.*nintendo.*', device[1].lower()):
+					self.wiimotesDetected.append(device)
 			return
 		
 		except bluetooth.BluetoothError, errString:
@@ -90,11 +90,11 @@ class Wiimote:
 			return
 	
 	
-	def bind(self, addr):
+	def bind(self, device):
 		try:
-			self.addr = str(addr)
+			self.addr = str(device[0])
 			self.wii = wiLib.Wiimote()
-			self.wii.Connect(self.addr)
+			self.wii.Connect(device)
 			self.wii.SetRumble(True)
 			qt.QThread.msleep(200)
 			self.wii.SetRumble(False)
@@ -198,15 +198,16 @@ class Wiimote:
 	def createConnectThread(self, selectedmac, pool):
 		def func():			
 			if selectedmac == '*':
-				self.detectWiimotes()
+			        self.detectWiimotes()
 				if len(self.wiimotesDetected) == 0: return
 				
 				for p in self.wiimotesDetected:
-					if not p in pool:
-						pool.append(p)
+					if not p[0] in pool:
+						pool.append(p[0])
 				
 			else:
-				self.bind(selectedmac)
+                                name = bluetooth.lookup_name(selectedmac)
+				self.bind([selectedmac,name])
 		
 		thread = CreateThreadClass(func)
 		return thread() 

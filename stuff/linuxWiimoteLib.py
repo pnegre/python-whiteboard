@@ -28,7 +28,6 @@ import threading
 import time
 import bluetooth
 
-
 def i2bs(val):
 	lst = []
 	while val:
@@ -167,38 +166,20 @@ class Setter:
 		if ledstate.LED3: signal += self.LED3
 		if ledstate.LED4: signal += self.LED4
 		return signal
-
-class DeviceDiscoverer(bluetooth.DeviceDiscoverer):
-	def __init__(self):
-		bluetooth.DeviceDiscoverer.__init__(self)
-		self.found = None
-	
-	def device_discovered(self,address, device_class, name):
-		if name.startswith("Nintendo RVL-CNT-01"): self.found = address
-			
-	def find(self):
-		self.find_devices(True,2,True)
-		self.process_inquiry()
-		if self.found == None:
-			print "Couldn't find wiimote."
-			raise SystemExit
-		return self.found
-
+				
+		
 class InputReport:
-    IRAccel = 1
     Buttons = 2 #2 to 8 not implemented yet !!! only IR is implemented
-    ButtonsAccel = 3
     Status = 4
     ReadData = 5
     ButtonsExtension = 6
-    ExtensionAccel = 7
-    IRExtensionAccel = 8
     
 class Wiimote(threading.Thread):
 	state = None
 	running = False
 	WiimoteState = WiimoteState
 	InputReport = InputReport
+	
 
 	def __init__(self):
 		threading.Thread.__init__(self)
@@ -206,18 +187,19 @@ class Wiimote(threading.Thread):
 		self.setter = Setter()
 		self.IRCallback = None
 		
-	def Connect(self, bd_addr=None):
-		if not bd_addr: #use bluetooth DeviceDiscoverer
-			dd = DeviceDiscoverer()
-			self.bd_addr = dd.find()
-			del dd
-			time.sleep(1) #necessary before opening socket !
-		else: self.bd_addr = bd_addr
-		
+	def Connect(self, device):
+	        self.bd_addr = device[0]
+	        self.name = device[1]
 		self.controlsocket = bluetooth.BluetoothSocket(bluetooth.L2CAP)
 		self.controlsocket.connect((self.bd_addr,17))
 		self.datasocket = bluetooth.BluetoothSocket(bluetooth.L2CAP)
 		self.datasocket.connect((self.bd_addr,19))
+		self.sendsocket = self.controlsocket
+		self.CMD_SET_REPORT = 0x52
+		
+	        if self.name == "Nintendo RVL-CNT-01-TR":
+	             self.CMD_SET_REPORT = 0xa2 
+	             self.sendsocket = self.datasocket
 		
 		try:
 			self.datasocket.settimeout(1)
@@ -252,12 +234,8 @@ class Wiimote(threading.Thread):
 		self.WiimoteState.LEDState.LED3 = led3
 		self.WiimoteState.LEDState.LED4 = led4
 		
-		self._send_data((0xa2,0x11,self.setter.SetLEDs(self.WiimoteState.LEDState)))
+		self._send_data((0x11,self.setter.SetLEDs(self.WiimoteState.LEDState)))
 
-	def SetReportType(self,reporttype,continuous):
-		if reporttype == self.InputReport.IRAccel:
-			self.activate_accel()
-			self.activate_IR()
 
 	def run(self):
 		print "starting"
@@ -277,6 +255,7 @@ class Wiimote(threading.Thread):
 				self.doIRCallback()
 			
 		self.datasocket.close()
+		self.controlsocket.close()
 		print "Bluetooth socket closed succesfully."
 		self.Dispose()
 		print "stopping"
@@ -295,26 +274,23 @@ class Wiimote(threading.Thread):
 		str_data = ""
 		for each in data:
 			str_data += chr(each)
-		self.datasocket.send(str_data)
-	
-	def activate_accel(self):
-		self._send_data(i2bs(0xa2120031))#accel
+		self.sendsocket.send(chr(self.CMD_SET_REPORT) + str_data)
 	
 	def _write_to_mem(self, address, value):
 		val = i2bs(value)
 		val_len=len(val)
 		val += [0]*(16-val_len)
-		msg = [0xa2,0x16] + i2bs(address) + [val_len] +val
+		msg = [0x16] + i2bs(address) + [val_len] +val
 		self._send_data(msg)
 	
 	def SetRumble(self,on):
-		if on: self._send_data((0xa2,0x11,0x01)) 
-		else: self._send_data((0xa2,0x11,0x00)) 
+		if on: self._send_data((0x11,0x01)) 
+		else: self._send_data((0x11,0x00)) 
 	
 	def activate_IR(self, sens=6):
-		self._send_data([0xa2]+i2bs(0x120033)) #mode IR
-		self._send_data([0xa2]+i2bs(0x1304))#enable transmission
-		self._send_data([0xa2]+i2bs(0x1a04))#enable transmission
+		self._send_data(i2bs(0x120033)) #mode IR
+		self._send_data(i2bs(0x1304))#enable transmission
+		self._send_data(i2bs(0x1a04))#enable transmission
 		
 		self.setIRSensitivity(sens)
 	
@@ -355,7 +331,7 @@ class Wiimote(threading.Thread):
 		self._write_to_mem(0x04b00033,0x33)
 	
 	def _get_battery_status(self):
-		self._send_data((0xa2,0x15,0x00))
+		self._send_data((0x15,0x00))
 		self.running2 = True
 		while self.running2:
 			try:
@@ -387,17 +363,15 @@ class Wiimote(threading.Thread):
 			self.IRCallback(irstate.RawX4, irstate.RawY4)
 
 
-
-
 if __name__ == "__main__":
 	wiimote = Wiimote()
 	print "Press 1 and 2 on wiimote to make it discoverable"
 	wiimote.Connect()
-	wiimote.activate_accel()
 	wiimote.activate_IR()
 	while 1:
 		time.sleep(0.1)
 		#print wiimote.state
 		print wiimote.WiimoteState.ButtonState.A, wiimote.WiimoteState.ButtonState.B, wiimote.WiimoteState.ButtonState.Up, wiimote.WiimoteState.ButtonState.Down, wiimote.WiimoteState.ButtonState.Left, wiimote.WiimoteState.ButtonState.Right, wiimote.WiimoteState.ButtonState.Minus, wiimote.WiimoteState.ButtonState.Plus, wiimote.WiimoteState.ButtonState.Home, wiimote.WiimoteState.ButtonState.One, wiimote.WiimoteState.ButtonState.Two, wiimote.WiimoteState.IRState.RawX1, wiimote.WiimoteState.IRState.RawY1, wiimote.WiimoteState.IRState.Size1, wiimote.WiimoteState.IRState.RawX2, wiimote.WiimoteState.IRState.RawY2, wiimote.WiimoteState.IRState.Size2
 		#print wiimote.IRState.Found1	
+
 
