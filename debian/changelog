@@ -1,3 +1,9 @@
+python-whiteboard (1.0.5) unstable; urgency=low
+
+  * Patch by Pietro Pilolli. Fixed selecting fixed wiimote. 
+
+ -- Pere Negre <pere.negre@gmail.com>  Fri, 25 Oct 2013 22:24:02 +0200
+
 python-whiteboard (1.0.4) unstable; urgency=low
 
   * Patch by Pietro Pilolli. Fixed problem with old wiimote model.

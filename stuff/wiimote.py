@@ -206,8 +206,9 @@ class Wiimote:
 						pool.append(p[0])
 				
 			else:
-                                name = bluetooth.lookup_name(selectedmac)
-				self.bind([selectedmac,name])
+				mac = str(selectedmac)
+                                name = bluetooth.lookup_name(mac)
+				self.bind([mac,name])
 		
 		thread = CreateThreadClass(func)
 		return thread() 
