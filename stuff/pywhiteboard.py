@@ -46,9 +46,9 @@ class PBarDlg(QtGui.QDialog):
 		self.ui.butCancel.setEnabled(True)
 		self.ui.butChoose.setEnabled(True)
 		if mac == '*':
-			self.ui.label.setText(self.tr("Press 1+2 on your wiimote"))
+			self.ui.label.setText(self.tr("Press 1+2 on your wiimote or SYNC on your wiimote plus"))
 		else:
-			self.ui.label.setText(self.tr("Press 1+2 on") + " " + mac)
+			self.ui.label.setText(self.tr("Press 1+2 or SYNC on") + " " + mac)
 	
 	def cancelConnection(self):
 		self.cancelled = True

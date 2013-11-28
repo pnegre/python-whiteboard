@@ -365,7 +365,7 @@ class Wiimote(threading.Thread):
 
 if __name__ == "__main__":
 	wiimote = Wiimote()
-	print "Press 1 and 2 on wiimote to make it discoverable"
+	print "Press 1 and 2 on wiimote (or SYNC on wiimote plus) to make it discoverable"
 	wiimote.Connect()
 	wiimote.activate_IR()
 	while 1:
