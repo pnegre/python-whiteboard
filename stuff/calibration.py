@@ -4,8 +4,8 @@ import sys,time
 
 import wiimote
 
-from PyQt4 import QtCore, QtGui, uic
-import PyQt4.Qt as qt
+from PyQt5 import QtCore, QtGui, QtWidgets, uic
+import PyQt5.Qt as qt
 
 from configuration import Configuration
 
@@ -116,7 +116,7 @@ def crossPoly(x,y):
 
 
 
-class CalibrateDialog2(QtGui.QDialog):
+class CalibrateDialog2(QtWidgets.QDialog):
 	def __init__(self,parent,wii):
 		QtGui.QWidget.__init__(self,parent)
 		self.wii = wii
@@ -204,14 +204,14 @@ class CalibrateDialog2(QtGui.QDialog):
 
 
 
-class CalibrateDialog(QtGui.QDialog):
+class CalibrateDialog(QtWidgets.QDialog):
 	def __init__(self,parent,wii):
-		screenGeom = QtGui.QDesktopWidget().screenGeometry()
+		screenGeom = QtWidgets.QDesktopWidget().screenGeometry()
 		self.wdt = screenGeom.width()
 		self.hgt = screenGeom.height()
 
 		# Thanks, Pietro Pilolli!!
-		QtGui.QWidget.__init__(self, parent,
+		QtWidgets.QWidget.__init__(self, parent,
 			QtCore.Qt.FramelessWindowHint | 
 			QtCore.Qt.WindowStaysOnTopHint  | 
 			QtCore.Qt.X11BypassWindowManagerHint )
@@ -220,27 +220,27 @@ class CalibrateDialog(QtGui.QDialog):
 		self.wii = wii
 		self.setContentsMargins(0,0,0,0)
 
-		sh = QtGui.QShortcut(self)
+		sh = QtWidgets.QShortcut(self)
 		sh.setKey("Esc")
 		self.connect(sh, 
 			QtCore.SIGNAL("activated()"), self.close)
 
-		sh = QtGui.QShortcut(self)
+		sh = QtWidgets.QShortcut(self)
 		sh.setKey("Down")
 		self.connect(sh, 
 			QtCore.SIGNAL("activated()"), self.decCrosses)
 
-		sh = QtGui.QShortcut(self)
+		sh = QtWidgets.QShortcut(self)
 		sh.setKey("Up")
 		self.connect(sh, 
 			QtCore.SIGNAL("activated()"), self.incCrosses)
 
 		self.scene = qt.QGraphicsScene()
 		self.scene.setSceneRect(0,0, self.wdt, self.hgt)
-		self.gv = QtGui.QGraphicsView()
+		self.gv = QtWidgets.QGraphicsView()
 		self.gv.setScene(self.scene)
 		self.gv.setStyleSheet( "QGraphicsView { border-style: none; }" )
-		self.layout = QtGui.QVBoxLayout()
+		self.layout = QtWidgets.QVBoxLayout()
 		self.layout.setMargin(0)
 		self.layout.setSpacing(0)
 		self.layout.addWidget(self.gv)

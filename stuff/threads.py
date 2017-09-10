@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-import PyQt4.Qt as qt
+import PyQt5.Qt as qt
 
 
 

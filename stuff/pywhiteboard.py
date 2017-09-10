@@ -12,11 +12,11 @@ from configuration import Configuration, ConfigDialog
 import sys, time, locale
 import hashlib
 
-from PyQt4 import QtCore, QtGui, uic
-import PyQt4.Qt as qt
+from PyQt5 import QtCore, QtGui, QtWidgets, uic
+import PyQt5.Qt as qt
 
 
-class AboutDlg(QtGui.QDialog):
+class AboutDlg(QtWidgets.QDialog):
 	
 	def __init__(self, parent=None):
 		super(AboutDlg, self).__init__(parent)
@@ -26,7 +26,7 @@ class AboutDlg(QtGui.QDialog):
 
 
 
-class PBarDlg(QtGui.QDialog):
+class PBarDlg(QtWidgets.QDialog):
 	def __init__(self, parent=None):
 		super(PBarDlg,self).__init__(parent, qt.Qt.CustomizeWindowHint | qt.Qt.WindowTitleHint)
 		
@@ -66,7 +66,7 @@ class PBarDlg(QtGui.QDialog):
 		self.ui.butChoose.show()
 
 
-class MainWindow(QtGui.QMainWindow):
+class MainWindow(QtWidgets.QMainWindow):
 	
 	def __init__(self, parent=None):
 		super(MainWindow, self).__init__(parent)
@@ -137,7 +137,7 @@ class MainWindow(QtGui.QMainWindow):
 		self.timer2.start()
 		
 		self.confDialog = ConfigDialog(self, self.wii)
-		layout = QtGui.QGridLayout()
+		layout = QtWidgets.QGridLayout()
 		layout.addWidget(self.confDialog)
 		self.ui.confContainer.setLayout(layout)
 		self.ui.confContainer.setVisible(False)
@@ -172,7 +172,7 @@ class MainWindow(QtGui.QMainWindow):
 	
 	
 	def addProfile(self):
-		profName, ok = QtGui.QInputDialog.getText(self,
+		profName, ok = QtWidgets.QInputDialog.getText(self,
 			self.tr("New Profile"), self.tr('Name:'))
 		
 		profName = unicode(profName)
@@ -203,7 +203,7 @@ class MainWindow(QtGui.QMainWindow):
 	def wipeConfiguration(self):
 		conf = Configuration()
 		conf.wipe()
-		msgbox = QtGui.QMessageBox(self)
+		msgbox = QtWidgets.QMessageBox(self)
 		msgbox.setText(self.tr("The application will close. Please restart manually") )
 		msgbox.setModal( True )
 		ret = msgbox.exec_()
@@ -212,7 +212,7 @@ class MainWindow(QtGui.QMainWindow):
 	
 	def showHideSettings(self):
 		self.ui.confContainer.setVisible(not self.ui.confContainer.isVisible())
-		QtGui.QApplication.processEvents()
+		QtWidgets.QApplication.processEvents()
 		if self.ui.confContainer.isVisible():
 			self.ui.pushButtonSettings.setText(self.tr('Hide settings'))
 			# Res¡ze to max
@@ -256,7 +256,7 @@ class MainWindow(QtGui.QMainWindow):
 			self.clearScreenGraphic()
 			self.batteryLevel.setValue(0)
 			
-			msgbox = QtGui.QMessageBox( self )
+			msgbox = QtWidgets.QMessageBox( self )
 			msgbox.setText( self.tr("Wii device disconnected") )
 			msgbox.setModal( True )
 			ret = msgbox.exec_()
@@ -278,7 +278,7 @@ class MainWindow(QtGui.QMainWindow):
 		max_y = self.wiiScreen.geometry().height()
 		self.scene = qt.QGraphicsScene()
 		self.scene.setSceneRect(0,0,max_x,max_y)
-		quad = QtGui.QPolygonF()
+		quad = QtWidgets.QPolygonF()
 		for p in self.wii.calibrationPoints:
 			x = max_x * p[0]/Wiimote.MAX_X
 			y = max_y * (1-float(p[1])/Wiimote.MAX_Y)
@@ -294,7 +294,7 @@ class MainWindow(QtGui.QMainWindow):
 
 
 	def center(self):
-		screen = QtGui.QDesktopWidget().screenGeometry()
+		screen = QtWidgets.QDesktopWidget().screenGeometry()
 		size = self.geometry()
 		self.move((screen.width()-size.width())/2, (screen.height()-size.height())/2)
 		
@@ -384,7 +384,7 @@ class MainWindow(QtGui.QMainWindow):
 			thread.start()
 			
 			while not thread.wait(30):
-				QtGui.QApplication.processEvents()
+				QtWidgets.QApplication.processEvents()
 			
 			if pBar.cancelled == True:
 				if self.wii.isConnected():
@@ -429,7 +429,7 @@ class MainWindow(QtGui.QMainWindow):
 			
 			if self.wii.error:
 				self.wii = None
-				msgbox = QtGui.QMessageBox( self )
+				msgbox = QtWidgets.QMessageBox( self )
 				msgbox.setWindowTitle( self.tr('Error') )
 				msgbox.setText( self.tr("Error. Check your bluetooth driver") )
 				msgbox.setModal( True )
@@ -442,7 +442,7 @@ class MainWindow(QtGui.QMainWindow):
 					selectedMac = unicode(pool[0])
 					pBar.reInit(selectedMac)
 				else:
-					item, ok = QtGui.QInputDialog.getItem(self,
+					item, ok = QtWidgets.QInputDialog.getItem(self,
 						self.tr("Warning"), self.tr("Choose device"), pool, 0, False)
 					if ok:
 						selectedMac = unicode(item)
@@ -490,7 +490,7 @@ class MainWindow(QtGui.QMainWindow):
 		
 		except:
 			self.updateButtons()
-			msgbox = QtGui.QMessageBox( self )
+			msgbox = QtWidgets.QMessageBox( self )
 			msgbox.setText( self.tr("Error during Calibration") )
 			msgbox.setModal( True )
 			ret = msgbox.exec_()
@@ -581,7 +581,7 @@ class MainWindow(QtGui.QMainWindow):
 			#self.disconnectDevice()
 			#e.accept()
 		#else:
-			#msgbox = QtGui.QMessageBox(self)
+			#msgbox = QtWidgets.QMessageBox(self)
 			#msgbox.setText(self.tr("The application will remain active (systray).") + "\n" + \
 				#self.tr("To quit, use file->quit menu") )
 			#msgbox.setModal( True )
@@ -591,12 +591,12 @@ class MainWindow(QtGui.QMainWindow):
 		
 		# Instead, we simply ask if the user wants to really quit.
 		
-		msgbox = QtGui.QMessageBox(self)
+		msgbox = QtWidgets.QMessageBox(self)
 		msgbox.setText(self.tr("Are you sure you want to exit?") )
-		msgbox.setStandardButtons(QtGui.QMessageBox.Ok | QtGui.QMessageBox.Cancel)
+		msgbox.setStandardButtons(QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Cancel)
 		msgbox.setModal( True )
 		ret = msgbox.exec_()
-		if ret == QtGui.QMessageBox.Ok:
+		if ret == QtWidgets.QMessageBox.Ok:
 			# Exit the application
 			self.disconnectDevice()
 			e.accept()
@@ -622,14 +622,14 @@ class MainWindow(QtGui.QMainWindow):
 class SysTrayIcon(object):
 	def __init__(self, fname, mainWindow):
 		self.mainWindow = mainWindow
-		self.stray = QtGui.QSystemTrayIcon()
-		self.stray.setIcon(QtGui.QIcon(fname))
+		self.stray = QtWidgets.QSystemTrayIcon()
+		self.stray.setIcon(QtWidgets.QIcon(fname))
 
 		QtCore.QObject.connect(self.stray,
 			QtCore.SIGNAL("activated(QSystemTrayIcon::ActivationReason)"), self.activate)
 	
 	def activate(self, reason):
-		if reason == QtGui.QSystemTrayIcon.Trigger:
+		if reason == QtWidgets.QSystemTrayIcon.Trigger:
 			self.mainWindow.showHide()
 		
 	def show(self):
@@ -644,7 +644,7 @@ def getTranslator():
 		code = loc.lower()
 		if len(code) > 1:
 			code = code[0:2]
-			fname = "/usr/share/qt4/translations/pywhiteboard_" + code + ".qm"
+			fname = "/usr/share/qt5/translations/pywhiteboard_" + code + ".qm"
 			trl.load(fname)
 	return trl
 
@@ -669,13 +669,13 @@ def checkSingle():
 
 
 def main():
-	app = QtGui.QApplication(sys.argv)
+	app = QtWidgets.QApplication(sys.argv)
 	t = getTranslator()
 	app.installTranslator(t)
 	mainWin = MainWindow()
 	
 	if checkSingle() == False:
-		msgbox = QtGui.QMessageBox( mainWin )
+		msgbox = QtWidgets.QMessageBox( mainWin )
 		msgbox.setText( app.tr("Application already running") )
 		msgbox.setModal( True )
 		ret = msgbox.exec_()
