@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from PyQt4 import QtCore, QtGui, uic
-import PyQt4.Qt as qt
+from PyQt5 import QtCore, QtGui, QtWidgets, uic
+import PyQt5.Qt as qt
 
 
 CONFIG_VERSION = 12
@@ -135,7 +135,7 @@ class Configuration:
 
 
 
-class ConfigDialog(QtGui.QDialog):
+class ConfigDialog(QtWidgets.QDialog):
 
 	def __init__(self, parent, wii=None):
 		super(ConfigDialog, self).__init__(parent)

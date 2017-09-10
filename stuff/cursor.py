@@ -4,7 +4,7 @@ import Xlib.display
 import Xlib.ext.xtest
 import time
 
-import PyQt4.Qt as qt
+import PyQt5.Qt as qt
 
 from configuration import Configuration
 

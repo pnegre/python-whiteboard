@@ -3,7 +3,7 @@
 
 import sys, re
 
-import PyQt4.Qt as qt
+import PyQt5.Qt as qt
 
 from numpy import matrix, linalg
 import bluetooth
