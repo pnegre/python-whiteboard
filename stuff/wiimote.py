@@ -2,6 +2,11 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import print_function
+from __future__ import division
+from builtins import str
+from builtins import range
+from builtins import object
+from past.utils import old_div
 import sys, re
 
 import PyQt5.Qt as qt
@@ -33,7 +38,7 @@ def calculateArea(points):
 
     paral_B_area = va[0]*vb[1] - va[1]*vb[0]
 
-    result = float(paral_A_area)/2 + float(paral_B_area)/2
+    result = old_div(float(paral_A_area),2) + old_div(float(paral_B_area),2)
     print(paral_A_area)
     print(paral_B_area)
     return result
@@ -43,8 +48,8 @@ def calculateArea(points):
 
 
 
-class Wiimote:
-    CALIBRATED, NONCALIBRATED = range(2)
+class Wiimote(object):
+    CALIBRATED, NONCALIBRATED = list(range(2))
     MAX_X = 1023
     MAX_Y = 768
     
@@ -159,10 +164,10 @@ class Wiimote:
             return p
         if self.state == Wiimote.CALIBRATED:
             return [
-                (self.h11*p[0] + self.h12*p[1] + self.h13) / \
-                (self.h31*p[0] + self.h32*p[1] + 1),
-                (self.h21*p[0] + self.h22*p[1] + self.h23) / \
-                (self.h31*p[0] + self.h32*p[1] + 1) ]
+                old_div((self.h11*p[0] + self.h12*p[1] + self.h13), \
+                (self.h31*p[0] + self.h32*p[1] + 1)),
+                old_div((self.h21*p[0] + self.h22*p[1] + self.h23), \
+                (self.h31*p[0] + self.h32*p[1] + 1)) ]
     
     def calibrate(self, p_screen, p_wii):
         l = []
@@ -203,7 +208,7 @@ class Wiimote:
         
         area_inside = calculateArea(self.calibrationPoints)
         total_area = Wiimote.MAX_X * Wiimote.MAX_Y
-        self.utilization = float(area_inside)/float(total_area)
+        self.utilization = old_div(float(area_inside),float(total_area))
     
     
     def createConnectThread(self, selectedmac, pool):

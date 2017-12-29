@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import division
 # LICENSE:         MIT (X11) License which follows:
 #
 # Copyright (c) 2008 Stephane Duchesneau
@@ -25,6 +26,10 @@ from __future__ import print_function
 #
 
 
+from builtins import map
+from builtins import chr
+from past.utils import old_div
+from builtins import object
 import threading
 import time
 import bluetooth
@@ -37,10 +42,10 @@ def i2bs(val):
 	lst.reverse()
 	return lst
 
-class WiimoteState:
+class WiimoteState(object):
     Battery = None
     
-    class ButtonState:
+    class ButtonState(object):
         A = False
         B = False
         Down = False
@@ -53,7 +58,7 @@ class WiimoteState:
         Two = False
         Up = False
 
-    class IRState:
+    class IRState(object):
         RawX1 = 0
         RawX2 = 0
         RawX3 = 0
@@ -83,13 +88,13 @@ class WiimoteState:
         RawMidX = 0
         RawMidY = 0 
 
-    class LEDState:
+    class LEDState(object):
         LED1 = False
         LED2 = False
         LED3 = False
         LED4 = False
 	
-class Parser:
+class Parser(object):
 	""" Sets the values contained in a signal """
 	A = 0x0008
 	B = 0x0004
@@ -143,17 +148,17 @@ class Parser:
 		
 		if irstate.Found1:
 			if irstate.Found2: 
-				irstate.RawMidX = (irstate.RawX1 + irstate.RawX2) / 2
-				irstate.RawMidY = (irstate.RawY1 + irstate.RawY2) / 2
+				irstate.RawMidX = old_div((irstate.RawX1 + irstate.RawX2), 2)
+				irstate.RawMidY = old_div((irstate.RawY1 + irstate.RawY2), 2)
 			else:
 				irstate.RawMidX = irstate.RawX1
 				irstate.RawMidY = irstate.RawY1
-			irstate.MidX = float(irstate.RawMidX) / 1024
-			irstate.MidY = float(irstate.RawMidY) / 768
+			irstate.MidX = old_div(float(irstate.RawMidX), 1024)
+			irstate.MidY = old_div(float(irstate.RawMidY), 768)
 		else: irstate.MidX = irstate.MidY = 0
 		
 
-class Setter: 
+class Setter(object): 
 	"""The opposite from the Parser class: returns the signal needed to set the values in the wiimote"""
 	LED1 = 0x10
 	LED2 = 0x20
@@ -169,7 +174,7 @@ class Setter:
 		return signal
 				
 		
-class InputReport:
+class InputReport(object):
     Buttons = 2 #2 to 8 not implemented yet !!! only IR is implemented
     Status = 4
     ReadData = 5
@@ -243,7 +248,7 @@ class Wiimote(threading.Thread):
 		self.running = True
 		while self.running:
 			try:
-				x= map(ord,self.datasocket.recv(32))
+				x= list(map(ord,self.datasocket.recv(32)))
 			except bluetooth.BluetoothError:
 				continue
 			self.state = ""
@@ -336,7 +341,7 @@ class Wiimote(threading.Thread):
 		self.running2 = True
 		while self.running2:
 			try:
-				x= map(ord,self.datasocket.recv(32))
+				x= list(map(ord,self.datasocket.recv(32)))
 			except bluetooth.BluetoothError:
 				continue
 			self.state = ""
@@ -344,7 +349,7 @@ class Wiimote(threading.Thread):
 				if len(x) >= 7:
 					self.running2 = False
 					battery_level = x[7]
-		self.WiimoteState.Battery = float(battery_level) / float(208)
+		self.WiimoteState.Battery = old_div(float(battery_level), float(208))
 	
 	
 	def setIRCallBack(self, func):

@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import division
+from builtins import range
+from builtins import object
+from past.utils import old_div
 import sys,time
 
 import wiimote
@@ -18,8 +22,8 @@ def clock():
 	return int(time.time()*1000)
 
 
-class SandClock:
-	READY, FIN1, FIN2 = range(3)
+class SandClock(object):
+	READY, FIN1, FIN2 = list(range(3))
 
 	def __init__(self,scene,px,py,radius=30):
 		self.scene = scene
@@ -35,10 +39,10 @@ class SandClock:
 			self.scene.removeItem(self.elipse)
 			self.scene.removeItem(self.circle)
 
-		self.elipse = self.scene.addEllipse(x-self.radius/2, y-self.radius/2, self.radius, self.radius,
+		self.elipse = self.scene.addEllipse(x-old_div(self.radius,2), y-old_div(self.radius,2), self.radius, self.radius,
 			qt.QPen(QtCore.Qt.red, 1, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin),
 			qt.QBrush(QtCore.Qt.red))
-		self.circle = self.scene.addEllipse(x-self.radius/2, y-self.radius/2, self.radius, self.radius,
+		self.circle = self.scene.addEllipse(x-old_div(self.radius,2), y-old_div(self.radius,2), self.radius, self.radius,
 			qt.QPen(QtCore.Qt.black, 1, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin))
 		self.elipse.setVisible(False)
 		self.circle.setVisible(True)
@@ -86,15 +90,15 @@ class SandClock:
 
 
 
-class SmallScreen:
+class SmallScreen(object):
 	def __init__(self,scx,scy,scene):
 		self.scene = scene
 		self.parentx = scx
 		self.parenty = scy
 		self.dx = 200
 		self.dy = 200
-		self.square = scene.addRect(qt.QRectF(scx/2-100,scy/2-100,200,200))
-		self.point = scene.addRect(qt.QRectF(self.parentx/2-2,self.parenty/2-2,4,4))
+		self.square = scene.addRect(qt.QRectF(old_div(scx,2)-100,old_div(scy,2)-100,200,200))
+		self.point = scene.addRect(qt.QRectF(old_div(self.parentx,2)-2,old_div(self.parenty,2)-2,4,4))
 	def drawPoint(self,pos):
 		px = -100 + pos[0]*self.dx/wiimote.Wiimote.MAX_X-2
 		py = 100 - pos[1]*self.dy/wiimote.Wiimote.MAX_Y-2
@@ -137,7 +141,7 @@ class CalibrateDialog2(QtWidgets.QDialog):
 		self.ui.graphicsView.setScene(self.scene)
 
 		self.smallScreen = SmallScreen(viewport[0], viewport[1], self.scene)
-		self.sandclock = SandClock(self.scene,viewport[0]/2,viewport[1]/2)
+		self.sandclock = SandClock(self.scene,old_div(viewport[0],2),old_div(viewport[1],2))
 
 		self.CalibrationPoints = [
 			[0,0], [wdt,0], [wdt,hgt], [0,hgt]
@@ -301,7 +305,7 @@ class CalibrateDialog(QtWidgets.QDialog):
 		self.smallScreen = SmallScreen(self.wdt,self.hgt,self.scene)
 		self.sandclock = SandClock(self.scene,*self.marks[0][1])
 		txt = self.scene.addSimpleText(self.tr("Push UP/DOWN to alter the crosses' position"))
-		txt.setPos(self.wdt/2 - txt.boundingRect().width()/2, 40)
+		txt.setPos(old_div(self.wdt,2) - old_div(txt.boundingRect().width(),2), 40)
 		self.mutex.unlock()
 
 	@QtCore.pyqtSlot(int, int)

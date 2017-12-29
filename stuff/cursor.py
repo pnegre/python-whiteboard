@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+from builtins import zip
+from builtins import range
+from builtins import object
 import Xlib.display
 import Xlib.ext.xtest
 import time
@@ -13,7 +16,7 @@ def clock():
     return int(time.time()*1000)
 
 
-class Filter:
+class Filter(object):
     def __init__(self):
         self.data = []
         conf = Configuration()
@@ -33,7 +36,7 @@ class Filter:
         res[1] /= n
         return res
 
-class Click:
+class Click(object):
     UP_TIMEOUT = 100
     
     def __init__(self,cursor):
@@ -55,14 +58,14 @@ class Click:
         self.initialTime = clock()
 
 
-class FakeCursor:
+class FakeCursor(object):
     LEFT_BUTTON = 1
     MIDDLE_BUTTON = 2
     RIGHT_BUTTON = 3
     ONLY_MOVE = 4
     RIGHT_CLICK_TIMEOUT = 750
     CLICK_TIMEOUT = 60
-    ZONE1, ZONE2, ZONE3, ZONE4 = range(4)
+    ZONE1, ZONE2, ZONE3, ZONE4 = list(range(4))
     
     def __init__(self,wii):
         self.display = Xlib.display.Display()
