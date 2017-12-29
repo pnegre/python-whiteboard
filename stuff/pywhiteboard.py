@@ -9,7 +9,7 @@ from calibration import doCalibration, CalibrationAbort
 from configuration import Configuration, ConfigDialog
 
 
-import sys, time, locale
+import sys, time, locale, traceback
 import hashlib
 
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
@@ -489,6 +489,8 @@ class MainWindow(QtWidgets.QMainWindow):
 			pass
 		
 		except:
+			print("Error during Calibration")
+			traceback.print_exc(file=sys.stdout)
 			self.updateButtons()
 			msgbox = QtWidgets.QMessageBox( self )
 			msgbox.setText( self.tr("Error during Calibration") )
