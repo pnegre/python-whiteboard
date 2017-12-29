@@ -1,20 +1,21 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
 import sys, os
 
 def main():
 	localpath = os.path.split(os.path.abspath(sys.argv[0]))[0]
 	teststuff = os.path.join(localpath, 'stuff')
 	if not os.path.isdir(teststuff):
-		print "Not a testing environment"
+		print("Not a testing environment")
 		sys.exit(0)
 	
 	#apply our directories and test environment
 	os.chdir(teststuff)
 	sys.path.insert(0, teststuff)
 	
-	print "Using directory: " + teststuff
+	print("Using directory: " + teststuff)
 	
 	import pywhiteboard
 	pywhiteboard.main()

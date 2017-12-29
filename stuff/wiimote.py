@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
 import sys, re
 
 import PyQt5.Qt as qt
@@ -16,7 +17,7 @@ import threading
 
 
 def calculateArea(points):
-    print points
+    print(points)
     p1 = points[0]
     p2 = points[1]
     p3 = points[2]
@@ -33,8 +34,8 @@ def calculateArea(points):
     paral_B_area = va[0]*vb[1] - va[1]*vb[0]
 
     result = float(paral_A_area)/2 + float(paral_B_area)/2
-    print paral_A_area
-    print paral_B_area
+    print(paral_A_area)
+    print(paral_B_area)
     return result
 
 
@@ -90,7 +91,7 @@ class Wiimote:
                     self.wiimotesDetected.append(device)
             return
         
-        except bluetooth.BluetoothError, errString:
+        except bluetooth.BluetoothError as errString:
             self.wii = None
             self.error = True
             return
@@ -110,14 +111,14 @@ class Wiimote:
             self.error = False
             return
             
-        except RuntimeError, errString:
+        except RuntimeError as errString:
             self.wii = None
             return
         
         except:
             self.wii = None
             self.error = True
-            print "Unexpected error:", sys.exc_info()[0]
+            print("Unexpected error:", sys.exc_info()[0])
             raise
     
     def isConnected(self):

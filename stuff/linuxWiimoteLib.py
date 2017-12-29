@@ -1,3 +1,4 @@
+from __future__ import print_function
 # LICENSE:         MIT (X11) License which follows:
 #
 # Copyright (c) 2008 Stephane Duchesneau
@@ -204,9 +205,9 @@ class Wiimote(threading.Thread):
 		try:
 			self.datasocket.settimeout(1)
 		except NotImplementedError:
-			print "socket timeout not implemented with this bluetooth module"
+			print("socket timeout not implemented with this bluetooth module")
 		
-		print "Connected to ", self.bd_addr
+		print("Connected to ", self.bd_addr)
 		self._get_battery_status()
 		self.start() #start this thread
 		return True
@@ -238,7 +239,7 @@ class Wiimote(threading.Thread):
 
 
 	def run(self):
-		print "starting"
+		print("starting")
 		self.running = True
 		while self.running:
 			try:
@@ -256,9 +257,9 @@ class Wiimote(threading.Thread):
 			
 		self.datasocket.close()
 		self.controlsocket.close()
-		print "Bluetooth socket closed succesfully."
+		print("Bluetooth socket closed succesfully.")
 		self.Dispose()
-		print "stopping"
+		print("stopping")
 	
 	def Dispose(self):
 		self.Disconnect()
@@ -365,13 +366,13 @@ class Wiimote(threading.Thread):
 
 if __name__ == "__main__":
 	wiimote = Wiimote()
-	print "Press 1 and 2 on wiimote (or SYNC on wiimote plus) to make it discoverable"
+	print("Press 1 and 2 on wiimote (or SYNC on wiimote plus) to make it discoverable")
 	wiimote.Connect()
 	wiimote.activate_IR()
 	while 1:
 		time.sleep(0.1)
 		#print wiimote.state
-		print wiimote.WiimoteState.ButtonState.A, wiimote.WiimoteState.ButtonState.B, wiimote.WiimoteState.ButtonState.Up, wiimote.WiimoteState.ButtonState.Down, wiimote.WiimoteState.ButtonState.Left, wiimote.WiimoteState.ButtonState.Right, wiimote.WiimoteState.ButtonState.Minus, wiimote.WiimoteState.ButtonState.Plus, wiimote.WiimoteState.ButtonState.Home, wiimote.WiimoteState.ButtonState.One, wiimote.WiimoteState.ButtonState.Two, wiimote.WiimoteState.IRState.RawX1, wiimote.WiimoteState.IRState.RawY1, wiimote.WiimoteState.IRState.Size1, wiimote.WiimoteState.IRState.RawX2, wiimote.WiimoteState.IRState.RawY2, wiimote.WiimoteState.IRState.Size2
+		print(wiimote.WiimoteState.ButtonState.A, wiimote.WiimoteState.ButtonState.B, wiimote.WiimoteState.ButtonState.Up, wiimote.WiimoteState.ButtonState.Down, wiimote.WiimoteState.ButtonState.Left, wiimote.WiimoteState.ButtonState.Right, wiimote.WiimoteState.ButtonState.Minus, wiimote.WiimoteState.ButtonState.Plus, wiimote.WiimoteState.ButtonState.Home, wiimote.WiimoteState.ButtonState.One, wiimote.WiimoteState.ButtonState.Two, wiimote.WiimoteState.IRState.RawX1, wiimote.WiimoteState.IRState.RawY1, wiimote.WiimoteState.IRState.Size1, wiimote.WiimoteState.IRState.RawX2, wiimote.WiimoteState.IRState.RawY2, wiimote.WiimoteState.IRState.Size2)
 		#print wiimote.IRState.Found1	
 
 
