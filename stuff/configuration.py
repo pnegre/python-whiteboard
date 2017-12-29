@@ -49,7 +49,10 @@ class Configuration:
 
 		
 		def getValueStr(self,name):
-			v = self.settings.value(name).toString()
+			v = self.settings.value(name)
+			if v is None:
+				v = ''
+			v = str(v)
 			if v != '': return v
 			if v == '' and name in self.defaults.keys():
 				return self.defaults[name]
