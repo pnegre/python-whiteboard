@@ -26,7 +26,6 @@ from __future__ import division
 #
 
 
-from builtins import map
 from builtins import chr
 from past.utils import old_div
 from builtins import object
@@ -194,8 +193,8 @@ class Wiimote(threading.Thread):
 		self.IRCallback = None
 		
 	def Connect(self, device):
-	        self.bd_addr = device[0]
-	        self.name = device[1]
+		self.bd_addr = device[0]
+		self.name = device[1]
 		self.controlsocket = bluetooth.BluetoothSocket(bluetooth.L2CAP)
 		self.controlsocket.connect((self.bd_addr,17))
 		self.datasocket = bluetooth.BluetoothSocket(bluetooth.L2CAP)
@@ -203,9 +202,9 @@ class Wiimote(threading.Thread):
 		self.sendsocket = self.controlsocket
 		self.CMD_SET_REPORT = 0x52
 		
-	        if self.name == "Nintendo RVL-CNT-01-TR":
-	             self.CMD_SET_REPORT = 0xa2 
-	             self.sendsocket = self.datasocket
+		if self.name == "Nintendo RVL-CNT-01-TR":
+			self.CMD_SET_REPORT = 0xa2 
+			self.sendsocket = self.datasocket
 		
 		try:
 			self.datasocket.settimeout(1)
@@ -217,8 +216,7 @@ class Wiimote(threading.Thread):
 		self.start() #start this thread
 		return True
 		
-	def char_to_binary_string(self,char):
-		ascii = ord(char)
+	def char_to_binary_string(self,ascii):
 		bin = []
 
 		while (ascii > 0):
@@ -248,12 +246,12 @@ class Wiimote(threading.Thread):
 		self.running = True
 		while self.running:
 			try:
-				x= list(map(ord,self.datasocket.recv(32)))
+				x= bytearray(self.datasocket.recv(32))
 			except bluetooth.BluetoothError:
 				continue
 			self.state = ""
 			for each in x[:17]:
-				self.state += self.char_to_binary_string(chr(each)) + " "
+				self.state += self.char_to_binary_string(each) + " "
 			if len(x) >= 4:
 				self.parser.parseButtons((x[2]<<8) + x[3], self.WiimoteState.ButtonState)
 			if len(x) >= 19: 
@@ -276,11 +274,12 @@ class Wiimote(threading.Thread):
 	def join(self):#will be called last...
 		self.Dispose()
 		
-	def _send_data(self,data):			
-		str_data = ""
+	def _send_data(self,data):
+		bin_data = bytearray()
+		bin_data.append(self.CMD_SET_REPORT)
 		for each in data:
-			str_data += chr(each)
-		self.sendsocket.send(chr(self.CMD_SET_REPORT) + str_data)
+			bin_data.append(each)
+		self.sendsocket.send(bytes(bin_data))
 	
 	def _write_to_mem(self, address, value):
 		val = i2bs(value)
@@ -341,15 +340,14 @@ class Wiimote(threading.Thread):
 		self.running2 = True
 		while self.running2:
 			try:
-				x= list(map(ord,self.datasocket.recv(32)))
+				x = bytearray(self.datasocket.recv(32))
 			except bluetooth.BluetoothError:
 				continue
 			self.state = ""
-			for each in x[:17]:
-				if len(x) >= 7:
-					self.running2 = False
-					battery_level = x[7]
-		self.WiimoteState.Battery = old_div(float(battery_level), float(208))
+			if len(x) >= 7:
+				self.running2 = False
+				battery_level = float(x[7])
+		self.WiimoteState.Battery = battery_level / 208.
 	
 	
 	def setIRCallBack(self, func):

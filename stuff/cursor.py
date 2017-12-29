@@ -107,7 +107,7 @@ class FakeCursor(object):
     
     
     def move(self,pos):
-        Xlib.ext.xtest.fake_input(self.display, Xlib.X.MotionNotify, x=pos[0], y=pos[1])
+        Xlib.ext.xtest.fake_input(self.display, Xlib.X.MotionNotify, x=int(pos[0]), y=int(pos[1]))
         self.display.sync()
     
     

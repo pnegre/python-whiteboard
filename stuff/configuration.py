@@ -79,7 +79,7 @@ class Configuration(object):
 				kys = self.settings.childKeys()
 				d = dict()
 				for k in kys:
-					d[str(k)] = str(self.settings.value(k).toString())
+					d[str(k)] = str(self.settings.value(k))
 				result.append(d)
 			self.settings.endArray()
 			return result

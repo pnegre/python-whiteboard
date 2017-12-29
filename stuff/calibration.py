@@ -46,7 +46,7 @@ class SandClock(object):
 			qt.QPen(QtCore.Qt.black, 1, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin))
 		self.elipse.setVisible(False)
 		self.circle.setVisible(True)
-                self.scene.update() 
+		self.scene.update() 
 
 
 	def initialize(self):
@@ -77,10 +77,10 @@ class SandClock(object):
 			self.elipse.setVisible(True)
 			dgrs = 5760*self.totalTicks/700
 			self.elipse.setSpanAngle(dgrs)
-                        self.scene.update()
+			self.scene.update()
 		else:
 			self.elipse.setVisible(False)
-                        self.scene.update()
+			self.scene.update()
 
 	def finished(self):
 		return self.state == SandClock.FIN2
@@ -300,7 +300,7 @@ class CalibrateDialog(QtWidgets.QDialog):
 				qt.QPen(QtCore.Qt.red, 2, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin))
 			m.setVisible(False)
 			self.marks.append([m, p])
-                        self.scene.update()
+			self.scene.update()
 
 		self.smallScreen = SmallScreen(self.wdt,self.hgt,self.scene)
 		self.sandclock = SandClock(self.scene,*self.marks[0][1])
