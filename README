@@ -31,7 +31,7 @@ $ make deb
 Required packages:
 
 - To run the program: python-bluez python-qt5 python-numpy python-xlib
-  python python-support
+  python python-support python-future
 - To run make: libqt5-dev qt5-dev-tools python-qt5-dev
 - To build the deb package: build-essential fakeroot dpkg-dev debhelper
 

@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
 import sys, os
 
 STUFFDIR = '/usr/share/python-whiteboard'
@@ -8,14 +9,14 @@ STUFFDIR = '/usr/share/python-whiteboard'
 def main():
 	global STUFFDIR
 	if not os.path.isdir(STUFFDIR):
-		print "Can't find " + STUFFDIR
+		print("Can't find " + STUFFDIR)
 		sys.exit(1)
 	
 	#apply our directories and test environment
 	os.chdir(STUFFDIR)
 	sys.path.insert(0, STUFFDIR)
 	
-	print "Using directory: " + STUFFDIR
+	print("Using directory: " + STUFFDIR)
 	
 	import pywhiteboard
 	pywhiteboard.main()

@@ -1,6 +1,13 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+from __future__ import division
+from future import standard_library
+standard_library.install_aliases()
+from builtins import str
+from builtins import range
+from builtins import object
+from past.utils import old_div
 from wiimote import Wiimote
 from cursor import FakeCursor
 from threads import *
@@ -130,7 +137,7 @@ class MainWindow(QtWidgets.QMainWindow):
 		if i == 0:
 			conf.setGroup("default")
 		else:
-			g = unicode(self.ui.comboProfiles.currentText())
+			g = str(self.ui.comboProfiles.currentText())
 			conf.setGroup(hashlib.md5(g.encode('utf-8')).hexdigest())
 		
 		self.confDialog.refreshWidgets()
@@ -153,7 +160,7 @@ class MainWindow(QtWidgets.QMainWindow):
 		profName, ok = QtWidgets.QInputDialog.getText(self,
 			self.tr("New Profile"), self.tr('Name:'))
 		
-		profName = unicode(profName)
+		profName = str(profName)
 		if ok and profName != '':
 			conf = Configuration()
 			profiles = conf.getProfileList()
@@ -168,7 +175,7 @@ class MainWindow(QtWidgets.QMainWindow):
 	
 	def delCurrentProfile(self):
 		i = self.ui.comboProfiles.currentIndex()
-		currentProfile = unicode(self.ui.comboProfiles.currentText())
+		currentProfile = str(self.ui.comboProfiles.currentText())
 		if i == 0: return
 		conf = Configuration()
 		profiles = conf.getProfileList()
@@ -259,7 +266,7 @@ class MainWindow(QtWidgets.QMainWindow):
 		quad = QtGui.QPolygonF()
 		for p in self.wii.calibrationPoints:
 			x = max_x * p[0]/Wiimote.MAX_X
-			y = max_y * (1-float(p[1])/Wiimote.MAX_Y)
+			y = max_y * (1-old_div(float(p[1]),Wiimote.MAX_Y))
 			quad.append(qt.QPointF(x,y))
 		self.scene.addPolygon(quad)
 		self.wiiScreen.setScene(self.scene)
@@ -274,7 +281,7 @@ class MainWindow(QtWidgets.QMainWindow):
 	def center(self):
 		screen = QtWidgets.QDesktopWidget().screenGeometry()
 		size = self.geometry()
-		self.move((screen.width()-size.width())/2, (screen.height()-size.height())/2)
+		self.move(old_div((screen.width()-size.width()),2), old_div((screen.height()-size.height()),2))
 		
 		
 
@@ -417,13 +424,13 @@ class MainWindow(QtWidgets.QMainWindow):
 			
 			if pBar.choice:
 				if len(pool) == 1:
-					selectedMac = unicode(pool[0])
+					selectedMac = str(pool[0])
 					pBar.reInit(selectedMac)
 				else:
 					item, ok = QtWidgets.QInputDialog.getItem(self,
 						self.tr("Warning"), self.tr("Choose device"), pool, 0, False)
 					if ok:
-						selectedMac = unicode(item)
+						selectedMac = str(item)
 						pBar.reInit(selectedMac)
 					else:
 						pBar.close()

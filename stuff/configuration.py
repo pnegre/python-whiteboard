@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+from builtins import str
+from builtins import range
+from builtins import object
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
 import PyQt5.Qt as qt
 
@@ -7,9 +10,9 @@ import PyQt5.Qt as qt
 CONFIG_VERSION = 12
 
 
-class Configuration:
+class Configuration(object):
 
-	class __impl:
+	class __impl(object):
 		""" Implementation of the singleton interface """
 		
 		def __init__(self):
@@ -54,7 +57,7 @@ class Configuration:
 				v = ''
 			v = str(v)
 			if v != '': return v
-			if v == '' and name in self.defaults.keys():
+			if v == '' and name in list(self.defaults.keys()):
 				return self.defaults[name]
 			else: return ''
 		
@@ -63,7 +66,7 @@ class Configuration:
 			self.settings.beginWriteArray(name)
 			for i,dct in enumerate(lst):
 				self.settings.setArrayIndex(i)
-				for k in dct.keys():
+				for k in list(dct.keys()):
 					self.settings.setValue(k,dct[k])
 			self.settings.endArray()
 		
@@ -76,7 +79,7 @@ class Configuration:
 				kys = self.settings.childKeys()
 				d = dict()
 				for k in kys:
-					d[unicode(k)] = unicode(self.settings.value(k).toString())
+					d[str(k)] = str(self.settings.value(k))
 				result.append(d)
 			self.settings.endArray()
 			return result
@@ -98,7 +101,7 @@ class Configuration:
 			n = self.settings.beginReadArray("profiles")
 			for i in range(0,n):
 				self.settings.setArrayIndex(i)
-				result.append(unicode(self.settings.value('item').toString()))
+				result.append(str(self.settings.value('item').toString()))
 			self.settings.endArray()
 			self.setGroup(activeGroup)
 			return result
@@ -217,7 +220,7 @@ class ConfigDialog(QtWidgets.QDialog):
 	
 	
 	def macTableCellSelected(self,r,c):
-		address = unicode(self.ui.tableMac.item(r,0).text())
+		address = str(self.ui.tableMac.item(r,0).text())
 		conf = Configuration()
 		conf.saveValue('selectedmac',address)
 	
