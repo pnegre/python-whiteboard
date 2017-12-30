@@ -49,7 +49,10 @@ class Configuration:
 
 		
 		def getValueStr(self,name):
-			v = self.settings.value(name).toString()
+			v = self.settings.value(name)
+			if v is None:
+				v = ''
+			v = str(v)
 			if v != '': return v
 			if v == '' and name in self.defaults.keys():
 				return self.defaults[name]
@@ -143,47 +146,34 @@ class ConfigDialog(QtWidgets.QDialog):
 		
 		self.wii = wii
 		
-		self.connect(self.ui.check_fullscreen,
-			QtCore.SIGNAL("stateChanged(int)"), self.checkStateChanged)
-		self.connect(self.ui.check_autoconnect,
-			QtCore.SIGNAL("stateChanged(int)"), self.checkStateChanged)
-		self.connect(self.ui.check_autocalibration,
-			QtCore.SIGNAL("stateChanged(int)"), self.checkStateChanged)
-		self.connect(self.ui.check_automatrix,
-			QtCore.SIGNAL("stateChanged(int)"), self.checkStateChanged)
-		self.connect(self.ui.check_nowait,
-			QtCore.SIGNAL("stateChanged(int)"), self.checkStateChanged)
+		self.ui.check_fullscreen.stateChanged.connect(self.checkStateChanged)
+		self.ui.check_autoconnect.stateChanged.connect(self.checkStateChanged)
+		self.ui.check_autocalibration.stateChanged.connect(self.checkStateChanged)
+		self.ui.check_automatrix.stateChanged.connect(self.checkStateChanged)
+		self.ui.check_nowait.stateChanged.connect(self.checkStateChanged)
 		
-		self.connect(self.ui.button_addDev,
-			QtCore.SIGNAL("clicked()"), self.addDevice)
-		self.connect(self.ui.button_remDev,
-			QtCore.SIGNAL("clicked()"), self.removeDevice)
+		self.ui.button_addDev.clicked.connect(self.addDevice)
+		self.ui.button_remDev.clicked.connect(self.removeDevice)
 		
 		pixmap = QtGui.QPixmap("screen.png")
-		self.areasScene = QtGui.QGraphicsScene()
+		self.areasScene = QtWidgets.QGraphicsScene()
 		self.areasScene.addPixmap(pixmap)
 		self.screenAreas.setScene(self.areasScene)
 		self.screenAreas.show()
 		
-		self.connect(self.ui.combo1,
-			QtCore.SIGNAL("currentIndexChanged(int)"), self.changeCombo)
-		self.connect(self.ui.combo2,
-			QtCore.SIGNAL("currentIndexChanged(int)"), self.changeCombo)
-		self.connect(self.ui.combo3,
-			QtCore.SIGNAL("currentIndexChanged(int)"), self.changeCombo)
-		self.connect(self.ui.combo4,
-			QtCore.SIGNAL("currentIndexChanged(int)"), self.changeCombo)
+		self.ui.combo1.currentIndexChanged.connect(self.changeCombo)
+		self.ui.combo2.currentIndexChanged.connect(self.changeCombo)
+		self.ui.combo3.currentIndexChanged.connect(self.changeCombo)
+		self.ui.combo4.currentIndexChanged.connect(self.changeCombo)
 		self.updateCombos()
 		
 		self.ui.slider_ir.setMinimum(1)
 		self.ui.slider_ir.setMaximum(6)
-		self.connect(self.ui.slider_ir,
-			QtCore.SIGNAL("valueChanged(int)"), self.sliderIrMoved)
+		self.ui.slider_ir.valueChanged.connect(self.sliderIrMoved)
 		
 		self.ui.slider_smoothing.setMinimum(1)
 		self.ui.slider_smoothing.setMaximum(10)
-		self.connect(self.ui.slider_smoothing,
-			QtCore.SIGNAL("valueChanged(int)"), self.sliderSmMoved)
+		self.ui.slider_smoothing.valueChanged.connect(self.sliderSmMoved)
 		
 		self.refreshWidgets()
 		self.checkButtons()
@@ -218,13 +208,12 @@ class ConfigDialog(QtWidgets.QDialog):
 	def setupMacTable(self):
 		self.ui.tableMac.setColumnCount(2)
 		self.ui.tableMac.setHorizontalHeaderLabels([self.tr('Address'), self.tr('Comment')])
-		self.ui.tableMac.setSelectionMode(QtGui.QTableWidget.SingleSelection)
-		self.ui.tableMac.setSelectionBehavior(QtGui.QTableWidget.SelectRows)
+		self.ui.tableMac.setSelectionMode(QtWidgets.QTableWidget.SingleSelection)
+		self.ui.tableMac.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
 		self.refreshMacTable()
 		header = self.ui.tableMac.horizontalHeader()
 		header.setStretchLastSection(True)
-		self.connect(self.ui.tableMac,
-			QtCore.SIGNAL("cellClicked(int,int)"), self.macTableCellSelected)
+		self.ui.tableMac.cellClicked.connect(self.macTableCellSelected)
 	
 	
 	def macTableCellSelected(self,r,c):
@@ -238,9 +227,9 @@ class ConfigDialog(QtWidgets.QDialog):
 			self.ui.tableMac.removeRow(0)
 		
 		self.ui.tableMac.insertRow(0)
-		item = QtGui.QTableWidgetItem('*')
+		item = QtWidgets.QTableWidgetItem('*')
 		self.ui.tableMac.setItem(0,0,item)
-		item = QtGui.QTableWidgetItem(self.tr('All devices'))
+		item = QtWidgets.QTableWidgetItem(self.tr('All devices'))
 		self.ui.tableMac.setItem(0,1,item)
 		self.ui.tableMac.selectRow(0)
 		conf = Configuration()
@@ -248,9 +237,9 @@ class ConfigDialog(QtWidgets.QDialog):
 		for elem in lst:
 			rc = self.ui.tableMac.rowCount()
 			self.ui.tableMac.insertRow(rc)
-			item = QtGui.QTableWidgetItem(elem['address'])
+			item = QtWidgets.QTableWidgetItem(elem['address'])
 			self.ui.tableMac.setItem(rc,0,item)
-			item = QtGui.QTableWidgetItem(elem['comment'])
+			item = QtWidgets.QTableWidgetItem(elem['comment'])
 			self.ui.tableMac.setItem(rc,1,item)
 			selected = conf.getValueStr('selectedmac')
 			if selected == elem['address']:
@@ -267,7 +256,7 @@ class ConfigDialog(QtWidgets.QDialog):
 		for item in d:
 			if item['address'] == address: return
 		
-		comment, ok = QtGui.QInputDialog.getText(self,
+		comment, ok = QtWidgets.QInputDialog.getText(self,
 			self.tr("Comment"), self.tr('Wii device description'))
 		
 		if ok:

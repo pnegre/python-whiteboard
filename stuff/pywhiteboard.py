@@ -9,7 +9,7 @@ from calibration import doCalibration, CalibrationAbort
 from configuration import Configuration, ConfigDialog
 
 
-import sys, time, locale
+import sys, time, locale, traceback
 import hashlib
 
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
@@ -21,8 +21,7 @@ class AboutDlg(QtWidgets.QDialog):
 	def __init__(self, parent=None):
 		super(AboutDlg, self).__init__(parent)
 		self.ui = uic.loadUi("about.ui",self)
-		self.connect(self.ui.butOK,
-			QtCore.SIGNAL("clicked()"), self.close)
+		self.ui.butOK.clicked.connect(self.close)
 
 
 
@@ -33,10 +32,8 @@ class PBarDlg(QtWidgets.QDialog):
 		self.ui = uic.loadUi("pbar.ui",self)
 		self.cancelled = False
 		self.choice = 0
-		self.connect(self.ui.butCancel,
-			QtCore.SIGNAL("clicked()"), self.cancelConnection)
-		self.connect(self.ui.butChoose,
-			QtCore.SIGNAL("clicked()"), self.makeChoice)
+		self.ui.butCancel.clicked.connect(self.cancelConnection)
+		self.ui.butChoose.clicked.connect(self.makeChoice)
 		self.ui.butChoose.hide()
 	
 	def reInit(self,mac='*'):
@@ -89,51 +86,32 @@ class MainWindow(QtWidgets.QMainWindow):
 		
 		conf = Configuration()
 
-		self.connect(self.ui.pushButtonConnect,
-			QtCore.SIGNAL("clicked()"), self.connectWii)
-		
-		self.connect(self.ui.pushButtonCalibrate,
-			QtCore.SIGNAL("clicked()"), self.calibrateWiiScreen)
-		
-		self.connect(self.ui.pushButtonActivate,
-			QtCore.SIGNAL("clicked()"), self.activateWii)
-		
-		self.connect(self.ui.pushButtonLoadCal,
-			QtCore.SIGNAL("clicked()"), self.calibrateWiiFromSettings)
-		
-		self.connect(self.ui.pushButtonSettings,
-			QtCore.SIGNAL("clicked()"), self.showHideSettings)
-		
-		self.connect(self.ui.comboProfiles,
-			QtCore.SIGNAL("currentIndexChanged(int)"), self.changeProfile)
-		
+		self.ui.pushButtonConnect.clicked.connect(self.connectWii)
+		self.ui.pushButtonCalibrate.clicked.connect(self.calibrateWiiScreen)
+		self.ui.pushButtonActivate.clicked.connect(self.activateWii)
+		self.ui.pushButtonLoadCal.clicked.connect(self.calibrateWiiFromSettings)
+		self.ui.pushButtonSettings.clicked.connect(self.showHideSettings)
+		self.ui.comboProfiles.currentIndexChanged.connect(self.changeProfile)
 		self.updateButtons()
-		
-		self.connect(self.ui.actionQuit,
-			QtCore.SIGNAL("activated()"), self.mustQuit)
-		self.connect(self.ui.actionHelp,
-			QtCore.SIGNAL("activated()"), self.showAboutDlg)
-		self.connect(self.ui.actionNew_Profile,
-			QtCore.SIGNAL("activated()"), self.addProfile)
-		self.connect(self.ui.actionDelete_Current_Profile,
-			QtCore.SIGNAL("activated()"), self.delCurrentProfile)
-		self.connect(self.ui.actionWipe_configuration,
-			QtCore.SIGNAL("activated()"), self.wipeConfiguration)
-		
-		
+
+		self.ui.actionQuit.triggered.connect(self.mustQuit)
+		self.ui.actionHelp.triggered.connect(self.showAboutDlg)
+		self.ui.actionNew_Profile.triggered.connect(self.addProfile)
+		self.ui.actionDelete_Current_Profile.triggered.connect(self.delCurrentProfile)
+		self.ui.actionWipe_configuration.triggered.connect(self.wipeConfiguration)
+
 		self.ui.moveOnlyCheck.setChecked( conf.getValueStr('moveonly') == 'Yes' )
-		self.connect(self.ui.moveOnlyCheck,
-			QtCore.SIGNAL("stateChanged(int)"), self.checkMoveOnly)
-		
+		self.ui.moveOnlyCheck.stateChanged.connect(self.checkMoveOnly)
+
 		if conf.getValueStr("autoconnect") == "Yes":
 			self.timer = qt.QTimer(self)
 			self.timer.setInterval(500)
-			self.connect(self.timer, QtCore.SIGNAL("timeout()"), self.autoConnect)
+			self.timer.timeout.connect(self.autoConnect)
 			self.timer.start()
 		
 		self.timer2 = qt.QTimer(self)
 		self.timer2.setInterval(4000)
-		self.connect(self.timer2, QtCore.SIGNAL("timeout()"), self.checkWii)
+		self.timer2.timeout.connect(self.checkWii)
 		self.timer2.start()
 		
 		self.confDialog = ConfigDialog(self, self.wii)
@@ -278,7 +256,7 @@ class MainWindow(QtWidgets.QMainWindow):
 		max_y = self.wiiScreen.geometry().height()
 		self.scene = qt.QGraphicsScene()
 		self.scene.setSceneRect(0,0,max_x,max_y)
-		quad = QtWidgets.QPolygonF()
+		quad = QtGui.QPolygonF()
 		for p in self.wii.calibrationPoints:
 			x = max_x * p[0]/Wiimote.MAX_X
 			y = max_y * (1-float(p[1])/Wiimote.MAX_Y)
@@ -489,6 +467,8 @@ class MainWindow(QtWidgets.QMainWindow):
 			pass
 		
 		except:
+			print("Error during Calibration")
+			traceback.print_exc(file=sys.stdout)
 			self.updateButtons()
 			msgbox = QtWidgets.QMessageBox( self )
 			msgbox.setText( self.tr("Error during Calibration") )
@@ -623,10 +603,9 @@ class SysTrayIcon(object):
 	def __init__(self, fname, mainWindow):
 		self.mainWindow = mainWindow
 		self.stray = QtWidgets.QSystemTrayIcon()
-		self.stray.setIcon(QtWidgets.QIcon(fname))
+		self.stray.setIcon(QtGui.QIcon(fname))
 
-		QtCore.QObject.connect(self.stray,
-			QtCore.SIGNAL("activated(QSystemTrayIcon::ActivationReason)"), self.activate)
+		self.stray.activated.connect(self.activate)
 	
 	def activate(self, reason):
 		if reason == QtWidgets.QSystemTrayIcon.Trigger:

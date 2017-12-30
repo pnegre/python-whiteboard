@@ -117,12 +117,14 @@ def crossPoly(x,y):
 
 
 class CalibrateDialog2(QtWidgets.QDialog):
+	wiiCallback = QtCore.pyqtSignal(int, int)
+
 	def __init__(self,parent,wii):
-		QtGui.QWidget.__init__(self,parent)
+		QtWidgets.QWidget.__init__(self,parent)
 		self.wii = wii
 		self.ui = uic.loadUi("calibration2.ui",self)
 
-		screenGeom = QtGui.QDesktopWidget().screenGeometry()
+		screenGeom = QtWidgets.QDesktopWidget().screenGeometry()
 		wdt = screenGeom.width()-2
 		hgt = screenGeom.height()-2
 
@@ -149,12 +151,11 @@ class CalibrateDialog2(QtWidgets.QDialog):
 
 		self.ui.label.setText(self.textMessages.pop(0))
 
-		self.connect(self.ui.but_cancel,
-			QtCore.SIGNAL("clicked()"), self.close)
+		self.ui.but_cancel.clicked.connect(self.close)
 
-		self.shcut1 = QtGui.QShortcut(self)
+		self.shcut1 = QtWidgets.QShortcut(self)
 		self.shcut1.setKey("Esc")
-		self.connect(self.shcut1, QtCore.SIGNAL("activated()"), self.close)
+		self.shcut1.activated.connect(self.close)
 
 		self.mutex = qt.QMutex()
 
@@ -164,21 +165,26 @@ class CalibrateDialog2(QtWidgets.QDialog):
 
 		self.timer = qt.QTimer(self)
 		self.timer.setInterval(70)
-		self.connect(self.timer, QtCore.SIGNAL("timeout()"), self.doWork)
+		self.timer.timeout.connect(self.doWork)
 		self.timer.start()
 
+		self.wiiCallback.connect(self._wiiCallback)
+
+	@QtCore.pyqtSlot(int, int)
+	def _wiiCallback(self, pos0, pos1):
+		pos = [pos0, pos1]
+		self.mutex.lock()
+		self.smallScreen.drawPoint(pos)
+		self.sandclock.update(pos)
+		self.sandclock.draw()
+		# Restart the timer
+		self.timer.start()
+		self.mutex.unlock()
 
 	def makeWiiCallback(self):
 		def callback(pos):
-			self.mutex.lock()
-			self.smallScreen.drawPoint(pos)
-			self.sandclock.update(pos)
-			self.sandclock.draw()
-			# Restart the timer
-			self.timer.start()
-			self.mutex.unlock()
+			self.wiiCallback.emit(pos[0], pos[1])
 		return callback
-
 
 	def doWork(self):
 		self.mutex.lock()
@@ -205,6 +211,8 @@ class CalibrateDialog2(QtWidgets.QDialog):
 
 
 class CalibrateDialog(QtWidgets.QDialog):
+	wiiCallback = QtCore.pyqtSignal(int, int)
+
 	def __init__(self,parent,wii):
 		screenGeom = QtWidgets.QDesktopWidget().screenGeometry()
 		self.wdt = screenGeom.width()
@@ -222,18 +230,15 @@ class CalibrateDialog(QtWidgets.QDialog):
 
 		sh = QtWidgets.QShortcut(self)
 		sh.setKey("Esc")
-		self.connect(sh, 
-			QtCore.SIGNAL("activated()"), self.close)
+		sh.activated.connect(self.close)
 
 		sh = QtWidgets.QShortcut(self)
 		sh.setKey("Down")
-		self.connect(sh, 
-			QtCore.SIGNAL("activated()"), self.decCrosses)
+		sh.activated.connect(self.decCrosses)
 
 		sh = QtWidgets.QShortcut(self)
 		sh.setKey("Up")
-		self.connect(sh, 
-			QtCore.SIGNAL("activated()"), self.incCrosses)
+		sh.activated.connect(self.incCrosses)
 
 		self.scene = qt.QGraphicsScene()
 		self.scene.setSceneRect(0,0, self.wdt, self.hgt)
@@ -241,7 +246,7 @@ class CalibrateDialog(QtWidgets.QDialog):
 		self.gv.setScene(self.scene)
 		self.gv.setStyleSheet( "QGraphicsView { border-style: none; }" )
 		self.layout = QtWidgets.QVBoxLayout()
-		self.layout.setMargin(0)
+		self.layout.setContentsMargins(0,0,0,0)
 		self.layout.setSpacing(0)
 		self.layout.addWidget(self.gv)
 		self.setLayout(self.layout)
@@ -258,8 +263,10 @@ class CalibrateDialog(QtWidgets.QDialog):
 
 		self.timer = qt.QTimer(self)
 		self.timer.setInterval(70)
-		self.connect(self.timer, QtCore.SIGNAL("timeout()"), self.doWork)
+		self.timer.timeout.connect(self.doWork)
 		self.timer.start()
+
+		self.wiiCallback.connect(self._wiiCallback)
 
 
 	def decCrosses(self):
@@ -297,18 +304,23 @@ class CalibrateDialog(QtWidgets.QDialog):
 		txt.setPos(self.wdt/2 - txt.boundingRect().width()/2, 40)
 		self.mutex.unlock()
 
+	@QtCore.pyqtSlot(int, int)
+	def _wiiCallback(self, pos0, pos1):
+		pos = [pos0, pos1]
+		self.mutex.lock()
+		self.smallScreen.drawPoint(pos)
+		self.sandclock.update(pos)
+		self.sandclock.draw()
+		# Restart the timer
+		self.timer.start()
+		self.mutex.unlock()
+
 	def makeWiiCallback(self):
 		k = [0]
 		def callback(pos):
 			t = clock()
 			if (t-k[0]) < 30: return
-			self.mutex.lock()
-			self.smallScreen.drawPoint(pos)
-			self.sandclock.update(pos)
-			self.sandclock.draw()
-			# Restart the timer
-			self.timer.start()
-			self.mutex.unlock()
+			self.wiiCallback.emit(pos[0], pos[1])
 			k[0] = t
 		return callback
 
@@ -357,7 +369,6 @@ def doCalibration(parent,wii):
 		dialog.releaseKeyboard()
 	else:
 		dialog = CalibrateDialog2(parent,wii)
-		dialog.show()
 		dialog.exec_()
 
 	if len(dialog.wiiPoints) == 4:
