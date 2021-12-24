@@ -187,11 +187,11 @@ class FakeCursor(object):
                         else:
                             dX = p[0]-self.clkP[0]
                             dY = p[1]-self.clkP[1]
-                            # if the cursor moves, start click (drag) immediatly
+                            # if the cursor moves, start click (drag) immediately
                             if (dX*dX)+(dY*dY) > 16:
                                 self.begin = None
                                 self.run = True
-                                # Returns to the originlal point and clicks there
+                                # Returns to the original point and clicks there
                                 self.move(self.clkP)
                                 self.click = Click(self)
 
@@ -207,7 +207,7 @@ class FakeCursor(object):
             while 1:
                 qt.QThread.usleep(50)
                 self.mutex.lock()
-                # A click had occourred: a short burst (noot an impulse) with no movement
+                # A click had occurred: a short burst (noot an impulse) with no movement
                 if self.toclick and not self.run and clock() - self.lastdata > Click.UP_TIMEOUT:
                     self.begin = None
                     self.lastdata = None
