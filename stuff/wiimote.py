@@ -1,12 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from __future__ import print_function
-from __future__ import division
-from builtins import str
-from builtins import range
-from builtins import object
-from past.utils import old_div
 import sys, re
 
 import PyQt5.Qt as qt
@@ -20,6 +14,11 @@ from threads import CreateThreadClass
 import threading
 
 
+def old_div(a, b):
+    if isinstance(a, int) and isinstance(b, int):
+        return a // b
+    else:
+        return a / b
 
 def calculateArea(points):
     print(points)
