@@ -1,13 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from __future__ import division
-from future import standard_library
-standard_library.install_aliases()
-from builtins import str
-from builtins import range
-from builtins import object
-from past.utils import old_div
 from wiimote import Wiimote
 from cursor import FakeCursor
 from threads import *
@@ -22,6 +15,11 @@ import hashlib
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
 import PyQt5.Qt as qt
 
+def old_div(a, b):
+    if isinstance(a, int) and isinstance(b, int):
+        return a // b
+    else:
+        return a / b
 
 class AboutDlg(QtWidgets.QDialog):
 	

@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import division
-from builtins import range
-from builtins import object
-from past.utils import old_div
 import sys,time
 
 import wiimote
@@ -17,6 +13,11 @@ from configuration import Configuration
 class CalibrationAbort(Exception):
 	pass
 
+def old_div(a, b):
+    if isinstance(a, int) and isinstance(b, int):
+        return a // b
+    else:
+        return a / b
 
 def clock():
 	return int(time.time()*1000)

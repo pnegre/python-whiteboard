@@ -1,5 +1,3 @@
-from __future__ import print_function
-from __future__ import division
 # LICENSE:         MIT (X11) License which follows:
 #
 # Copyright (c) 2008 Stephane Duchesneau
@@ -25,13 +23,15 @@ from __future__ import division
 # Modified by Pere Negre and Pietro Pilolli
 #
 
-
-from builtins import chr
-from past.utils import old_div
-from builtins import object
 import threading
 import time
 import bluetooth
+
+def old_div(a, b):
+    if isinstance(a, int) and isinstance(b, int):
+        return a // b
+    else:
+        return a / b
 
 def i2bs(val):
 	lst = []
